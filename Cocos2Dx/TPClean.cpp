@@ -201,7 +201,7 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
                                                                 (void*)exObj),
                                            CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID),
                                                                 (void*)exObj),
-                                           CCDelayTime::create(0.3),
+                                           CCDelayTime::create(0.2),
                                            CCRemoveSelf::create(), NULL));
     
 }

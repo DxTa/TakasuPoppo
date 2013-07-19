@@ -191,11 +191,11 @@ void TakasuPoppo::logicExecution() {
     this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     this->runAction(CCSequence::create(CCDelayTime::create(0.1),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
-                                       CCDelayTime::create(0.3),
+                                       CCDelayTime::create(0.2),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),
                                        NULL));
     this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), 0.1);
-    this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), 0.4);
+    this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), 0.3);
 }
 

@@ -61,8 +61,7 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
     TakasuPoppo::lookForMatches();
     TPObjectExtension *swpObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(swpGid- 1)); //Out of range error
     if (exObj->getControlTrigger() != false && swpObj->getControlTrigger() != false &&
-        exObj->getID() != 7 && swpObj->getID() != 7 &&
-        exObj->getID() != 8 && swpObj->getID() != 8) {
+        exObj->getID() != 7 && swpObj->getID() != 7) {
         TakasuPoppo::swapColorID(exObj, swpObj);
         movedSprite = exObj;
         swapedSprite = swpObj;
