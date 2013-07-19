@@ -11,7 +11,7 @@
 void TakasuPoppo::popParticles(CCPoint point) {
     //CCTexture2D *texture = CCTextureCache::sharedTextureCache()->textureForKey("Star.png");
     CCParticleSystemQuad *pop = new CCParticleSystemQuad;
-    pop = CCParticleGalaxy::create();
+    pop = CCParticleFireworks::create();
     pop->setTexture(CCTextureCache::sharedTextureCache()->addImage("Star.png"));
     pop->setPosition(point);
     pop->setGravity(CCPointZero);
@@ -80,7 +80,42 @@ void TakasuPoppo::hintParticles(TPObjectExtension *exObj) {
     pop->setDuration(0.5);
     pop->setEmissionRate(200);
     //pop->setEndRadius(50);
-    this->addChild(pop, 5, 777);
+    this->addChild(pop, 5, exObj->getGid() + 800);
+}
+
+void TakasuPoppo::sunParticles(TPObjectExtension *exObj) {
+    CCParticleSystemQuad *pop = new CCParticleSystemQuad;
+    pop = CCParticleSun::create();
+    pop->setTexture(CCTextureCache::sharedTextureCache()->addImage("Star.png"));
+    pop->setPosition(exObj->getPosition());
+    pop->setGravity(CCPointZero);
+    
+    pop->setAngle(140);
+    pop->setAngleVar(360);
+    
+    pop->setSpeed(80);
+    //pop->setSpeedVar(360);
+    
+    pop->setStartSize(40);
+    
+    //pop->setLife(0.1);
+    pop->setPositionType(kCCPositionTypeRelative);
+    
+    pop->setRadialAccel(-50);
+    //pop->setRadialAccelVar(-100);
+    
+    //pop->setTangentialAccel(-50);
+    pop->setTotalParticles(9);
+    //pop->setRotatePerSecond(0);
+    //pop->setAutoRemoveOnFinish(true);
+    pop->setAtlasIndex(0);
+    pop->setBlendAdditive(false);
+    //pop->setOrderOfArrival(0);
+    pop->setOpacityModifyRGB(false);
+    pop->setDuration(0.5);
+    pop->setEmissionRate(200);
+    //pop->setEndRadius(50);
+    this->addChild(pop, 5, 779);
 }
 
 CCRenderTexture *TakasuPoppo::outlineEffect(CCSprite *sprite, int size, ccColor3B color, GLubyte opacity) {
@@ -147,7 +182,6 @@ void TakasuPoppo::popAnimation(CCNode* sender, void* data) {
 
 void TakasuPoppo::spriteChange(CCNode *sender, void* data) {
     TPObjectExtension *exObj = (TPObjectExtension*)data;
-    CCLog("Object ID %i", exObj->getID());
     if (exObj->getID() == 0) {
         CCImage *poppoB = new CCImage;
         poppoB->initWithImageFile("Poppo1B.png");

@@ -21,7 +21,6 @@ void TakasuPoppo::swipeSetup() {
 }
 
 void TakasuPoppo::didSwipe(int direction) {
-    CCLOG("Did recognize %i", direction);
 
 }
 

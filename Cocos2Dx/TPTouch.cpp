@@ -13,7 +13,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
     
     hintCounter = 3;
     hintArray->removeAllObjects();
-    this->removeChildByTag(778);
+    if (this->getChildByTag(778)) this->removeChildByTag(778);
     hintDisplaying = false;
     
     CCTouch *touch = (CCTouch*)touches->anyObject();
@@ -21,7 +21,6 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
     
     if (TakasuPoppo::touchPosValidation(touchLoc)) {
         CCPoint point = TakasuPoppo::tileCoorForPosition(touchLoc);
-        CCLog("%f %f", point.x, point.y);
         if (point.x >= 0 || point.x <= 6 ||
             point.y >= 0 || point.y <= 6) {
             TPObjectExtension *exObject = TakasuPoppo::coorToExObj(TakasuPoppo::tileCoorForPosition(touchLoc));

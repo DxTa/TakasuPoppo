@@ -7,6 +7,7 @@
 
 #include "cocos2d.h"
 #include "TPObjectExtension.h"
+#include "TPBlockSet.h"
 #include "CCGestureRecognizer.h"
 #include "CCSwipeGestureRecognizer.h"
 
@@ -38,9 +39,11 @@ private:
     
     float moveCounter;              //Counter time for move swipe action
     float fallCounter;              //Counter time for falling counter action
-    float deltaTime;                //Public variable for delta time
+    float comboTimer = 0;           //Timer for combos
+    int comboCounter = 0;               //Counter for combos
+    float deltaTime;            //Public variable for delta time
     
-    float hintCounter = 3;              //Display hint after this counter
+    float hintCounter = 3;          //Display hint after this counter
     
     float movingSpeed = 0.07;       //For all moving speed
     
@@ -52,6 +55,7 @@ private:
     
     bool inTheMove;                 //True if there are sprites in moving action
     bool inTheFall;                 //True if sprites are falling
+    bool isLogicRunnning;
     
     bool swipeRight;                //True if swipe right action is recognized
     bool swipeLeft;                 //True if swipe left action is recognized
@@ -60,12 +64,13 @@ private:
     
     bool hintDisplaying;            //Indicating that a hint is currently displayed
     
-    int count0, count1, count2,     //Count of blocks of same type
-    count3, count4, count5, count6;
-    
     bool gridOn = false;
     
+    char comboTimerString[20];
+    char comboCounterString[20];
     
+    CCLabelTTF *comboTimerLabel;
+    CCLabelTTF *comboCounterLabel;
 public:
     
     #pragma mark Takasu Poppo 
@@ -85,6 +90,8 @@ public:
     void scheduleGenerate();
     //Hint display
     void hintGeneration();
+    //Logic execution
+    void logicExecution();
     
     #pragma mark Touch
     virtual void ccTouchesBegan(CCSet *touches, CCEvent *event);
@@ -107,14 +114,17 @@ public:
     //Generate a certain sprite on EX Object
     void generateBlock(TPObjectExtension *exObj1, int type);
     
+    //Generate a Hyper Block A
+    void generateHyperBlockA(TPObjectExtension *exObj);
+    
     //Returns a coordination for position
     CCPoint tileCoorForPosition(CCPoint position);
     
     //Inserts empty blocks to array, to be assigned in the next function
     void addBlocksToArray();
     //Set values for EX Object
-    void setValuesForExObj(TPObjectExtension *exObj, int colorID, int gid, CCSprite *sprite, CCPoint position, CCPoint coordination, bool trigger);
-    
+    void setValuesForExObj(TPObjectExtension *exObj, int colorID, int gid, CCSprite *sprite,
+                           CCPoint position, CCPoint coordination, bool trigger, int blockType);
     
     #pragma mark Match
     //Check if there is matching pair in the begining, gotta rewrite it later
@@ -148,6 +158,15 @@ public:
     void cleanBlocks();
     //Move the blocks on the top of the destroyed blocks down
     void afterClean();
+    
+    //Clean with Hyper Block A
+    void cleanHyperBlockA(TPBlockSet* blockSet);
+    //Clean with Hyper Block B
+    void cleanHyperBlockB(TPObjectExtension* exObj);
+    //Clean with Hyper Block B
+    void cleanHyperBlockC(TPObjectExtension* exObj);
+    //Clean a sprite
+    void cleanSprite(TPObjectExtension *exObj);
     
     void changeID(CCNode *sender, void* data);
     
@@ -187,6 +206,9 @@ public:
     void hintParticles(TPObjectExtension *exObj);
     //Shine particles, gives a shine for a set of blocks
     void comboParticles(TPObjectExtension *exObj);
+    //Shine effect applies on Hyper Block A
+    void sunParticles(TPObjectExtension *exObj);
+    
     //Rends an outline effect on a sprite
     CCRenderTexture *outlineEffect(CCSprite *label, int size, ccColor3B color, GLubyte opacity);
     //Change sprite

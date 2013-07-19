@@ -14,7 +14,6 @@ void TakasuPoppo::addTileMap () {
     this->addChild(map, -1, -1);
     layer = map->layerNamed("Layer");
     layer->setPosition(0, 90);
-    CCLog("Layer width %f and height %f", layer->getContentSize().width, layer->getContentSize().height);
     TakasuPoppo::createFixture();
     
     CCArray *pChildrenArray = map->getChildren();
@@ -59,7 +58,7 @@ void TakasuPoppo::createFixture() {
             randomTileSprite->setPosition(ccp(tilePosition.x, tilePosition.y + 10));
             CCObject *object = colorArray->objectAtIndex(m_gid - 1);
             TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
-            TakasuPoppo::setValuesForExObj(exObj, randomTile, m_gid, randomTileSprite, tilePosition, tileCoordination, true);
+            TakasuPoppo::setValuesForExObj(exObj, randomTile, m_gid, randomTileSprite, tilePosition, tileCoordination, true, 0);
   
             this->addChild(randomTileSprite, 3, 300 + m_gid);
         }
@@ -146,6 +145,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(3);
+        exObj1->setControlTrigger(!exObj1->getControlTrigger());
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
@@ -180,34 +180,35 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         return;
     }
     if (type == 7) {
-        CCLog("Are you an idiot to assign an nothing to an empty block?");
         generateRandomBlock(exObj1);
         return;
     }
-
-    CCLog("The stupidity knows no bound.");
     generateRandomBlock(exObj1);
-    
 }
 
+void TakasuPoppo::generateHyperBlockA(TPObjectExtension *exObj) {
+    exObj->setBlockType(1);
+    TakasuPoppo::spriteChange(this, exObj);
+}
 
 #pragma mark Array
 
 void TakasuPoppo::addBlocksToArray() {
     for (int i = 0; i < 49; i ++) {
-        TPObjectExtension *exObj = new TPObjectExtension(0, 0, NULL, ccp(0, 0), ccp(0, 0), false);
+        TPObjectExtension *exObj = new TPObjectExtension(0, 0, NULL, ccp(0, 0), ccp(0, 0), false, 0);
         colorArray->addObject(exObj);
     }
 }
 
 void TakasuPoppo::setValuesForExObj(TPObjectExtension *exObj, int colorID, int gid, CCSprite *sprite,
-                                    CCPoint position, CCPoint coordination, bool trigger) {
+                                    CCPoint position, CCPoint coordination, bool trigger, int blockType) {
     exObj->setID(colorID);
     exObj->setGid(gid);
     exObj->setSprite(sprite);
     exObj->setPosition(position);
     exObj->setCoordination(coordination);
     exObj->setControlTrigger(trigger);
+    exObj->setBlockType(blockType);
     CCSprite *toMoveSprite = exObj->getSprite();
     toMoveSprite->runAction(CCMoveTo::create(0.1, exObj->getPosition()));
 }
