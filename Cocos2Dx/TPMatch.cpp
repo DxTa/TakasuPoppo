@@ -11,60 +11,25 @@
 #pragma mark Matching Control
 
 bool TakasuPoppo::isTileMatched(int gid, int typeID) {
-    int leftTile = gid -1, leftLeftTile = gid - 2,
-    rightTile = gid +1, rightRightTile = gid + 2,
-    topTile = gid - 7, topTopTile = gid - 14,
-    bottomTile = gid +7, bottomBottomTile = gid + 14;
-    
-    CCObject *tileObject;
-    CCARRAY_FOREACH(colorArray, tileObject) {
-        TPObjectExtension *cp = (TPObjectExtension*)(tileObject);
-        CCObject *thisObject;
-        if (gid != 1 && gid != 2 &&
-            gid != 8 && gid != 9 &&
-            gid != 15 && gid != 16 &&
-            gid != 22 && gid != 23 &&
-            gid != 29 && gid != 30 &&
-            gid != 36 && gid != 37 &&
-            gid != 43 &&gid != 44 ) {
-            if (cp->getGid() == leftTile && cp->getID() == typeID) {
-                CCObject *thisObject = colorArray->objectAtIndex(leftLeftTile);
-                CCARRAY_FOREACH(colorArray, thisObject) {
-                    TPObjectExtension *thisCp = (TPObjectExtension*)(thisObject);
-                    if (thisCp->getGid() == leftLeftTile && thisCp->getID() == typeID) return true; continue;
-                }
-            }
-        }
-        if (gid != 6 && gid != 7 &&
-            gid != 13 && gid != 14 &&
-            gid != 20 && gid != 21 &&
-            gid != 27 && gid != 28 &&
-            gid != 34 && gid != 35 &&
-            gid != 41 && gid != 42 &&
-            gid != 48 && gid != 49 ) {
-            if (cp->getGid() == rightTile && cp->getID() == typeID) {
-                CCARRAY_FOREACH(colorArray, thisObject) {
-                    TPObjectExtension *thisCp = (TPObjectExtension*)(thisObject);
-                    if (thisCp->getGid() == rightRightTile && thisCp->getID() == typeID) return true; continue;
-                }
-            }
-        }
-        if (gid >= 15) {
-            if (cp->getGid()  == topTile && cp->getID() == typeID) {
-                CCARRAY_FOREACH(colorArray, thisObject) {
-                    TPObjectExtension *thisCp = (TPObjectExtension*)(thisObject);
-                    if (thisCp->getGid()  == topTopTile && thisCp->getID() == typeID) return true; continue;
-                }
-            }
-        }
-        if (gid <= 35) {
-            if (cp->getGid()  == bottomTile && cp->getID() == typeID) {
-                CCARRAY_FOREACH(colorArray, thisObject) {
-                    TPObjectExtension *thisCp = (TPObjectExtension*)(thisObject);
-                    if (thisCp->getGid() == bottomBottomTile && thisCp->getID() == typeID) return true; continue;
-                }
-            }
-        }
+    if (gid != 1 && gid != 2 &&
+        gid != 8 && gid != 9 &&
+        gid != 15 && gid != 16 &&
+        gid != 22 && gid != 23 &&
+        gid != 29 && gid != 30 &&
+        gid != 36 && gid != 37 &&
+        gid != 43 && gid != 44 ){
+        CCObject *obj1 = colorArray->objectAtIndex(gid - 2);
+        CCObject *obj2 = colorArray->objectAtIndex(gid - 3);
+        TPObjectExtension *ex1 = dynamic_cast<TPObjectExtension*>(obj1);
+        TPObjectExtension *ex2 = dynamic_cast<TPObjectExtension*>(obj2);
+        if(ex1->getID() == typeID && ex2->getID() == typeID) return true;
+    }
+    if(gid >= 15){
+        CCObject *obj1 = colorArray->objectAtIndex(gid - 8);
+        CCObject *obj2 = colorArray->objectAtIndex(gid -15);
+        TPObjectExtension *ex1 = dynamic_cast<TPObjectExtension*>(obj1);
+        TPObjectExtension *ex2 = dynamic_cast<TPObjectExtension*>(obj2);
+        if(ex1->getID() == typeID && ex2->getID() == typeID) return true;
     }
     return false;
 }
