@@ -12,6 +12,8 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 using namespace std;
 
+
+
 #pragma mark Default
 
 CCScene* TakasuPoppo::scene() {
@@ -36,18 +38,18 @@ bool TakasuPoppo::init() {
     
     controlable = true;
 
-    //===============================================================
+    //========================= Debugs =============================
     debugTilesArray = new CCArray;
     TakasuPoppo::setupDebugButton();
     
     sprintf(comboCounterString, "Combo: %i", comboCounter);
-    comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", 30);
+    comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
     comboCounterLabel->setZOrder(15);
     comboCounterLabel->setColor(ccc3(225, 225, 225));
     comboCounterLabel->setPosition(ccp(100, 830));
     
     sprintf(comboTimerString, "Combo Timer: %f", comboTimer);
-    comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", 30);
+    comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
     comboTimerLabel->setZOrder(15);
     comboTimerLabel->setColor(ccc3(225, 225, 225));
     comboTimerLabel->setPosition(ccp(200, 780));
@@ -71,32 +73,40 @@ bool TakasuPoppo::init() {
 }
 
 void TakasuPoppo::update(float dt) {
+    
+    deltaTime = dt;
+
+    //================== Combo related updates ======================
     sprintf(comboCounterString, "Combo: %i", comboCounter);
     comboCounterLabel->setString(comboCounterString);
     
     sprintf(comboTimerString, "Combo Timer: %f", comboTimer);
     comboTimerLabel->setString(comboTimerString);
     
-    deltaTime = dt;
-    
     if (comboTimer > 0) comboTimer -= dt;
     if (comboTimer < 0) {
         comboTimer = 0;
         comboCounter = 0;
     }
-    if (comboCounter > 8) comboCounter = 0;
+    if (comboCounter > COMBO_MAXCOUNT) comboCounter = 0;
+    //===============================================================
     
     
-//    if (hintCounter > 0) {
-//        this->unschedule(schedule_selector(TakasuPoppo::hintGeneration));
-//        hintCounter -= dt;
-//    }
-//    if (hintCounter <= 0 && hintDisplaying == false) {
-//        hintArray->removeAllObjects();
-//        TakasuPoppo::lookForMatches();
-//        this->scheduleOnce(schedule_selector(TakasuPoppo::hintGeneration), 0);
-//    }
+    //=================== Hint related updates ======================
+    if (hintCounter > 0) {
+        hintCounter -= dt;
+    }
+    if (hintCounter <= 0 && hintDisplaying == false) {
+        hintDisplaying = true;
+        hintArray->removeAllObjects();
+        TakasuPoppo::lookForMatches();
+        this->scheduleOnce(schedule_selector(TakasuPoppo::hintGeneration), 0);
+    }
+    //================================================================
     
+    
+    
+    //=================== Swipe related updates ======================
     if (controlable) {
         if (swipeRight) {
             CCObject *object = NULL;
@@ -136,6 +146,7 @@ void TakasuPoppo::update(float dt) {
             }
         }
     }
+    //================================================================
 }
 
 void TakasuPoppo::fixedUpdate(float time) {
@@ -150,7 +161,7 @@ void TakasuPoppo::fixedUpdate(float time) {
 void TakasuPoppo::fallingBoolSwitch(float dt) {
     inTheFall = true;    
     fallCounter += deltaTime;
-    if (fallCounter > 0.1) {
+    if (fallCounter > FALL_TIME) {
         inTheFall = false;
         this->unschedule(schedule_selector(TakasuPoppo::fallingBoolSwitch));
     }
@@ -159,43 +170,35 @@ void TakasuPoppo::fallingBoolSwitch(float dt) {
 void TakasuPoppo::movingBoolSwitch(float dt) {
     inTheMove = true;
     moveCounter += deltaTime;
-    if (moveCounter > 0.1) {
+    if (moveCounter > MOVE_TIME) {
         inTheMove = false;
         this->unschedule(schedule_selector(TakasuPoppo::movingBoolSwitch));
     }
 }
 
 void TakasuPoppo::scheduleGenerate() {
-    this->schedule(schedule_selector(TakasuPoppo::smartGeneration), 0.3);
+    this->schedule(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
 }
 
-//void TakasuPoppo::hintGeneration() {
-//    if (hintCounter <= 0 && !this->getChildByTag(778)) {
-//        hintDisplaying = true;
-//        int hintCount = hintArray->count();
-//        int hintIndex = hintCount - 1;
-//        int hintRandom = rand() %hintIndex;
-//        
-//        if (hintCount > 0) {
-//            CCLog("Hint count: %i Index: %i", hintCount, hintRandom);
-//            TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(hintArray->objectAtIndex(0));
-//            CCLog("Object on coor X%iY%i ID %i has a chance for combo.", (int)exObj->getCoordination().x, (int)exObj->getCoordination().y, exObj->getID());
-//            CCRenderTexture *tex = TakasuPoppo::outlineEffect(exObj->getSprite(), 10, ccc3(255, 255, 255), 90);
-//            this->addChild(tex, exObj->getSprite()->getZOrder() - 1, 778);
-//            this->unschedule(schedule_selector(TakasuPoppo::hintGeneration));
-//        }
-//    }
-//}
+void TakasuPoppo::hintGeneration() {
+    int hintCount = hintArray->count();
+    if (hintCount > 0) {
+        TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(hintArray->objectAtIndex(0));
+
+        CCRenderTexture *tex = TakasuPoppo::outlineEffect(exObj->getSprite(), 10, ccc3(255, 255, 255), 90);
+        this->addChild(tex, exObj->getSprite()->getZOrder() - 1, 778);
+    }
+}
 
 void TakasuPoppo::logicExecution() {
     this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
-    this->runAction(CCSequence::create(CCDelayTime::create(0.1),
+    this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
-                                       CCDelayTime::create(0.2),
+                                       CCDelayTime::create(CLEAN_DELAY),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),
                                        NULL));
-    this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), 0.1);
-    this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), 0.3);
+    this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
+    this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), LOGIC_DELAY);
 }
 

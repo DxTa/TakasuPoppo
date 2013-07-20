@@ -5,6 +5,21 @@
 #ifndef __TAKASUPOPPO_H__
 #define __TAKASUPOPPO_H__
 
+#define FONT_SIZE 30
+
+#define COMBO_MAXCOUNT 8
+#define COMBO_TIME
+
+#define HINT_TIME 5
+#define FALL_TIME 0.1
+#define MOVE_TIME 0.1
+#define SWAP_TIME 0.09
+
+#define GENERATION_DELAY 0.3
+#define CLEAN_DELAY 0.2
+#define LOGIC_DELAY 0.2
+#define MOVE_DELAY 0.05
+
 #include "cocos2d.h"
 #include "TPObjectExtension.h"
 #include "TPBlockSet.h"
