@@ -84,11 +84,16 @@ private:
     char comboTimerString[20];
     char comboCounterString[20];
     
+    
     CCLabelTTF *comboTimerLabel;
     CCLabelTTF *comboCounterLabel;
 public:
     
-    #pragma mark Takasu Poppo 
+    bool existHyperBlockA = false;          // true if there is a Hyper Block A
+    bool existHyperBlockB = false;          // true if there is a Hyper Block B
+    bool existHyperBlockC = false;          // true if there is a Hyper Block C
+    
+#pragma mark Takasu Poppo
     static cocos2d::CCScene* scene();
     virtual bool init();
     virtual void update(float dt);
@@ -108,7 +113,7 @@ public:
     //Logic execution
     void logicExecution();
     
-    #pragma mark Touch
+#pragma mark Touch
     virtual void ccTouchesBegan(CCSet *touches, CCEvent *event);
     virtual void ccTouchesMoved(CCSet *touches, CCEvent *event);
     virtual void ccTouchesEnded(CCSet *touches, CCEvent *event);
@@ -116,7 +121,7 @@ public:
     bool touchPosValidation(CCPoint touchLoc);
     
     
-    #pragma mark Map
+#pragma mark Map
     //Creates TMX Map
     void addTileMap();
     //Add fixture to TMX Layer
@@ -141,7 +146,7 @@ public:
     void setValuesForExObj(TPObjectExtension *exObj, int colorID, int gid, CCSprite *sprite,
                            CCPoint position, CCPoint coordination, bool trigger, int blockType);
     
-    #pragma mark Match
+#pragma mark Match
     //Check if there is matching pair in the begining, gotta rewrite it later
     bool isTileMatched(int gid, int typeID);
     
@@ -168,7 +173,7 @@ public:
     void smartGeneration();
     
     
-    #pragma mark Clean
+#pragma mark Clean
     //Remove blocks from destroy array
     void cleanBlocks();
     //Move the blocks on the top of the destroyed blocks down
@@ -186,7 +191,7 @@ public:
     void changeID(CCNode *sender, void* data);
     
     
-    #pragma mark Swiped
+#pragma mark Swiped
     //New swipe recognizer
     void swipeSetup();
     
@@ -212,7 +217,7 @@ public:
     void swapTilesBack();
     
     
-    #pragma mark Particles
+#pragma mark Particles
     //Pop particles
     void popParticles(CCPoint position);
     //Remote particles run function, not available yet
@@ -230,12 +235,18 @@ public:
     void spriteChange(CCNode *sender, void* data);
     
     void popAnimation(CCNode *sender, void* data);
-    #pragma mark Debug
+#pragma mark Debug
     void setupDebugButton();
     void switchGrid();
     void remove();
     void refresh();
     void destroyAllBlocks();
+    
+    
+    //Vinhnt - for HyperBlock
+    void findToCleanBlockAroundHBA(TPObjectExtension* exObj, CCArray* tracedBlocks);
+    void makeBlockToBeHBA(TPObjectExtension* exObj);
+    
     
     CREATE_FUNC(TakasuPoppo);
 };

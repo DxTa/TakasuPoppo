@@ -60,7 +60,7 @@ void TakasuPoppo::matchList() {
                                                               "TrioHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
-                        if (comboTimer > 0) comboCounter += 1;
+                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 4) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -74,7 +74,7 @@ void TakasuPoppo::matchList() {
                                                               "QuadHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
-                        if (comboTimer > 0) comboCounter += 1;
+                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 5) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -90,7 +90,7 @@ void TakasuPoppo::matchList() {
                                                               "PentaHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
-                        if (comboTimer > 0) comboCounter += 1;
+                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                 }
             }
@@ -121,7 +121,7 @@ void TakasuPoppo::matchList() {
                                                               "TrioVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
-                        if (comboTimer > 0) comboCounter += 1;
+                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 4) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -135,7 +135,7 @@ void TakasuPoppo::matchList() {
                                                               "QuadVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
-                        if (comboTimer > 0) comboCounter += 1;
+                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 5) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -151,7 +151,7 @@ void TakasuPoppo::matchList() {
                                                               "PentaVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
-                        if (comboTimer > 0) comboCounter += 1;
+                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                 }
             }
@@ -272,7 +272,7 @@ int TakasuPoppo::lookForMatches() {
             
             //Middle Vertical Bottom
             if (qExObj != NULL && qExObj->getID() == aExObj->getID()) {
-               if (TakasuPoppo::sumOfMatches(aExObj, qExObj, pExObj, sExObj, NULL)) match++;
+                if (TakasuPoppo::sumOfMatches(aExObj, qExObj, pExObj, sExObj, NULL)) match++;
             }
             
             //Middle Horizontal Left
@@ -286,24 +286,24 @@ int TakasuPoppo::lookForMatches() {
             }
         }
     }
-//    CCLog("There are %i possible matches", match);
+    //    CCLog("There are %i possible matches", match);
     return match;
 }
 
 bool TakasuPoppo::sumOfMatches(TPObjectExtension *exA, TPObjectExtension *exB,
                                TPObjectExtension *ex1, TPObjectExtension *ex2, TPObjectExtension *ex3) {
-        if (ex1 != NULL && ex1->getID() == exA->getID()) {
-            if (hintArray->count() < 5) hintArray->addObject(ex1);
-            return true;
-        }
-        if (ex2 != NULL && ex2->getID() == exA->getID()) {
-            if (hintArray->count() < 5) hintArray->addObject(ex2);
-            return true;
-        }
-        if (ex3 != NULL && ex3->getID() == exA->getID()) {
-            if (hintArray->count() < 5) hintArray->addObject(ex3);
-            return true;
-        }
+    if (ex1 != NULL && ex1->getID() == exA->getID()) {
+        if (hintArray->count() < 5) hintArray->addObject(ex1);
+        return true;
+    }
+    if (ex2 != NULL && ex2->getID() == exA->getID()) {
+        if (hintArray->count() < 5) hintArray->addObject(ex2);
+        return true;
+    }
+    if (ex3 != NULL && ex3->getID() == exA->getID()) {
+        if (hintArray->count() < 5) hintArray->addObject(ex3);
+        return true;
+    }
     return false;
 }
 

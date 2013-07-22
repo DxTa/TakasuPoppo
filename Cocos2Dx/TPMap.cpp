@@ -59,7 +59,7 @@ void TakasuPoppo::createFixture() {
             CCObject *object = colorArray->objectAtIndex(m_gid - 1);
             TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
             TakasuPoppo::setValuesForExObj(exObj, randomTile, m_gid, randomTileSprite, tilePosition, tileCoordination, true, 0);
-  
+            
             this->addChild(randomTileSprite, 3, 300 + m_gid);
         }
     }
@@ -68,7 +68,7 @@ void TakasuPoppo::createFixture() {
 CCPoint TakasuPoppo::tileCoorForPosition(CCPoint position) {
     float x = position.x / map->getTileSize().width;
     float y = ((winSize.height - (winSize.height - layer->getContentSize().height)) - position.y + 90) /
-               (map->getTileSize().height);
+    (map->getTileSize().height);
     CCPoint transPos = ccp(floor(x), floor(y));
     return transPos;
 }
