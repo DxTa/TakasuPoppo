@@ -46,13 +46,13 @@ bool TakasuPoppo::init() {
     comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
     comboCounterLabel->setZOrder(15);
     comboCounterLabel->setColor(ccc3(225, 225, 225));
-    comboCounterLabel->setPosition(ccp(100, 830));
+    comboCounterLabel->setPosition(ccp(80, 850));
     
-    sprintf(comboTimerString, "Combo Timer: %f", comboTimer);
+    sprintf(comboTimerString, "Timer: %f", comboTimer);
     comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
     comboTimerLabel->setZOrder(15);
     comboTimerLabel->setColor(ccc3(225, 225, 225));
-    comboTimerLabel->setPosition(ccp(200, 780));
+    comboTimerLabel->setPosition(ccp(330, 850));
     
     this->addChild(comboCounterLabel);
     this->addChild(comboTimerLabel);
@@ -92,7 +92,7 @@ void TakasuPoppo::update(float dt) {
     sprintf(comboCounterString, "Combo: %i", comboCounter);
     comboCounterLabel->setString(comboCounterString);
     
-    sprintf(comboTimerString, "Combo Timer: %f", comboTimer);
+    sprintf(comboTimerString, "Timer: %f", comboTimer);
     comboTimerLabel->setString(comboTimerString);
     
     
