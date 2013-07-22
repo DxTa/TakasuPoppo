@@ -58,9 +58,20 @@ bool TakasuPoppo::init() {
     this->addChild(comboTimerLabel);
     //===============================================================
     
-    CCSprite *background = CCSprite::create("NewBackground.png");
+    //======================== Interface ============================
+    CCSprite *background = CCSprite::create("NewPrettyBackground.png");
     background->setPosition(ccp(winSize.width/2, winSize.height/2));
     this->addChild(background, -3, -1);
+    
+    CCSprite *ideGauge = CCSprite::create("IdeGauge.png");
+    ideGauge->setPosition(ccp(210, 780));
+    this->addChild(ideGauge, -1, -2);
+    
+    CCSprite *comboGauge = CCSprite::create("ComboGauge.png");
+    comboGauge->setPosition(ccp(400, 780));
+    this->addChild(comboGauge, -2, -3);
+    
+    //===============================================================
     
     TakasuPoppo::swipeSetup();
     

@@ -25,6 +25,9 @@
 		84942B0B177A90B700E61AEC /* TPBlockSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84942B09177A90B700E61AEC /* TPBlockSet.cpp */; };
 		8496669D1765B89C00621605 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 8496669C1765B89C00621605 /* HelloWorld.png */; };
 		8496669F1765B8B000621605 /* FramgiaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8496669E1765B8B000621605 /* FramgiaLogo.png */; };
+		849A47E7179D10040003F905 /* ComboGauge.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47E4179D10040003F905 /* ComboGauge.png */; };
+		849A47E8179D10040003F905 /* IdeGauge.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47E5179D10040003F905 /* IdeGauge.png */; };
+		849A47E9179D10040003F905 /* NewPrettyBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47E6179D10040003F905 /* NewPrettyBackground.png */; };
 		84AC3059178FF4DA0073C6D5 /* 90x90TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3056178FF4D80073C6D5 /* 90x90TileMap.tmx */; };
 		84AC305A178FF4DA0073C6D5 /* NewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3057178FF4D80073C6D5 /* NewBackground.png */; };
 		84AC305B178FF4DA0073C6D5 /* NewPrettyTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */; };
@@ -345,6 +348,9 @@
 		84942B0A177A90B700E61AEC /* TPBlockSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPBlockSet.h; sourceTree = "<group>"; };
 		8496669C1765B89C00621605 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelloWorld.png; path = Resources/HelloWorld.png; sourceTree = "<group>"; };
 		8496669E1765B8B000621605 /* FramgiaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FramgiaLogo.png; path = ../FramgiaLogo.png; sourceTree = "<group>"; };
+		849A47E4179D10040003F905 /* ComboGauge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGauge.png; sourceTree = "<group>"; };
+		849A47E5179D10040003F905 /* IdeGauge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IdeGauge.png; sourceTree = "<group>"; };
+		849A47E6179D10040003F905 /* NewPrettyBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPrettyBackground.png; sourceTree = "<group>"; };
 		84AC3056178FF4D80073C6D5 /* 90x90TileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 90x90TileMap.tmx; sourceTree = "<group>"; };
 		84AC3057178FF4D80073C6D5 /* NewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewBackground.png; sourceTree = "<group>"; };
 		84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPrettyTile.png; sourceTree = "<group>"; };
@@ -1015,6 +1021,9 @@
 		849666A51765C51A00621605 /* Crusher */ = {
 			isa = PBXGroup;
 			children = (
+				849A47E4179D10040003F905 /* ComboGauge.png */,
+				849A47E5179D10040003F905 /* IdeGauge.png */,
+				849A47E6179D10040003F905 /* NewPrettyBackground.png */,
 				84AC3056178FF4D80073C6D5 /* 90x90TileMap.tmx */,
 				84AC3057178FF4D80073C6D5 /* NewBackground.png */,
 				84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */,
@@ -2323,6 +2332,9 @@
 				84AC30B7179658AE0073C6D5 /* Poppo7B.png in Resources */,
 				84AC30BA179658D40073C6D5 /* pop.plist in Resources */,
 				84AC30BB179658D40073C6D5 /* pop.pvr.ccz in Resources */,
+				849A47E7179D10040003F905 /* ComboGauge.png in Resources */,
+				849A47E8179D10040003F905 /* IdeGauge.png in Resources */,
+				849A47E9179D10040003F905 /* NewPrettyBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
