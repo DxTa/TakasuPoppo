@@ -223,6 +223,12 @@ public:
     void comboParticles(TPObjectExtension *exObj);
     //Shine effect applies on Hyper Block A
     void sunParticles(TPObjectExtension *exObj);
+    // explosion effect
+    void explosionParticles(CCPoint position);
+    // snow effect
+    void snowParticles(CCPoint position);
+    // fire effect
+    void fireParticles(CCPoint position);
     
     //Rends an outline effect on a sprite
     CCRenderTexture *outlineEffect(CCSprite *label, int size, ccColor3B color, GLubyte opacity);

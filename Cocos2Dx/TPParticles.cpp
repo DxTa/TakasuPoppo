@@ -83,6 +83,183 @@ void TakasuPoppo::hintParticles(TPObjectExtension *exObj) {
     this->addChild(pop, 5, exObj->getGid() + 800);
 }
 
+void TakasuPoppo::fireParticles(CCPoint point) {
+    CCParticleSystemQuad *pop = new CCParticleSystemQuad;
+    pop = CCParticleFire::create();
+    pop->setTexture(CCTextureCache::sharedTextureCache()->addImage("Star.png"));
+    pop->setPosition(point);
+    pop->setGravity(CCPointZero);
+    
+    pop->setEmissionRate(83.33);
+    
+    pop->setAngle(90.0);
+    pop->setAngleVar(10.0);
+    
+    ccBlendFunc blendFunc = {GL_SRC_ALPHA,GL_ONE};
+    pop->setBlendFunc(blendFunc);
+    
+    pop->setDuration(0.5);
+    
+    pop->setEmitterMode(kCCParticleModeGravity);
+    
+    ccColor4F startColor = {0.76,0.25,0.12,1.0};
+    pop->setStartColor(startColor);
+    
+    ccColor4F startColorVar = {0,0,0,0};
+    pop->setStartColorVar(startColorVar);
+    
+    ccColor4F endColor = {0,0,0,1.0};
+    pop->setEndColor(endColor);
+    
+    ccColor4F endColorVar = {0,0,0,0};
+    pop->setEndColorVar(endColorVar);
+    
+    pop->setStartSize(54.0);
+    pop->setStartSizeVar(0);
+    
+    pop->setEndSize(-1);
+    pop->setEndSizeVar(0);
+    
+    pop->setRadialAccel(0);
+    pop->setRadialAccelVar(0);
+    
+    pop->setSpeed(60);
+    pop->setSpeedVar(20);
+    
+    pop->setTangentialAccel(0);
+    pop->setTangentialAccelVar(0);
+    
+    pop->setTotalParticles(250);
+    
+    pop->setLife(0.6);
+    pop->setLifeVar(0.25);
+    
+    pop->setStartSpin(0);
+    pop->setStartSpinVar(0);
+    
+    pop->setEndSpin(0);
+    pop->setEndSpinVar(0);
+    this->addChild(pop, 5, 777);
+}
+
+void TakasuPoppo::snowParticles(CCPoint point) {
+    CCParticleSystemQuad *pop = new CCParticleSystemQuad;
+    pop = CCParticleSnow::create();
+    pop->setTexture(CCTextureCache::sharedTextureCache()->addImage("Star.png"));
+    pop->setPosition(point);
+    pop->setGravity(CCPointZero);
+    
+    pop->setEmissionRate(40.0);
+    
+    pop->setAngle(210.0);
+    pop->setAngleVar(30.0);
+    
+    ccBlendFunc blendFunc = {GL_SRC_ALPHA,GL_ONE};
+    pop->setBlendFunc(blendFunc);
+    
+    pop->setDuration(3.0);
+    
+    pop->setEmitterMode(kCCParticleModeGravity);
+    
+    ccColor4F startColor = {1.00,0.99,0.92,1.00};
+    pop->setStartColor(startColor);
+    
+    ccColor4F startColorVar = {0.45,0.45,0.45,0.44};
+    pop->setStartColorVar(startColorVar);
+    
+    ccColor4F endColor = {0.00,0.00,0.00,1.00};
+    pop->setEndColor(endColor);
+    
+    ccColor4F endColorVar = {0.11,0.12,0.12,0.18};
+    pop->setEndColorVar(endColorVar);
+    
+    pop->setStartSize(40.00);
+    pop->setStartSizeVar(10.00);
+    
+    pop->setEndSize(15.00);
+    pop->setEndSizeVar(10.00);
+    
+    pop->setRadialAccel(0);
+    pop->setRadialAccelVar(0);
+    
+    pop->setSpeed(100);
+    pop->setSpeedVar(15);
+    
+    pop->setTangentialAccel(0);
+    pop->setTangentialAccelVar(0);
+    
+    pop->setTotalParticles(90);
+    
+    pop->setLife(1.0);
+    pop->setLifeVar(0.2);
+    
+    pop->setStartSpin(0.00);
+    pop->setStartSpinVar(0.00);
+    
+    pop->setEndSpin(0);
+    pop->setEndSpinVar(0);
+    this->addChild(pop, 5, 777);
+}
+
+void TakasuPoppo::explosionParticles(CCPoint point) {
+    CCParticleSystemQuad *pop = new CCParticleSystemQuad;
+    pop = CCParticleExplosion::create();
+    pop->setTexture(CCTextureCache::sharedTextureCache()->addImage("Star.png"));
+    pop->setPosition(point);
+    pop->setGravity(CCPointZero);
+    
+    pop->setEmissionRate(7000.0);
+    
+    pop->setAngle(90.0);
+    pop->setAngleVar(360.0);
+    
+    ccBlendFunc blendFunc = {GL_ONE,GL_ONE_MINUS_SRC_ALPHA};
+    pop->setBlendFunc(blendFunc);
+    
+    pop->setDuration(0.010);
+    
+    pop->setEmitterMode(kCCParticleModeGravity);
+    
+    ccColor4F startColor = {0.70,0.10,0.20,1.00};
+    pop->setStartColor(startColor);
+    
+    ccColor4F startColorVar = {0.50,0.50,0.50,0.00};
+    pop->setStartColorVar(startColorVar);
+    
+    ccColor4F endColor = {0.50,0.50,0.50,0.00};
+    pop->setEndColor(endColor);
+    
+    ccColor4F endColorVar = {0.50,0.50,0.50,0.00};
+    pop->setEndColorVar(endColorVar);
+    
+    pop->setStartSize(15.00);
+    pop->setStartSizeVar(10.00);
+    
+    pop->setEndSize(-1);
+    pop->setEndSizeVar(0.00);
+    
+    pop->setRadialAccel(0.00);
+    pop->setRadialAccelVar(0.00);
+    
+    pop->setSpeed(300);
+    pop->setSpeedVar(40);
+    
+    pop->setTangentialAccel(0);
+    pop->setTangentialAccelVar(0);
+    
+    pop->setTotalParticles(200);
+    
+    pop->setLife(1.0);
+    pop->setLifeVar(0.25);
+    
+    pop->setStartSpin(0.00);
+    pop->setStartSpinVar(0.00);
+    
+    pop->setEndSpin(0);
+    pop->setEndSpinVar(0);
+    this->addChild(pop, 5, 777);
+}
+
 void TakasuPoppo::sunParticles(TPObjectExtension *exObj) {
     CCParticleSystemQuad *pop = new CCParticleSystemQuad;
     pop = CCParticleSun::create();
