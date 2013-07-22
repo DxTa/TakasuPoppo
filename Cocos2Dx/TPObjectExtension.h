@@ -14,8 +14,10 @@ private:
     CCPoint position;
     CCPoint coordination;
     bool controlable;
+    int blockType;
 public:
-    TPObjectExtension(int colorId ,int location, CCSprite *sprite, CCPoint position, CCPoint coordination, bool controlable);
+    TPObjectExtension(int colorId ,int location, CCSprite *sprite,
+                      CCPoint position, CCPoint coordination, bool controlable, int blockType);
     
     void setGid(int c);
     int getGid();
@@ -35,5 +37,7 @@ public:
     bool getControlTrigger();
     void setControlTrigger(bool trigger);
     
+    int getBlockType();
+    void setBlockType(int blockType);
 };
 #endif

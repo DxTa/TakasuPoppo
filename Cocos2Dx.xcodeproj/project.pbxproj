@@ -30,6 +30,28 @@
 		84AC305B178FF4DA0073C6D5 /* NewPrettyTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */; };
 		84AC305D178FFFB80073C6D5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC305C178FFFB70073C6D5 /* Default.png */; };
 		84AC305F179001300073C6D5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC305E1790012F0073C6D5 /* Default@2x.png */; };
+		84AC30AA179658AE0073C6D5 /* Poppo1A.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3098179658AE0073C6D5 /* Poppo1A.png */; };
+		84AC30AB179658AE0073C6D5 /* Poppo1B.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3099179658AE0073C6D5 /* Poppo1B.png */; };
+		84AC30AC179658AE0073C6D5 /* Poppo2A.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC309A179658AE0073C6D5 /* Poppo2A.png */; };
+		84AC30AD179658AE0073C6D5 /* Poppo2B.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC309B179658AE0073C6D5 /* Poppo2B.png */; };
+		84AC30AE179658AE0073C6D5 /* Poppo3A.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC309C179658AE0073C6D5 /* Poppo3A.png */; };
+		84AC30AF179658AE0073C6D5 /* Poppo3B.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC309D179658AE0073C6D5 /* Poppo3B.png */; };
+		84AC30B0179658AE0073C6D5 /* Poppo4A.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC309E179658AE0073C6D5 /* Poppo4A.png */; };
+		84AC30B1179658AE0073C6D5 /* Poppo4B.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC309F179658AE0073C6D5 /* Poppo4B.png */; };
+		84AC30B2179658AE0073C6D5 /* Poppo5A.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC30A0179658AE0073C6D5 /* Poppo5A.png */; };
+		84AC30B3179658AE0073C6D5 /* Poppo5B.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC30A1179658AE0073C6D5 /* Poppo5B.png */; };
+		84AC30B4179658AE0073C6D5 /* Poppo6A.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC30A2179658AE0073C6D5 /* Poppo6A.png */; };
+		84AC30B5179658AE0073C6D5 /* Poppo6B.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC30A3179658AE0073C6D5 /* Poppo6B.png */; };
+		84AC30B6179658AE0073C6D5 /* Poppo7A.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC30A4179658AE0073C6D5 /* Poppo7A.png */; };
+		84AC30B7179658AE0073C6D5 /* Poppo7B.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC30A5179658AE0073C6D5 /* Poppo7B.png */; };
+		84AC30BA179658D40073C6D5 /* pop.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84AC30B8179658D40073C6D5 /* pop.plist */; };
+		84AC30BB179658D40073C6D5 /* pop.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 84AC30B9179658D40073C6D5 /* pop.pvr.ccz */; };
+		84AC30C91796A52E0073C6D5 /* CCGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AC30BD1796A52E0073C6D5 /* CCGestureRecognizer.cpp */; };
+		84AC30CA1796A52E0073C6D5 /* CCLongPressGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AC30BF1796A52E0073C6D5 /* CCLongPressGestureRecognizer.cpp */; };
+		84AC30CB1796A52E0073C6D5 /* CCPanGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AC30C11796A52E0073C6D5 /* CCPanGestureRecognizer.cpp */; };
+		84AC30CC1796A52E0073C6D5 /* CCPinchGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AC30C31796A52E0073C6D5 /* CCPinchGestureRecognizer.cpp */; };
+		84AC30CD1796A52E0073C6D5 /* CCSwipeGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AC30C51796A52E0073C6D5 /* CCSwipeGestureRecognizer.cpp */; };
+		84AC30CE1796A52E0073C6D5 /* CCTapGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AC30C71796A52E0073C6D5 /* CCTapGestureRecognizer.cpp */; };
 		84AE264117812CED00FBD93C /* TPClean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AE263F17812CED00FBD93C /* TPClean.cpp */; };
 		84AE2645178281F800FBD93C /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AE2644178281F800FBD93C /* Star.png */; };
 		84AE26481782D4AE00FBD93C /* TPParticles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AE26461782D4AE00FBD93C /* TPParticles.cpp */; };
@@ -328,6 +350,34 @@
 		84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPrettyTile.png; sourceTree = "<group>"; };
 		84AC305C178FFFB70073C6D5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		84AC305E1790012F0073C6D5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		84AC3098179658AE0073C6D5 /* Poppo1A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo1A.png; sourceTree = "<group>"; };
+		84AC3099179658AE0073C6D5 /* Poppo1B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo1B.png; sourceTree = "<group>"; };
+		84AC309A179658AE0073C6D5 /* Poppo2A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo2A.png; sourceTree = "<group>"; };
+		84AC309B179658AE0073C6D5 /* Poppo2B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo2B.png; sourceTree = "<group>"; };
+		84AC309C179658AE0073C6D5 /* Poppo3A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo3A.png; sourceTree = "<group>"; };
+		84AC309D179658AE0073C6D5 /* Poppo3B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo3B.png; sourceTree = "<group>"; };
+		84AC309E179658AE0073C6D5 /* Poppo4A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo4A.png; sourceTree = "<group>"; };
+		84AC309F179658AE0073C6D5 /* Poppo4B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo4B.png; sourceTree = "<group>"; };
+		84AC30A0179658AE0073C6D5 /* Poppo5A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo5A.png; sourceTree = "<group>"; };
+		84AC30A1179658AE0073C6D5 /* Poppo5B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo5B.png; sourceTree = "<group>"; };
+		84AC30A2179658AE0073C6D5 /* Poppo6A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo6A.png; sourceTree = "<group>"; };
+		84AC30A3179658AE0073C6D5 /* Poppo6B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo6B.png; sourceTree = "<group>"; };
+		84AC30A4179658AE0073C6D5 /* Poppo7A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7A.png; sourceTree = "<group>"; };
+		84AC30A5179658AE0073C6D5 /* Poppo7B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7B.png; sourceTree = "<group>"; };
+		84AC30B8179658D40073C6D5 /* pop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pop.plist; sourceTree = "<group>"; };
+		84AC30B9179658D40073C6D5 /* pop.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = pop.pvr.ccz; sourceTree = "<group>"; };
+		84AC30BD1796A52E0073C6D5 /* CCGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCGestureRecognizer.cpp; sourceTree = "<group>"; };
+		84AC30BE1796A52E0073C6D5 /* CCGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCGestureRecognizer.h; sourceTree = "<group>"; };
+		84AC30BF1796A52E0073C6D5 /* CCLongPressGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCLongPressGestureRecognizer.cpp; sourceTree = "<group>"; };
+		84AC30C01796A52E0073C6D5 /* CCLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		84AC30C11796A52E0073C6D5 /* CCPanGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCPanGestureRecognizer.cpp; sourceTree = "<group>"; };
+		84AC30C21796A52E0073C6D5 /* CCPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPanGestureRecognizer.h; sourceTree = "<group>"; };
+		84AC30C31796A52E0073C6D5 /* CCPinchGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCPinchGestureRecognizer.cpp; sourceTree = "<group>"; };
+		84AC30C41796A52E0073C6D5 /* CCPinchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPinchGestureRecognizer.h; sourceTree = "<group>"; };
+		84AC30C51796A52E0073C6D5 /* CCSwipeGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSwipeGestureRecognizer.cpp; sourceTree = "<group>"; };
+		84AC30C61796A52E0073C6D5 /* CCSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSwipeGestureRecognizer.h; sourceTree = "<group>"; };
+		84AC30C71796A52E0073C6D5 /* CCTapGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTapGestureRecognizer.cpp; sourceTree = "<group>"; };
+		84AC30C81796A52E0073C6D5 /* CCTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTapGestureRecognizer.h; sourceTree = "<group>"; };
 		84AE263F17812CED00FBD93C /* TPClean.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPClean.cpp; sourceTree = "<group>"; };
 		84AE2644178281F800FBD93C /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
 		84AE26461782D4AE00FBD93C /* TPParticles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPParticles.cpp; sourceTree = "<group>"; };
@@ -989,6 +1039,49 @@
 			path = Crusher;
 			sourceTree = "<group>";
 		};
+		84AC3093179658AE0073C6D5 /* Pop */ = {
+			isa = PBXGroup;
+			children = (
+				84AC30B8179658D40073C6D5 /* pop.plist */,
+				84AC30B9179658D40073C6D5 /* pop.pvr.ccz */,
+				84AC3098179658AE0073C6D5 /* Poppo1A.png */,
+				84AC3099179658AE0073C6D5 /* Poppo1B.png */,
+				84AC309A179658AE0073C6D5 /* Poppo2A.png */,
+				84AC309B179658AE0073C6D5 /* Poppo2B.png */,
+				84AC309C179658AE0073C6D5 /* Poppo3A.png */,
+				84AC309D179658AE0073C6D5 /* Poppo3B.png */,
+				84AC309E179658AE0073C6D5 /* Poppo4A.png */,
+				84AC309F179658AE0073C6D5 /* Poppo4B.png */,
+				84AC30A0179658AE0073C6D5 /* Poppo5A.png */,
+				84AC30A1179658AE0073C6D5 /* Poppo5B.png */,
+				84AC30A2179658AE0073C6D5 /* Poppo6A.png */,
+				84AC30A3179658AE0073C6D5 /* Poppo6B.png */,
+				84AC30A4179658AE0073C6D5 /* Poppo7A.png */,
+				84AC30A5179658AE0073C6D5 /* Poppo7B.png */,
+			);
+			name = Pop;
+			path = Crusher/Pop;
+			sourceTree = "<group>";
+		};
+		84AC30BC1796A52E0073C6D5 /* CCGestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				84AC30BD1796A52E0073C6D5 /* CCGestureRecognizer.cpp */,
+				84AC30BE1796A52E0073C6D5 /* CCGestureRecognizer.h */,
+				84AC30BF1796A52E0073C6D5 /* CCLongPressGestureRecognizer.cpp */,
+				84AC30C01796A52E0073C6D5 /* CCLongPressGestureRecognizer.h */,
+				84AC30C11796A52E0073C6D5 /* CCPanGestureRecognizer.cpp */,
+				84AC30C21796A52E0073C6D5 /* CCPanGestureRecognizer.h */,
+				84AC30C31796A52E0073C6D5 /* CCPinchGestureRecognizer.cpp */,
+				84AC30C41796A52E0073C6D5 /* CCPinchGestureRecognizer.h */,
+				84AC30C51796A52E0073C6D5 /* CCSwipeGestureRecognizer.cpp */,
+				84AC30C61796A52E0073C6D5 /* CCSwipeGestureRecognizer.h */,
+				84AC30C71796A52E0073C6D5 /* CCTapGestureRecognizer.cpp */,
+				84AC30C81796A52E0073C6D5 /* CCTapGestureRecognizer.h */,
+			);
+			path = CCGestureRecognizer;
+			sourceTree = "<group>";
+		};
 		DC12FB5B1744D21300480D31 = {
 			isa = PBXGroup;
 			children = (
@@ -1039,6 +1132,7 @@
 		DC12FB781744D21400480D31 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84AC3093179658AE0073C6D5 /* Pop */,
 				8434C46B176AB96400C8E722 /* Data */,
 				849666A51765C51A00621605 /* Crusher */,
 				849666A01765C41500621605 /* Default */,
@@ -1757,6 +1851,7 @@
 		DC12FD951744D22700480D31 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				84AC30BC1796A52E0073C6D5 /* CCGestureRecognizer */,
 				84942B0C177D820900E61AEC /* PListReader */,
 				DC12FDE71744D22900480D31 /* cocos-ext.h */,
 				DC12FDE81744D22900480D31 /* ExtensionMacros.h */,
@@ -2212,6 +2307,22 @@
 				84AC305B178FF4DA0073C6D5 /* NewPrettyTile.png in Resources */,
 				84AC305D178FFFB80073C6D5 /* Default.png in Resources */,
 				84AC305F179001300073C6D5 /* Default@2x.png in Resources */,
+				84AC30AA179658AE0073C6D5 /* Poppo1A.png in Resources */,
+				84AC30AB179658AE0073C6D5 /* Poppo1B.png in Resources */,
+				84AC30AC179658AE0073C6D5 /* Poppo2A.png in Resources */,
+				84AC30AD179658AE0073C6D5 /* Poppo2B.png in Resources */,
+				84AC30AE179658AE0073C6D5 /* Poppo3A.png in Resources */,
+				84AC30AF179658AE0073C6D5 /* Poppo3B.png in Resources */,
+				84AC30B0179658AE0073C6D5 /* Poppo4A.png in Resources */,
+				84AC30B1179658AE0073C6D5 /* Poppo4B.png in Resources */,
+				84AC30B2179658AE0073C6D5 /* Poppo5A.png in Resources */,
+				84AC30B3179658AE0073C6D5 /* Poppo5B.png in Resources */,
+				84AC30B4179658AE0073C6D5 /* Poppo6A.png in Resources */,
+				84AC30B5179658AE0073C6D5 /* Poppo6B.png in Resources */,
+				84AC30B6179658AE0073C6D5 /* Poppo7A.png in Resources */,
+				84AC30B7179658AE0073C6D5 /* Poppo7B.png in Resources */,
+				84AC30BA179658D40073C6D5 /* pop.plist in Resources */,
+				84AC30BB179658D40073C6D5 /* pop.pvr.ccz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2469,6 +2580,12 @@
 				CEFBBE2B177D3ECB0000F235 /* IOFile.cpp in Sources */,
 				84AE264117812CED00FBD93C /* TPClean.cpp in Sources */,
 				84AE26481782D4AE00FBD93C /* TPParticles.cpp in Sources */,
+				84AC30C91796A52E0073C6D5 /* CCGestureRecognizer.cpp in Sources */,
+				84AC30CA1796A52E0073C6D5 /* CCLongPressGestureRecognizer.cpp in Sources */,
+				84AC30CB1796A52E0073C6D5 /* CCPanGestureRecognizer.cpp in Sources */,
+				84AC30CC1796A52E0073C6D5 /* CCPinchGestureRecognizer.cpp in Sources */,
+				84AC30CD1796A52E0073C6D5 /* CCSwipeGestureRecognizer.cpp in Sources */,
+				84AC30CE1796A52E0073C6D5 /* CCTapGestureRecognizer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,8 +5,27 @@
 #ifndef __TAKASUPOPPO_H__
 #define __TAKASUPOPPO_H__
 
+#define FONT_SIZE 30
+
+#define COMBO_MAXCOUNT 8
+#define COMBO_TIME
+
+#define HINT_TIME 5
+#define FALL_TIME 0.1
+#define MOVE_TIME 0.1
+#define SWAP_TIME 0.09
+
+#define GENERATION_DELAY 0.3
+#define CLEAN_DELAY 0.2
+#define LOGIC_DELAY 0.2
+#define MOVE_DELAY 0.05
+
 #include "cocos2d.h"
 #include "TPObjectExtension.h"
+#include "TPBlockSet.h"
+#include "CCGestureRecognizer.h"
+#include "CCSwipeGestureRecognizer.h"
+
 USING_NS_CC;
 class TakasuPoppo : public cocos2d::CCLayer {
 private:
@@ -26,6 +45,7 @@ private:
     CCArray *colorArray;            //Main blocks array, consist of TPObjectEx, stupidly named
     CCArray *toDestroyArray;        //To be removed blocks will be inserted to this array
     CCArray *pickedArray;           //The array of object to be moved with swipe button, 1 object only
+    CCArray *hintArray;             //An array consisting of possible matches
     
     TPObjectExtension *movedSprite; //The sprite to be moved with swipe button
     TPObjectExtension *swapedSprite;//The sprite to be swaped with moving sprite
@@ -34,7 +54,11 @@ private:
     
     float moveCounter;              //Counter time for move swipe action
     float fallCounter;              //Counter time for falling counter action
-    float deltaTime;                //Public variable for delta time
+    float comboTimer = 0;           //Timer for combos
+    int comboCounter = 0;               //Counter for combos
+    float deltaTime;            //Public variable for delta time
+    
+    float hintCounter = 3;          //Display hint after this counter
     
     float movingSpeed = 0.07;       //For all moving speed
     
@@ -46,16 +70,24 @@ private:
     
     bool inTheMove;                 //True if there are sprites in moving action
     bool inTheFall;                 //True if sprites are falling
+    bool isLogicRunnning;
     
     bool swipeRight;                //True if swipe right action is recognized
     bool swipeLeft;                 //True if swipe left action is recognized
     bool swipeUp;                   //True if swipe up action is recognized
     bool swipeDown;                 //True if swipe down action is recognized
     
+    bool hintDisplaying;            //Indicating that a hint is currently displayed
+    
     bool gridOn = false;
     
+    char comboTimerString[20];
+    char comboCounterString[20];
     
+    CCLabelTTF *comboTimerLabel;
+    CCLabelTTF *comboCounterLabel;
 public:
+    
     #pragma mark Takasu Poppo 
     static cocos2d::CCScene* scene();
     virtual bool init();
@@ -71,6 +103,10 @@ public:
     void fallingBoolSwitch(float time);
     //Unschedule generation
     void scheduleGenerate();
+    //Hint display
+    void hintGeneration();
+    //Logic execution
+    void logicExecution();
     
     #pragma mark Touch
     virtual void ccTouchesBegan(CCSet *touches, CCEvent *event);
@@ -78,6 +114,7 @@ public:
     virtual void ccTouchesEnded(CCSet *touches, CCEvent *event);
     //Validate touch position, returns false if out of map
     bool touchPosValidation(CCPoint touchLoc);
+    
     
     #pragma mark Map
     //Creates TMX Map
@@ -92,13 +129,17 @@ public:
     //Generate a certain sprite on EX Object
     void generateBlock(TPObjectExtension *exObj1, int type);
     
+    //Generate a Hyper Block A
+    void generateHyperBlockA(TPObjectExtension *exObj);
+    
     //Returns a coordination for position
     CCPoint tileCoorForPosition(CCPoint position);
     
     //Inserts empty blocks to array, to be assigned in the next function
     void addBlocksToArray();
     //Set values for EX Object
-    void setValuesForExObj(TPObjectExtension *exObj, int colorID, int gid, CCSprite *sprite, CCPoint position, CCPoint coordination, bool trigger);
+    void setValuesForExObj(TPObjectExtension *exObj, int colorID, int gid, CCSprite *sprite,
+                           CCPoint position, CCPoint coordination, bool trigger, int blockType);
     
     #pragma mark Match
     //Check if there is matching pair in the begining, gotta rewrite it later
@@ -126,13 +167,31 @@ public:
     //Generate a match if there is a shortage
     void smartGeneration();
     
+    
     #pragma mark Clean
     //Remove blocks from destroy array
     void cleanBlocks();
     //Move the blocks on the top of the destroyed blocks down
     void afterClean();
     
+    //Clean with Hyper Block A
+    void cleanHyperBlockA(TPBlockSet* blockSet);
+    //Clean with Hyper Block B
+    void cleanHyperBlockB(TPObjectExtension* exObj);
+    //Clean with Hyper Block B
+    void cleanHyperBlockC(TPObjectExtension* exObj);
+    //Clean a sprite
+    void cleanSprite(TPObjectExtension *exObj);
+    
+    void changeID(CCNode *sender, void* data);
+    
+    
     #pragma mark Swiped
+    //New swipe recognizer
+    void swipeSetup();
+    
+    //New swpie action
+    void didSwipe(int direction);
     //If swipe is recognizes, run into one of the followings
     void swipedUp(TPObjectExtension *exObj);
     void swipedDown(TPObjectExtension *exObj);
@@ -152,12 +211,25 @@ public:
     //Runs and return, for when moving is not possible
     void swapTilesBack();
     
+    
     #pragma mark Particles
     //Pop particles
     void popParticles(CCPoint position);
     //Remote particles run function, not available yet
     void remoteParticles();
+    //Spark particles for hint
+    void hintParticles(TPObjectExtension *exObj);
+    //Shine particles, gives a shine for a set of blocks
+    void comboParticles(TPObjectExtension *exObj);
+    //Shine effect applies on Hyper Block A
+    void sunParticles(TPObjectExtension *exObj);
     
+    //Rends an outline effect on a sprite
+    CCRenderTexture *outlineEffect(CCSprite *label, int size, ccColor3B color, GLubyte opacity);
+    //Change sprite
+    void spriteChange(CCNode *sender, void* data);
+    
+    void popAnimation(CCNode *sender, void* data);
     #pragma mark Debug
     void setupDebugButton();
     void switchGrid();

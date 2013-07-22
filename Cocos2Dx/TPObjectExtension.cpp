@@ -7,13 +7,15 @@ using namespace cocos2d;
 using namespace std;
 USING_NS_CC;
 
-TPObjectExtension::TPObjectExtension(int id, int gid, CCSprite* sprite, CCPoint position, CCPoint coordination, bool controlable) {
+TPObjectExtension::TPObjectExtension(int id, int gid, CCSprite* sprite,
+                                     CCPoint position, CCPoint coordination, bool controlable, int blockType) {
     this->colorId = id;
     this->gid = gid;
     this->blockSprite = sprite;
     this->position = position;
     this->coordination = coordination;
     this->controlable = controlable;
+    this->blockType = blockType;
 }
 
 int TPObjectExtension::getID() {
@@ -62,5 +64,13 @@ bool TPObjectExtension::getControlTrigger() {
 
 void TPObjectExtension::setControlTrigger(bool trigger) {
     this->controlable = trigger;
+}
+
+int TPObjectExtension::getBlockType() {
+    return blockType;
+}
+
+void TPObjectExtension::setBlockType(int blockType) {
+    this->blockType = blockType;
 }
 

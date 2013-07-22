@@ -10,12 +10,17 @@
 #pragma mark Touches
 
 void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
+    
+    hintCounter = 3;
+    hintArray->removeAllObjects();
+    if (this->getChildByTag(778)) this->removeChildByTag(778);
+    hintDisplaying = false;
+    
     CCTouch *touch = (CCTouch*)touches->anyObject();
     CCPoint touchLoc = this->getParent()->convertTouchToNodeSpace(touch);
     
     if (TakasuPoppo::touchPosValidation(touchLoc)) {
         CCPoint point = TakasuPoppo::tileCoorForPosition(touchLoc);
-        CCLog("%f %f", point.x, point.y);
         if (point.x >= 0 || point.x <= 6 ||
             point.y >= 0 || point.y <= 6) {
             TPObjectExtension *exObject = TakasuPoppo::coorToExObj(TakasuPoppo::tileCoorForPosition(touchLoc));
@@ -89,17 +94,15 @@ void TakasuPoppo::ccTouchesEnded(CCSet *touches, CCEvent *event) {
         CCPoint transPoint = TakasuPoppo::tileCoorForPosition(touchLoc);
         unsigned int m_gid = layer->tileGIDAt(transPoint);
         CCLog("Tile ID at position : %i", m_gid);
-        
     }
     pickedArray->removeAllObjects();
-    
 }
 
 bool TakasuPoppo::touchPosValidation(CCPoint touchLoc) {
     if (touchLoc.x < 0 ||
-        touchLoc.y < 0 ||
+        touchLoc.y < 90 ||
         touchLoc.x >= map->getContentSize().width ||
-        touchLoc.y >= map->getContentSize().height)
+        touchLoc.y >= map->getContentSize().height + 90)
         return false;
     else return true;
 }
