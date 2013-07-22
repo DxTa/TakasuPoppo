@@ -14,19 +14,22 @@ void TakasuPoppo::cleanBlocks() {
         
         CCARRAY_FOREACH(toDestroyArray, object) {
             
-            // count the combo to generate hyper block
-            comboCounter += 1;
-            
             hintCounter = 3;
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
             
+            // count the combo to generate hyper block
+            comboCounter += 1;
+            
             // true if blockSet has a hyperblock A
             bool isHyper1 = false;
-            if (blockSet->getEx1() && blockSet->getEx1()->getBlockType() == 1) isHyper1 = true;
-            if (blockSet->getEx2() && blockSet->getEx2()->getBlockType() == 1) isHyper1 = true;
-            if (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) isHyper1 = true;
-            if (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) isHyper1 = true;
-            if (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) isHyper1 = true;
+            if ((blockSet->getEx1() && blockSet->getEx1()->getBlockType() == 1) || (blockSet->getEx2() && blockSet->getEx2()->getBlockType() == 1) || (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) || (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) || (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) ) isHyper1 = true;
+//            if (blockSet->getEx2() && blockSet->getEx2()->getBlockType() == 1) isHyper1 = true;
+//            if (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) isHyper1 = true;
+//            if (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) isHyper1 = true;
+//            if (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) isHyper1 = true;
+//            
+            // true if blockSet has a hyper block B
+            bool isHyper2 = false;
             
             //
             if (existHyperBlockA == true) {
@@ -60,7 +63,7 @@ void TakasuPoppo::cleanBlocks() {
                 
             }
             
-            if (existHyperBlockA == false) {
+            else {
                 
                 if (comboCounter < 2) {
                     if (isHyper1) {
@@ -122,6 +125,8 @@ void TakasuPoppo::cleanBlocks() {
                     
                 }
             } // end of if else (existHyperBlockA == true)
+        
+            
             
         }
     }
