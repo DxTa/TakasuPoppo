@@ -37,7 +37,7 @@ bool TakasuPoppo::init() {
     TakasuPoppo::lookForMatches();
     
     controlable = true;
-
+    
     //========================= Debugs =============================
     debugTilesArray = new CCArray;
     TakasuPoppo::setupDebugButton();
@@ -74,8 +74,9 @@ bool TakasuPoppo::init() {
 
 void TakasuPoppo::update(float dt) {
     
+    
     deltaTime = dt;
-
+    
     //================== Combo related updates ======================
     sprintf(comboCounterString, "Combo: %i", comboCounter);
     comboCounterLabel->setString(comboCounterString);
@@ -83,12 +84,29 @@ void TakasuPoppo::update(float dt) {
     sprintf(comboTimerString, "Combo Timer: %f", comboTimer);
     comboTimerLabel->setString(comboTimerString);
     
-    if (comboTimer > 0) comboTimer -= dt;
+    
+    if (comboTimer > 0) {
+        comboTimer -= dt;
+    }
     if (comboTimer < 0) {
         comboTimer = 0;
         comboCounter = 0;
+        
+        //Reset bools here
+        existHyperBlockA = false;
+        existHyperBlockB = false;
+        existHyperBlockC = false;
     }
-    if (comboCounter > COMBO_MAXCOUNT) comboCounter = 0;
+    if (comboCounter > COMBO_MAXCOUNT) {
+        comboCounter = 0;
+        
+        //Reset here too
+        // het 1 luot combo lai reset lai existHyperBlockA
+        existHyperBlockA = false;
+        existHyperBlockB = false;
+        existHyperBlockC = false;
+    }
+    
     //===============================================================
     
     
@@ -159,7 +177,7 @@ void TakasuPoppo::fixedUpdate(float time) {
 }
 
 void TakasuPoppo::fallingBoolSwitch(float dt) {
-    inTheFall = true;    
+    inTheFall = true;
     fallCounter += deltaTime;
     if (fallCounter > FALL_TIME) {
         inTheFall = false;
@@ -184,7 +202,7 @@ void TakasuPoppo::hintGeneration() {
     int hintCount = hintArray->count();
     if (hintCount > 0) {
         TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(hintArray->objectAtIndex(0));
-
+        
         CCRenderTexture *tex = TakasuPoppo::outlineEffect(exObj->getSprite(), 10, ccc3(255, 255, 255), 90);
         this->addChild(tex, exObj->getSprite()->getZOrder() - 1, 778);
     }
