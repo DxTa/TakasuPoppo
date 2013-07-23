@@ -11,12 +11,8 @@
 void TakasuPoppo::cleanBlocks() {
     CCObject *object;
     if (toDestroyArray->count() != 0) {
-        int count = -1;
         CCARRAY_FOREACH(toDestroyArray, object) {
-            count += 1;
-            TPBlockSet *block = dynamic_cast<TPBlockSet*>(toDestroyArray->objectAtIndex(count));
-            CCLOG("Destroy object %i", block->getEx1()->getGid());
-            CCLOG("Destroy count %i", toDestroyArray->count());
+            
             hintCounter = 3;
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
             
@@ -30,41 +26,14 @@ void TakasuPoppo::cleanBlocks() {
                 (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) ||
                 (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) ||
                 (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) ) isHyper1 = true;
-            
-            //            if (blockSet->getEx2() && blockSet->getEx2()->getBlockType() == 1) isHyper1 = true;
-            //            if (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) isHyper1 = true;
-            //            if (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) isHyper1 = true;
-            //            if (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) isHyper1 = true;
-            //
-            // true if blockSet has a hyper block B            
-            //
+
             if (existHyperBlockA == true) {
                 
                 if (isHyper1) {
                     TakasuPoppo::cleanHyperBlockA(blockSet);
                 } else {
                     
-                    if (blockSet->getEx1()->getSprite() != NULL) {
-                        TakasuPoppo::cleanSprite(blockSet->getEx1());
-                    }
-                    
-                    if (blockSet->getEx2()->getSprite() != NULL) {
-                        TakasuPoppo::cleanSprite(blockSet->getEx2());
-                    }
-                    
-                    if (blockSet->getEx3()->getSprite() != NULL) {
-                        TakasuPoppo::cleanSprite(blockSet->getEx3());
-                    }
-                    
-                    if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
-                        blockSet->getEx4()->getSprite() != NULL) {
-                        TakasuPoppo::cleanSprite(blockSet->getEx4());
-                    }
-                    if (blockSet->getEx5() && blockSet->getEx5() != NULL &&
-                        blockSet->getEx5()->getSprite() != NULL) {
-                        TakasuPoppo::cleanSprite(blockSet->getEx5());
-                    }
-                    
+                    TakasuPoppo::cleanBlockSetNormal(blockSet);
                 }
                 
             }
@@ -76,32 +45,12 @@ void TakasuPoppo::cleanBlocks() {
                         TakasuPoppo::cleanHyperBlockA(blockSet);
                     } else {
                         
-                        if (blockSet->getEx1()->getSprite() != NULL) {
-                            TakasuPoppo::cleanSprite(blockSet->getEx1());
-                        }
-                        
-                        if (blockSet->getEx2()->getSprite() != NULL) {
-                            TakasuPoppo::cleanSprite(blockSet->getEx2());
-                        }
-                        
-                        if (blockSet->getEx3()->getSprite() != NULL) {
-                            TakasuPoppo::cleanSprite(blockSet->getEx3());
-                        }
-                        
-                        if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
-                            blockSet->getEx4()->getSprite() != NULL) {
-                            TakasuPoppo::cleanSprite(blockSet->getEx4());
-                        }
-                        if (blockSet->getEx5() && blockSet->getEx5() != NULL &&
-                            blockSet->getEx5()->getSprite() != NULL) {
-                            TakasuPoppo::cleanSprite(blockSet->getEx5());
-                        }
-                        
+                        TakasuPoppo::cleanBlockSetNormal(blockSet);
                     }
                     
                 } else { // counterCombo >= 2 -> create new Hyper Bock A at Ex1
                     
-                    if (isHyper1) { // need more logic code here
+                    if (isHyper1) {
                         TakasuPoppo::cleanHyperBlockA(blockSet);
                     } else {
                         
@@ -135,7 +84,6 @@ void TakasuPoppo::cleanBlocks() {
     }
     
     toDestroyArray->removeAllObjects();
-    debugRun = 0;
     
 }
 
@@ -179,73 +127,33 @@ void TakasuPoppo::changeID(CCNode *sender, void* data) {
 
 void TakasuPoppo::cleanHyperBlockA(TPBlockSet *blockSet) {
     
-    // this array is used to hold the blocks that has been traced
-    CCArray* tracedBlocks = new CCArray;
-    tracedBlocks->addObject(blockSet->getEx1());
-    tracedBlocks->addObject(blockSet->getEx2());
-    tracedBlocks->addObject(blockSet->getEx3());
-    
-    if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
-        blockSet->getEx4()->getSprite() != NULL){
-        tracedBlocks->addObject(blockSet->getEx4());
-    }
-    
-    if (blockSet->getEx5() && blockSet->getEx5() != NULL &&
-        blockSet->getEx5()->getSprite() != NULL){
-        tracedBlocks->addObject(blockSet->getEx5());
-    }
-    
-    
-    
     // clean block around
     
     if (blockSet->getEx1()->getBlockType() == 1 && blockSet->getEx1()->getSprite() != NULL) {
-        findToCleanBlockAroundHBA(blockSet->getEx1(), tracedBlocks);
+        findToCleanBlockAroundHBA(blockSet->getEx1());
         
     }
     if (blockSet->getEx2()->getBlockType() == 1 && blockSet->getEx2()->getSprite() != NULL) {
-        findToCleanBlockAroundHBA(blockSet->getEx2(), tracedBlocks);
+        findToCleanBlockAroundHBA(blockSet->getEx2());
         
     }
     if (blockSet->getEx3()->getBlockType() == 1 && blockSet->getEx3()->getSprite() != NULL) {
-        findToCleanBlockAroundHBA(blockSet->getEx3(), tracedBlocks);
+        findToCleanBlockAroundHBA(blockSet->getEx3());
         
     }
     if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
         blockSet->getEx4()->getSprite() != NULL && blockSet->getEx4()->getBlockType() == 1) {
-        findToCleanBlockAroundHBA(blockSet->getEx4(), tracedBlocks);
+        findToCleanBlockAroundHBA(blockSet->getEx4());
         
     }
     if (blockSet->getEx5() && blockSet->getEx5() != NULL &&
         blockSet->getEx5()->getSprite() != NULL && blockSet->getEx5()->getBlockType() == 1) {
-        findToCleanBlockAroundHBA(blockSet->getEx5(), tracedBlocks);
+        findToCleanBlockAroundHBA(blockSet->getEx5());
         
     }
     
     // clean blockSet
-    
-    if (blockSet->getEx1()->getSprite() != NULL) {
-        TakasuPoppo::cleanSprite(blockSet->getEx1());
-    }
-    
-    if (blockSet->getEx2()->getSprite() != NULL) {
-        TakasuPoppo::cleanSprite(blockSet->getEx2());
-    }
-    
-    if (blockSet->getEx3()->getSprite() != NULL) {
-        TakasuPoppo::cleanSprite(blockSet->getEx3());
-    }
-    
-    if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
-        blockSet->getEx4()->getSprite() != NULL) {
-        TakasuPoppo::cleanSprite(blockSet->getEx4());
-    }
-    if (blockSet->getEx5() && blockSet->getEx5() != NULL &&
-        blockSet->getEx5()->getSprite() != NULL) {
-        TakasuPoppo::cleanSprite(blockSet->getEx5());
-    }
-    
-    
+    TakasuPoppo::cleanBlockSetNormal(blockSet);
 }
 
 void TakasuPoppo::cleanHyperBlockB(TPObjectExtension *ex) {
@@ -271,6 +179,8 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
     
 }
 
+
+
 /*
  |======================================|
  |      findToCleanBlockAroundHB        |
@@ -287,7 +197,7 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
  */
 
 
-void TakasuPoppo::findToCleanBlockAroundHBA(TPObjectExtension* exObj, CCArray* tracedBlocks){
+void TakasuPoppo::findToCleanBlockAroundHBA(TPObjectExtension* exObj){
     
     CCPoint aPoint = exObj->getCoordination();
     int x = aPoint.x;
@@ -302,6 +212,9 @@ void TakasuPoppo::findToCleanBlockAroundHBA(TPObjectExtension* exObj, CCArray* t
     CCPoint iPoint = ccp(x - 1, y);
     CCPoint kPoint = ccp(x - 1, y - 1);
     
+    TakasuPoppo::cleanSprite(exObj);
+    exObj->setBlockType(0);
+    
     TPObjectExtension *bExObj = TakasuPoppo::coorToExObj(bPoint);
     TPObjectExtension *cExObj = TakasuPoppo::coorToExObj(cPoint);
     TPObjectExtension *dExObj = TakasuPoppo::coorToExObj(dPoint);
@@ -311,68 +224,102 @@ void TakasuPoppo::findToCleanBlockAroundHBA(TPObjectExtension* exObj, CCArray* t
     TPObjectExtension *iExObj = TakasuPoppo::coorToExObj(iPoint);
     TPObjectExtension *kExObj = TakasuPoppo::coorToExObj(kPoint);
     
-    if (!tracedBlocks->containsObject(bExObj) && bExObj != NULL && bExObj->getID() != 7) {
+    if (bExObj != NULL && bExObj->getID() != 7) {
+        
+        
         if (bExObj->getBlockType() == 1) {
-            tracedBlocks->addObject(bExObj);
-            findToCleanBlockAroundHBA(bExObj, tracedBlocks);
+
+            findToCleanBlockAroundHBA(bExObj);
         }
-        TakasuPoppo::cleanSprite(bExObj);
+        else{
+            TakasuPoppo::cleanSprite(bExObj);
+        }
+        
     }
-    if (!tracedBlocks->containsObject(cExObj) && cExObj != NULL && cExObj->getID() != 7) {
+    if (cExObj != NULL && cExObj->getID() != 7) {
+
         if (cExObj->getBlockType() == 1) {
-            tracedBlocks->addObject(cExObj);
-            findToCleanBlockAroundHBA(cExObj, tracedBlocks);
+
+            findToCleanBlockAroundHBA(cExObj);
+        }
+        else{
+            TakasuPoppo::cleanSprite(cExObj);
         }
         
-        TakasuPoppo::cleanSprite(cExObj);
+        
     }
-    if (!tracedBlocks->containsObject(dExObj) && dExObj != NULL && dExObj->getID() != 7) {
+    if (dExObj != NULL && dExObj->getID() != 7) {
+        
         if (dExObj->getBlockType() == 1) {
-            tracedBlocks->addObject(dExObj);
-            findToCleanBlockAroundHBA(dExObj, tracedBlocks);
+
+            findToCleanBlockAroundHBA(dExObj);
+        }
+        else{
+            TakasuPoppo::cleanSprite(dExObj);
         }
         
-        TakasuPoppo::cleanSprite(dExObj);
+        
     }
-    if (!tracedBlocks->containsObject(eExObj) && eExObj != NULL && eExObj->getID() != 7) {
+    if (eExObj != NULL && eExObj->getID() != 7) {
+        
         if (eExObj->getBlockType() == 1) {
-            tracedBlocks->addObject(eExObj);
-            findToCleanBlockAroundHBA(eExObj, tracedBlocks);
+
+            findToCleanBlockAroundHBA(eExObj);
+        } else{
+            TakasuPoppo::cleanSprite(eExObj);
         }
         
-        TakasuPoppo::cleanSprite(eExObj);
+        
     }
-    if (!tracedBlocks->containsObject(gExObj) && gExObj != NULL && gExObj->getID() != 7) {
+    if (gExObj != NULL && gExObj->getID() != 7) {
+        
+        
         if (gExObj->getBlockType() == 1) {
-            tracedBlocks->addObject(gExObj);
-            findToCleanBlockAroundHBA(gExObj, tracedBlocks);
+
+            findToCleanBlockAroundHBA(gExObj);
+        }
+        else{
+            TakasuPoppo::cleanSprite(gExObj);
         }
         
-        TakasuPoppo::cleanSprite(gExObj);
+        
     }
-    if (!tracedBlocks->containsObject(hExObj) && hExObj != NULL && hExObj->getID() != 7) {
+    if (hExObj != NULL && hExObj->getID() != 7) {
+        
+        
         if (hExObj->getBlockType() == 1) {
-            tracedBlocks->addObject(hExObj);
-            findToCleanBlockAroundHBA(hExObj, tracedBlocks);
+
+            findToCleanBlockAroundHBA(hExObj);
+        }
+        else {
+            TakasuPoppo::cleanSprite(hExObj);
         }
         
-        TakasuPoppo::cleanSprite(hExObj);
+
     }
-    if (!tracedBlocks->containsObject(iExObj) && iExObj != NULL && iExObj->getID() != 7) {
+    if (iExObj != NULL && iExObj->getID() != 7) {
+        
+        
         if (iExObj->getBlockType() == 1) {
-            tracedBlocks->addObject(iExObj);
-            findToCleanBlockAroundHBA(iExObj, tracedBlocks);
+
+            findToCleanBlockAroundHBA(iExObj);
+        }else {
+            TakasuPoppo::cleanSprite(iExObj);
         }
         
-        TakasuPoppo::cleanSprite(iExObj);
+        
     }
-    if (!tracedBlocks->containsObject(kExObj) && kExObj != NULL && kExObj->getID() != 7) {
+    if (kExObj != NULL && kExObj->getID() != 7) {
+        
+        
         if (kExObj->getBlockType() == 1) {
-            tracedBlocks->addObject(kExObj);
-            findToCleanBlockAroundHBA(kExObj, tracedBlocks);
+
+            findToCleanBlockAroundHBA(kExObj);
+        } else {
+            TakasuPoppo::cleanSprite(kExObj);
         }
         
-        TakasuPoppo::cleanSprite(kExObj);
+        
     }
 }
 
@@ -395,4 +342,28 @@ void TakasuPoppo::makeBlockToBeHBA(TPObjectExtension* exObj){
     poppoSprite->setTexture(poppoTexture);
     exObj->setSprite(poppoSprite);
     
+}
+
+void TakasuPoppo::cleanBlockSetNormal(TPBlockSet *blockSet){
+    if (blockSet->getEx1() && blockSet->getEx1() != NULL && blockSet->getEx1()->getSprite() != NULL) {
+        TakasuPoppo::cleanSprite(blockSet->getEx1());
+    }
+    
+    if (blockSet->getEx2() && blockSet->getEx2() != NULL &&blockSet->getEx2()->getSprite() != NULL) {
+        TakasuPoppo::cleanSprite(blockSet->getEx2());
+    }
+    
+    if (blockSet->getEx3() && blockSet->getEx3() != NULL &&blockSet->getEx3()->getSprite() != NULL) {
+        TakasuPoppo::cleanSprite(blockSet->getEx3());
+    }
+    
+    if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
+        blockSet->getEx4()->getSprite() != NULL) {
+        TakasuPoppo::cleanSprite(blockSet->getEx4());
+    }
+    if (blockSet->getEx5() && blockSet->getEx5() != NULL &&
+        blockSet->getEx5()->getSprite() != NULL) {
+        TakasuPoppo::cleanSprite(blockSet->getEx5());
+    }
+
 }

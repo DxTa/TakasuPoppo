@@ -250,9 +250,9 @@ public:
     
     
     //Vinhnt - for HyperBlock
-    void findToCleanBlockAroundHBA(TPObjectExtension* exObj, CCArray* tracedBlocks);
+    void findToCleanBlockAroundHBA(TPObjectExtension* exObj);
     void makeBlockToBeHBA(TPObjectExtension* exObj);
-    
+    void cleanBlockSetNormal(TPBlockSet* blockSet);
     
     CREATE_FUNC(TakasuPoppo);
 };
