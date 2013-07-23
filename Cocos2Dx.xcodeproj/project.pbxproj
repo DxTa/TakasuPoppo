@@ -34,6 +34,7 @@
 		849A47F5179E55950003F905 /* Counter3.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47ED179E55950003F905 /* Counter3.png */; };
 		849A47FB179E73F00003F905 /* Timer.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47FA179E73F00003F905 /* Timer.png */; };
 		849A47FD179E88720003F905 /* Combo.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47FC179E88720003F905 /* Combo.png */; };
+		849A4800179E8C760003F905 /* TPMainScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849A47FE179E8C750003F905 /* TPMainScreen.cpp */; };
 		84AC3059178FF4DA0073C6D5 /* 90x90TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3056178FF4D80073C6D5 /* 90x90TileMap.tmx */; };
 		84AC305A178FF4DA0073C6D5 /* NewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3057178FF4D80073C6D5 /* NewBackground.png */; };
 		84AC305B178FF4DA0073C6D5 /* NewPrettyTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */; };
@@ -363,6 +364,8 @@
 		849A47ED179E55950003F905 /* Counter3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Counter3.png; sourceTree = "<group>"; };
 		849A47FA179E73F00003F905 /* Timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Timer.png; sourceTree = "<group>"; };
 		849A47FC179E88720003F905 /* Combo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Combo.png; sourceTree = "<group>"; };
+		849A47FE179E8C750003F905 /* TPMainScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPMainScreen.cpp; sourceTree = "<group>"; };
+		849A47FF179E8C760003F905 /* TPMainScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPMainScreen.h; sourceTree = "<group>"; };
 		84AC3056178FF4D80073C6D5 /* 90x90TileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 90x90TileMap.tmx; sourceTree = "<group>"; };
 		84AC3057178FF4D80073C6D5 /* NewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewBackground.png; sourceTree = "<group>"; };
 		84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPrettyTile.png; sourceTree = "<group>"; };
@@ -2244,6 +2247,8 @@
 				CEFBBE23177D335D0000F235 /* TPMap.cpp */,
 				84AE263F17812CED00FBD93C /* TPClean.cpp */,
 				84AE26461782D4AE00FBD93C /* TPParticles.cpp */,
+				849A47FE179E8C750003F905 /* TPMainScreen.cpp */,
+				849A47FF179E8C760003F905 /* TPMainScreen.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2622,6 +2627,7 @@
 				84AC30CC1796A52E0073C6D5 /* CCPinchGestureRecognizer.cpp in Sources */,
 				84AC30CD1796A52E0073C6D5 /* CCSwipeGestureRecognizer.cpp in Sources */,
 				84AC30CE1796A52E0073C6D5 /* CCTapGestureRecognizer.cpp in Sources */,
+				849A4800179E8C760003F905 /* TPMainScreen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
