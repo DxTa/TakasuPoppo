@@ -39,6 +39,13 @@ private:
     CCSprite *refreshButton;        //A sprite for refresh grid button
     CCSprite *removeButton;         //A sprite for remove grid button
     
+    CCSprite *firstTimeBar;
+    CCSprite *middleTimeBar;
+    CCSprite *lastTimeBar;
+    
+    CCProgressTimer *timerBar;
+    CCProgressTimer *comboBar;
+    
     CCTMXLayer *layer;              //The TMX Layer
     CCTMXTiledMap *map;             //The TMX Map
     
@@ -54,13 +61,23 @@ private:
     
     float moveCounter;              //Counter time for move swipe action
     float fallCounter;              //Counter time for falling counter action
+    
     float comboTimer = 0;           //Timer for combos
-    int comboCounter = 0;               //Counter for combos
-    float deltaTime;            //Public variable for delta time
+    int comboCounter = 0;           //Counter for combos
+    
+    float deltaTime;                //Public variable for delta time
+    
+    float executionTime = 3.5;
     
     float hintCounter = 3;          //Display hint after this counter
     
     float movingSpeed = 0.07;       //For all moving speed
+    
+    float gameTimer = 60;
+    
+    bool counterExist1 = false;
+    bool counterExist2 = false;
+    bool counterExist3 = false;
     
     bool spriteContained;           //Bool for the touch on sprite's trigger
     bool swiping;                   //Bool for swiping action
@@ -101,6 +118,8 @@ public:
     virtual bool init();
     virtual void update(float dt);
     void menuCloseCallback(CCObject* pSender);
+    //Setup timer, preparing for the game
+    void startGame();
     
     //Fixed update for executing game's logic
     void fixedUpdate(float time);
@@ -118,6 +137,12 @@ public:
     void hintGeneration();
     //Logic execution
     void logicExecution();
+    
+    void timeSetup();
+    
+    void timeCounter();
+    
+    void timeOver();
     
 #pragma mark Touch
     virtual void ccTouchesBegan(CCSet *touches, CCEvent *event);
