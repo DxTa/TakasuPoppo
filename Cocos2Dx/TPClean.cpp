@@ -11,9 +11,12 @@
 void TakasuPoppo::cleanBlocks() {
     CCObject *object;
     if (toDestroyArray->count() != 0) {
-        
+        int count = -1;
         CCARRAY_FOREACH(toDestroyArray, object) {
-            
+            count += 1;
+            TPBlockSet *block = dynamic_cast<TPBlockSet*>(toDestroyArray->objectAtIndex(count));
+            CCLOG("Destroy object %i", block->getEx1()->getGid());
+            CCLOG("Destroy count %i", toDestroyArray->count());
             hintCounter = 3;
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
             
@@ -22,15 +25,18 @@ void TakasuPoppo::cleanBlocks() {
             
             // true if blockSet has a hyperblock A
             bool isHyper1 = false;
-            if ((blockSet->getEx1() && blockSet->getEx1()->getBlockType() == 1) || (blockSet->getEx2() && blockSet->getEx2()->getBlockType() == 1) || (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) || (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) || (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) ) isHyper1 = true;
-//            if (blockSet->getEx2() && blockSet->getEx2()->getBlockType() == 1) isHyper1 = true;
-//            if (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) isHyper1 = true;
-//            if (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) isHyper1 = true;
-//            if (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) isHyper1 = true;
-//            
-            // true if blockSet has a hyper block B
-            bool isHyper2 = false;
+            if ((blockSet->getEx1() && blockSet->getEx1()->getBlockType() == 1) ||
+                (blockSet->getEx2() && blockSet->getEx2()->getBlockType() == 1) ||
+                (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) ||
+                (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) ||
+                (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) ) isHyper1 = true;
             
+            //            if (blockSet->getEx2() && blockSet->getEx2()->getBlockType() == 1) isHyper1 = true;
+            //            if (blockSet->getEx3() && blockSet->getEx3()->getBlockType() == 1) isHyper1 = true;
+            //            if (blockSet->getEx4() && blockSet->getEx4()->getBlockType() == 1) isHyper1 = true;
+            //            if (blockSet->getEx5() && blockSet->getEx5()->getBlockType() == 1) isHyper1 = true;
+            //
+            // true if blockSet has a hyper block B            
             //
             if (existHyperBlockA == true) {
                 
@@ -125,14 +131,11 @@ void TakasuPoppo::cleanBlocks() {
                     
                 }
             } // end of if else (existHyperBlockA == true)
-        
-            
-            
         }
     }
     
     toDestroyArray->removeAllObjects();
-    
+    debugRun = 0;
     
 }
 

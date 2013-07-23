@@ -35,7 +35,6 @@ bool TakasuPoppo::isTileMatched(int gid, int typeID) {
 }
 
 void TakasuPoppo::matchList() {
-    
     for (int y = 0; y < 7; y++) {
         for (int x = 0; x < 5; x++) {
             CCArray *match = new CCArray;
@@ -58,7 +57,7 @@ void TakasuPoppo::matchList() {
                         exObj3->setControlTrigger(false);
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, NULL, NULL,
                                                               "TrioHor", exObj->getCoordination().x, exObj->getCoordination().y);
-                        toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
@@ -72,7 +71,7 @@ void TakasuPoppo::matchList() {
                         exObj4->setControlTrigger(false);
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, NULL,
                                                               "QuadHor", exObj->getCoordination().x, exObj->getCoordination().y);
-                        toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
@@ -88,7 +87,7 @@ void TakasuPoppo::matchList() {
                         exObj5->setControlTrigger(false);
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
                                                               "PentaHor", exObj->getCoordination().x, exObj->getCoordination().y);
-                        toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
@@ -119,7 +118,7 @@ void TakasuPoppo::matchList() {
                         exObj3->setControlTrigger(false);
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, NULL, NULL,
                                                               "TrioVer", exObj->getCoordination().x, exObj->getCoordination().y);
-                        toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
@@ -133,7 +132,7 @@ void TakasuPoppo::matchList() {
                         exObj4->setControlTrigger(false);
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, NULL,
                                                               "QuadVer", exObj->getCoordination().x, exObj->getCoordination().y);
-                        toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
@@ -149,7 +148,7 @@ void TakasuPoppo::matchList() {
                         exObj5->setControlTrigger(false);
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
                                                               "PentaVer", exObj->getCoordination().x, exObj->getCoordination().y);
-                        toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
@@ -605,4 +604,17 @@ void TakasuPoppo::smartGeneration() {
         controlable = true;
         return;
     }
+}
+
+bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {
+    if (toDestroyArray->count() != 0) {
+        CCObject *object;
+        CCARRAY_FOREACH(toDestroyArray, object) {
+            TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
+            if (blockSet->getEx1()->getGid() == ex1->getGid()) {
+                return false;
+            }
+        }
+    }
+    return true;
 }

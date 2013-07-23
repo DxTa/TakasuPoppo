@@ -180,11 +180,12 @@ void TakasuPoppo::update(float dt) {
 
 void TakasuPoppo::fixedUpdate(float time) {
     TakasuPoppo::matchList();
-    if (toDestroyArray->count() != 0 && !inTheMove &&
-        !inTheFall) {
-        this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
+    if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+        this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
+        
     }
+    
 }
 
 void TakasuPoppo::fallingBoolSwitch(float dt) {
@@ -209,6 +210,15 @@ void TakasuPoppo::scheduleGenerate() {
     this->schedule(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
 }
 
+void TakasuPoppo::scheduleClean() {
+    debugRun += 1;
+    CCLOG("Ran how many times_? - %i", debugRun);
+    if (inCleaning == true) {
+        this->scheduleOnce(schedule_selector(TakasuPoppo::cleanBlocks), 0.1);
+        inCleaning = false;
+    } 
+}
+
 void TakasuPoppo::hintGeneration() {
     int hintCount = hintArray->count();
     if (hintCount > 0) {
@@ -219,10 +229,12 @@ void TakasuPoppo::hintGeneration() {
     }
 }
 
+
 void TakasuPoppo::logicExecution() {
     this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
+    inCleaning = true;
     this->runAction(CCSequence::create(
-                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleClean)),
                                        CCDelayTime::create(CLEAN_DELAY),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),

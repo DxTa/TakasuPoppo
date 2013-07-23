@@ -71,6 +71,7 @@ private:
     bool inTheMove;                 //True if there are sprites in moving action
     bool inTheFall;                 //True if sprites are falling
     bool isLogicRunnning;
+    bool inCleaning;    
     
     bool swipeRight;                //True if swipe right action is recognized
     bool swipeLeft;                 //True if swipe left action is recognized
@@ -80,6 +81,8 @@ private:
     bool hintDisplaying;            //Indicating that a hint is currently displayed
     
     bool gridOn = false;
+    
+    int debugRun = 0;
     
     char comboTimerString[20];
     char comboCounterString[20];
@@ -108,6 +111,9 @@ public:
     void fallingBoolSwitch(float time);
     //Unschedule generation
     void scheduleGenerate();
+    //Schedule clean
+    void scheduleClean();
+    
     //Hint display
     void hintGeneration();
     //Logic execution
@@ -172,7 +178,7 @@ public:
     //Generate a match if there is a shortage
     void smartGeneration();
     
-    
+    bool destroyCheck(TPObjectExtension *ex1);
 #pragma mark Clean
     //Remove blocks from destroy array
     void cleanBlocks();
