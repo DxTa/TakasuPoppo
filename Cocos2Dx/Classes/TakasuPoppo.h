@@ -211,7 +211,7 @@ public:
     void afterClean();
     
     //Clean with Hyper Block A
-    void cleanHyperBlockA(TPBlockSet* blockSet);
+    void cleanHyperBlockA(TPObjectExtension* exObj);
     //Clean with Hyper Block B
     void cleanHyperBlockB(TPObjectExtension* exObj);
     //Clean with Hyper Block B
@@ -275,9 +275,12 @@ public:
     
     
     //Vinhnt - for HyperBlock
-    void findToCleanBlockAroundHBA(TPObjectExtension* exObj);
     void makeBlockToBeHBA(TPObjectExtension* exObj);
-    void cleanBlockSetNormal(TPBlockSet* blockSet);
+    void makeBlockToBeHBB(TPObjectExtension* exobj);
+    void makeBlockToBeHBC(TPObjectExtension* exobj);
+    void cleanOneBlock(TPObjectExtension* exobj);
+    
+    void cleanBlockSetNormal(TPBlockSet *blockSet);
     
     CREATE_FUNC(TakasuPoppo);
 };
