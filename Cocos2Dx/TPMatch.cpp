@@ -410,7 +410,8 @@ void TakasuPoppo::smartGeneration() {
             TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
             if (exObj->getID() == 7) {
                 TakasuPoppo::generateRandomBlock(exObj);
-            }
+                exObj->setControlTrigger(true);
+            }else exObj->setControlTrigger(true);
         }
         controlable = true;
         return;
@@ -600,7 +601,7 @@ void TakasuPoppo::smartGeneration() {
                     continue;
                 }
             }
-            //exObj->setControlTrigger(true);
+            else exObj->setControlTrigger(true);
         }
         controlable = true;
         return;

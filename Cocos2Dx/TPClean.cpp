@@ -7,7 +7,7 @@
 //
 #define COMBO_HBA_COUNT  2
 #define COMBO_HBB_COUNT  3
-#define COMBO_HBC_COUNT  100
+#define COMBO_HBC_COUNT  4
 
 
 #include "TakasuPoppo.h"
@@ -346,47 +346,80 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
 void TakasuPoppo::makeBlockToBeHBA(TPObjectExtension* exObj){
     
     exObj->setBlockType(1);
-    
-    
     // change controlable
     exObj->setControlTrigger(true);
-    
-    // change sprite when the block be hyper
-    int imageId = exObj->getID() + 1;
-    CCImage *poppoB = new CCImage;
-    char imagePath[15];
-    sprintf(imagePath, "Poppo%dHyperA.png", imageId);
-    poppoB->initWithImageFile(imagePath);
-    CCTexture2D *poppoTexture = new CCTexture2D;
-    poppoTexture->initWithImage(poppoB);
-    CCSprite *poppoSprite = exObj->getSprite();
-    poppoSprite->setTexture(poppoTexture);
-    exObj->setSprite(poppoSprite);
+    if(exObj->getID() != 7)
+    {
+        // change sprite when the block be hyper
+        int imageId = exObj->getID() + 1;
+        CCImage *poppoB = new CCImage;  
+        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
+        str = "Poppo" + str + "HyperA.png";
+        poppoB->initWithImageFile(str.c_str());
+        CCTexture2D *poppoTexture = new CCTexture2D;
+        poppoTexture->initWithImage(poppoB);
+        CCSprite *poppoSprite = exObj->getSprite();
+        poppoSprite->setTexture(poppoTexture);
+        exObj->setSprite(poppoSprite);
+    }
     
 }
 
 void TakasuPoppo::makeBlockToBeHBB(TPObjectExtension* exObj){
     exObj->setBlockType(2);
-    
-    
     // change controlable
     exObj->setControlTrigger(true);
-    
-    // change sprite when the block be hyper
-    int imageId = exObj->getID() + 1;
-    CCImage *poppoB = new CCImage;
-    char imagePath[15];
-    sprintf(imagePath, "Poppo%dHyperB.png", imageId);
-    poppoB->initWithImageFile(imagePath);
-    CCTexture2D *poppoTexture = new CCTexture2D;
-    poppoTexture->initWithImage(poppoB);
-    CCSprite *poppoSprite = exObj->getSprite();
-    poppoSprite->setTexture(poppoTexture);
-    exObj->setSprite(poppoSprite);
+    if(exObj->getID() != 7)
+    {
+        // change sprite when the block be hyper
+        int imageId = exObj->getID() + 1;
+        CCImage *poppoB = new CCImage;
+        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
+        str = "Poppo" + str + "HyperB.png";
+        poppoB->initWithImageFile(str.c_str());
+        CCTexture2D *poppoTexture = new CCTexture2D;
+        poppoTexture->initWithImage(poppoB);
+        CCSprite *poppoSprite = exObj->getSprite();
+        poppoSprite->setTexture(poppoTexture);
+        exObj->setSprite(poppoSprite);
+    }
+//    exObj->setBlockType(2);
+//    
+//    
+//    // change controlable
+//    exObj->setControlTrigger(true);
+//    
+//    // change sprite when the block be hyper
+//    int imageId = exObj->getID() + 1;
+//    CCImage *poppoB = new CCImage;
+//    char imagePath[15];
+//    sprintf(imagePath, "Poppo%dHyperB.png", imageId);
+//    poppoB->initWithImageFile(imagePath);
+//    CCTexture2D *poppoTexture = new CCTexture2D;
+//    poppoTexture->initWithImage(poppoB);
+//    CCSprite *poppoSprite = exObj->getSprite();
+//    poppoSprite->setTexture(poppoTexture);
+//    exObj->setSprite(poppoSprite);
 
 }
-void TakasuPoppo::makeBlockToBeHBC(TPObjectExtension *exobj){
-    
+void TakasuPoppo::makeBlockToBeHBC(TPObjectExtension *exObj){
+    exObj->setBlockType(3);
+    // change controlable
+    exObj->setControlTrigger(true);
+    if(exObj->getID() != 7)
+    {
+        // change sprite when the block be hyper
+        int imageId = exObj->getID() + 1;
+        CCImage *poppoB = new CCImage;
+        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
+        str = "Poppo" + str + "HyperC.png";
+        poppoB->initWithImageFile(str.c_str());
+        CCTexture2D *poppoTexture = new CCTexture2D;
+        poppoTexture->initWithImage(poppoB);
+        CCSprite *poppoSprite = exObj->getSprite();
+        poppoSprite->setTexture(poppoTexture);
+        exObj->setSprite(poppoSprite);
+    }
 }
 
 //void TakasuPoppo::cleanBlockSetNormal(TPBlockSet *blockSet){
