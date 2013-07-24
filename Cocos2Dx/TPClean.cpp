@@ -183,6 +183,8 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
                                            CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID),
                                                                 (void*)exObj),
                                            CCDelayTime::create(CLEAN_DELAY),
+                                           CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation),
+                                                                (void*)exObj),
                                            CCRemoveSelf::create(), NULL));
     
 }
@@ -353,7 +355,7 @@ void TakasuPoppo::makeBlockToBeHBA(TPObjectExtension* exObj){
     int imageId = exObj->getID() + 1;
     CCImage *poppoB = new CCImage;
     char imagePath[15];
-    sprintf(imagePath, "Poppo%dB.png", imageId);
+    sprintf(imagePath, "Poppo%dHyperA.png", imageId);
     poppoB->initWithImageFile(imagePath);
     CCTexture2D *poppoTexture = new CCTexture2D;
     poppoTexture->initWithImage(poppoB);
@@ -374,7 +376,7 @@ void TakasuPoppo::makeBlockToBeHBB(TPObjectExtension* exObj){
     int imageId = exObj->getID() + 1;
     CCImage *poppoB = new CCImage;
     char imagePath[15];
-    sprintf(imagePath, "Poppo%dB2.png", imageId);
+    sprintf(imagePath, "Poppo%dHyperB.png", imageId);
     poppoB->initWithImageFile(imagePath);
     CCTexture2D *poppoTexture = new CCTexture2D;
     poppoTexture->initWithImage(poppoB);
