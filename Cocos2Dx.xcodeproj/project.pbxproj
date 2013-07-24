@@ -325,6 +325,13 @@
 		DC12FEDF1744D22E00480D31 /* TakasuPoppo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC12FEDE1744D22E00480D31 /* TakasuPoppo.cpp */; };
 		DC12FEE71744D31F00480D31 /* CCDataVisitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC12FEE61744D31F00480D31 /* CCDataVisitor.cpp */; };
 		DC12FEE91744D3A300480D31 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DC12FEE81744D3A300480D31 /* Default-568h@2x.png */; };
+		DE74BD8C179E6BCE00F2EC64 /* Poppo1B2.png in Resources */ = {isa = PBXBuildFile; fileRef = DE74BD85179E6BCE00F2EC64 /* Poppo1B2.png */; };
+		DE74BD8D179E6BCE00F2EC64 /* Poppo2B2.png in Resources */ = {isa = PBXBuildFile; fileRef = DE74BD86179E6BCE00F2EC64 /* Poppo2B2.png */; };
+		DE74BD8E179E6BCE00F2EC64 /* Poppo3B2.png in Resources */ = {isa = PBXBuildFile; fileRef = DE74BD87179E6BCE00F2EC64 /* Poppo3B2.png */; };
+		DE74BD8F179E6BCE00F2EC64 /* Poppo4B2.png in Resources */ = {isa = PBXBuildFile; fileRef = DE74BD88179E6BCE00F2EC64 /* Poppo4B2.png */; };
+		DE74BD90179E6BCE00F2EC64 /* Poppo5B2.png in Resources */ = {isa = PBXBuildFile; fileRef = DE74BD89179E6BCE00F2EC64 /* Poppo5B2.png */; };
+		DE74BD91179E6BCE00F2EC64 /* Poppo6B2.png in Resources */ = {isa = PBXBuildFile; fileRef = DE74BD8A179E6BCE00F2EC64 /* Poppo6B2.png */; };
+		DE74BD92179E6BCE00F2EC64 /* Poppo7B2.png in Resources */ = {isa = PBXBuildFile; fileRef = DE74BD8B179E6BCE00F2EC64 /* Poppo7B2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -960,6 +967,13 @@
 		DC12FEE51744D30B00480D31 /* CCDataVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDataVisitor.h; sourceTree = "<group>"; };
 		DC12FEE61744D31F00480D31 /* CCDataVisitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDataVisitor.cpp; sourceTree = "<group>"; };
 		DC12FEE81744D3A300480D31 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DE74BD85179E6BCE00F2EC64 /* Poppo1B2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo1B2.png; sourceTree = "<group>"; };
+		DE74BD86179E6BCE00F2EC64 /* Poppo2B2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo2B2.png; sourceTree = "<group>"; };
+		DE74BD87179E6BCE00F2EC64 /* Poppo3B2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo3B2.png; sourceTree = "<group>"; };
+		DE74BD88179E6BCE00F2EC64 /* Poppo4B2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo4B2.png; sourceTree = "<group>"; };
+		DE74BD89179E6BCE00F2EC64 /* Poppo5B2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo5B2.png; sourceTree = "<group>"; };
+		DE74BD8A179E6BCE00F2EC64 /* Poppo6B2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo6B2.png; sourceTree = "<group>"; };
+		DE74BD8B179E6BCE00F2EC64 /* Poppo7B2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7B2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1051,6 +1065,13 @@
 		84AC3093179658AE0073C6D5 /* Pop */ = {
 			isa = PBXGroup;
 			children = (
+				DE74BD85179E6BCE00F2EC64 /* Poppo1B2.png */,
+				DE74BD86179E6BCE00F2EC64 /* Poppo2B2.png */,
+				DE74BD87179E6BCE00F2EC64 /* Poppo3B2.png */,
+				DE74BD88179E6BCE00F2EC64 /* Poppo4B2.png */,
+				DE74BD89179E6BCE00F2EC64 /* Poppo5B2.png */,
+				DE74BD8A179E6BCE00F2EC64 /* Poppo6B2.png */,
+				DE74BD8B179E6BCE00F2EC64 /* Poppo7B2.png */,
 				84AC30B8179658D40073C6D5 /* pop.plist */,
 				84AC30B9179658D40073C6D5 /* pop.pvr.ccz */,
 				84AC3098179658AE0073C6D5 /* Poppo1A.png */,
@@ -2335,6 +2356,13 @@
 				849A47E7179D10040003F905 /* ComboGauge.png in Resources */,
 				849A47E8179D10040003F905 /* IdeGauge.png in Resources */,
 				849A47E9179D10040003F905 /* NewPrettyBackground.png in Resources */,
+				DE74BD8C179E6BCE00F2EC64 /* Poppo1B2.png in Resources */,
+				DE74BD8D179E6BCE00F2EC64 /* Poppo2B2.png in Resources */,
+				DE74BD8E179E6BCE00F2EC64 /* Poppo3B2.png in Resources */,
+				DE74BD8F179E6BCE00F2EC64 /* Poppo4B2.png in Resources */,
+				DE74BD90179E6BCE00F2EC64 /* Poppo5B2.png in Resources */,
+				DE74BD91179E6BCE00F2EC64 /* Poppo6B2.png in Resources */,
+				DE74BD92179E6BCE00F2EC64 /* Poppo7B2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2608,8 +2636,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2632,8 +2660,8 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PROVISIONING_PROFILE = "9DEB5905-AEE7-4596-AB75-242777F82D88";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DEB5905-AEE7-4596-AB75-242777F82D88";
+				PROVISIONING_PROFILE = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2643,8 +2671,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -2665,8 +2693,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "9DEB5905-AEE7-4596-AB75-242777F82D88";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DEB5905-AEE7-4596-AB75-242777F82D88";
+				PROVISIONING_PROFILE = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
