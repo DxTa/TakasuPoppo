@@ -23,6 +23,9 @@ void TakasuPoppo::cleanBlocks() {
             // count the combo to generate hyper block
             comboCounter += 1;
             
+            // count the combo for the Fever Time
+            feverCounter += 1;
+            
             if (comboCounter == COMBO_HBA_COUNT || comboCounter == COMBO_HBB_COUNT || comboCounter == COMBO_HBC_COUNT) {
                 bool isCreateHyperBlock = false;
                 
