@@ -291,15 +291,16 @@ int TakasuPoppo::lookForMatches() {
 
 bool TakasuPoppo::sumOfMatches(TPObjectExtension *exA, TPObjectExtension *exB,
                                TPObjectExtension *ex1, TPObjectExtension *ex2, TPObjectExtension *ex3) {
-    if (ex1 != NULL && ex1->getID() == exA->getID()) {
+    // Vinh nt - change the condination in if: && exA->getID() != 7
+    if (ex1 != NULL && ex1->getID() == exA->getID()  && exA->getID() != 7) {
         if (hintArray->count() < 5) hintArray->addObject(ex1);
         return true;
     }
-    if (ex2 != NULL && ex2->getID() == exA->getID()) {
+    if (ex2 != NULL && ex2->getID() == exA->getID() && exA->getID() != 7) {
         if (hintArray->count() < 5) hintArray->addObject(ex2);
         return true;
     }
-    if (ex3 != NULL && ex3->getID() == exA->getID()) {
+    if (ex3 != NULL && ex3->getID() == exA->getID() && exA->getID() != 7) {
         if (hintArray->count() < 5) hintArray->addObject(ex3);
         return true;
     }
