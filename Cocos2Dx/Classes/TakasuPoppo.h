@@ -16,7 +16,7 @@
 #define SWAP_TIME 0.09
 
 #define GENERATION_DELAY 0.3
-#define CLEAN_DELAY 0.2
+#define CLEAN_DELAY 0.1
 #define LOGIC_DELAY 0.2
 #define MOVE_DELAY 0.05
 
@@ -130,9 +130,7 @@ public:
     void fallingBoolSwitch(float time);
     //Unschedule generation
     void scheduleGenerate();
-    //Schedule clean
-    void scheduleClean();
-    
+        
     //Hint display
     void hintGeneration();
     //Logic execution

@@ -266,15 +266,6 @@ void TakasuPoppo::scheduleGenerate() {
     this->schedule(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
 }
 
-void TakasuPoppo::scheduleClean() {
-    debugRun += 1;
-    CCLOG("Ran how many times_? - %i", debugRun);
-    if (inCleaning == true) {
-        this->scheduleOnce(schedule_selector(TakasuPoppo::cleanBlocks), 0.1);
-        inCleaning = false;
-    } 
-}
-
 void TakasuPoppo::hintGeneration() {
     int hintCount = hintArray->count();
     if (hintCount > 0) {
@@ -290,7 +281,7 @@ void TakasuPoppo::logicExecution() {
     this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     inCleaning = true;
     this->runAction(CCSequence::create(
-                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleClean)),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
                                        CCDelayTime::create(CLEAN_DELAY),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),

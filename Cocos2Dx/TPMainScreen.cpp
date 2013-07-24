@@ -7,8 +7,6 @@
 //
 
 #include "TPMainScreen.h"
-
-#include "Menu.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
