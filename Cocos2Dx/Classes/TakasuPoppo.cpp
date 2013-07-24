@@ -65,7 +65,7 @@ bool TakasuPoppo::init() {
     
     CCSprite *ideGauge = CCSprite::create("IdeGauge.png");
     ideGauge->setPosition(ccp(210, 780));
-    this->addChild(ideGauge, -1, -2);
+    this->addChild(ideGauge, 6, -2);
     
     CCSprite *comboGauge = CCSprite::create("ComboGauge.png");
     comboGauge->setPosition(ccp(400, 780));
@@ -73,19 +73,75 @@ bool TakasuPoppo::init() {
     
     //===============================================================
     
-    TakasuPoppo::swipeSetup();
+    
+    this->scheduleUpdate();
+    
+//    this->schedule(schedule_selector(TakasuPoppo::startGame));
     
     this->setTouchEnabled(true);
     
-    this->scheduleUpdate();
     this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
+    
+    this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
+    this->schedule(schedule_selector(TakasuPoppo::timeCounter));
     
     return true;
 }
 
+void TakasuPoppo::startGame() {
+    hintCounter = 5;
+    
+    CCLOG("Timer %f", executionTime);
+    executionTime -= deltaTime;
+    
+    CCSprite *counter3 = CCSprite::create("Counter3.png");
+    CCSprite *counter2 = CCSprite::create("Counter2.png");
+    CCSprite *counter1 = CCSprite::create("Counter1.png");
+    
+    counter3->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    counter2->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    counter1->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    
+    counter3->setTag(403);
+    counter2->setTag(402);
+    counter1->setTag(401);
+    
+    if (executionTime < 3) {
+        if (!counterExist3) this->addChild(counter3, 5);
+        counterExist3 = true;
+    }
+    if (executionTime < 2) {
+        if (counterExist3) this->removeChildByTag(403, true);
+        counterExist3 = false;
+        
+        if (!counterExist2) this->addChild(counter2, 5);
+        counterExist2 = true;
+    }
+    if (executionTime < 1) {
+        if (counterExist2) this->removeChildByTag(402, true);
+        counterExist2 = false;
+        
+        if (!counterExist1) this->addChild(counter1, 5);
+        counterExist1 = true;
+    }
+    if (executionTime <= 0) { 
+        if (counterExist1) this->removeChildByTag(401, true);
+        counterExist1 = false;
+    
+        TakasuPoppo::swipeSetup();
+        
+        this->setTouchEnabled(true);
+        
+        this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
+        
+        this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
+        this->schedule(schedule_selector(TakasuPoppo::timeCounter));
+        
+        this->unschedule(schedule_selector(TakasuPoppo::startGame));
+    }
+}
+
 void TakasuPoppo::update(float dt) {
-    
-    
     deltaTime = dt;
     
     //================== Combo related updates ======================
@@ -176,6 +232,40 @@ void TakasuPoppo::update(float dt) {
         }
     }
     //================================================================
+    
+    
+    
+    //===================== Fever Time updates =======================
+        
+    if (feverCounter == 0) {
+        feverTimer = 0;
+    }
+    
+    if (feverCounter > 0) {
+        
+        if (feverCounter > 5 ) feverCounter = 0;
+            
+        else {
+            feverTimer += dt;
+            if (feverTimer > 3) {
+                feverTimer = 0;
+                feverCounter = 0;
+            } else {
+                if (feverCounter == 5) {
+                    isFeverTime = true;
+                }
+            }
+        }
+            
+
+    }
+    
+    CCLog("Fever Counter: %i", feverCounter);
+    CCLog("Fever Timer: %f", feverTimer);
+    //================================================================
+
+    
+    
 }
 
 void TakasuPoppo::fixedUpdate(float time) {
@@ -210,15 +300,6 @@ void TakasuPoppo::scheduleGenerate() {
     this->schedule(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
 }
 
-void TakasuPoppo::scheduleClean() {
-    debugRun += 1;
-    CCLOG("Ran how many times_? - %i", debugRun);
-    if (inCleaning == true) {
-        this->scheduleOnce(schedule_selector(TakasuPoppo::cleanBlocks), 0.1);
-        inCleaning = false;
-    } 
-}
-
 void TakasuPoppo::hintGeneration() {
     int hintCount = hintArray->count();
     if (hintCount > 0) {
@@ -234,7 +315,7 @@ void TakasuPoppo::logicExecution() {
     this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     inCleaning = true;
     this->runAction(CCSequence::create(
-                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleClean)),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
                                        CCDelayTime::create(CLEAN_DELAY),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),
@@ -243,3 +324,56 @@ void TakasuPoppo::logicExecution() {
     this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), LOGIC_DELAY);
 }
 
+void TakasuPoppo::timeSetup() {
+    CCSprite *timer = CCSprite::create("Timer.png");
+    timer->setAnchorPoint(ccp(0, 0));
+    timerBar = CCProgressTimer::create(timer);
+    
+    timerBar->setType(kCCProgressTimerTypeBar);
+    timerBar->setAnchorPoint(ccp(0, 0));
+    
+    timerBar->setPosition(30, 22);
+    timerBar->setMidpoint(ccp(0, 0));
+    timerBar->setBarChangeRate(ccp(1, 0));
+    
+    timerBar->setTag(405);
+    this->addChild(timerBar, 5);
+    
+    CCSprite *combo = CCSprite::create("Combo.png");
+    combo->setAnchorPoint(ccp(0, 0));
+    comboBar = CCProgressTimer::create(combo);
+    
+    comboBar->setType(kCCProgressTimerTypeBar);
+    comboBar->setAnchorPoint(ccp(0, 0));
+    
+    comboBar->setPosition(195, 760);
+    comboBar->setMidpoint(ccp(0, 0));
+    comboBar->setBarChangeRate(ccp(1, 0));
+    
+    comboBar->setTag(406);
+    this->addChild(comboBar, 5);
+}
+
+void TakasuPoppo::timeCounter() {
+    gameTimer -= deltaTime;
+    if (gameTimer > 0) {
+        timerBar->setPercentage(1.66 * gameTimer);
+    }
+    if (gameTimer < 0) {
+        gameTimer = 60;
+    }
+//    else {
+//        unschedule(schedule_selector(TakasuPoppo::timeCounter));
+//    }
+    
+    if (comboCounter > 0 && comboCounter <= 5) {
+        comboBar->setPercentage(comboCounter * 20);
+    }
+    if (comboCounter > 5) {
+        comboBar->setPercentage(0);
+    }
+}
+
+void TakasuPoppo::timeOver() {
+    
+}
