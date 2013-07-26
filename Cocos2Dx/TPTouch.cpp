@@ -29,6 +29,12 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                 startSwipePoint = touchLoc;
                 pickedArray->addObject(exObject);
                 spriteContained = true;
+                if(exObject != NULL)
+                    if(exObject->getID() != 7 && exObject->getBlockType() == 3 && exObject->getSprite() && exObject->getSprite() != NULL)
+                    {
+                        cleanHyperBlockC(exObject);
+                        logicExecution();
+                    }
             }
         }
     }

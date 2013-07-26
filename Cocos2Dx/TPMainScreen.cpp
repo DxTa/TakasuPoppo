@@ -14,7 +14,7 @@ using namespace CocosDenshion;
 using namespace std;
 
 CCScene *TPMainScreen::scene() {
-    cocos2d::CCScene *scene = CCScene::create();
+    CCScene *scene = CCScene::create();
     TPMainScreen *layer = TPMainScreen::create();
     scene->addChild(layer);
     return scene;

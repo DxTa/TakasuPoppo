@@ -20,6 +20,9 @@
 #define LOGIC_DELAY 0.2
 #define MOVE_DELAY 0.05
 
+#define FEVER_COMBO_REQUIRED 5
+#define FEVER_TIME_REQUIRED 3
+
 #include "cocos2d.h"
 #include "TPObjectExtension.h"
 #include "TPBlockSet.h"
@@ -110,15 +113,22 @@ private:
     
     // Vinhnt - for fever time
     float feverTimer = 0;           //Timer for Fever Time
+    float feverTimeLimit = 3;
     int feverCounter = 0;           //Counter for Fever Time
-    bool isFeverTime = false;
+    bool isCreateFeverTime = false;
+    bool isInFeverTime = false;
     
+    //Vinhnt - for Gauge Combo
+    int gaugeComboCounter = 0;
+    bool isCreateGaugeCombo = false;
     
 public:
     
     bool existHyperBlockA = false;          // true if there is a Hyper Block A
     bool existHyperBlockB = false;          // true if there is a Hyper Block B
     bool existHyperBlockC = false;          // true if there is a Hyper Block C
+    CCArray* currentBlockSet = NULL;            // keep track of the current block set
+
     
 #pragma mark Takasu Poppo
     static cocos2d::CCScene* scene();
@@ -217,9 +227,10 @@ public:
     
     //Clean with Hyper Block A
     void cleanHyperBlockA(TPObjectExtension* exObj);
+    // Vinhnt - update: 1 more parametter for ferver time
     //Clean with Hyper Block B
     void cleanHyperBlockB(TPObjectExtension* exObj);
-    //Clean with Hyper Block B
+    //Clean with Hyper Block C
     void cleanHyperBlockC(TPObjectExtension* exObj);
     //Clean a sprite
     void cleanSprite(TPObjectExtension *exObj);
@@ -284,6 +295,7 @@ public:
     void makeBlockToBeHBB(TPObjectExtension* exobj);
     void makeBlockToBeHBC(TPObjectExtension* exobj);
     void cleanOneBlock(TPObjectExtension* exobj);
+    bool isInCurrentBlockSet(TPObjectExtension* exobj);
     
     void cleanBlockSetNormal(TPBlockSet *blockSet);
     
