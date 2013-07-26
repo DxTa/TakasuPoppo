@@ -13,12 +13,15 @@
 #define HINT_TIME 5
 #define FALL_TIME 0.1
 #define MOVE_TIME 0.1
-#define SWAP_TIME 0.09
+#define SWAP_TIME 0.11
 
-#define GENERATION_DELAY 0.3
-#define CLEAN_DELAY 0.1
-#define LOGIC_DELAY 0.2
+#define GENERATION_DELAY 0.05
+#define CLEAN_DELAY 0.05
+#define LOGIC_DELAY 0.05
 #define MOVE_DELAY 0.05
+
+#define FEVER_COMBO_REQUIRED 5
+#define FEVER_TIME_REQUIRED 3
 
 #include "cocos2d.h"
 #include "TPObjectExtension.h"
@@ -88,7 +91,7 @@ private:
     bool inTheMove;                 //True if there are sprites in moving action
     bool inTheFall;                 //True if sprites are falling
     bool isLogicRunnning;
-    bool inCleaning;    
+    bool inCleaning;
     
     bool swipeRight;                //True if swipe right action is recognized
     bool swipeLeft;                 //True if swipe left action is recognized
@@ -107,11 +110,24 @@ private:
     
     CCLabelTTF *comboTimerLabel;
     CCLabelTTF *comboCounterLabel;
+    
+    // Vinhnt - for fever time
+    float feverTimer = 0;           //Timer for Fever Time
+    float feverTimeLimit = 3;
+    int feverCounter = 0;           //Counter for Fever Time
+    bool isCreateFeverTime = false;
+    bool isInFeverTime = false;
+    
+    int hyperC = 10;
+    bool hyperBlockC = false;
+    
 public:
     
     bool existHyperBlockA = false;          // true if there is a Hyper Block A
     bool existHyperBlockB = false;          // true if there is a Hyper Block B
     bool existHyperBlockC = false;          // true if there is a Hyper Block C
+    CCArray* currentBlockSet = NULL;            // keep track of the current block set
+    
     
 #pragma mark Takasu Poppo
     static cocos2d::CCScene* scene();
@@ -130,7 +146,7 @@ public:
     void fallingBoolSwitch(float time);
     //Unschedule generation
     void scheduleGenerate();
-        
+    
     //Hint display
     void hintGeneration();
     //Logic execution
@@ -210,9 +226,10 @@ public:
     
     //Clean with Hyper Block A
     void cleanHyperBlockA(TPObjectExtension* exObj);
+    // Vinhnt - update: 1 more parametter for ferver time
     //Clean with Hyper Block B
     void cleanHyperBlockB(TPObjectExtension* exObj);
-    //Clean with Hyper Block B
+    //Clean with Hyper Block C
     void cleanHyperBlockC(TPObjectExtension* exObj);
     //Clean a sprite
     void cleanSprite(TPObjectExtension *exObj);
@@ -245,6 +262,7 @@ public:
     //Runs and return, for when moving is not possible
     void swapTilesBack();
     
+    TPObjectExtension* checkSwipe(TPBlockSet *blockSet);
     
 #pragma mark Particles
     //Pop particles
@@ -277,8 +295,15 @@ public:
     void makeBlockToBeHBB(TPObjectExtension* exobj);
     void makeBlockToBeHBC(TPObjectExtension* exobj);
     void cleanOneBlock(TPObjectExtension* exobj);
+    bool isInCurrentBlockSet(TPObjectExtension* exobj);
     
     void cleanBlockSetNormal(TPBlockSet *blockSet);
+    
+    bool isValidEx(TPObjectExtension * ex);
+    void randomBlockC(int blockID);
+    
+    void cleanA(TPObjectExtension* exObj);
+    void cleanB(TPObjectExtension* exObj);
     
     CREATE_FUNC(TakasuPoppo);
 };

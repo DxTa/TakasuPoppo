@@ -65,7 +65,30 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
             TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true) {
             moveCounter = 0;
             this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), MOVE_DELAY);
+            if(TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true){
+                if(swpObj->getBlockType() == 0)
+                    swpObj->setBlockType(10);
+                if(swpObj->getBlockType() == 1)
+                    swpObj->setBlockType(11);
+                if(exObj->getBlockType() == 2)
+                    exObj->setBlockType(12);
+            }
+            if(TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true){
+                if(exObj->getBlockType() == 3) cleanHyperBlockC(exObj);
+                else
+                    if(exObj->getBlockType() == 0)
+                    exObj->setBlockType(10);
+                if(exObj->getBlockType() == 1)
+                    exObj->setBlockType(11);
+                if(exObj->getBlockType() == 2)
+                    exObj->setBlockType(12);
+                
+                
+            }
             TakasuPoppo::checkPosition();
+            
+                
+    
         }
         else {
             TakasuPoppo::swapColorID(exObj, swpObj);
@@ -112,6 +135,29 @@ void TakasuPoppo::swapTilesBack() {
                                                             CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::switchControlable), (void*)swapedSprite), NULL));
 }
 
+//void TakasuPoppo::swapTilesBack() {
+//    CCPoint moveDes = swapedSprite->getPosition();
+//    CCPoint swapDes = movedSprite->getPosition();
+//    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::switchControlable), (void*)movedSprite);
+//    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::switchControlable), (void*)swapedSprite);
+//    movedSprite->getSprite()->runAction(CCSequence::create(
+//                                                           CCMoveTo::create(SWAP_TIME, moveDes),
+//                                                           CCMoveTo::create(SWAP_TIME, swapDes),
+//                                                           NULL)
+//                                        );
+//    
+//    swapedSprite->getSprite()->runAction(CCSequence::create(
+//                                                            
+//                                                            CCMoveTo::create(SWAP_TIME, swapDes),
+//                                                            CCMoveTo::create(SWAP_TIME, moveDes),
+//                                                            NULL)
+//                                         );
+//    CCDelayTime::create(SWAP_TIME*2);
+//    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::switchControlable), (void*)movedSprite);
+//    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::switchControlable), (void*)swapedSprite);
+//}
+
+
 void TakasuPoppo::switchControlable(TPObjectExtension *exObj) {
     bool controlable = exObj->getControlTrigger();
     controlable = !controlable;
@@ -127,4 +173,15 @@ void TakasuPoppo::checkPosition() {
         movedSprite->getSprite()->runAction(CCMoveTo::create(SWAP_TIME, movedSprite->getPosition()));
     }
     
+}
+
+TPObjectExtension* TakasuPoppo::checkSwipe(TPBlockSet *blockSet){
+    if (blockSet->getEx1() != NULL && blockSet->getEx1()->getBlockType() >= 10) return blockSet->getEx1();
+    if (blockSet->getEx2() != NULL && blockSet->getEx2()->getBlockType() >= 10) return blockSet->getEx2();
+    if (blockSet->getEx3() != NULL && blockSet->getEx3()->getBlockType() >= 10) return blockSet->getEx3();
+    if (blockSet->getEx4() != NULL && blockSet->getEx4()->getBlockType() >= 10) return blockSet->getEx4();
+    if (blockSet->getEx5() != NULL && blockSet->getEx5()->getBlockType() >= 10) return blockSet->getEx5();
+    if (blockSet->getEx6() != NULL && blockSet->getEx6()->getBlockType() >= 10) return blockSet->getEx6();
+    if (blockSet->getEx7() != NULL && blockSet->getEx7()->getBlockType() >= 10) return blockSet->getEx7();
+    return blockSet->getEx1();
 }

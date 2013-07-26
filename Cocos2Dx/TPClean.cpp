@@ -7,8 +7,7 @@
 //
 #define COMBO_HBA_COUNT  2
 #define COMBO_HBB_COUNT  3
-#define COMBO_HBC_COUNT  4
-
+#define COMBO_HBC_COUNT  3
 
 #include "TakasuPoppo.h"
 #include "TPBlockSet.h"
@@ -16,120 +15,196 @@ void TakasuPoppo::cleanBlocks() {
     CCObject *object;
     if (toDestroyArray->count() != 0) {
         CCARRAY_FOREACH(toDestroyArray, object) {
-            
+            bool hyperA = false;
+            bool hyperB = false;
             hintCounter = 3;
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
+            
+            // update current block set
+            currentBlockSet = blockSet->getBlocksArray();
             
             // count the combo to generate hyper block
             comboCounter += 1;
             
-            if (comboCounter == COMBO_HBA_COUNT || comboCounter == COMBO_HBB_COUNT || comboCounter == COMBO_HBC_COUNT) {
-                bool isCreateHyperBlock = false;
+            // count the combo for the Fever Time
+            feverCounter += 1;
+            
+            //===============================
+            if(blockSet->getEx4() != NULL)
+            {
+                hyperA = true;
+            }
+            if(blockSet->getEx5() != NULL)
+            {
+                hyperA = false;
+                hyperB = true;
+            }
+//            TPObjectExtension* ex = TakasuPoppo::checkSwipe(blockSet);
+//            if (comboCounter != COMBO_HBC_COUNT) {
+//                if(ex->getBlockType() == 1)
+//                    cleanA(ex);
+//                else if(ex->getBlockType() == 2)
+//                    cleanB(ex);
+//
+//                if (isValidEx(blockSet->getEx1())){
+//                    TakasuPoppo::cleanOneBlock(blockSet->getEx1());
+//                }
+//                
+//                if (isValidEx(blockSet->getEx2())){
+//                    TakasuPoppo::cleanOneBlock(blockSet->getEx2());
+//                }
+//                
+//                if (isValidEx(blockSet->getEx3())) {
+//                    //hyperA = true;
+//                    TakasuPoppo::cleanOneBlock(blockSet->getEx3());
+//                }
+//                
+//                if (isValidEx(blockSet->getEx4())) {
+//                    //hyperA = true;
+//                    TakasuPoppo::cleanOneBlock(blockSet->getEx4());
+//                }
+//                
+//                if (isValidEx(blockSet->getEx5())) {
+//                   // hyperB = true;
+//                    //hyperA = false;
+//                    TakasuPoppo::cleanOneBlock(blockSet->getEx5());
+//                }
+//                
+//                if (isValidEx(blockSet->getEx6())) {
+//                    TakasuPoppo::cleanOneBlock(blockSet->getEx6());
+//                }
+//                
+//                if (isValidEx(blockSet->getEx7())) {
+//                    TakasuPoppo::cleanOneBlock(blockSet->getEx5());
+//                }
+//                if (hyperA)
+//                {
+//                    if(ex->getBlockType() ==1)
+//                        cleanA(ex);
+//                    else if(ex->getBlockType() == 2)
+//                        cleanB(ex);
+//                    else
+//                        makeBlockToBeHBA(ex);
+//                }
+//                else if (hyperB)
+//                {
+//                    makeBlockToBeHBB(ex);
+//                }
+//                else
+//                    TakasuPoppo::cleanOneBlock(swapedSprite);
+//            }
+            //================================
                 
-                if (blockSet->getEx1()->getBlockType() == 0) {
-                    
-                    isCreateHyperBlock = true;
-                } else {
-                    
-                    if (blockSet->getEx1() && blockSet->getEx1() != NULL &&
-                        blockSet->getEx1()->getID() != 7 &&
-                        blockSet->getEx1()->getSprite() != NULL){
-                        TakasuPoppo::cleanOneBlock(blockSet->getEx1());
-                    }
-                    
-                }
-                
-                // clean from Ex2 - Ex5
-                // we clean Ex2 - Ex5 first and after that, make Hyper Block if possible
-                if (blockSet->getEx2() && blockSet->getEx2() != NULL &&
-                    blockSet->getEx2()->getID() != 7 &&
-                    blockSet->getEx2()->getSprite() != NULL){
-                    
-                    TakasuPoppo::cleanOneBlock(blockSet->getEx2());
-                }
-                
-                if (blockSet->getEx3() && blockSet->getEx3() != NULL &&
-                    blockSet->getEx3()->getID() != 7 &&
-                    blockSet->getEx3()->getSprite() != NULL) {
-                    
-                    TakasuPoppo::cleanOneBlock(blockSet->getEx3());
-                }
-                
-                if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
-                    blockSet->getEx4()->getID() != 7 &&
-                    blockSet->getEx4()->getSprite() != NULL) {
-                    
-                    TakasuPoppo::cleanOneBlock(blockSet->getEx4());
-                }
-                
-                if (blockSet->getEx5() && blockSet->getEx5() != NULL &&
-                    blockSet->getEx5()->getID() != 7 &&
-                    blockSet->getEx5()->getSprite() != NULL) {
-                    
-                    TakasuPoppo::cleanOneBlock(blockSet->getEx5());
-                }
-                
-                // create Hyper block if possible (it have not been cleaned,..)
-                if (isCreateHyperBlock == true) { 
-                    if (blockSet->getEx1() != NULL && blockSet->getEx1()->getSprite() != NULL &&
-                        blockSet->getEx1()->getID() != 7) { // neu block 1 da bi clean thi ko the tao Hyper Block
-                        switch (comboCounter) {
-                            case COMBO_HBA_COUNT:
-                                TakasuPoppo::makeBlockToBeHBA(blockSet->getEx1());
-                                break;
-                                
-                            case COMBO_HBB_COUNT:
-                                TakasuPoppo::makeBlockToBeHBB(blockSet->getEx1());
-                                break;
-                                
-                            case COMBO_HBC_COUNT:
-                                TakasuPoppo::makeBlockToBeHBC(blockSet->getEx1());
-                                break;
-                                
-                                
-                            default:
-                                break;
-                        }
-                        
-                    }
-                    
-                }
-
-            } else { // comboCounter is not HBA or HBB or HBC, we clean block by block
-                
-                if (blockSet->getEx1() != NULL && blockSet->getEx1()->getID() != 7 &&
-                    blockSet->getEx1()->getSprite() != NULL){
+            if (comboCounter != COMBO_HBC_COUNT) {
+                if (isValidEx(blockSet->getEx1())){
                     TakasuPoppo::cleanOneBlock(blockSet->getEx1());
                 }
                 
-                if (blockSet->getEx2() != NULL && blockSet->getEx2()->getID() != 7 &&
-                    blockSet->getEx2()->getSprite() != NULL){
-                    
-                    TakasuPoppo::cleanOneBlock(blockSet->getEx2());
+                if (isValidEx(blockSet->getEx2())){
+                    if((!hyperA && !hyperB) || checkSwipe(blockSet)->getBlockType() >= 10)
+                        TakasuPoppo::cleanOneBlock(blockSet->getEx2());
                 }
-                
-                if (blockSet->getEx3() != NULL && blockSet->getEx3()->getID() != 7 &&
-                    blockSet->getEx3()->getSprite() != NULL) {
-                    
+
+                if (isValidEx(blockSet->getEx3())) {
+                    //hyperA = true;
                     TakasuPoppo::cleanOneBlock(blockSet->getEx3());
                 }
                 
-                if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
-                    blockSet->getEx4()->getID() != 7 &&
-                    blockSet->getEx4()->getSprite() != NULL) {
-                    
+                if (isValidEx(blockSet->getEx4())) {
+                    hyperA = true;
                     TakasuPoppo::cleanOneBlock(blockSet->getEx4());
                 }
                 
-                if (blockSet->getEx5() && blockSet->getEx5() != NULL &&
-                    blockSet->getEx5()->getID() != 7 &&
-                    blockSet->getEx5()->getSprite() != NULL) {
-                    
+                if (isValidEx(blockSet->getEx5())) {
+                    hyperB = true;
+                    hyperA = false;
                     TakasuPoppo::cleanOneBlock(blockSet->getEx5());
                 }
-
+                
+                if (isValidEx(blockSet->getEx6())) {
+                    TakasuPoppo::cleanOneBlock(blockSet->getEx6());
+                }
+                
+                if (isValidEx(blockSet->getEx7())) {
+                    TakasuPoppo::cleanOneBlock(blockSet->getEx5());
+                }
+                
+                if (checkSwipe(blockSet)->getBlockType() >= 10 && hyperA)
+                {
+                    if(checkSwipe(blockSet)->getBlockType() == 11)
+                        cleanA(checkSwipe(blockSet));
+                    makeBlockToBeHBA(checkSwipe(blockSet));
+                }
+                else if(hyperA)
+                    makeBlockToBeHBA(blockSet->getEx2());
+                else if (checkSwipe(blockSet)->getBlockType() >= 10 && hyperB)
+                {
+                    makeBlockToBeHBB(checkSwipe(blockSet));
+                }else if(hyperB)
+                    makeBlockToBeHBB(blockSet->getEx2());
+                else
+                    TakasuPoppo::cleanOneBlock(checkSwipe(blockSet));
             }
+            else {
+                hyperBlockC =true;
+                if (isValidEx(blockSet->getEx1())){
+                        TakasuPoppo::cleanOneBlock(blockSet->getEx1());
+                }
+                
+                if (isValidEx(blockSet->getEx2())){
+                    hyperC = blockSet->getEx2()->getID();
+                    if((!hyperA && !hyperB) || checkSwipe(blockSet)->getBlockType() >= 10)
+                        TakasuPoppo::cleanOneBlock(blockSet->getEx2());
+                }
+                
+                if (isValidEx(blockSet->getEx3())) {
+                    TakasuPoppo::cleanOneBlock(blockSet->getEx3());
+                }
+                
+                if (isValidEx(blockSet->getEx4())) {
+                    hyperA = true;
+                    TakasuPoppo::cleanOneBlock(blockSet->getEx4());
+                }
+                
+                if (isValidEx(blockSet->getEx5())) {
+                    hyperB = true;
+                    hyperA = false;
+                    TakasuPoppo::cleanOneBlock(blockSet->getEx5());
+                }
+                
+                if (isValidEx(blockSet->getEx6())) {
+                    TakasuPoppo::cleanOneBlock(blockSet->getEx6());
+                }
             
+                if (isValidEx(blockSet->getEx7())) {
+                    TakasuPoppo::cleanOneBlock(blockSet->getEx5());
+                }
+                
+                if (checkSwipe(blockSet)->getBlockType() >= 10 && hyperA)
+                {
+                    if(checkSwipe(blockSet)->getBlockType() == 11)
+                        cleanA(checkSwipe(blockSet));
+                    if(checkSwipe(blockSet)->getBlockType() == 12)
+                        cleanB(checkSwipe(blockSet));
+                   makeBlockToBeHBA(checkSwipe(blockSet));
+                   
+               }else if(hyperA)
+                    makeBlockToBeHBA(blockSet->getEx2());
+                if (checkSwipe(blockSet)->getBlockType() >= 10 && hyperB)
+                {
+                    if(checkSwipe(blockSet)->getBlockType() == 11)
+                        cleanA(checkSwipe(blockSet));
+                    if(checkSwipe(blockSet)->getBlockType() == 12)
+                        cleanB(checkSwipe(blockSet));
+                    makeBlockToBeHBB(checkSwipe(blockSet));
+                }
+                else if(hyperB)
+                    makeBlockToBeHBA(blockSet->getEx2());
+                else TakasuPoppo::cleanOneBlock(checkSwipe(blockSet));
+                
+            }
+            // returm currentBlockSet to the default status
+            currentBlockSet = NULL;
         }
     }
     
@@ -153,11 +228,11 @@ void TakasuPoppo::afterClean() {
                     toMoveSprite->runAction(CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)));
                     TakasuPoppo::swapColorID(exObj, exObj2);
                     
-// this is the place that cause the bug "can not move the block"
-//                    exObj->setControlTrigger(!exObj->getControlTrigger());
+                    // this is the place that cause the bug "can not move the block"
+                    //                    exObj->setControlTrigger(!exObj->getControlTrigger());
                     exObj2->setControlTrigger(!exObj2->getControlTrigger());
                     exObj->setControlTrigger(true);
-//                    exObj2->setControlTrigger(true);
+                    //                    exObj2->setControlTrigger(true);
                     
                     break;
                 }
@@ -175,12 +250,9 @@ void TakasuPoppo::changeID(CCNode *sender, void* data) {
 }
 
 void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
-
+    
     CCSprite *exSprite = exObj->getSprite();
-    exSprite->runAction(CCSequence::create(
-                                           CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::spriteChange),
-                                                                (void*)exObj),
-                                           CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID),
+    exSprite->runAction(CCSequence::create(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID),
                                                                 (void*)exObj),
                                            CCDelayTime::create(CLEAN_DELAY),
                                            CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation),
@@ -209,6 +281,15 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
 
 void TakasuPoppo::cleanHyperBlockA(TPObjectExtension* exObj){
     
+    // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
+    if (isInCurrentBlockSet(exObj)  == false) {
+        // count the combo to generate hyper block
+        comboCounter += 1;
+        
+        // count the combo for the Fever Time
+        feverCounter += 1;
+    }
+    
     CCPoint aPoint = exObj->getCoordination();
     int x = aPoint.x;
     int y = aPoint.y;
@@ -222,7 +303,7 @@ void TakasuPoppo::cleanHyperBlockA(TPObjectExtension* exObj){
     CCPoint iPoint = ccp(x - 1, y);
     CCPoint kPoint = ccp(x - 1, y - 1);
     
-
+    
     exObj->setBlockType(0);
     
     TPObjectExtension *bExObj = TakasuPoppo::coorToExObj(bPoint);
@@ -234,42 +315,42 @@ void TakasuPoppo::cleanHyperBlockA(TPObjectExtension* exObj){
     TPObjectExtension *iExObj = TakasuPoppo::coorToExObj(iPoint);
     TPObjectExtension *kExObj = TakasuPoppo::coorToExObj(kPoint);
     
-    if (bExObj != NULL && bExObj->getSprite() != NULL && bExObj->getID() != 7) {
-    
+    if (bExObj != NULL && bExObj->getSprite() != NULL && bExObj->getID() != 7 && bExObj->getBlockType() < 10) {
+        
         TakasuPoppo::cleanOneBlock(bExObj);
     }
     
-    if (cExObj != NULL && cExObj->getSprite() != NULL && cExObj->getID() != 7) {
-
+    if (cExObj != NULL && cExObj->getSprite() != NULL && cExObj->getID() != 7 && cExObj->getBlockType() < 10) {
+        
         TakasuPoppo::cleanOneBlock(cExObj);
     }
     
-    if (dExObj != NULL && dExObj->getSprite() != NULL && dExObj->getID() != 7) {
-    
+    if (dExObj != NULL && dExObj->getSprite() != NULL && dExObj->getID() != 7 && dExObj->getBlockType() < 10) {
+        
         TakasuPoppo::cleanOneBlock(dExObj);
     }
     
-    if (eExObj != NULL && eExObj->getSprite() != NULL && eExObj->getID() != 7) {
+    if (eExObj != NULL && eExObj->getSprite() != NULL && eExObj->getID() != 7 && eExObj->getBlockType() < 10) {
         
         TakasuPoppo::cleanOneBlock(eExObj);
     }
     
-    if (gExObj != NULL && gExObj->getSprite() != NULL && gExObj->getID() != 7) {
-    
+    if (gExObj != NULL && gExObj->getSprite() != NULL && gExObj->getID() != 7 && gExObj->getBlockType() < 10) {
+        
         TakasuPoppo::cleanOneBlock(gExObj);
     }
     
-    if (hExObj != NULL && hExObj->getSprite() != NULL && hExObj->getID() != 7) {
+    if (hExObj != NULL && hExObj->getSprite() != NULL && hExObj->getID() != 7 && hExObj->getBlockType() < 10) {
         
         TakasuPoppo::cleanOneBlock(hExObj);
     }
     
-    if (iExObj != NULL && iExObj->getSprite() != NULL && iExObj->getID() != 7) {
+    if (iExObj != NULL && iExObj->getSprite() != NULL && iExObj->getID() != 7 && iExObj->getBlockType() < 10) {
         
         TakasuPoppo::cleanOneBlock(iExObj);
     }
     
-    if (kExObj != NULL && kExObj->getSprite() != NULL && kExObj->getID() != 7) {
+    if (kExObj != NULL && kExObj->getSprite() != NULL && kExObj->getID() != 7 && kExObj->getBlockType() < 10) {
         
         TakasuPoppo::cleanOneBlock(kExObj);
     }
@@ -279,37 +360,91 @@ void TakasuPoppo::cleanHyperBlockA(TPObjectExtension* exObj){
 }
 
 void TakasuPoppo::cleanHyperBlockB(TPObjectExtension* exObj) {
-    exObj->setBlockType(0);
+    
     int x = exObj->getCoordination().x;
     int y = exObj->getCoordination().y;
     
-    for (int i = 0; i < 7; i++) {
-        TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
-        if (block1->getSprite() != NULL && block1->getID() != 7) TakasuPoppo::cleanOneBlock(block1);
+    if (isInCurrentBlockSet(exObj) == false) {
+        // count the combo to generate hyper block
+        comboCounter += 1;
         
-        TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
-        if (block2->getSprite() != NULL && block2->getID() != 7) TakasuPoppo::cleanOneBlock(block2);
+        // count the combo for the Fever Time
+        feverCounter += 1;
         
-//        TakasuPoppo::cleanOneBlock(TakasuPoppo::coorToExObj(ccp(x, i)));
-//        TakasuPoppo::cleanOneBlock(TakasuPoppo::coorToExObj(ccp(i, y)));
+        exObj->setBlockType(0);
+        for (int i = 0; i < 7; i++) {
+            TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
+            if (block1->getSprite() != NULL && block1->getID() != 7) TakasuPoppo::cleanOneBlock(block1);
+            
+            TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
+            if (block2->getSprite() != NULL && block2->getID() != 7) TakasuPoppo::cleanOneBlock(block2);
+            
+        }
     }
-    
+    else { // this Hyper Block B is in the current Block, so dont plus the counter
+        
+        if (isInFeverTime == true) {
+            exObj->setBlockType(1);
+        }
+        else {
+            exObj->setBlockType(0);
+        }
+        
+        for (int i = 0; i < 7; i++) {
+            TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
+            if (block1->getSprite() != NULL && block1->getID() != 7) TakasuPoppo::cleanOneBlock(block1);
+            
+            TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
+            if (block2->getSprite() != NULL && block2->getID() != 7) TakasuPoppo::cleanOneBlock(block2);
+            
+        }
+        
+    }
+    //        TakasuPoppo::cleanOneBlock(TakasuPoppo::coorToExObj(ccp(x, i)));
+    //        TakasuPoppo::cleanOneBlock(TakasuPoppo::coorToExObj(ccp(i, y)));
     
     if (exObj->getID() != 7 || exObj->getSprite() != NULL) TakasuPoppo::cleanSprite(exObj);
-
+    
 }
 
 void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj) {
-    
     CCObject* obj;
-    exObj->setBlockType(0);
-    CCARRAY_FOREACH(colorArray, obj){
-        TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
-        if (block != NULL && block->getID() == exObj->getID() &&
-            block->getID() != 7 && exObj->getSprite() != NULL) {
-            TakasuPoppo::cleanOneBlock(block);
+    
+    // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
+    if (isInCurrentBlockSet(exObj) == false) {
+        // count the combo to generate hyper block
+        comboCounter += 1;
+        
+        // count the combo for the Fever Time
+        feverCounter += 1;
+        
+        exObj->setBlockType(0);
+        CCARRAY_FOREACH(colorArray, obj){
+            TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
+            if (block != NULL && block->getID() == exObj->getID() &&
+                block->getID() != 7 && block->getSprite() != NULL) {
+                TakasuPoppo::cleanOneBlock(block);
+            }
         }
     }
+    else {
+        if (isInFeverTime == true) {
+            exObj->setBlockType(1);
+        }
+        else {
+            exObj->setBlockType(0);
+        }
+        
+        CCARRAY_FOREACH(colorArray, obj){
+            TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
+            if (block != NULL && block->getID() == exObj->getID() &&
+                block->getID() != 7 && block->getSprite() != NULL) {
+                TakasuPoppo::cleanOneBlock(block);
+            }
+        }
+        
+    }
+    
     
 }
 
@@ -324,17 +459,32 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockB(exobj);
             break;
-
+            
         case 3:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockC(exobj);
             break;
             
         case 0:
-            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
-                TakasuPoppo::cleanSprite(exobj);
-            break;
+            if (isInFeverTime == true) {
+                // in fever time and this block is in currentBlockSet, we clean blocks around like Hyper Block A
+                if (isInCurrentBlockSet(exobj)) {
+                    currentBlockSet->removeObject(exobj);
+                    if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                        TakasuPoppo::cleanHyperBlockA(exobj);
 
+                }
+                else {
+                    TakasuPoppo::cleanSprite(exobj);
+                }
+                
+            } else {
+                if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                    TakasuPoppo::cleanSprite(exobj);
+            }
+            
+            break;
+            
             
         default:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
@@ -352,7 +502,7 @@ void TakasuPoppo::makeBlockToBeHBA(TPObjectExtension* exObj){
     {
         // change sprite when the block be hyper
         int imageId = exObj->getID() + 1;
-        CCImage *poppoB = new CCImage;  
+        CCImage *poppoB = new CCImage;
         string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
         str = "Poppo" + str + "HyperA.png";
         poppoB->initWithImageFile(str.c_str());
@@ -383,24 +533,24 @@ void TakasuPoppo::makeBlockToBeHBB(TPObjectExtension* exObj){
         poppoSprite->setTexture(poppoTexture);
         exObj->setSprite(poppoSprite);
     }
-//    exObj->setBlockType(2);
-//    
-//    
-//    // change controlable
-//    exObj->setControlTrigger(true);
-//    
-//    // change sprite when the block be hyper
-//    int imageId = exObj->getID() + 1;
-//    CCImage *poppoB = new CCImage;
-//    char imagePath[15];
-//    sprintf(imagePath, "Poppo%dHyperB.png", imageId);
-//    poppoB->initWithImageFile(imagePath);
-//    CCTexture2D *poppoTexture = new CCTexture2D;
-//    poppoTexture->initWithImage(poppoB);
-//    CCSprite *poppoSprite = exObj->getSprite();
-//    poppoSprite->setTexture(poppoTexture);
-//    exObj->setSprite(poppoSprite);
-
+    //    exObj->setBlockType(2);
+    //
+    //
+    //    // change controlable
+    //    exObj->setControlTrigger(true);
+    //
+    //    // change sprite when the block be hyper
+    //    int imageId = exObj->getID() + 1;
+    //    CCImage *poppoB = new CCImage;
+    //    char imagePath[15];
+    //    sprintf(imagePath, "Poppo%dHyperB.png", imageId);
+    //    poppoB->initWithImageFile(imagePath);
+    //    CCTexture2D *poppoTexture = new CCTexture2D;
+    //    poppoTexture->initWithImage(poppoB);
+    //    CCSprite *poppoSprite = exObj->getSprite();
+    //    poppoSprite->setTexture(poppoTexture);
+    //    exObj->setSprite(poppoSprite);
+    
 }
 void TakasuPoppo::makeBlockToBeHBC(TPObjectExtension *exObj){
     exObj->setBlockType(3);
@@ -422,19 +572,45 @@ void TakasuPoppo::makeBlockToBeHBC(TPObjectExtension *exObj){
     }
 }
 
+bool TakasuPoppo::isInCurrentBlockSet(TPObjectExtension *exObj){
+    // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
+    CCObject* obj;
+    if (currentBlockSet != NULL && currentBlockSet->count() != 0) {
+        CCARRAY_FOREACH(currentBlockSet, obj){
+            if (obj != NULL ) {
+                TPObjectExtension* block = dynamic_cast<TPObjectExtension*>(obj);
+                if (block->getGid() == exObj->getGid()) {
+                    return true;
+                }
+                
+            }
+        }
+        
+    }
+    
+    return false;
+    
+}
+
+bool TakasuPoppo::isValidEx(TPObjectExtension * ex){
+    if(ex != NULL && ex->getID() != 7 && ex->getSprite() != NULL && ex->getBlockType() < 10)
+            return true;
+    else    return false;
+    
+}
 //void TakasuPoppo::cleanBlockSetNormal(TPBlockSet *blockSet){
 //    if (blockSet->getEx1() && blockSet->getEx1() != NULL && blockSet->getEx1()->getSprite() != NULL) {
 //        TakasuPoppo::cleanSprite(blockSet->getEx1());
 //    }
-//    
+//
 //    if (blockSet->getEx2() && blockSet->getEx2() != NULL &&blockSet->getEx2()->getSprite() != NULL) {
 //        TakasuPoppo::cleanSprite(blockSet->getEx2());
 //    }
-//    
+//
 //    if (blockSet->getEx3() && blockSet->getEx3() != NULL &&blockSet->getEx3()->getSprite() != NULL) {
 //        TakasuPoppo::cleanSprite(blockSet->getEx3());
 //    }
-//    
+//
 //    if (blockSet->getEx4() && blockSet->getEx4() != NULL &&
 //        blockSet->getEx4()->getSprite() != NULL) {
 //        TakasuPoppo::cleanSprite(blockSet->getEx4());
@@ -445,3 +621,128 @@ void TakasuPoppo::makeBlockToBeHBC(TPObjectExtension *exObj){
 //    }
 
 //}
+void TakasuPoppo::cleanA(TPObjectExtension* exObj){
+    
+    // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
+    if (isInCurrentBlockSet(exObj)  == false) {
+        // count the combo to generate hyper block
+        comboCounter += 1;
+        
+        // count the combo for the Fever Time
+        feverCounter += 1;
+        
+    }
+    
+    CCPoint aPoint = exObj->getCoordination();
+    int x = aPoint.x;
+    int y = aPoint.y;
+    
+    CCPoint bPoint = ccp( x, y - 1);
+    CCPoint cPoint = ccp(x + 1, y - 1);
+    CCPoint dPoint = ccp(x + 1, y);
+    CCPoint ePoint = ccp(x + 1, y + 1);
+    CCPoint gPoint = ccp(x, y + 1);
+    CCPoint hPoint = ccp(x - 1, y + 1);
+    CCPoint iPoint = ccp(x - 1, y);
+    CCPoint kPoint = ccp(x - 1, y - 1);
+    
+    
+    //exObj->setBlockType(0);
+    
+    TPObjectExtension *bExObj = TakasuPoppo::coorToExObj(bPoint);
+    TPObjectExtension *cExObj = TakasuPoppo::coorToExObj(cPoint);
+    TPObjectExtension *dExObj = TakasuPoppo::coorToExObj(dPoint);
+    TPObjectExtension *eExObj = TakasuPoppo::coorToExObj(ePoint);
+    TPObjectExtension *gExObj = TakasuPoppo::coorToExObj(gPoint);
+    TPObjectExtension *hExObj = TakasuPoppo::coorToExObj(hPoint);
+    TPObjectExtension *iExObj = TakasuPoppo::coorToExObj(iPoint);
+    TPObjectExtension *kExObj = TakasuPoppo::coorToExObj(kPoint);
+    
+    if (bExObj != NULL && bExObj->getSprite() != NULL && bExObj->getID() != 7) {
+        
+        TakasuPoppo::cleanOneBlock(bExObj);
+    }
+    
+    if (cExObj != NULL && cExObj->getSprite() != NULL && cExObj->getID() != 7) {
+        
+        TakasuPoppo::cleanOneBlock(cExObj);
+    }
+    
+    if (dExObj != NULL && dExObj->getSprite() != NULL && dExObj->getID() != 7) {
+        
+        TakasuPoppo::cleanOneBlock(dExObj);
+    }
+    
+    if (eExObj != NULL && eExObj->getSprite() != NULL && eExObj->getID() != 7) {
+        
+        TakasuPoppo::cleanOneBlock(eExObj);
+    }
+    
+    if (gExObj != NULL && gExObj->getSprite() != NULL && gExObj->getID() != 7) {
+        
+        TakasuPoppo::cleanOneBlock(gExObj);
+    }
+    
+    if (hExObj != NULL && hExObj->getSprite() != NULL && hExObj->getID() != 7) {
+        
+        TakasuPoppo::cleanOneBlock(hExObj);
+    }
+    
+    if (iExObj != NULL && iExObj->getSprite() != NULL && iExObj->getID() != 7) {
+        
+        TakasuPoppo::cleanOneBlock(iExObj);
+    }
+    
+    if (kExObj != NULL && kExObj->getSprite() != NULL && kExObj->getID() != 7) {
+        
+        TakasuPoppo::cleanOneBlock(kExObj);
+    }
+}
+
+void TakasuPoppo::cleanB(TPObjectExtension* exObj) {
+    
+    int x = exObj->getCoordination().x;
+    int y = exObj->getCoordination().y;
+    
+    if (isInCurrentBlockSet(exObj) == false) {
+        // count the combo to generate hyper block
+        comboCounter += 1;
+        
+        // count the combo for the Fever Time
+        feverCounter += 1;
+        
+        for (int i = 0; i < 7; i++) {
+            TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
+            if (block1->getSprite() != NULL && block1->getID() != 7) TakasuPoppo::cleanOneBlock(block1);
+            
+            TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
+            if (block2->getSprite() != NULL && block2->getID() != 7) TakasuPoppo::cleanOneBlock(block2);
+            
+        }
+    }
+    else { // this Hyper Block B is in the current Block, so dont plus the counter
+        
+        if (isInFeverTime == true) {
+            exObj->setBlockType(1);
+        }
+        else {
+            exObj->setBlockType(0);
+        }
+        
+        for (int i = 0; i < 7; i++) {
+            TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
+            if (block1->getSprite() != NULL && block1->getID() != 7) TakasuPoppo::cleanOneBlock(block1);
+            
+            TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
+            if (block2->getSprite() != NULL && block2->getID() != 7) TakasuPoppo::cleanOneBlock(block2);
+            
+        }
+        
+    }
+    //        TakasuPoppo::cleanOneBlock(TakasuPoppo::coorToExObj(ccp(x, i)));
+    //        TakasuPoppo::cleanOneBlock(TakasuPoppo::coorToExObj(ccp(i, y)));
+    
+    //if (exObj->getID() != 7 || exObj->getSprite() != NULL) TakasuPoppo::cleanSprite(exObj);
+    
+}
+

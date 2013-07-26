@@ -55,7 +55,8 @@ void TakasuPoppo::matchList() {
                         exObj->setControlTrigger(false);
                         exObj2->setControlTrigger(false);
                         exObj3->setControlTrigger(false);
-                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, NULL, NULL,
+                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3,
+                                                              NULL, NULL, NULL, NULL,
                                                               "TrioHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
@@ -69,7 +70,8 @@ void TakasuPoppo::matchList() {
                         exObj2->setControlTrigger(false);
                         exObj3->setControlTrigger(false);
                         exObj4->setControlTrigger(false);
-                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, NULL,
+                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4,
+                                                              NULL, NULL, NULL,
                                                               "QuadHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
@@ -86,7 +88,48 @@ void TakasuPoppo::matchList() {
                         exObj4->setControlTrigger(false);
                         exObj5->setControlTrigger(false);
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
+                                                              NULL, NULL,
                                                               "PentaHor", exObj->getCoordination().x, exObj->getCoordination().y);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (comboTimer <= 0) comboTimer = 5;
+                        //                        if (comboTimer > 0) comboCounter += 1;
+                    }
+                    if (match->count() == 6) {
+                        TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
+                        TPObjectExtension *exObj3 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(2));
+                        TPObjectExtension *exObj4 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(3));
+                        TPObjectExtension *exObj5 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(4));
+                        TPObjectExtension *exObj6 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(5));
+                        exObj->setControlTrigger(false);
+                        exObj2->setControlTrigger(false);
+                        exObj3->setControlTrigger(false);
+                        exObj4->setControlTrigger(false);
+                        exObj5->setControlTrigger(false);
+                        exObj6->setControlTrigger(false);
+                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
+                                                              exObj6, NULL,
+                                                              "HexHor", exObj->getCoordination().x, exObj->getCoordination().y);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (comboTimer <= 0) comboTimer = 5;
+                        //                        if (comboTimer > 0) comboCounter += 1;
+                    }
+                    if (match->count() == 7) {
+                        TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
+                        TPObjectExtension *exObj3 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(2));
+                        TPObjectExtension *exObj4 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(3));
+                        TPObjectExtension *exObj5 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(4));
+                        TPObjectExtension *exObj6 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(5));
+                        TPObjectExtension *exObj7 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(6));
+                        exObj->setControlTrigger(false);
+                        exObj2->setControlTrigger(false);
+                        exObj3->setControlTrigger(false);
+                        exObj4->setControlTrigger(false);
+                        exObj5->setControlTrigger(false);
+                        exObj6->setControlTrigger(false);
+                        exObj7->setControlTrigger(false);
+                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
+                                                              exObj6, exObj7,
+                                                              "HeptaHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
                         //                        if (comboTimer > 0) comboCounter += 1;
@@ -116,7 +159,8 @@ void TakasuPoppo::matchList() {
                         exObj->setControlTrigger(false);
                         exObj2->setControlTrigger(false);
                         exObj3->setControlTrigger(false);
-                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, NULL, NULL,
+                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3,
+                                                              NULL, NULL, NULL, NULL,
                                                               "TrioVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
@@ -130,7 +174,8 @@ void TakasuPoppo::matchList() {
                         exObj2->setControlTrigger(false);
                         exObj3->setControlTrigger(false);
                         exObj4->setControlTrigger(false);
-                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, NULL,
+                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4,
+                                                              NULL, NULL, NULL,
                                                               "QuadVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
@@ -147,7 +192,48 @@ void TakasuPoppo::matchList() {
                         exObj4->setControlTrigger(false);
                         exObj5->setControlTrigger(false);
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
+                                                              NULL, NULL, 
                                                               "PentaVer", exObj->getCoordination().x, exObj->getCoordination().y);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (comboTimer <= 0) comboTimer = 5;
+                        //                        if (comboTimer > 0) comboCounter += 1;
+                    }
+                    if (match->count() == 6) {
+                        TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
+                        TPObjectExtension *exObj3 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(2));
+                        TPObjectExtension *exObj4 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(3));
+                        TPObjectExtension *exObj5 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(4));
+                        TPObjectExtension *exObj6 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(5));
+                        exObj->setControlTrigger(false);
+                        exObj2->setControlTrigger(false);
+                        exObj3->setControlTrigger(false);
+                        exObj4->setControlTrigger(false);
+                        exObj5->setControlTrigger(false);
+                        exObj6->setControlTrigger(false);
+                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
+                                                              exObj6, NULL,
+                                                              "HexVer", exObj->getCoordination().x, exObj->getCoordination().y);
+                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (comboTimer <= 0) comboTimer = 5;
+                        //                        if (comboTimer > 0) comboCounter += 1;
+                    }
+                    if (match->count() == 7) {
+                        TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
+                        TPObjectExtension *exObj3 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(2));
+                        TPObjectExtension *exObj4 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(3));
+                        TPObjectExtension *exObj5 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(4));
+                        TPObjectExtension *exObj6 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(5));
+                        TPObjectExtension *exObj7 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(6));
+                        exObj->setControlTrigger(false);
+                        exObj2->setControlTrigger(false);
+                        exObj3->setControlTrigger(false);
+                        exObj4->setControlTrigger(false);
+                        exObj5->setControlTrigger(false);
+                        exObj6->setControlTrigger(false);
+                        exObj7->setControlTrigger(false);
+                        TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
+                                                              exObj6, exObj7,
+                                                              "HeptaVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
                         if (comboTimer <= 0) comboTimer = 5;
                         //                        if (comboTimer > 0) comboCounter += 1;
@@ -404,7 +490,6 @@ bool TakasuPoppo::matchAble(CCPoint coor, int type) {
  */
 
 void TakasuPoppo::smartGeneration() {
-    if (TakasuPoppo::lookForMatches() > 0) {
         CCObject *object;
         CCARRAY_FOREACH(colorArray, object) {
             TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
@@ -414,198 +499,9 @@ void TakasuPoppo::smartGeneration() {
             }else exObj->setControlTrigger(true);
         }
         controlable = true;
+        if(hyperC != 10)
+            randomBlockC(hyperC);
         return;
-    }
-    
-    if (TakasuPoppo::lookForMatches() == 0) {
-        CCObject *object;
-        CCARRAY_FOREACH_REVERSE(colorArray, object) {
-            TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
-            int x = exObj->getCoordination().x;
-            int y = exObj->getCoordination().y;
-            CCPoint aPoint = ccp(x, y);
-            CCPoint bPoint = ccp(x + 1, y);
-            CCPoint ePoint = ccp(x, y - 1);
-            CCPoint hPoint = ccp(x, y - 2);
-            CCPoint nPoint = ccp(x - 1, y);
-            CCPoint u1Point = ccp(x -2, y);
-            CCPoint oPoint = ccp(x, y + 1);
-            CCPoint xPoint = ccp(x, y + 2);
-            CCPoint sPoint = ccp(x - 1, y + 1);
-            CCPoint h1Point = ccp(x - 2, y + 2);
-            CCPoint jPoint = ccp(x, y +2);
-            
-            
-            TPObjectExtension *aExObj = TakasuPoppo::coorToExObj(aPoint);
-            TPObjectExtension *bExObj = TakasuPoppo::coorToExObj(bPoint);
-            TPObjectExtension *u1ExObj = TakasuPoppo::coorToExObj(u1Point);
-            TPObjectExtension *eExObj = TakasuPoppo::coorToExObj(ePoint);
-            TPObjectExtension *hExObj = TakasuPoppo::coorToExObj(hPoint);
-            TPObjectExtension *nExObj = TakasuPoppo::coorToExObj(nPoint);
-            TPObjectExtension *oExObj = TakasuPoppo::coorToExObj(oPoint);
-            TPObjectExtension *xExObj = TakasuPoppo::coorToExObj(xPoint);
-            TPObjectExtension *sExObj = TakasuPoppo::coorToExObj(sPoint);
-            TPObjectExtension *h1ExObj = TakasuPoppo::coorToExObj(h1Point);
-            TPObjectExtension *jExObj = TakasuPoppo::coorToExObj(jPoint);
-            
-            if(aExObj != NULL && aExObj->getID() == 7){
-                
-                if (eExObj != NULL && eExObj->getID() == 7) {
-                    if (hExObj != NULL && hExObj->getID() == 7) {
-                        if(aExObj->getGid() <= 42 && oExObj != NULL && oExObj->getID() !=7)
-                        {
-                            generateRandomBlock(aExObj);
-                            generateBlock(hExObj, oExObj->getID());
-                            generateBlock(eExObj, oExObj->getID());
-                            aExObj->setControlTrigger(true);
-                            hExObj->setControlTrigger(true);
-                            eExObj->setControlTrigger(true);
-                            controlable = true ;
-                            continue;
-                        }
-                        else if(aExObj->getGid() <= 35 && xExObj != NULL && xExObj->getGid() != 7)
-                        {
-                            generateRandomBlock(hExObj);
-                            generateBlock(aExObj, xExObj->getID());
-                            generateBlock(eExObj, xExObj->getID());
-                            aExObj->setControlTrigger(true);
-                            hExObj->setControlTrigger(true);
-                            eExObj->setControlTrigger(true);
-                            controlable =true ;
-                            continue;
-                        }
-                        else if (aExObj->getGid()%7 != 0 &&  bExObj != NULL && bExObj->getID() != 7)
-                        {
-                            generateRandomBlock(aExObj);
-                            generateBlock(hExObj, bExObj->getID());
-                            generateBlock(eExObj, bExObj->getID());
-                            aExObj->setControlTrigger(true);
-                            hExObj->setControlTrigger(true);
-                            eExObj->setControlTrigger(true);
-                            controlable =true ;
-                            continue;
-                        }
-                        else if (aExObj->getGid() % 7 !=1 && (nExObj != NULL && nExObj->getID() != 7))
-                        {
-                            generateRandomBlock(aExObj);
-                            generateBlock(hExObj, nExObj->getID());
-                            generateBlock(eExObj, nExObj->getID());
-                            aExObj->setControlTrigger(true);
-                            hExObj->setControlTrigger(true);
-                            eExObj->setControlTrigger(true);
-                            controlable = true ;
-                            continue;
-                        }
-                    }
-                    else
-                        if(aExObj->getGid() >= 8 && aExObj->getGid() <= 42 && oExObj != NULL && oExObj->getID() !=7)
-                        {
-                            generateBlock(aExObj, oExObj->getID());
-                            generateBlock(eExObj, oExObj->getID());
-                            aExObj->setControlTrigger(true);
-                            eExObj->setControlTrigger(true);
-                            controlable = true ;
-                            continue;
-                        }
-                }
-                if(aExObj->getGid() % 7 !=1 && nExObj != NULL && nExObj->getID() == 7)
-                {
-                    
-                    if(u1ExObj != NULL && u1ExObj->getID() ==7)
-                    {
-                        if((aExObj->getGid()-1)%7 >= 2 && aExObj->getGid() <= 35)
-                        {
-                            if(sExObj != NULL && xExObj != NULL && sExObj->getID() == xExObj->getID() && sExObj->getID() != 7)
-                            {
-                                generateRandomBlock(u1ExObj);
-                                generateBlock(aExObj, sExObj->getID());
-                                generateRandomBlock(nExObj);
-                                aExObj->setControlTrigger(true);
-                                u1ExObj->setControlTrigger(true);
-                                nExObj->setControlTrigger(true);
-                                controlable = true ;
-                                continue;
-                            }
-                            if(sExObj != NULL && h1ExObj != NULL && sExObj->getID() == h1ExObj->getID() && sExObj->getID() != 7)
-                            {
-                                generateRandomBlock(u1ExObj);
-                                generateBlock(nExObj, sExObj->getID());
-                                generateRandomBlock(aExObj);
-                                aExObj->setControlTrigger(true);
-                                u1ExObj->setControlTrigger(true);
-                                nExObj->setControlTrigger(true);
-                                controlable = true ;
-                                continue;
-                            }
-                            if(sExObj != NULL && hExObj != NULL && sExObj->getID() == hExObj->getID() && sExObj->getID() != 7)
-                            {
-                                generateRandomBlock(aExObj);
-                                generateBlock(u1ExObj, sExObj->getID());
-                                generateRandomBlock(nExObj);
-                                aExObj->setControlTrigger(true);
-                                u1ExObj->setControlTrigger(true);
-                                nExObj->setControlTrigger(true);
-                                controlable = true ;
-                                continue;
-                            }
-                            if(sExObj != NULL && jExObj != NULL && sExObj->getID() == jExObj->getID() && sExObj->getID() != 7)
-                            {
-                                generateRandomBlock(u1ExObj);
-                                generateBlock(nExObj, sExObj->getID());
-                                generateRandomBlock(aExObj);
-                                aExObj->setControlTrigger(true);
-                                u1ExObj->setControlTrigger(true);
-                                nExObj->setControlTrigger(true);
-                                controlable = true ;
-                                continue;
-                            }
-                        }
-                        
-                        if((aExObj->getGid()-1)%7 <= 5 && bExObj != NULL && bExObj->getID() != 7)
-                        {
-                            generateRandomBlock(aExObj);
-                            generateBlock(u1ExObj, bExObj->getID());
-                            generateBlock(nExObj, bExObj->getID());
-                            aExObj->setControlTrigger(true);
-                            u1ExObj->setControlTrigger(true);
-                            nExObj->setControlTrigger(true);
-                            controlable = true ;
-                            continue;
-                        }
-                        if(aExObj->getGid()<= 42 && oExObj != NULL && oExObj->getID() != 7){
-                            generateRandomBlock(aExObj);
-                            generateBlock(u1ExObj, oExObj->getGid());
-                            generateBlock(nExObj, oExObj->getID());
-                            aExObj->setControlTrigger(true);
-                            u1ExObj->setControlTrigger(true);
-                            nExObj->setControlTrigger(true);
-                            controlable = true ;
-                            continue;
-                        }
-                    }
-                    else {
-                        if((aExObj->getGid() <= 42 && oExObj != NULL && oExObj->getID() != 7)){
-                            generateBlock(aExObj, oExObj->getID());
-                            generateBlock(nExObj, oExObj->getID());
-                            aExObj->setControlTrigger(true);
-                            nExObj->setControlTrigger(true);
-                            controlable = true ;
-                            continue;
-                        }
-                    }
-                }
-                else{
-                    generateRandomBlock(aExObj);
-                    aExObj->setControlTrigger(true);
-                    controlable = true ;
-                    continue;
-                }
-            }
-            else exObj->setControlTrigger(true);
-        }
-        controlable = true;
-        return;
-    }
 }
 
 bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {
@@ -619,4 +515,28 @@ bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {
         }
     }
     return true;
+}
+
+void TakasuPoppo::randomBlockC(int blockID)
+{
+    int countC = 0;
+    CCArray *arrayBlockC = new CCArray;
+    CCObject *obj;
+    CCARRAY_FOREACH(colorArray, obj){
+        TPObjectExtension* ex = dynamic_cast<TPObjectExtension*>(obj);
+        if(ex->getID() == blockID && blockID != 7)
+        {
+            arrayBlockC->addObject(ex);
+            countC = countC + 1;
+        }
+    }
+    if(countC != 0 && hyperBlockC)
+    {
+        TPObjectExtension* ex = dynamic_cast<TPObjectExtension*>(arrayBlockC->objectAtIndex(rand()%countC));
+        makeBlockToBeHBC(ex);
+        hyperBlockC =false;
+        //comboCounter = 0;
+        
+    }
+    //arrayBlockC->autorelease();
 }
