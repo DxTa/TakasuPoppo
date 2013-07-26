@@ -38,6 +38,8 @@ bool TakasuPoppo::init() {
     
     controlable = true;
     
+    
+    
     //========================= Debugs =============================
     debugTilesArray = new CCArray;
     TakasuPoppo::setupDebugButton();
@@ -83,7 +85,9 @@ bool TakasuPoppo::init() {
     this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
     
     this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
+    
     this->schedule(schedule_selector(TakasuPoppo::timeCounter));
+    
     
     return true;
 }
@@ -174,7 +178,7 @@ void TakasuPoppo::update(float dt) {
         existHyperBlockC = false;
     }
     
-    //    CCLog("combo Counter: %d", comboCounter);
+//    CCLog("combo Counter: %d", comboCounter);
     //===============================================================
     
     
@@ -238,8 +242,6 @@ void TakasuPoppo::update(float dt) {
     
     //===================== Fever Time updates =======================
     
-    
-    
     if (feverCounter > 0) {
         
         if (feverCounter > FEVER_COMBO_REQUIRED ) {
@@ -247,7 +249,7 @@ void TakasuPoppo::update(float dt) {
             feverCounter = 0;
             feverTimer = 0;
         }
-        
+
         else {
             feverTimer += dt;
             if (feverTimer > FEVER_TIME_REQUIRED) {
@@ -269,22 +271,27 @@ void TakasuPoppo::update(float dt) {
     
     if (isInFeverTime == true) {
         feverTimeLimit -= dt;
-        CCLog("It is in ferver time now");
+
+ //       CCLog("It is in ferver time now");
+
         if (feverTimeLimit < 0) {
             isInFeverTime = false;
             feverTimeLimit = 0;
             
-            CCLog("It is not in fever Time");
+  //          CCLog("It is not in fever Time");
+
         }
         
         
     }
-    //    CCLog("Fever Counter: %i", feverCounter);
-    //    CCLog("Fever Timer: %f", feverTimer);
+
+//    CCLog("Fever Counter: %i", feverCounter);
+//    CCLog("Fever Timer: %f", feverTimer);
     //================================================================
+
     
     
-    
+
 }
 
 void TakasuPoppo::fixedUpdate(float time) {
@@ -370,6 +377,9 @@ void TakasuPoppo::timeSetup() {
     comboBar->setBarChangeRate(ccp(1, 0));
     
     comboBar->setTag(406);
+    
+    gaugeComboCounter = 0;
+    
     this->addChild(comboBar, 5);
 }
 
@@ -385,13 +395,29 @@ void TakasuPoppo::timeCounter() {
     //        unschedule(schedule_selector(TakasuPoppo::timeCounter));
     //    }
     
-    if (comboCounter > 0 && comboCounter <= 5) {
-        comboBar->setPercentage(comboCounter * 20);
+    //====================== Gauge Bar updates =======================
+//    CCLog("Gauge Counter: %i", gaugeComboCounter);
+    
+    if (gaugeComboCounter >= 0 && gaugeComboCounter <= 5) {
+        comboBar->setPercentage(gaugeComboCounter * 20);
     }
-    if (comboCounter > 5) {
+
+    
+    if (gaugeComboCounter >= 5) {
+        isCreateGaugeCombo = true;
+//        CCLog("A Hyper Block B will be create");
+        
+    }
+    
+    if (gaugeComboCounter >= 5) {
         comboBar->setPercentage(0);
+        gaugeComboCounter = gaugeComboCounter % 5;
     }
-}
+    
+    
+    //================================================================
+    
+    }
 
 void TakasuPoppo::timeOver() {
     

@@ -120,6 +120,10 @@ private:
     
     int hyperC = 10;
     bool hyperBlockC = false;
+    //Vinhnt - for Gauge Combo
+    int gaugeComboCounter = 0;
+    bool isCreateGaugeCombo = false;
+
     
 public:
     
@@ -127,7 +131,6 @@ public:
     bool existHyperBlockB = false;          // true if there is a Hyper Block B
     bool existHyperBlockC = false;          // true if there is a Hyper Block C
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
-    
     
 #pragma mark Takasu Poppo
     static cocos2d::CCScene* scene();
