@@ -535,6 +535,9 @@ void TakasuPoppo::smartGeneration() {
         }
         
     }
+    if(hyperBlockC){
+        randomBlockC(hyperC);
+    }
     controlable = true;
     return;
 }
@@ -559,7 +562,7 @@ void TakasuPoppo::randomBlockC(int blockID)
     CCObject *obj;
     CCARRAY_FOREACH(colorArray, obj){
         TPObjectExtension* ex = dynamic_cast<TPObjectExtension*>(obj);
-        if(ex->getID() == blockID && blockID != 7)
+        if(ex->getBlockType() == 0 && ex->getID() == blockID && blockID != 7)
         {
             arrayBlockC->addObject(ex);
             countC = countC + 1;

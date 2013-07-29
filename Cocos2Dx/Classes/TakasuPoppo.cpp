@@ -60,6 +60,16 @@ bool TakasuPoppo::init() {
     this->addChild(comboTimerLabel);
     //===============================================================
     
+    //==========================SCORE ===============================
+    string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
+    str = "Score : " + str;
+    lbScore = CCLabelTTF::create(str.c_str(), "Arial", FONT_SIZE);
+    lbScore->setZOrder(15);
+    lbScore->setColor(ccc3(225, 225, 225));
+    lbScore->setPosition(ccp(80, 890));
+    this->addChild(lbScore);
+    //===============================================================
+    
     //======================== Interface ============================
     CCSprite *background = CCSprite::create("NewPrettyBackground.png");
     background->setPosition(ccp(winSize.width/2, winSize.height/2));
@@ -289,7 +299,11 @@ void TakasuPoppo::update(float dt) {
 //    CCLog("Fever Timer: %f", feverTimer);
     //================================================================
 
-    
+    //========================SCORE UPDATE ===========================
+    string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
+    str = "Score : " + str;
+    lbScore->setString(str.c_str());
+    //================================================================
     
 
 }
@@ -398,20 +412,20 @@ void TakasuPoppo::timeCounter() {
     //====================== Gauge Bar updates =======================
 //    CCLog("Gauge Counter: %i", gaugeComboCounter);
     
-    if (gaugeComboCounter >= 0 && gaugeComboCounter <= 5) {
-        comboBar->setPercentage(gaugeComboCounter * 20);
+    if (gaugeComboCounter >= 0 && gaugeComboCounter <= 10) {
+        comboBar->setPercentage(gaugeComboCounter * 10);
     }
 
     
-    if (gaugeComboCounter >= 5) {
+    if (gaugeComboCounter >= 10) {
         isCreateGaugeCombo = true;
 //        CCLog("A Hyper Block B will be create");
         
     }
     
-    if (gaugeComboCounter >= 5) {
+    if (gaugeComboCounter >= 10) {
         comboBar->setPercentage(0);
-        gaugeComboCounter = gaugeComboCounter % 5;
+        gaugeComboCounter = gaugeComboCounter % 10;
     }
     
     

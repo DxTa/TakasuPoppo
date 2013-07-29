@@ -111,6 +111,10 @@ private:
     CCLabelTTF *comboTimerLabel;
     CCLabelTTF *comboCounterLabel;
     
+    //SCORE
+    CCLabelTTF *lbScore;
+    int score = 0;
+    
     // Vinhnt - for fever time
     float feverTimer = 0;           //Timer for Fever Time
     float feverTimeLimit = 3;
