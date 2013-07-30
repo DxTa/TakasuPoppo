@@ -9,7 +9,7 @@
 #define SCORE_FOUR  400
 #define SCORE_FIVE 700
 #define ONE_BLOCK 100
-#define COMBO_HBC_COUNT  3
+#define COMBO_HBC_COUNT  8
 
 #include "TakasuPoppo.h"
 #include "TPBlockSet.h"
@@ -129,14 +129,14 @@ void TakasuPoppo::cleanBlocks() {
                 }
                 
                 if (isValidEx(blockSet->getEx4())) {
-                    hyperA = true;
+                    //hyperA = true;
                     TakasuPoppo::cleanOneBlock(blockSet->getEx4());
                     score = score + SCORE_FOUR;
                 }
                 
                 if (isValidEx(blockSet->getEx5())) {
-                    hyperB = true;
-                    hyperA = false;
+                    //hyperB = true;
+                    //hyperA = false;
                     TakasuPoppo::cleanOneBlock(blockSet->getEx5());
                     score = score + SCORE_FIVE;
                 }
@@ -177,6 +177,13 @@ void TakasuPoppo::cleanBlocks() {
     }
     
     toDestroyArray->removeAllObjects();
+//    CCObject *obj;
+//    CCARRAY_FOREACH(colorArray, obj){
+//        TPObjectExtension* ex = dynamic_cast<TPObjectExtension*>(obj);
+//        if(ex->getBlockType() == 10) ex->setBlockType(0);
+//        if(ex->getBlockType() == 11) ex->setBlockType(1);
+//        if(ex->getBlockType() == 12) ex->setBlockType(2);
+//    }
     
 }
 
@@ -226,7 +233,6 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
                                            CCRemoveSelf::create(), NULL));
     
 }
-
 
 /*
  |======================================|
@@ -677,43 +683,24 @@ void TakasuPoppo::cleanB(TPObjectExtension* exObj) {
     
     int x = exObj->getCoordination().x;
     int y = exObj->getCoordination().y;
-    
-    if (isInCurrentBlockSet(exObj) == false) {
-        // count the combo to generate hyper block
+            // count the combo to generate hyper block
         comboCounter += 1;
         
         // count the combo for the Fever Time
         feverCounter += 1;
         
         //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
+        //gaugeComboCounter += 1;
         
-        exObj->setBlockType(0);
-        for (int i = 0; i < 7; i++) {
+        //exObj->setBlockType(0);
+        for (int i = 6; i >= 0 ; i--) {
             TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
-            if (block1->getSprite() != NULL && block1->getID() != 7 && block1->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block1);
-            
+            if (i != y && block1->getSprite() != NULL && block1->getID() != 7 && block1->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block1);
+    
             TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
-            if (block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block2);
+            if (i!=x && block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block2);
             
         }
-    }
-    else { // this Hyper Block B is in the current Block, so dont plus the counter
-        
-        if (isInFeverTime == true) {
-            exObj->setBlockType(1);
-        }
-        else {
-            exObj->setBlockType(0);
-        }
-        
-        for (int i = 0; i < 7; i++) {
-            TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
-            if (block1->getSprite() != NULL && block1->getID() != 7  && block1->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block1);
-            
-            TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
-            if (block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block2);
-            
-        }
-    }
+    //this->runAction(CCDelayTime::create(CLEAN_DELAY));
+ 
 }
