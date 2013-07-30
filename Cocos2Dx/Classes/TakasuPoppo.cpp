@@ -38,6 +38,8 @@ bool TakasuPoppo::init() {
     
     controlable = true;
     
+    
+    
     //========================= Debugs =============================
     debugTilesArray = new CCArray;
     TakasuPoppo::setupDebugButton();
@@ -58,6 +60,16 @@ bool TakasuPoppo::init() {
     this->addChild(comboTimerLabel);
     //===============================================================
     
+    //==========================SCORE ===============================
+    string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
+    str = "Score : " + str;
+    lbScore = CCLabelTTF::create(str.c_str(), "Arial", FONT_SIZE);
+    lbScore->setZOrder(15);
+    lbScore->setColor(ccc3(225, 225, 225));
+    lbScore->setPosition(ccp(80, 890));
+    this->addChild(lbScore);
+    //===============================================================
+    
     //======================== Interface ============================
     CCSprite *background = CCSprite::create("NewPrettyBackground.png");
     background->setPosition(ccp(winSize.width/2, winSize.height/2));
@@ -76,14 +88,16 @@ bool TakasuPoppo::init() {
     
     this->scheduleUpdate();
     
-//    this->schedule(schedule_selector(TakasuPoppo::startGame));
+    //    this->schedule(schedule_selector(TakasuPoppo::startGame));
     
     this->setTouchEnabled(true);
     
     this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
     
     this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
+    
     this->schedule(schedule_selector(TakasuPoppo::timeCounter));
+    
     
     return true;
 }
@@ -124,10 +138,10 @@ void TakasuPoppo::startGame() {
         if (!counterExist1) this->addChild(counter1, 5);
         counterExist1 = true;
     }
-    if (executionTime <= 0) { 
+    if (executionTime <= 0) {
         if (counterExist1) this->removeChildByTag(401, true);
         counterExist1 = false;
-    
+        
         TakasuPoppo::swipeSetup();
         
         this->setTouchEnabled(true);
@@ -164,16 +178,10 @@ void TakasuPoppo::update(float dt) {
         existHyperBlockB = false;
         existHyperBlockC = false;
     }
-    if (comboCounter > COMBO_MAXCOUNT) {
-        comboCounter = 0;
-        
-        //Reset here too
-        // het 1 luot combo lai reset lai existHyperBlockA
-        existHyperBlockA = false;
-        existHyperBlockB = false;
-        existHyperBlockC = false;
+    if (comboCounter >= COMBO_MAXCOUNT) {
+        hyperBlockC =true;
+        comboCounter = comboCounter % COMBO_MAXCOUNT;
     }
-    
     //===============================================================
     
     
@@ -232,6 +240,65 @@ void TakasuPoppo::update(float dt) {
         }
     }
     //================================================================
+    
+    
+    
+    //===================== Fever Time updates =======================
+    
+    if (feverCounter > 0) {
+        
+        if (feverCounter > FEVER_COMBO_REQUIRED ) {
+            
+            feverCounter = 0;
+            feverTimer = 0;
+        }
+
+        else {
+            feverTimer += dt;
+            if (feverTimer > FEVER_TIME_REQUIRED) {
+                feverTimer = 0;
+                feverCounter = 0;
+            } else {
+                if (feverCounter == FEVER_COMBO_REQUIRED && isCreateFeverTime == false) {
+                    isCreateFeverTime = true;
+                }
+            }
+        }
+    }
+    
+    if (isCreateFeverTime == true) {
+        isInFeverTime = true;
+        feverTimeLimit = 3;
+        isCreateFeverTime = false;
+    }
+    
+    if (isInFeverTime == true) {
+        feverTimeLimit -= dt;
+
+ //       CCLog("It is in ferver time now");
+
+        if (feverTimeLimit < 0) {
+            isInFeverTime = false;
+            feverTimeLimit = 0;
+            
+  //          CCLog("It is not in fever Time");
+
+        }
+        
+        
+    }
+
+//    CCLog("Fever Counter: %i", feverCounter);
+//    CCLog("Fever Timer: %f", feverTimer);
+    //================================================================
+
+    //========================SCORE UPDATE ===========================
+    string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
+    str = "Score : " + str;
+    lbScore->setString(str.c_str());
+    //================================================================
+    
+
 }
 
 void TakasuPoppo::fixedUpdate(float time) {
@@ -317,6 +384,9 @@ void TakasuPoppo::timeSetup() {
     comboBar->setBarChangeRate(ccp(1, 0));
     
     comboBar->setTag(406);
+    
+    gaugeComboCounter = 0;
+    
     this->addChild(comboBar, 5);
 }
 
@@ -328,17 +398,33 @@ void TakasuPoppo::timeCounter() {
     if (gameTimer < 0) {
         gameTimer = 60;
     }
-//    else {
-//        unschedule(schedule_selector(TakasuPoppo::timeCounter));
-//    }
+    //    else {
+    //        unschedule(schedule_selector(TakasuPoppo::timeCounter));
+    //    }
     
-    if (comboCounter > 0 && comboCounter <= 5) {
-        comboBar->setPercentage(comboCounter * 20);
+    //====================== Gauge Bar updates =======================
+//    CCLog("Gauge Counter: %i", gaugeComboCounter);
+    
+    if (gaugeComboCounter >= 0 && gaugeComboCounter <= 10) {
+        comboBar->setPercentage(gaugeComboCounter * 10);
     }
-    if (comboCounter > 5) {
+
+    
+    if (gaugeComboCounter >= 10) {
+        isCreateGaugeCombo = true;
+//        CCLog("A Hyper Block B will be create");
+        
+    }
+    
+    if (gaugeComboCounter >= 10) {
         comboBar->setPercentage(0);
+        gaugeComboCounter = gaugeComboCounter % 10;
     }
-}
+    
+    
+    //================================================================
+    
+    }
 
 void TakasuPoppo::timeOver() {
     

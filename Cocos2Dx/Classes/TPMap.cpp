@@ -188,7 +188,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
 
 void TakasuPoppo::generateHyperBlockA(TPObjectExtension *exObj) {
     exObj->setBlockType(1);
-    TakasuPoppo::spriteChange(this, exObj);
+    //TakasuPoppo::spriteChange(this, exObj);
 }
 
 #pragma mark Array

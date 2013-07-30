@@ -22,12 +22,14 @@ private:
     TPObjectExtension *ex3;
     TPObjectExtension *ex4;
     TPObjectExtension *ex5;
+    TPObjectExtension *ex6;
+    TPObjectExtension *ex7;
     string type;
     int column;
     int row;
 public:
     TPBlockSet(TPObjectExtension *ex1, TPObjectExtension *ex2, TPObjectExtension *ex3,
-               TPObjectExtension *ex4, TPObjectExtension *ex5, string type, int column, int row);
+               TPObjectExtension *ex4, TPObjectExtension *ex5, TPObjectExtension *ex6, TPObjectExtension *ex7, string type, int column, int row);
     CCArray *getBlocksArray();
     string getType();
     TPObjectExtension *getEx1();
@@ -35,6 +37,8 @@ public:
     TPObjectExtension *getEx3();
     TPObjectExtension *getEx4();
     TPObjectExtension *getEx5();
+    TPObjectExtension *getEx6();
+    TPObjectExtension *getEx7();
     int getColumn();
     int getRow();
 };

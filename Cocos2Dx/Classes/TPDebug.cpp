@@ -66,7 +66,7 @@ void TakasuPoppo::destroyAllBlocks() {
     CCARRAY_FOREACH(colorArray, object) {
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(object);
         CCSprite *toRemoveSprite = exObj->getSprite();
-        TakasuPoppo::popParticles(exObj->getPosition());
+        this->runAction(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation), (void*)exObj));
         this->removeChild(toRemoveSprite, true);
         exObj->setSprite(NULL);
         exObj->setID(7);

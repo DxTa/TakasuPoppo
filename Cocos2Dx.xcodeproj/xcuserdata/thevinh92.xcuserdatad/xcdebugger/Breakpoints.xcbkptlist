@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         timestampString = "396499820.613165"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "53"
-         endingLineNumber = "53"
+         startingLineNumber = "171"
+         endingLineNumber = "171"
          landmarkName = "TakasuPoppo::cleanBlocks()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,22 +21,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         timestampString = "396499820.613165"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "128"
-         endingLineNumber = "128">
+         startingLineNumber = "409"
+         endingLineNumber = "409"
+         landmarkName = "TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj)"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         timestampString = "396357747.849415"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
+         startingLineNumber = "22"
+         endingLineNumber = "22"
          landmarkName = "TakasuPoppo::cleanBlocks()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -45,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         timestampString = "396256120.673505"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "39"
-         endingLineNumber = "39"
+         startingLineNumber = "19"
+         endingLineNumber = "19"
          landmarkName = "TakasuPoppo::cleanBlocks()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -58,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         timestampString = "396499820.613165"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "30"
-         endingLineNumber = "30"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
          landmarkName = "TakasuPoppo::cleanBlocks()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -71,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         timestampString = "396499820.613165"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "43"
-         endingLineNumber = "43"
+         startingLineNumber = "102"
+         endingLineNumber = "102"
          landmarkName = "TakasuPoppo::cleanBlocks()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -83,117 +85,52 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         filePath = "Cocos2Dx/TPSwiped.cpp"
+         timestampString = "396288448.890803"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "47"
-         endingLineNumber = "47"
-         landmarkName = "TakasuPoppo::cleanBlocks()"
+         startingLineNumber = "100"
+         endingLineNumber = "100"
+         landmarkName = "TakasuPoppo::swapTilesBack()"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         filePath = "Cocos2Dx/Classes/TakasuPoppo.cpp"
+         timestampString = "396504408.031072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "57"
-         endingLineNumber = "57"
-         landmarkName = "TakasuPoppo::cleanBlocks()"
+         startingLineNumber = "263"
+         endingLineNumber = "263"
+         landmarkName = "TakasuPoppo::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         filePath = "Cocos2Dx/Classes/TakasuPoppo.cpp"
+         timestampString = "396504408.031072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "61"
-         endingLineNumber = "61"
-         landmarkName = "TakasuPoppo::cleanBlocks()"
+         startingLineNumber = "262"
+         endingLineNumber = "262"
+         landmarkName = "TakasuPoppo::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
+         filePath = "Cocos2Dx/Classes/TakasuPoppo.cpp"
+         timestampString = "396504408.031072"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "67"
-         endingLineNumber = "67"
-         landmarkName = "TakasuPoppo::cleanBlocks()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
-         landmarkName = "TakasuPoppo::cleanBlocks()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "70"
-         endingLineNumber = "70"
-         landmarkName = "TakasuPoppo::cleanBlocks()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396245622.943198"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "346"
-         endingLineNumber = "346"
-         landmarkName = "TakasuPoppo::findToCleanBlockAroundHBA(TPObjectExtension* exObj)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "17"
-         endingLineNumber = "17"
-         landmarkName = "TakasuPoppo::cleanBlocks()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Cocos2Dx/TPClean.cpp"
-         timestampString = "396244952.028904"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "15"
-         endingLineNumber = "15"
-         landmarkName = "TakasuPoppo::cleanBlocks()"
+         startingLineNumber = "284"
+         endingLineNumber = "284"
+         landmarkName = "TakasuPoppo::update(float dt)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
