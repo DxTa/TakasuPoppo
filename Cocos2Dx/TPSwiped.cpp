@@ -75,7 +75,7 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
                     swpObj->setBlockType(12);
             }
             if(TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true){
-                if(exObj->getBlockType() == 3) cleanHyperBlockC(exObj);
+                //if(exObj->getBlockType() == 3) cleanHyperBlockC(exObj);
                 if(exObj->getBlockType() == 0)
                     exObj->setBlockType(10);
                 if(exObj->getBlockType() == 1)

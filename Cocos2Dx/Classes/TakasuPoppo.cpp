@@ -178,17 +178,10 @@ void TakasuPoppo::update(float dt) {
         existHyperBlockB = false;
         existHyperBlockC = false;
     }
-    if (comboCounter > COMBO_MAXCOUNT) {
-        comboCounter = 0;
-        
-        //Reset here too
-        // het 1 luot combo lai reset lai existHyperBlockA
-        existHyperBlockA = false;
-        existHyperBlockB = false;
-        existHyperBlockC = false;
+    if (comboCounter >= COMBO_MAXCOUNT) {
+        hyperBlockC =true;
+        comboCounter = comboCounter % COMBO_MAXCOUNT;
     }
-    
-//    CCLog("combo Counter: %d", comboCounter);
     //===============================================================
     
     

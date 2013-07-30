@@ -536,7 +536,7 @@ void TakasuPoppo::smartGeneration() {
         
     }
     if(hyperBlockC){
-        randomBlockC(hyperC);
+        randomBlockC(7);
     }
     controlable = true;
     return;
@@ -557,6 +557,7 @@ bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {
 
 void TakasuPoppo::randomBlockC(int blockID)
 {
+    blockID = rand() % blockID;
     int countC = 0;
     CCArray *arrayBlockC = new CCArray;
     CCObject *obj;
