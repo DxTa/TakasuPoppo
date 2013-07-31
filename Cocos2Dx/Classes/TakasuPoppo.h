@@ -137,8 +137,8 @@ public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
     
 #pragma mark Takasu Poppo
-    static cocos2d::CCScene* scene();
-    virtual bool init();
+    
+    virtual bool init(int itemID);
     virtual void update(float dt);
     void menuCloseCallback(CCObject* pSender);
     //Setup timer, preparing for the game
@@ -312,7 +312,22 @@ public:
     void cleanA(TPObjectExtension* exObj);
     void cleanB(TPObjectExtension* exObj);
     
-    CREATE_FUNC(TakasuPoppo);
+    // Vinhnt - for Mission Block
+    bool isCleanMB1;
+    bool isCreateMB1;
+    int _itemID;
+    int timeToCreateMB1;
+    int currentGameTimer = 0;
+    
+    static TakasuPoppo* create(int itemID);
+    
+    static CCScene* scene(int itemID);
+    
+    void makeBlockToBeMB1(TPObjectExtension* exObj);
+    
+    void generateBlocksAfterCleanMB1();
+    
+    
 };
 
 #endif

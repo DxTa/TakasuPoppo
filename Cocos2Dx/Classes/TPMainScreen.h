@@ -124,6 +124,7 @@ private:
     int heartsCount;
     
 public:
+    ~TPMainScreen();
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
     virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);

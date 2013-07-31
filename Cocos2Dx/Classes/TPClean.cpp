@@ -149,11 +149,14 @@ void TakasuPoppo::changeID(CCNode *sender, void* data) {
 void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
     score = score + ONE_BLOCK;
     CCSprite *exSprite = exObj->getSprite();
-    exSprite->runAction(CCSequence::create(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID),(void*)exObj),CCDelayTime::create(CLEAN_DELAY),
-                                           CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation),
-                                                                (void*)exObj),
-                                           CCRemoveSelf::create(), NULL));
-    
+    if (exSprite != NULL) {
+        exSprite->runAction(CCSequence::create(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID),(void*)exObj),CCDelayTime::create(CLEAN_DELAY),
+                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation),
+                                                                    (void*)exObj),
+                                               CCRemoveSelf::create(), NULL));
+        
+
+    }
 }
 
 /*
@@ -360,6 +363,12 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
         case 3:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockC(exobj);
+            break;
+        case 6:
+            isCleanMB1 = true;
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
+
             break;
         case 11:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)

@@ -16,14 +16,14 @@ using namespace std;
 
 #pragma mark Default
 
-CCScene* TakasuPoppo::scene() {
+CCScene* TakasuPoppo::scene(int itemID) {
     CCScene *scene = CCScene::create();
-    TakasuPoppo *layer = TakasuPoppo::create();
+    TakasuPoppo *layer = TakasuPoppo::create(itemID);
     scene->addChild(layer);
     return scene;
 }
 
-bool TakasuPoppo::init() {
+bool TakasuPoppo::init(int itemID) {
     srand(time(NULL));
     if (!CCLayer::init()) return false;
     
@@ -82,6 +82,22 @@ bool TakasuPoppo::init() {
     CCSprite *comboGauge = CCSprite::create("ComboGauge.png");
     comboGauge->setPosition(ccp(400, 780));
     this->addChild(comboGauge, -2, -3);
+    
+    //===============================================================
+    
+    //======================== Item Object ==========================
+    _itemID = itemID;
+    switch (_itemID) {
+        case 3:
+            timeToCreateMB1 = rand() % 30 + 20;
+            isCleanMB1 = false;
+            isCreateMB1 = false;
+            CCLog("time will create MB1: %i", timeToCreateMB1);
+                        break;
+            
+        default:
+            break;
+    }
     
     //===============================================================
     
@@ -298,6 +314,37 @@ void TakasuPoppo::update(float dt) {
     lbScore->setString(str.c_str());
     //================================================================
     
+    //======================== Item Object ===========================
+    switch (_itemID) {
+        case 3:
+            if (gameTimer < timeToCreateMB1 && isCreateMB1 == false) {
+                isCreateMB1 = true;
+                
+                CCLog("time will create MB1: %i", timeToCreateMB1);
+
+            }
+            
+            if (isCreateMB1 == true) {
+                timeToCreateMB1 = 0;
+            }
+            
+            if (isCleanMB1 == true) {
+                
+                this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
+                                                   CCCallFunc::create(this, callfunc_selector(TakasuPoppo::generateBlocksAfterCleanMB1)),NULL));
+//                TakasuPoppo::generateBlocksAfterCleanMB1();
+                
+         }
+
+            break;
+            
+        default:
+            break;
+    }
+    
+    //================================================================
+
+    
 
 }
 
@@ -396,7 +443,7 @@ void TakasuPoppo::timeCounter() {
         timerBar->setPercentage(1.66 * gameTimer);
     }
     if (gameTimer < 0) {
-        gameTimer = 60;
+//        TakasuPoppo::timeOver();
     }
     //    else {
     //        unschedule(schedule_selector(TakasuPoppo::timeCounter));
@@ -428,4 +475,23 @@ void TakasuPoppo::timeCounter() {
 
 void TakasuPoppo::timeOver() {
     
+    this->setTouchEnabled(false);
+
+}
+
+//for Mission Block
+TakasuPoppo* TakasuPoppo::create(int itemID){
+    TakasuPoppo *pRet = new TakasuPoppo();
+    if (pRet && pRet->init(itemID)) \
+    { \
+        pRet->autorelease(); \
+        return pRet; \
+    } \
+    else \
+    { \
+        delete pRet; \
+        pRet = NULL; \
+        return NULL; \
+    } \
+
 }
