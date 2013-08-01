@@ -11,12 +11,10 @@ using namespace cocos2d;
 using namespace std;
 USING_NS_CC;
 
-void TPItemObject::setItemID(int itemID){
-    this->itemID = itemID;
+TPItemObject::TPItemObject(bool firstItem, bool secondItem, bool thirdItem, int pSpcialItemID){
+    this->isFirstItemOn = firstItem;
+    this->isSecondItemOn = secondItem;
+    this->isThirdItemOn = thirdItem;
+    this->specialItemID = pSpcialItemID;
 }
-
-int TPItemObject::getItemID(){
-    return this->itemID;
-}
-
 

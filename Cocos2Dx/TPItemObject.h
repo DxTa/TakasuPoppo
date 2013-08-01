@@ -6,20 +6,24 @@
 //
 //
 
-#ifndef Cocos2Dx_TPObjectExtension_h
-#define Cocos2Dx_TPObjectExtension_h
+#ifndef Cocos2Dx_TPItemObject_h
+#define Cocos2Dx_TPItemObject_h
 #include "cocos2d.h"
 
+using namespace cocos2d;
 using namespace std;
 USING_NS_CC;
 
 class TPItemObject : public CCObject {
 private:
-    int itemID;
+    
+    CC_SYNTHESIZE(bool, isFirstItemOn, IsFirstItemOn);
+    CC_SYNTHESIZE(bool, isSecondItemOn, IsSecondItemOn);
+    CC_SYNTHESIZE(bool, isThirdItemOn, IsThirdItemOn);
+    CC_SYNTHESIZE(int, specialItemID, SpecialItemID);
     
 public:
-    void    setItemID(int itemID);
-    int     getItemID();
+    TPItemObject(bool firstItem, bool secondItem, bool thirdItem, int spcialItemID);
     
 };
 

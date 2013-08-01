@@ -9,6 +9,7 @@
 #include "TPMainScreen.h"
 #include "SimpleAudioEngine.h"
 #include "TakasuPoppo.h"
+#include "TPItemObject.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -247,7 +248,8 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     
     if (startRect.containsPoint(touchLoc)) {
         //run into takasu
-        CCScene *gameScene = TakasuPoppo::scene(3);
+        TPItemObject* itemObject = new TPItemObject(false, false, false, 6);
+        CCScene *gameScene = TakasuPoppo::scene(itemObject);
         CCDirector::sharedDirector()->setDepthTest(true);
         CCTransitionScene* transition = CCTransitionFadeUp::create(1, gameScene);
         CCDirector::sharedDirector()->replaceScene(transition);

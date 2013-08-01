@@ -368,7 +368,18 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
             isCleanMB1 = true;
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanSprite(exobj);
+            break;
+        case 7:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
+            isCleanMB2 = true;
+            isExistMB2 = false;
 
+            break;
+        case 8:
+            isCleanMB3 = true;
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
             break;
         case 11:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
