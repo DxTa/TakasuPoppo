@@ -8,6 +8,8 @@
 
 #include "TPMainScreen.h"
 #include "SimpleAudioEngine.h"
+#include "TakasuPoppo.h"
+#include "TPItemObject.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -222,6 +224,8 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
                                      buyHeartConfirmBtn->getContentSize().width,
                                      buyHeartConfirmBtn->getContentSize().height);
     
+    CCRect startRect = startButton->boundingBox();
+    
     if (!heartWindowMoving && heartWindowMoved && buyHeartCancelRect.containsPoint(touchLoc)) {
         buyHeartWindow->runAction(CCMoveBy::create(0.5, ccp(0, 600)));
         heartWindowMoved = false;
@@ -241,6 +245,25 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         TPMainScreen::setNewHeartCount();
         
     }
+    
+    if (startRect.containsPoint(touchLoc)) {
+        //run into takasu
+        TPItemObject* itemObject = new TPItemObject(false, false, false, 6);
+        CCScene *gameScene = TakasuPoppo::scene(itemObject);
+        CCDirector::sharedDirector()->setDepthTest(true);
+        CCTransitionScene* transition = CCTransitionFadeUp::create(1, gameScene);
+        CCDirector::sharedDirector()->replaceScene(transition);
+        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+//        CCDirector::sharedDirector()->replaceScene(gameScene);
+
+//        CCDirector::sharedDirector()->setDepthTest(true);
+//        CCTransitionScene *transition = CCTransitionPageTurn::create(1.0f, gameScene, false);
+//        CCDirector::sharedDirector()->replaceScene(transition);
+
+        
+        
+    }
+    
 }
 
 void TPMainScreen::setPlusHeart() {
@@ -437,4 +460,8 @@ void TPMainScreen::menuCloseCallback(CCObject* pSender) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+TPMainScreen::~TPMainScreen(){
+    
 }

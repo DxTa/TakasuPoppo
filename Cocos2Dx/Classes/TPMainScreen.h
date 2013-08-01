@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include "cocos2d.h"
+#include "TPItemObject.h"
 
 USING_NS_CC;
 using namespace std;
@@ -22,7 +23,6 @@ class TPMainScreen : public CCLayer{
 private:
     CCSprite *background;
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    
     CCSprite *menuBackground;
     CCSprite *heartWindow;
     CCSprite *rankingWindow;
@@ -124,6 +124,7 @@ private:
     int heartsCount;
     
 public:
+    ~TPMainScreen();
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
     virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);

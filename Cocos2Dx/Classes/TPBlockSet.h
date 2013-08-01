@@ -9,9 +9,9 @@
 #ifndef __Cocos2Dx__TPBlockSet__
 #define __Cocos2Dx__TPBlockSet__
 
-#include <TPObjectExtension.h>
+#include "TPObjectExtension.h"
 #include "cocos2d.h"
-
+using namespace cocos2d;
 using namespace std;
 USING_NS_CC;
 

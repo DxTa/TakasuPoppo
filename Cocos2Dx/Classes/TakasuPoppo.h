@@ -23,11 +23,14 @@
 #define FEVER_COMBO_REQUIRED 5
 #define FEVER_TIME_REQUIRED 3
 
+#define DOUBLE_SCORE_TIME 20
+
 #include "cocos2d.h"
 #include "TPObjectExtension.h"
 #include "TPBlockSet.h"
 #include "CCGestureRecognizer.h"
 #include "CCSwipeGestureRecognizer.h"
+#include "TPItemObject.h"
 
 USING_NS_CC;
 class TakasuPoppo : public cocos2d::CCLayer {
@@ -137,8 +140,8 @@ public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
     
 #pragma mark Takasu Poppo
-    static cocos2d::CCScene* scene();
-    virtual bool init();
+    
+    
     virtual void update(float dt);
     void menuCloseCallback(CCObject* pSender);
     //Setup timer, preparing for the game
@@ -312,7 +315,35 @@ public:
     void cleanA(TPObjectExtension* exObj);
     void cleanB(TPObjectExtension* exObj);
     
-    CREATE_FUNC(TakasuPoppo);
+    
+    int _spcialItemID;
+    TPItemObject* _itemObject;
+    // Vinhnt - for Mission Block 1
+    bool isCleanMB1;
+    bool isCreateMB1;
+    int timeToCreateMB1;
+    void makeBlockToBeMB1(TPObjectExtension* exObj);
+    void generateBlocksAfterCleanMB1();
+    
+    // Vinhnt - for Mission Block 2:
+    bool isCleanMB2;
+    bool isCreateMB2;
+    bool isExistMB2;
+    int timeToCreateMB2;
+    int countMB2;
+    void makeBlockToBeMB2(TPObjectExtension* exObj);
+    
+    // Vinhnt - for Mission Block 3 (Item 6 – double score)
+    bool isCleanMB3;
+    bool isCreateMB3;
+    int timeToCreateMB3;
+    int doubleScoreStartTime;
+    void makeBlockToBeMB3(TPObjectExtension* exObj);
+    
+    // reWrite the init function
+    virtual bool init(TPItemObject* itemObject);
+    static TakasuPoppo* create(TPItemObject* itemObject);
+    static CCScene* scene(TPItemObject* itemObject);
 };
 
 #endif

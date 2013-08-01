@@ -501,15 +501,84 @@ void TakasuPoppo::smartGeneration() {
             TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
             if (exObj->getID() == 7) {
                 i ++;
-                if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
-                    TakasuPoppo::generateRandomBlock(exObj);
-                    exObj->setControlTrigger(true);
-                    TakasuPoppo::makeBlockToBeHBB(exObj);
-                    isCreateGaugeCombo = false;
-                    
-                } else {
-                    TakasuPoppo::generateRandomBlock(exObj);
-                    exObj->setControlTrigger(true);
+                
+                switch (_spcialItemID) {
+                    case 3:
+                        // create Mission Block 1
+                        if (isCreateMB1 == true) {
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::makeBlockToBeMB1(exObj);
+                            isCreateMB1 = false;
+                        } else {
+                            if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                                TakasuPoppo::makeBlockToBeHBB(exObj);
+                                isCreateGaugeCombo = false;
+                                
+                            } else {
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                            }
+                        }
+
+                        break;
+                        
+                    case 4:
+                        // create Mission Block 2
+                        if (isCreateMB2 == true) {
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::makeBlockToBeMB2(exObj);
+                            isCreateMB2 = false;
+                            isExistMB2 = true;
+                        } else {
+                            if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                                TakasuPoppo::makeBlockToBeHBB(exObj);
+                                isCreateGaugeCombo = false;
+                                
+                            } else {
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                            }
+                        }
+                        break;
+                        
+                    case 6:
+                        // create Mission Block 3
+                        if (isCreateMB3 == true) {
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::makeBlockToBeMB3(exObj);
+                            isCreateMB3 = false;
+                        } else {
+                            if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                                TakasuPoppo::makeBlockToBeHBB(exObj);
+                                isCreateGaugeCombo = false;
+                                
+                            } else {
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                            }
+                        }
+                        break;
+
+                        
+                    default:
+                        if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            exObj->setControlTrigger(true);
+                            TakasuPoppo::makeBlockToBeHBB(exObj);
+                            isCreateGaugeCombo = false;
+                            
+                        } else {
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            exObj->setControlTrigger(true);
+                        }
+
+                        break;
                 }
                 
             }else exObj->setControlTrigger(true);
@@ -520,17 +589,84 @@ void TakasuPoppo::smartGeneration() {
             TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
             if (exObj->getID() == 7) {
                 i ++;
-                if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
-                    TakasuPoppo::generateRandomBlock(exObj);
-                    exObj->setControlTrigger(true);
-                    TakasuPoppo::makeBlockToBeHBB(exObj);
-                    isCreateGaugeCombo = false;
-                    
-                } else {
-                    TakasuPoppo::generateRandomBlock(exObj);
-                    exObj->setControlTrigger(true);
-                }
                 
+                switch (_spcialItemID) {
+                    case 3:
+                        // create Mission Block 1
+                        if (isCreateMB1 == true) {
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::makeBlockToBeMB1(exObj);
+                            isCreateMB1 = false;
+                        } else {
+                            if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                                TakasuPoppo::makeBlockToBeHBB(exObj);
+                                isCreateGaugeCombo = false;
+                                
+                            } else {
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                            }
+                        }
+                        
+                        break;
+                        
+                    case 4:
+                        // create Mission Block 2
+                        if (isCreateMB2 == true) {
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::makeBlockToBeMB2(exObj);
+                            isCreateMB2 = false;
+                            isExistMB2 = true;
+                        } else {
+                            if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                                TakasuPoppo::makeBlockToBeHBB(exObj);
+                                isCreateGaugeCombo = false;
+                                
+                            } else {
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                            }
+                        }
+                        break;
+                        
+                    case 6:
+                        // create Mission Block 3
+                        if (isCreateMB3 == true) {
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::makeBlockToBeMB3(exObj);
+                            isCreateMB3 = false;
+                        } else {
+                            if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                                TakasuPoppo::makeBlockToBeHBB(exObj);
+                                isCreateGaugeCombo = false;
+                                
+                            } else {
+                                TakasuPoppo::generateRandomBlock(exObj);
+                                exObj->setControlTrigger(true);
+                            }
+                        }
+                        break;
+                        
+                    default:
+                        if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            exObj->setControlTrigger(true);
+                            TakasuPoppo::makeBlockToBeHBB(exObj);
+                            isCreateGaugeCombo = false;
+                            
+                        } else {
+                            TakasuPoppo::generateRandomBlock(exObj);
+                            exObj->setControlTrigger(true);
+                        }
+                        
+                        break;
+                }
             }else exObj->setControlTrigger(true);
         }
         
@@ -579,3 +715,117 @@ void TakasuPoppo::randomBlockC(int blockID)
     }
     //arrayBlockC->autorelease();
 }
+
+void TakasuPoppo::makeBlockToBeMB1(TPObjectExtension *exObj){
+    exObj->setBlockType(6);
+    // change controlable
+    exObj->setControlTrigger(true);
+    if(exObj->getID() != 7)
+    {
+        int imageId = exObj->getID() + 1;
+        CCImage *poppoB = new CCImage;
+        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
+        str = "Poppo" + str + "Mission1.png";
+        poppoB->initWithImageFile(str.c_str());
+        CCTexture2D *poppoTexture = new CCTexture2D;
+        poppoTexture->initWithImage(poppoB);
+        CCSprite *poppoSprite = exObj->getSprite();
+        poppoSprite->setTexture(poppoTexture);
+        exObj->setSprite(poppoSprite);
+    }
+
+}
+
+void TakasuPoppo::makeBlockToBeMB2(TPObjectExtension *exObj){
+    exObj->setBlockType(7);
+    exObj->setControlTrigger(true);
+    if(exObj->getID() != 7)
+    {
+        int imageId = exObj->getID() + 1;
+        CCImage *poppoB = new CCImage;
+        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
+        str = "Poppo" + str + "Mission2.png";
+        poppoB->initWithImageFile(str.c_str());
+        CCTexture2D *poppoTexture = new CCTexture2D;
+        poppoTexture->initWithImage(poppoB);
+        CCSprite *poppoSprite = exObj->getSprite();
+        poppoSprite->setTexture(poppoTexture);
+        exObj->setSprite(poppoSprite);
+    }
+
+}
+
+void TakasuPoppo::makeBlockToBeMB3(TPObjectExtension *exObj){
+    exObj->setBlockType(8);
+    exObj->setControlTrigger(true);
+    if(exObj->getID() != 7)
+    {
+        int imageId = exObj->getID() + 1;
+        CCImage *poppoB = new CCImage;
+        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
+        str = "Poppo" + str + "Mission3.png";
+        poppoB->initWithImageFile(str.c_str());
+        CCTexture2D *poppoTexture = new CCTexture2D;
+        poppoTexture->initWithImage(poppoB);
+        CCSprite *poppoSprite = exObj->getSprite();
+        poppoSprite->setTexture(poppoTexture);
+        exObj->setSprite(poppoSprite);
+    }
+    
+
+}
+
+void TakasuPoppo::generateBlocksAfterCleanMB1() {
+    CCSize layerSize = layer->getLayerSize();
+    int colorId1 = rand() % 7;
+    int colorId2;
+    do {
+        colorId2 = rand() % 7;
+    } while (colorId2 == colorId1);
+    int randomTile;
+    char tileName[7][20];
+    strcpy(tileName[0], "Poppo1A");
+    strcpy(tileName[1], "Poppo2A");
+    strcpy(tileName[2], "Poppo3A");
+    strcpy(tileName[3], "Poppo4A");
+    strcpy(tileName[4], "Poppo5A");
+    strcpy(tileName[5], "Poppo6A");
+    strcpy(tileName[6], "Poppo7A");
+
+    
+    for (int y = 0; y < layerSize.height; y++) {
+        for (int x = 0; x < layerSize.width; x++) {
+            
+            CCSprite *tileSprite = layer->tileAt(ccp(x, y));
+            unsigned int m_gid = layer->tileGIDAt(ccp(x, y));
+            
+                        
+            if (m_gid % 2 == 1) {
+                randomTile = colorId1;
+            } else {
+                randomTile = colorId2;
+            }
+            
+            char spriteName[100];
+            
+            sprintf(spriteName, "%s.png", tileName[randomTile]);
+            
+            CCSprite *randomTileSprite = CCSprite::create(spriteName);
+            CCPoint tilePosition = ccp(tileSprite->getPositionX() + tileSprite->getContentSize().width/2,
+                                       tileSprite->getPositionY() + 90 + tileSprite->getContentSize().height/2);
+            CCPoint tileCoordination = TakasuPoppo::tileCoorForPosition(tilePosition);
+            randomTileSprite->setPosition(ccp(tilePosition.x, tilePosition.y + 10));
+            CCObject *object = colorArray->objectAtIndex(m_gid - 1);
+            TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
+            TakasuPoppo::setValuesForExObj(exObj, randomTile, m_gid, randomTileSprite, tilePosition, tileCoordination, true, 0);
+            
+            this->addChild(randomTileSprite, 3, 300 + m_gid);
+        }
+    }
+    // i dont want HBB or HBC be created after i generate Blocks
+//    comboCounter = 0;
+//    gaugeComboCounter = 0;
+    
+    isCleanMB1 = false;
+}
+
