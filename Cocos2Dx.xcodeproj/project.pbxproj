@@ -71,6 +71,7 @@
 		849A78C717A7B0CE00782C50 /* Berlin Sans FB Demi.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 849A78C417A7B0CE00782C50 /* Berlin Sans FB Demi.TTF */; };
 		849A78C817A7B0CE00782C50 /* Berlin Sans FB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 849A78C517A7B0CE00782C50 /* Berlin Sans FB.TTF */; };
 		849A78C917A7B0CE00782C50 /* BRLNSB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 849A78C617A7B0CE00782C50 /* BRLNSB.TTF */; };
+		849A78E917AA27C200782C50 /* TPItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 849A78E817AA27C200782C50 /* TPItem.cpp */; };
 		84AC3059178FF4DA0073C6D5 /* 90x90TileMap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3056178FF4D80073C6D5 /* 90x90TileMap.tmx */; };
 		84AC305A178FF4DA0073C6D5 /* NewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3057178FF4D80073C6D5 /* NewBackground.png */; };
 		84AC305B178FF4DA0073C6D5 /* NewPrettyTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */; };
@@ -465,6 +466,7 @@
 		849A78C417A7B0CE00782C50 /* Berlin Sans FB Demi.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Berlin Sans FB Demi.TTF"; sourceTree = "<group>"; };
 		849A78C517A7B0CE00782C50 /* Berlin Sans FB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Berlin Sans FB.TTF"; sourceTree = "<group>"; };
 		849A78C617A7B0CE00782C50 /* BRLNSB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BRLNSB.TTF; sourceTree = "<group>"; };
+		849A78E817AA27C200782C50 /* TPItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TPItem.cpp; path = Classes/TPItem.cpp; sourceTree = "<group>"; };
 		84AC3056178FF4D80073C6D5 /* 90x90TileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 90x90TileMap.tmx; sourceTree = "<group>"; };
 		84AC3057178FF4D80073C6D5 /* NewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewBackground.png; sourceTree = "<group>"; };
 		84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPrettyTile.png; sourceTree = "<group>"; };
@@ -2438,6 +2440,7 @@
 		DC12FED91744D22E00480D31 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				849A78E817AA27C200782C50 /* TPItem.cpp */,
 				849A788917A7AFF700782C50 /* TPBlockSet.cpp */,
 				849A788A17A7AFF700782C50 /* TPBlockSet.h */,
 				DE22A42817A7C40A00B2FBC7 /* TPItemObject.cpp */,
@@ -2899,6 +2902,7 @@
 				849A789E17A7AFF700782C50 /* TPSwiped.cpp in Sources */,
 				849A789F17A7AFF700782C50 /* TPTouch.cpp in Sources */,
 				DE22A42A17A7C40A00B2FBC7 /* TPItemObject.cpp in Sources */,
+				849A78E917AA27C200782C50 /* TPItem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
