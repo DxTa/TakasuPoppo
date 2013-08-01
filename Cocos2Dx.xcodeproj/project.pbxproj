@@ -388,6 +388,13 @@
 		DE0F00E017A8BDF500F7ECCC /* Poppo7Mission1.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0F00C417A8BDF500F7ECCC /* Poppo7Mission1.png */; };
 		DE0F00E117A8BDF500F7ECCC /* Poppo7Mission2.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0F00C517A8BDF500F7ECCC /* Poppo7Mission2.png */; };
 		DE22A42A17A7C40A00B2FBC7 /* TPItemObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DE22A42817A7C40A00B2FBC7 /* TPItemObject.cpp */; };
+		DEF5F5EF17A9F77D0063C3BA /* Poppo1Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5E817A9F77D0063C3BA /* Poppo1Mission3.png */; };
+		DEF5F5F017A9F77D0063C3BA /* Poppo2Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5E917A9F77D0063C3BA /* Poppo2Mission3.png */; };
+		DEF5F5F117A9F77D0063C3BA /* Poppo3Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5EA17A9F77D0063C3BA /* Poppo3Mission3.png */; };
+		DEF5F5F217A9F77D0063C3BA /* Poppo4Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5EB17A9F77D0063C3BA /* Poppo4Mission3.png */; };
+		DEF5F5F317A9F77D0063C3BA /* Poppo5Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5EC17A9F77D0063C3BA /* Poppo5Mission3.png */; };
+		DEF5F5F417A9F77D0063C3BA /* Poppo6Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */; };
+		DEF5F5F517A9F77D0063C3BA /* Poppo7Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5EE17A9F77D0063C3BA /* Poppo7Mission3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1088,6 +1095,13 @@
 		DE0F00C517A8BDF500F7ECCC /* Poppo7Mission2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7Mission2.png; sourceTree = "<group>"; };
 		DE22A42817A7C40A00B2FBC7 /* TPItemObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPItemObject.cpp; sourceTree = "<group>"; };
 		DE22A42917A7C40A00B2FBC7 /* TPItemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPItemObject.h; sourceTree = "<group>"; };
+		DEF5F5E817A9F77D0063C3BA /* Poppo1Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo1Mission3.png; sourceTree = "<group>"; };
+		DEF5F5E917A9F77D0063C3BA /* Poppo2Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo2Mission3.png; sourceTree = "<group>"; };
+		DEF5F5EA17A9F77D0063C3BA /* Poppo3Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo3Mission3.png; sourceTree = "<group>"; };
+		DEF5F5EB17A9F77D0063C3BA /* Poppo4Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo4Mission3.png; sourceTree = "<group>"; };
+		DEF5F5EC17A9F77D0063C3BA /* Poppo5Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo5Mission3.png; sourceTree = "<group>"; };
+		DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo6Mission3.png; sourceTree = "<group>"; };
+		DEF5F5EE17A9F77D0063C3BA /* Poppo7Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7Mission3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1220,6 +1234,13 @@
 		84AC3093179658AE0073C6D5 /* Pop */ = {
 			isa = PBXGroup;
 			children = (
+				DEF5F5E817A9F77D0063C3BA /* Poppo1Mission3.png */,
+				DEF5F5E917A9F77D0063C3BA /* Poppo2Mission3.png */,
+				DEF5F5EA17A9F77D0063C3BA /* Poppo3Mission3.png */,
+				DEF5F5EB17A9F77D0063C3BA /* Poppo4Mission3.png */,
+				DEF5F5EC17A9F77D0063C3BA /* Poppo5Mission3.png */,
+				DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */,
+				DEF5F5EE17A9F77D0063C3BA /* Poppo7Mission3.png */,
 				DE0F00AA17A8BDF500F7ECCC /* Poppo1HyperA.png */,
 				DE0F00AB17A8BDF500F7ECCC /* Poppo1HyperB.png */,
 				DE0F00AC17A8BDF500F7ECCC /* Poppo1Mission1.png */,
@@ -2606,6 +2627,13 @@
 				DE0F00DF17A8BDF500F7ECCC /* Poppo7HyperB.png in Resources */,
 				DE0F00E017A8BDF500F7ECCC /* Poppo7Mission1.png in Resources */,
 				DE0F00E117A8BDF500F7ECCC /* Poppo7Mission2.png in Resources */,
+				DEF5F5EF17A9F77D0063C3BA /* Poppo1Mission3.png in Resources */,
+				DEF5F5F017A9F77D0063C3BA /* Poppo2Mission3.png in Resources */,
+				DEF5F5F117A9F77D0063C3BA /* Poppo3Mission3.png in Resources */,
+				DEF5F5F217A9F77D0063C3BA /* Poppo4Mission3.png in Resources */,
+				DEF5F5F317A9F77D0063C3BA /* Poppo5Mission3.png in Resources */,
+				DEF5F5F417A9F77D0063C3BA /* Poppo6Mission3.png in Resources */,
+				DEF5F5F517A9F77D0063C3BA /* Poppo7Mission3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
