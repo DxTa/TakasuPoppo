@@ -130,8 +130,14 @@ private:
     //Vinhnt - for Gauge Combo
     int gaugeComboCounter = 0;
     bool isCreateGaugeCombo = false;
-
     
+    //item
+    float timeBonus = 0;
+    float increasedScore = 1;
+    int doubleScore = 1;
+    bool endLastScore = false;
+    bool createThreeeHyper = false;
+    float increaseComboTimes = 1;
 public:
     
     bool existHyperBlockA = false;          // true if there is a Hyper Block A
@@ -344,6 +350,16 @@ public:
     virtual bool init(TPItemObject* itemObject);
     static TakasuPoppo* create(TPItemObject* itemObject);
     static CCScene* scene(TPItemObject* itemObject);
+    
+    //ITEM function
+    bool lastScore();
+    void addTime();
+    void increasedScores();
+    void cleanHyperBlockA(CCNode* sender, void* data);
+    void cleanHyperBlockB(CCNode* sender, void* data);
+    void cleanHyperBlockC(CCNode* sender, void* data);
+    void createMapWithHyperBlock();
+    void modefiedLastBonus();
 };
 
 #endif

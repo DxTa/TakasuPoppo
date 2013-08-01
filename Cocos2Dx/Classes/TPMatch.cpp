@@ -59,7 +59,7 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, NULL, NULL,
                                                               "TrioHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 4) {
@@ -74,7 +74,7 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, NULL,
                                                               "QuadHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 5) {
@@ -91,7 +91,7 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL,
                                                               "PentaHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 6) {
@@ -110,7 +110,7 @@ void TakasuPoppo::matchList() {
                                                               exObj6, NULL,
                                                               "HexHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 7) {
@@ -131,7 +131,7 @@ void TakasuPoppo::matchList() {
                                                               exObj6, exObj7,
                                                               "HeptaHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                 }
@@ -163,7 +163,7 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, NULL, NULL,
                                                               "TrioVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 4) {
@@ -178,7 +178,7 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, NULL,
                                                               "QuadVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 5) {
@@ -195,7 +195,7 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, 
                                                        "PentaVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 6) {
@@ -214,7 +214,7 @@ void TakasuPoppo::matchList() {
                                                               exObj6, NULL,
                                                               "HexVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 7) {
@@ -235,7 +235,7 @@ void TakasuPoppo::matchList() {
                                                               exObj6, exObj7,
                                                               "HeptaVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5;
+                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
                         //                        if (comboTimer > 0) comboCounter += 1;
                     }
                 }

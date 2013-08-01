@@ -25,6 +25,17 @@ CCScene* TakasuPoppo::scene(TPItemObject* itemObjectD) {
 
 bool TakasuPoppo::init(TPItemObject* itemObject) {
     srand(time(NULL));
+    _itemObject = new TPItemObject(itemObject->getIsFirstItemOn(), itemObject->getIsSecondItemOn(), itemObject->getIsThirdItemOn(), itemObject->getSpecialItemID());
+
+    if(_itemObject->getIsFirstItemOn())
+        addTime();
+    if(_itemObject->getIsSecondItemOn()) {
+        increasedScores();
+    }
+    if(_itemObject->getIsThirdItemOn()){
+        createThreeeHyper = true;
+    }
+    
     if (!CCLayer::init()) return false;
     
     colorArray = new CCArray;
@@ -33,6 +44,7 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     hintArray = new CCArray;
     
     TakasuPoppo::addBlocksToArray();
+    
     TakasuPoppo::addTileMap();
     TakasuPoppo::lookForMatches();
     
@@ -61,12 +73,18 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     //===============================================================
     
     //==========================SCORE ===============================
+    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("Score :", "Arial", FONT_SIZE);
+    lbScoreTitle->setZOrder(15);
+    lbScoreTitle->setColor(ccc3(225, 225, 225));
+    lbScoreTitle->setPosition(ccp(60, 890));
+    this->addChild(lbScoreTitle);
+    
+    
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-    str = "Score : " + str;
     lbScore = CCLabelTTF::create(str.c_str(), "Arial", FONT_SIZE);
     lbScore->setZOrder(15);
     lbScore->setColor(ccc3(225, 225, 225));
-    lbScore->setPosition(ccp(80, 890));
+    lbScore->setPosition(ccp(160, 890));
     this->addChild(lbScore);
     //===============================================================
     
@@ -87,7 +105,6 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     //======================== Item Object ==========================
     
-    _itemObject = new TPItemObject(itemObject->getIsFirstItemOn(), itemObject->getIsSecondItemOn(), itemObject->getIsThirdItemOn(), itemObject->getSpecialItemID());
     _spcialItemID = _itemObject->getSpecialItemID() ;
     switch (_spcialItemID) {
         case 3:
@@ -111,6 +128,10 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
             isCreateMB3 = false;
             timeToCreateMB3 = rand() % 30 + 30;
             CCLOG("Time to create MB2: %d", timeToCreateMB3);
+            
+        case 7:
+            increaseComboTimes = 1.1;
+            break;
             
         default:
             break;
@@ -327,7 +348,6 @@ void TakasuPoppo::update(float dt) {
 
     //========================SCORE UPDATE ===========================
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-    str = "Score : " + str;
     lbScore->setString(str.c_str());
     //================================================================
     
@@ -358,6 +378,7 @@ void TakasuPoppo::update(float dt) {
             break;
         
         case 6:
+            
             if (gameTimer < timeToCreateMB3 && isCreateMB3 == false) {
                 isCreateMB3 = true;
             }
@@ -368,12 +389,21 @@ void TakasuPoppo::update(float dt) {
                 doubleScoreStartTime = gameTimer;
                 isCleanMB3 = false;
             }
+            
             if (gameTimer < doubleScoreStartTime && gameTimer > doubleScoreStartTime - DOUBLE_SCORE_TIME) {
                 // do some code logic here
+                doubleScore = 2;
                 CCLog("gameTimer: %f", gameTimer);
                 CCLog("doubleScoreStartTime: %d", doubleScoreStartTime);
                 CCLog("The Score is double now");
             }
+            else{
+                doubleScore = 1;
+            }
+        case 5:
+            modefiedLastBonus();
+            break;
+
         default:
             break;
     }
@@ -480,7 +510,14 @@ void TakasuPoppo::timeCounter() {
         timerBar->setPercentage(1.66 * gameTimer);
     }
     if (gameTimer < 0) {
-        gameTimer = 0;
+        timeBonus += deltaTime;
+        hintCounter = 3;
+        hintArray->removeAllObjects();
+        if (this->getChildByTag(778)) this->removeChildByTag(778);
+        hintDisplaying = false;
+        this->unschedule(schedule_selector(TakasuPoppo::hintGeneration));
+        TakasuPoppo::timeOver();
+
     }
 
     //====================== Gauge Bar updates =======================
@@ -504,9 +541,10 @@ void TakasuPoppo::timeCounter() {
 }
 
 void TakasuPoppo::timeOver() {
-    
-    this->setTouchEnabled(false);
-
+    if (lastScore()) {
+        CCLOG("SCORE * %d",score);
+        this->unschedule(schedule_selector(TakasuPoppo::timeCounter));
+    }
 }
 
 //for Mission Block
