@@ -124,6 +124,7 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
             break;
             
         case 6:
+            doubleScoreStartTime = 0;
             isCleanMB3 = false;
             isCreateMB3 = false;
             timeToCreateMB3 = rand() % 30 + 30;
@@ -389,17 +390,22 @@ void TakasuPoppo::update(float dt) {
                 doubleScoreStartTime = gameTimer;
                 isCleanMB3 = false;
             }
+            if (doubleScoreStartTime != 0) {
+                if (gameTimer <= doubleScoreStartTime && gameTimer >= (doubleScoreStartTime - DOUBLE_SCORE_TIME) ) {
+                    // do some code logic here
+                    doubleScore = 2;
+                    CCLog("gameTimer: %f", gameTimer);
+                    CCLog("doubleScoreStartTime: %d", doubleScoreStartTime);
+                    CCLog("The Score is double now");
+                }
+                else{
+                    doubleScore = 1;
+                    CCLog("The Score is not double anymore");
+                }
+
+            }
+            break;
             
-            if (gameTimer < doubleScoreStartTime && gameTimer > doubleScoreStartTime - DOUBLE_SCORE_TIME) {
-                // do some code logic here
-                doubleScore = 2;
-                CCLog("gameTimer: %f", gameTimer);
-                CCLog("doubleScoreStartTime: %d", doubleScoreStartTime);
-                CCLog("The Score is double now");
-            }
-            else{
-                doubleScore = 1;
-            }
         case 5:
             modefiedLastBonus();
             break;

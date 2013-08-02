@@ -32,8 +32,8 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                 if(exObject != NULL)
                     if(exObject->getID() != 7 && exObject->getBlockType() == 3 && exObject->getSprite() && exObject->getSprite() != NULL)
                     {
-                        cleanHyperBlockC(exObject);
-                        logicExecution();
+
+                        TakasuPoppo::cleanHyperBlockC(exObject);
                     }
             }
         }

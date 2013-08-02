@@ -248,7 +248,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     
     if (startRect.containsPoint(touchLoc)) {
         //run into takasu
-        TPItemObject* itemObject = new TPItemObject(true, true, true, 6);
+        TPItemObject* itemObject = new TPItemObject(true, true, true, 3);
         CCScene *gameScene = TakasuPoppo::scene(itemObject);
         CCDirector::sharedDirector()->setDepthTest(true);
         CCTransitionScene* transition = CCTransitionFadeUp::create(1, gameScene);

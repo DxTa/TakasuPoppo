@@ -311,46 +311,46 @@ void TakasuPoppo::cleanHyperBlockB(TPObjectExtension* exObj) {
     
 }
 
-void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj) {
-    CCObject* obj;
-    
-    // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
-    if (isInCurrentBlockSet(exObj) == false) {
-        // count the combo to generate hyper block
-        comboCounter += 1;
-        
-        // count the combo for the Fever Time
-        feverCounter += 1;
-        //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
-
-        exObj->setBlockType(0);
-        CCARRAY_FOREACH(colorArray, obj){
-            TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
-            if (block != NULL && block->getID() == exObj->getID() &&
-                block->getID() != 7 && block->getSprite() != NULL) {
-                TakasuPoppo::cleanOneBlock(block);
-            }
-        }
-    }
-    else {
-        if (isInFeverTime == true) {
-            exObj->setBlockType(1);
-        }
-        else {
-            exObj->setBlockType(0);
-        }
-        
-        CCARRAY_FOREACH(colorArray, obj){
-            TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
-            if (block != NULL && block->getID() == exObj->getID() &&
-                block->getID() != 7 && block->getSprite() != NULL) {
-                TakasuPoppo::cleanOneBlock(block);
-            }
-        }
-
-    }
-}
+//void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj) {
+//    CCObject* obj;
+//    
+//    // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
+//    if (isInCurrentBlockSet(exObj) == false) {
+//        // count the combo to generate hyper block
+//        comboCounter += 1;
+//        
+//        // count the combo for the Fever Time
+//        feverCounter += 1;
+//        //count the combo for the Gauge Bar
+//        gaugeComboCounter += 1;
+//
+//        exObj->setBlockType(0);
+//        CCARRAY_FOREACH(colorArray, obj){
+//            TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
+//            if (block != NULL && block->getID() == exObj->getID() &&
+//                block->getID() != 7 && block->getSprite() != NULL) {
+//                TakasuPoppo::cleanOneBlock(block);
+//            }
+//        }
+//    }
+//    else {
+//        if (isInFeverTime == true) {
+//            exObj->setBlockType(1);
+//        }
+//        else {
+//            exObj->setBlockType(0);
+//        }
+//        
+//        CCARRAY_FOREACH(colorArray, obj){
+//            TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
+//            if (block != NULL && block->getID() == exObj->getID() &&
+//                block->getID() != 7 && block->getSprite() != NULL) {
+//                TakasuPoppo::cleanOneBlock(block);
+//            }
+//        }
+//
+//    }
+//}
 
 void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
     switch (exobj->getBlockType()) {
@@ -365,8 +365,8 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
             break;
             
         case 3:
-            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
-                TakasuPoppo::cleanHyperBlockC(exobj);
+//            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+//                TakasuPoppo::cleanHyperBlockC(exobj);
             break;
         case 6:
             isCleanMB1 = true;
@@ -464,22 +464,24 @@ void TakasuPoppo::makeBlockToBeHBB(TPObjectExtension* exObj){
 }
 void TakasuPoppo::makeBlockToBeHBC(TPObjectExtension *exObj){
     exObj->setBlockType(3);
+    exObj->setID(8);
     // change controlable
     exObj->setControlTrigger(true);
-    if(exObj->getID() != 7)
-    {
-        // change sprite when the block be hyper
-        int imageId = exObj->getID() + 1;
-        CCImage *poppoB = new CCImage;
-        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
-        str = "Poppo" + str + "HyperC.png";
-        poppoB->initWithImageFile(str.c_str());
-        CCTexture2D *poppoTexture = new CCTexture2D;
-        poppoTexture->initWithImage(poppoB);
-        CCSprite *poppoSprite = exObj->getSprite();
-        poppoSprite->setTexture(poppoTexture);
-        exObj->setSprite(poppoSprite);
+    
+    CCAnimation *animation = CCAnimation::create();
+    for (int i = 1; i < 8; i++) {
+        char fileName[15] = {0};
+        sprintf(fileName, "Poppo%dA.png", i);
+        animation->addSpriteFrameWithFileName(fileName);
+        
     }
+    animation->setDelayPerUnit(0.05f);
+    animation->setRestoreOriginalFrame(true);
+    animation->setLoops(MAXFLOAT);
+    CCAnimate* animate = CCAnimate::create(animation);
+    //    animate->setTag(1210);
+    
+    exObj->getSprite()->runAction(animate);
 }
 
 bool TakasuPoppo::isInCurrentBlockSet(TPObjectExtension *exObj){
@@ -749,41 +751,164 @@ void TakasuPoppo::cleanHyperBlockB(CCNode* sender, void* data) {
 void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
     TPObjectExtension* exObj = (TPObjectExtension*)data;
     
+    // count the combo to generate hyper block
+    comboCounter += 1;
+    
+    // count the combo for the Fever Time
+    feverCounter += 1;
+    //count the combo for the Gauge Bar
+    gaugeComboCounter += 1;
+    
+    exObj->setBlockType(0);
+    // random an ID and clean all block with this ID
+    exObj->getSprite()->stopAllActions();
+    int a = rand() % 7;
+    exObj->setID(a);
+    int imageId = exObj->getID() + 1;
+    CCImage *poppoC = new CCImage;
+    string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
+    str = "Poppo" + str + "A.png";
+    poppoC->initWithImageFile(str.c_str());
+    CCTexture2D *poppoTexture = new CCTexture2D;
+    poppoTexture->initWithImage(poppoC);
+    CCSprite *poppoSprite = exObj->getSprite();
+    poppoSprite->setTexture(poppoTexture);
+    exObj->setSprite(poppoSprite);
+    
     CCObject* obj;
-    // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
-    if (isInCurrentBlockSet(exObj) == false) {
-        // count the combo to generate hyper block
-        comboCounter += 1;
-        
-        // count the combo for the Fever Time
-        feverCounter += 1;
-        //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
-        
-        exObj->setBlockType(0);
-        CCARRAY_FOREACH(colorArray, obj){
-            TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
-            if (block != NULL && block->getID() == exObj->getID() &&
-                block->getID() != 7 && block->getSprite() != NULL) {
-                TakasuPoppo::cleanOneBlock(block);
-            }
+    CCARRAY_FOREACH(colorArray, obj){
+        TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
+        if (block != NULL && block->getID() == exObj->getID() &&
+            block->getID() != 7 && block->getSprite() != NULL) {
+            CCSprite *exSprite = block->getSprite();
+            exSprite->runAction(CCSequence::create(CCDelayTime::create(0.3f), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block),CCDelayTime::create(0.75f), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::newCleanOneBlock),(void*)block), NULL));
         }
     }
-    else {
-        if (isInFeverTime == true) {
-            exObj->setBlockType(1);
+}
+
+// For new instance of Clean Hyper Block C with scale animation
+
+void TakasuPoppo::scaleHyperBlockC(CCNode *sender, void* data){
+    TPObjectExtension *exObj = (TPObjectExtension*)data;
+    exObj->getSprite()->runAction(CCScaleTo::create(0.1f, 1.2f));
+}
+
+void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
+    
+    // count the combo to generate hyper block
+    comboCounter += 1;
+    
+    // count the combo for the Fever Time
+    feverCounter += 1;
+    //count the combo for the Gauge Bar
+    gaugeComboCounter += 1;
+    
+    exObj->setBlockType(0);
+    // random an ID and clean all block with this ID
+    exObj->getSprite()->stopAllActions();
+    int a = rand() % 7;
+    exObj->setID(a);
+    int imageId = exObj->getID() + 1;
+    CCImage *poppoC = new CCImage;
+    string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
+    str = "Poppo" + str + "A.png";
+    poppoC->initWithImageFile(str.c_str());
+    CCTexture2D *poppoTexture = new CCTexture2D;
+    poppoTexture->initWithImage(poppoC);
+    CCSprite *poppoSprite = exObj->getSprite();
+    poppoSprite->setTexture(poppoTexture);
+    exObj->setSprite(poppoSprite);
+    
+    CCObject* obj;
+    CCARRAY_FOREACH(colorArray, obj){
+        TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
+        if (block != NULL && block->getID() == exObj->getID() &&
+            block->getID() != 7 && block->getSprite() != NULL) {
+            CCSprite *exSprite = block->getSprite();
+            exSprite->runAction(CCSequence::create(CCDelayTime::create(0.1f), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::newCleanOneBlock),(void*)block), NULL));
         }
-        else {
-            exObj->setBlockType(0);
-        }
-        
-        CCARRAY_FOREACH(colorArray, obj){
-            TPObjectExtension* block = dynamic_cast<TPObjectExtension* >(obj);
-            if (block != NULL && block->getID() == exObj->getID() &&
-                block->getID() != 7 && block->getSprite() != NULL) {
-                TakasuPoppo::cleanOneBlock(block);
-            }
-        }
-        
     }
+}
+
+void TakasuPoppo::newCleanOneBlock(cocos2d::CCNode *sender, void *data){
+    
+    TPObjectExtension *exobj = (TPObjectExtension*)data;
+    switch (exobj->getBlockType()) {
+        case 1:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockA(exobj);
+            break;
+            
+        case 2:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockB(exobj);
+            break;
+            
+        case 3:
+//            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+//                TakasuPoppo::cleanHyperBlockC(exobj);
+            break;
+        case 6:
+            isCleanMB1 = true;
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
+            break;
+        case 7:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
+            isCleanMB2 = true;
+            isExistMB2 = false;
+            
+            break;
+        case 8:
+            isCleanMB3 = true;
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
+            break;
+
+        case 11:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockA(exobj);
+            break;
+        case 12:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockB(exobj);
+            break;
+        case 0:
+            if (isInFeverTime == true) {
+                // in fever time and this block is in currentBlockSet, we clean blocks around like Hyper Block A
+                if (isInCurrentBlockSet(exobj)) {
+                    currentBlockSet->removeObject(exobj);
+                    if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                        TakasuPoppo::cleanHyperBlockA(exobj);
+                    
+                }
+                else {
+                    TakasuPoppo::cleanSprite(exobj);
+                }
+                
+            } else {
+                if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                    TakasuPoppo::cleanSprite(exobj);
+            }
+            
+            break;
+            
+            
+        default:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
+            break;
+    }
+    this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
+    inCleaning = true;
+    this->runAction(CCSequence::create(
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
+                                       CCDelayTime::create(CLEAN_DELAY),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),
+                                       NULL));
+//    this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
+
+    
 }

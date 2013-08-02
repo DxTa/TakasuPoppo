@@ -316,11 +316,13 @@ public:
     void cleanBlockSetNormal(TPBlockSet *blockSet);
     
     bool isValidEx(TPObjectExtension * ex);
-    void randomBlockC(int blockID);
+    void randomBlockC();
     
     void cleanA(TPObjectExtension* exObj);
     void cleanB(TPObjectExtension* exObj);
-    
+    void scaleHyperBlockC(CCNode *sender, void* data);
+    void newCleanOneBlock(CCNode *sender, void* data);
+
     
     int _spcialItemID;
     TPItemObject* _itemObject;

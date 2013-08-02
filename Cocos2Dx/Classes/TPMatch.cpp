@@ -672,7 +672,7 @@ void TakasuPoppo::smartGeneration() {
         
     }
     if(hyperBlockC){
-        randomBlockC(7);
+        randomBlockC();
     }
     controlable = true;
     return;
@@ -691,29 +691,18 @@ bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {
     return true;
 }
 
-void TakasuPoppo::randomBlockC(int blockID)
+void TakasuPoppo::randomBlockC()
 {
-    blockID = rand() % blockID;
-    int countC = 0;
-    CCArray *arrayBlockC = new CCArray;
-    CCObject *obj;
+    CCObject* obj = new CCObject;
     CCARRAY_FOREACH(colorArray, obj){
-        TPObjectExtension* ex = dynamic_cast<TPObjectExtension*>(obj);
-        if(ex->getBlockType() == 0 && ex->getID() == blockID && blockID != 7)
-        {
-            arrayBlockC->addObject(ex);
-            countC = countC + 1;
+        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
+        if (exObj->getBlockType() == 0 && (rand() % 60) == 0 && exObj->getSprite() != NULL) {
+            makeBlockToBeHBC(exObj);
+            hyperBlockC = false;
+            break;
         }
     }
-    if(countC != 0 && hyperBlockC)
-    {
-        TPObjectExtension* ex = dynamic_cast<TPObjectExtension*>(arrayBlockC->objectAtIndex(rand()%countC));
-        makeBlockToBeHBC(ex);
-        hyperBlockC =false;
-        //comboCounter = 0;
-        
-    }
-    //arrayBlockC->autorelease();
+
 }
 
 void TakasuPoppo::makeBlockToBeMB1(TPObjectExtension *exObj){
