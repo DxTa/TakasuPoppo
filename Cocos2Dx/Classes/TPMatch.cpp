@@ -59,8 +59,6 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, NULL, NULL,
                                                               "TrioHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 4) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -74,8 +72,6 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, NULL,
                                                               "QuadHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 5) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -91,8 +87,6 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL,
                                                               "PentaHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 6) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -110,8 +104,6 @@ void TakasuPoppo::matchList() {
                                                               exObj6, NULL,
                                                               "HexHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 7) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -131,8 +123,6 @@ void TakasuPoppo::matchList() {
                                                               exObj6, exObj7,
                                                               "HeptaHor", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                 }
             }
@@ -163,8 +153,6 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, NULL, NULL,
                                                               "TrioVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 4) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -178,8 +166,6 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, NULL,
                                                               "QuadVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 5) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -195,8 +181,6 @@ void TakasuPoppo::matchList() {
                                                               NULL, NULL, 
                                                        "PentaVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 6) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -214,8 +198,6 @@ void TakasuPoppo::matchList() {
                                                               exObj6, NULL,
                                                               "HexVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                     if (match->count() == 7) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -235,8 +217,6 @@ void TakasuPoppo::matchList() {
                                                               exObj6, exObj7,
                                                               "HeptaVer", exObj->getCoordination().x, exObj->getCoordination().y);
                         if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
-                        if (comboTimer <= 0) comboTimer = 5 * increaseComboTimes;
-                        //                        if (comboTimer > 0) comboCounter += 1;
                     }
                 }
             }
@@ -811,9 +791,6 @@ void TakasuPoppo::generateBlocksAfterCleanMB1() {
             this->addChild(randomTileSprite, 3, 300 + m_gid);
         }
     }
-    // i dont want HBB or HBC be created after i generate Blocks
-//    comboCounter = 0;
-//    gaugeComboCounter = 0;
     
     isCleanMB1 = false;
 }

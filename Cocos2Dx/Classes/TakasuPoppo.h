@@ -7,7 +7,7 @@
 
 #define FONT_SIZE 30
 
-#define COMBO_MAXCOUNT 8
+#define HBC_COMBO_MAXCOUNT 8
 #define COMBO_TIME
 
 #define HINT_TIME 5
@@ -68,8 +68,8 @@ private:
     float moveCounter;              //Counter time for move swipe action
     float fallCounter;              //Counter time for falling counter action
     
-    float comboTimer = 0;           //Timer for combos
-    int comboCounter = 0;           //Counter for combos
+    float hbcComboTimer = 0;           //Timer for combos
+    int hbcComboCounter = 0;           //Counter for combos
     
     float deltaTime;                //Public variable for delta time
     
@@ -348,10 +348,17 @@ public:
     int doubleScoreStartTime;
     void makeBlockToBeMB3(TPObjectExtension* exObj);
     
-    // reWrite the init function
+    //Vinhnt - reWrite the init function
     virtual bool init(TPItemObject* itemObject);
     static TakasuPoppo* create(TPItemObject* itemObject);
     static CCScene* scene(TPItemObject* itemObject);
+    
+    // Vinhnt - for the really combo
+    float ComboTimer = 0;           //Timer for combos
+    int ComboCounter = 0;           //Counter for combos
+    
+    //Vinhnt - plus combo just in 1 function
+    void plusAllComboCounter();
     
     //ITEM function
     bool lastScore();

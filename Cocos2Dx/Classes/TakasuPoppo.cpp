@@ -56,13 +56,13 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     debugTilesArray = new CCArray;
     TakasuPoppo::setupDebugButton();
     
-    sprintf(comboCounterString, "Combo: %i", comboCounter);
+    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
     comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
     comboCounterLabel->setZOrder(15);
     comboCounterLabel->setColor(ccc3(225, 225, 225));
     comboCounterLabel->setPosition(ccp(80, 850));
     
-    sprintf(comboTimerString, "Timer: %f", comboTimer);
+    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
     comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
     comboTimerLabel->setZOrder(15);
     comboTimerLabel->setColor(ccc3(225, 225, 225));
@@ -214,29 +214,39 @@ void TakasuPoppo::update(float dt) {
     deltaTime = dt;
     
     //================== Combo related updates ======================
-    sprintf(comboCounterString, "Combo: %i", comboCounter);
+    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
     comboCounterLabel->setString(comboCounterString);
     
-    sprintf(comboTimerString, "Timer: %f", comboTimer);
+    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
     comboTimerLabel->setString(comboTimerString);
     
     
-    if (comboTimer > 0) {
-        comboTimer -= dt;
+    if (hbcComboTimer > 0) {
+        hbcComboTimer -= dt;
     }
-    if (comboTimer < 0) {
-        comboTimer = 0;
-        comboCounter = 0;
-        
-        //Reset bools here
-        existHyperBlockA = false;
-        existHyperBlockB = false;
-        existHyperBlockC = false;
+    if (hbcComboTimer < 0) {
+        hbcComboTimer = 0;
+        hbcComboCounter = 0;
     }
-    if (comboCounter >= COMBO_MAXCOUNT) {
+    if (hbcComboCounter >= HBC_COMBO_MAXCOUNT) {
         hyperBlockC =true;
-        comboCounter = comboCounter % COMBO_MAXCOUNT;
+        hbcComboCounter = hbcComboCounter % HBC_COMBO_MAXCOUNT;
     }
+    //===============================================================
+    
+    
+    //=================== Really Combo updates ======================
+    // ComboTimer is set to 3 if ComboCounter + 1 (user hit score)
+    if (ComboTimer > 0) {
+        ComboTimer -= dt;
+    }
+    if (ComboTimer < 0) {
+        ComboTimer = 0;
+        ComboCounter = 0;
+    }
+    CCLog("ComboTimer: %f", ComboTimer);
+    CCLog("ComboCounter: %d", ComboCounter);
+
     //===============================================================
     
     

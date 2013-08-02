@@ -21,14 +21,9 @@ void TakasuPoppo::cleanBlocks() {
             hintCounter = 3;
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
             
+            TakasuPoppo::plusAllComboCounter();
             // update current block set
             currentBlockSet = blockSet->getBlocksArray();
-            
-            // count the combo to generate hyper block
-            comboCounter += 1;
-            
-            // count the combo for the Fever Time
-            feverCounter += 1;
             
             //===============================
             if(blockSet->getEx3() != NULL)
@@ -47,9 +42,6 @@ void TakasuPoppo::cleanBlocks() {
                 hyperA = false;
                 hyperB = true;
             }
-            
-            //count the combo for the Gauge Bar
-            gaugeComboCounter += 1;
             
             if (isValidEx(blockSet->getEx1())){
                 TakasuPoppo::cleanOneBlock(blockSet->getEx1());
@@ -101,7 +93,7 @@ void TakasuPoppo::cleanBlocks() {
                 makeBlockToBeHBB(checkSwipe(blockSet));
             }
             else if(hyperB)
-                makeBlockToBeHBA(blockSet->getEx2());
+                makeBlockToBeHBB(blockSet->getEx2());
             else {
                 TakasuPoppo::cleanOneBlock(checkSwipe(blockSet));
             }
@@ -183,15 +175,7 @@ void TakasuPoppo::cleanHyperBlockA(TPObjectExtension* exObj){
     
     // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
     if (isInCurrentBlockSet(exObj)  == false) {
-        // count the combo to generate hyper block
-        comboCounter += 1;
-        
-        // count the combo for the Fever Time
-        feverCounter += 1;
-        
-        //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
-
+        TakasuPoppo::plusAllComboCounter();
     }
     
     CCPoint aPoint = exObj->getCoordination();
@@ -269,15 +253,9 @@ void TakasuPoppo::cleanHyperBlockB(TPObjectExtension* exObj) {
     int y = exObj->getCoordination().y;
         
     if (isInCurrentBlockSet(exObj) == false) {
-        // count the combo to generate hyper block
-        comboCounter += 1;
         
-        // count the combo for the Fever Time
-        feverCounter += 1;
+        TakasuPoppo::plusAllComboCounter();
         
-        //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
-
         exObj->setBlockType(0);
         for (int i = 0; i < 7; i++) {
             TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
@@ -513,13 +491,7 @@ void TakasuPoppo::cleanA(TPObjectExtension* exObj){
     
     // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
     if (isInCurrentBlockSet(exObj)  == false) {
-        // count the combo to generate hyper block
-        comboCounter += 1;
-        
-        // count the combo for the Fever Time
-        feverCounter += 1;
-        //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
+            TakasuPoppo::plusAllComboCounter();
     }
     
     CCPoint aPoint = exObj->getCoordination();
@@ -592,25 +564,18 @@ void TakasuPoppo::cleanB(TPObjectExtension* exObj) {
     
     int x = exObj->getCoordination().x;
     int y = exObj->getCoordination().y;
-            // count the combo to generate hyper block
-        comboCounter += 1;
-        
-        // count the combo for the Fever Time
-        feverCounter += 1;
-        
-        //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
-        
-        //exObj->setBlockType(0);
-        for (int i = 6; i >= 0 ; i--) {
-            TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
-            if (i != y && block1->getSprite() != NULL && block1->getID() != 7 && block1->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block1);
     
-            TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
-            if (i!=x && block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block2);
-            
-        }
- 
+    TakasuPoppo::plusAllComboCounter();
+    
+    for (int i = 6; i >= 0 ; i--) {
+        TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
+        if (i != y && block1->getSprite() != NULL && block1->getID() != 7 && block1->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block1);
+
+        TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
+        if (i!=x && block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < 10) TakasuPoppo::cleanOneBlock(block2);
+        
+    }
+
 }
 
 //==============================clean Block ===========
@@ -619,15 +584,8 @@ void TakasuPoppo::cleanHyperBlockA(CCNode* sender, void* data){
     // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
     TPObjectExtension* exObj = (TPObjectExtension*)data;
     if (isInCurrentBlockSet(exObj)  == false) {
-        // count the combo to generate hyper block
-        comboCounter += 1;
         
-        // count the combo for the Fever Time
-        feverCounter += 1;
-        
-        //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
-        
+        TakasuPoppo::plusAllComboCounter();
     }
     
     CCPoint aPoint = exObj->getCoordination();
@@ -706,14 +664,8 @@ void TakasuPoppo::cleanHyperBlockB(CCNode* sender, void* data) {
     int y = exObj->getCoordination().y;
     
     if (isInCurrentBlockSet(exObj) == false) {
-        // count the combo to generate hyper block
-        comboCounter += 1;
         
-        // count the combo for the Fever Time
-        feverCounter += 1;
-        
-        //count the combo for the Gauge Bar
-        gaugeComboCounter += 1;
+        TakasuPoppo::plusAllComboCounter();
         
         exObj->setBlockType(0);
         for (int i = 0; i < 7; i++) {
@@ -751,13 +703,7 @@ void TakasuPoppo::cleanHyperBlockB(CCNode* sender, void* data) {
 void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
     TPObjectExtension* exObj = (TPObjectExtension*)data;
     
-    // count the combo to generate hyper block
-    comboCounter += 1;
-    
-    // count the combo for the Fever Time
-    feverCounter += 1;
-    //count the combo for the Gauge Bar
-    gaugeComboCounter += 1;
+    TakasuPoppo::plusAllComboCounter();
     
     exObj->setBlockType(0);
     // random an ID and clean all block with this ID
@@ -795,13 +741,7 @@ void TakasuPoppo::scaleHyperBlockC(CCNode *sender, void* data){
 
 void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
     
-    // count the combo to generate hyper block
-    comboCounter += 1;
-    
-    // count the combo for the Fever Time
-    feverCounter += 1;
-    //count the combo for the Gauge Bar
-    gaugeComboCounter += 1;
+    TakasuPoppo::plusAllComboCounter();
     
     exObj->setBlockType(0);
     // random an ID and clean all block with this ID
@@ -909,6 +849,21 @@ void TakasuPoppo::newCleanOneBlock(cocos2d::CCNode *sender, void *data){
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),
                                        NULL));
 //    this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
+}
 
+void TakasuPoppo::plusAllComboCounter(){
+    // count the combo to generate hyper block
+    hbcComboCounter += 1;
+    if (hbcComboTimer <= 0) hbcComboTimer = 5 * increaseComboTimes;
+
+    // count the combo for the Fever Time
+    feverCounter += 1;
+    
+    //count the combo for the Gauge Bar
+    gaugeComboCounter += 1;
+    
+    // count the really combo
+    ComboCounter += 1;
+    if (ComboTimer != 3) ComboTimer = 3;
     
 }
