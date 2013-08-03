@@ -22,7 +22,7 @@ bool TakasuPoppo::lastScore()
         
         if(t==2){
             timeBonus = 0;
-            if(exObj != NULL && exObj->getSprite() && exObj->getSprite() != NULL && (exObj->getBlockType() == 1 || exObj->getBlockType() == 11))
+            if(exObj != NULL && exObj->getSprite() && exObj->getSprite() != NULL && (exObj->getBlockType() == HBA_BLOCK_TYPE || exObj->getBlockType() == MOVED_HBA_BLOCK_TYPE))
             {
                 this->getParent()->runAction(CCSequence::create(
                                                                 CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::cleanHyperBlockA),(void*)exObj),
@@ -31,7 +31,7 @@ bool TakasuPoppo::lastScore()
                 return false;
             }
             if(exObj != NULL && exObj->getSprite() && exObj->getSprite() != NULL &&
-               (exObj->getBlockType() == 2 || exObj->getBlockType() == 12))
+               (exObj->getBlockType() == HBB_BLOCK_TYPE || exObj->getBlockType() == MOVED_HBB_BLOCK_TYPE))
             {
                 this->getParent()->runAction(CCSequence::create(
                                                                 CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::cleanHyperBlockB),(void*)exObj),
@@ -39,7 +39,7 @@ bool TakasuPoppo::lastScore()
                                                                 NULL));
                 return false;
             }
-            if(exObj != NULL && exObj->getSprite() && exObj->getSprite() != NULL && exObj->getBlockType() == 3)
+            if(exObj != NULL && exObj->getSprite() && exObj->getSprite() != NULL && exObj->getBlockType() == HBC_BLOCK_TYPE)
             {
                 this->getParent()->runAction(CCSequence::create(
                                                                 CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::cleanHyperBlockC),(void*)exObj),
@@ -47,7 +47,7 @@ bool TakasuPoppo::lastScore()
                                                                 NULL));
                 return false;
             }
-            if (exObj->getGid() == 49 && exObj->getBlockType() == 0 && gameTimer < 0) {
+            if (exObj->getGid() == 49 && exObj->getBlockType() == NORMAL_BLOCK_TYPE && gameTimer < 0) {
                 endLastScore = true;
                 this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
                 return true;
@@ -83,15 +83,15 @@ void TakasuPoppo::createMapWithHyperBlock()
         gidC = rand() % 49;
     }
     TPObjectExtension* exA = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(gidA));
-    if(exA != NULL && exA->getSprite() && exA->getSprite() != NULL && exA->getID() != 7 && exA->getBlockType() == 0)
+    if(exA != NULL && exA->getSprite() && exA->getSprite() != NULL && exA->getID() != 7 && exA->getBlockType() == NORMAL_BLOCK_TYPE)
         makeBlockToBeHBA(exA);
     
     TPObjectExtension* exB = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(gidB));
-    if(exB != NULL && exB->getSprite() && exB->getSprite() != NULL && exB->getID() != 7 && exB->getBlockType() == 0)
+    if(exB != NULL && exB->getSprite() && exB->getSprite() != NULL && exB->getID() != 7 && exB->getBlockType() == NORMAL_BLOCK_TYPE)
         makeBlockToBeHBB(exB);
 
     TPObjectExtension* exC = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(gidC));
-    if(exC != NULL && exC->getSprite() && exC->getSprite() != NULL && exC->getID() != 7 && exC->getBlockType() == 0)
+    if(exC != NULL && exC->getSprite() && exC->getSprite() != NULL && exC->getID() != 7 && exC->getBlockType() == NORMAL_BLOCK_TYPE)
         makeBlockToBeHBC(exC);
 }
 

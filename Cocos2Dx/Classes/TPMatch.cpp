@@ -676,7 +676,7 @@ void TakasuPoppo::randomBlockC()
     CCObject* obj = new CCObject;
     CCARRAY_FOREACH(colorArray, obj){
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
-        if (exObj->getBlockType() == 0 && (rand() % 60) == 0 && exObj->getSprite() != NULL) {
+        if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % 60) == 0 && exObj->getSprite() != NULL) {
             makeBlockToBeHBC(exObj);
             hyperBlockC = false;
             break;
@@ -686,7 +686,7 @@ void TakasuPoppo::randomBlockC()
 }
 
 void TakasuPoppo::makeBlockToBeMB1(TPObjectExtension *exObj){
-    exObj->setBlockType(6);
+    exObj->setBlockType(MB1_BLOCK_TYPE);
     // change controlable
     exObj->setControlTrigger(true);
     if(exObj->getID() != 7)
@@ -706,7 +706,7 @@ void TakasuPoppo::makeBlockToBeMB1(TPObjectExtension *exObj){
 }
 
 void TakasuPoppo::makeBlockToBeMB2(TPObjectExtension *exObj){
-    exObj->setBlockType(7);
+    exObj->setBlockType(MB2_BLOCK_TYPE);
     exObj->setControlTrigger(true);
     if(exObj->getID() != 7)
     {
@@ -725,7 +725,7 @@ void TakasuPoppo::makeBlockToBeMB2(TPObjectExtension *exObj){
 }
 
 void TakasuPoppo::makeBlockToBeMB3(TPObjectExtension *exObj){
-    exObj->setBlockType(8);
+    exObj->setBlockType(MB3_BLOCK_TYPE);
     exObj->setControlTrigger(true);
     if(exObj->getID() != 7)
     {

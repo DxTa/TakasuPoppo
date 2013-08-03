@@ -67,21 +67,20 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
             this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), MOVE_DELAY);
             TakasuPoppo::checkPosition();
             if(TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true){
-                if(swpObj->getBlockType() == 0)
-                    swpObj->setBlockType(10);
-                if(swpObj->getBlockType() == 1)
-                    swpObj->setBlockType(11);
-                if(swpObj->getBlockType() == 2)
-                    swpObj->setBlockType(12);
+                if(swpObj->getBlockType() == NORMAL_BLOCK_TYPE)
+                    swpObj->setBlockType(MOVED_NORMAL_BLOCK_TYPE);
+                if(swpObj->getBlockType() == HBA_BLOCK_TYPE)
+                    swpObj->setBlockType(MOVED_HBA_BLOCK_TYPE);
+                if(swpObj->getBlockType() == HBB_BLOCK_TYPE)
+                    swpObj->setBlockType(MOVED_HBB_BLOCK_TYPE);
             }
             if(TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true){
-                //if(exObj->getBlockType() == 3) cleanHyperBlockC(exObj);
-                if(exObj->getBlockType() == 0)
-                    exObj->setBlockType(10);
-                if(exObj->getBlockType() == 1)
-                    exObj->setBlockType(11);
-                if(exObj->getBlockType() == 2)
-                    exObj->setBlockType(12);
+                if(exObj->getBlockType() == NORMAL_BLOCK_TYPE)
+                    exObj->setBlockType(MOVED_NORMAL_BLOCK_TYPE);
+                if(exObj->getBlockType() == HBA_BLOCK_TYPE)
+                    exObj->setBlockType(MOVED_HBA_BLOCK_TYPE);
+                if(exObj->getBlockType() == HBB_BLOCK_TYPE)
+                    exObj->setBlockType(MOVED_HBB_BLOCK_TYPE);
                 
                 
             }
@@ -176,12 +175,12 @@ void TakasuPoppo::checkPosition() {
 }
 
 TPObjectExtension* TakasuPoppo::checkSwipe(TPBlockSet *blockSet){
-    if (blockSet->getEx1() != NULL && blockSet->getEx1()->getBlockType() >= 10) return blockSet->getEx1();
-    if (blockSet->getEx2() != NULL && blockSet->getEx2()->getBlockType() >= 10) return blockSet->getEx2();
-    if (blockSet->getEx3() != NULL && blockSet->getEx3()->getBlockType() >= 10) return blockSet->getEx3();
-    if (blockSet->getEx4() != NULL && blockSet->getEx4()->getBlockType() >= 10) return blockSet->getEx4();
-    if (blockSet->getEx5() != NULL && blockSet->getEx5()->getBlockType() >= 10) return blockSet->getEx5();
-    if (blockSet->getEx6() != NULL && blockSet->getEx6()->getBlockType() >= 10) return blockSet->getEx6();
-    if (blockSet->getEx7() != NULL && blockSet->getEx7()->getBlockType() >= 10) return blockSet->getEx7();
+    if (blockSet->getEx1() != NULL && blockSet->getEx1()->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE) return blockSet->getEx1();
+    if (blockSet->getEx2() != NULL && blockSet->getEx2()->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE) return blockSet->getEx2();
+    if (blockSet->getEx3() != NULL && blockSet->getEx3()->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE) return blockSet->getEx3();
+    if (blockSet->getEx4() != NULL && blockSet->getEx4()->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE) return blockSet->getEx4();
+    if (blockSet->getEx5() != NULL && blockSet->getEx5()->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE) return blockSet->getEx5();
+    if (blockSet->getEx6() != NULL && blockSet->getEx6()->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE) return blockSet->getEx6();
+    if (blockSet->getEx7() != NULL && blockSet->getEx7()->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE) return blockSet->getEx7();
     return blockSet->getEx2();
 }

@@ -30,7 +30,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                 pickedArray->addObject(exObject);
                 spriteContained = true;
                 if(exObject != NULL)
-                    if(exObject->getID() != 7 && exObject->getBlockType() == 3 && exObject->getSprite() && exObject->getSprite() != NULL)
+                    if(exObject->getID() != 7 && exObject->getBlockType() == HBC_BLOCK_TYPE && exObject->getSprite() && exObject->getSprite() != NULL)
                     {
 
                         TakasuPoppo::cleanHyperBlockC(exObject);

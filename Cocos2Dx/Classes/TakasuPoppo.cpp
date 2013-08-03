@@ -339,28 +339,20 @@ void TakasuPoppo::update(float dt) {
     
     if (isInFeverTime == true) {
         feverTimeLimit -= dt;
-
- //       CCLog("It is in ferver time now");
-
         if (feverTimeLimit < 0) {
             isInFeverTime = false;
             feverTimeLimit = 0;
-            
-  //          CCLog("It is not in fever Time");
-
         }
         
-        
     }
-
-//    CCLog("Fever Counter: %i", feverCounter);
-//    CCLog("Fever Timer: %f", feverTimer);
     //================================================================
 
+    
     //========================SCORE UPDATE ===========================
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
     lbScore->setString(str.c_str());
     //================================================================
+    
     
     //======================== Item Object ===========================
     switch (_spcialItemID) {
@@ -537,19 +529,19 @@ void TakasuPoppo::timeCounter() {
     }
 
     //====================== Gauge Bar updates =======================
-    if (gaugeComboCounter >= 0 && gaugeComboCounter <= 10) {
-        comboBar->setPercentage(gaugeComboCounter * 10);
+    if (gaugeComboCounter >= 0 && gaugeComboCounter <= GAUGE_COMBO_REQUIRED) {
+        comboBar->setPercentage(gaugeComboCounter * 100/GAUGE_COMBO_REQUIRED);
     }
 
     
-    if (gaugeComboCounter >= 10) {
+    if (gaugeComboCounter >= GAUGE_COMBO_REQUIRED) {
         isCreateGaugeCombo = true;
         
     }
     
-    if (gaugeComboCounter >= 10) {
+    if (gaugeComboCounter >= GAUGE_COMBO_REQUIRED) {
         comboBar->setPercentage(0);
-        gaugeComboCounter = gaugeComboCounter % 10;
+        gaugeComboCounter = gaugeComboCounter % GAUGE_COMBO_REQUIRED;
     }
     
     //================================================================

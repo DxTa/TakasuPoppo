@@ -1067,6 +1067,7 @@
 		DC12FEE51744D30B00480D31 /* CCDataVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDataVisitor.h; sourceTree = "<group>"; };
 		DC12FEE61744D31F00480D31 /* CCDataVisitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCDataVisitor.cpp; sourceTree = "<group>"; };
 		DC12FEE81744D3A300480D31 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		DE0606E717ABB51800191B1B /* TPDefinition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPDefinition.h; sourceTree = "<group>"; };
 		DE0F00AA17A8BDF500F7ECCC /* Poppo1HyperA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo1HyperA.png; sourceTree = "<group>"; };
 		DE0F00AB17A8BDF500F7ECCC /* Poppo1HyperB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo1HyperB.png; sourceTree = "<group>"; };
 		DE0F00AC17A8BDF500F7ECCC /* Poppo1Mission1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo1Mission1.png; sourceTree = "<group>"; };
@@ -2460,6 +2461,7 @@
 				DC12FEDB1744D22E00480D31 /* AppDelegate.cpp */,
 				DC12FEDD1744D22E00480D31 /* TakasuPoppo.h */,
 				DC12FEDE1744D22E00480D31 /* TakasuPoppo.cpp */,
+				DE0606E717ABB51800191B1B /* TPDefinition.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

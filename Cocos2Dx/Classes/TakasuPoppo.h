@@ -5,25 +5,6 @@
 #ifndef __TAKASUPOPPO_H__
 #define __TAKASUPOPPO_H__
 
-#define FONT_SIZE 30
-
-#define HBC_COMBO_MAXCOUNT 8
-#define COMBO_TIME
-
-#define HINT_TIME 5
-#define FALL_TIME 0.1
-#define MOVE_TIME 0.1
-#define SWAP_TIME 0.11
-
-#define GENERATION_DELAY 0.05
-#define CLEAN_DELAY 0.05
-#define LOGIC_DELAY 0.05
-#define MOVE_DELAY 0.05
-
-#define FEVER_COMBO_REQUIRED 5
-#define FEVER_TIME_REQUIRED 3
-
-#define DOUBLE_SCORE_TIME 20
 
 #include "cocos2d.h"
 #include "TPObjectExtension.h"
@@ -31,6 +12,7 @@
 #include "CCGestureRecognizer.h"
 #include "CCSwipeGestureRecognizer.h"
 #include "TPItemObject.h"
+#include "TPDefinition.h"
 
 USING_NS_CC;
 class TakasuPoppo : public cocos2d::CCLayer {
@@ -194,9 +176,6 @@ public:
     void generateRandomBlock(TPObjectExtension *exObj);
     //Generate a certain sprite on EX Object
     void generateBlock(TPObjectExtension *exObj1, int type);
-    
-    //Generate a Hyper Block A
-    void generateHyperBlockA(TPObjectExtension *exObj);
     
     //Returns a coordination for position
     CCPoint tileCoorForPosition(CCPoint position);
