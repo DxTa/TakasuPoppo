@@ -44,7 +44,7 @@ void TakasuPoppo::matchList() {
             CCObject *object = colorArray->objectAtIndex(gidToIndex);
             TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
             match->addObject(exObj);
-            if (exObj->getCoordination().x == coor.x &&
+            if (exObj != NULL && exObj->getCoordination().x == coor.x &&
                 exObj->getCoordination().y == coor.y) {
                 if (TakasuPoppo::getMatchHor(exObj)->count() >= 2) {
                     match->addObjectsFromArray(TakasuPoppo::getMatchHor(exObj));
@@ -490,14 +490,12 @@ bool TakasuPoppo::matchAble(CCPoint coor, int type) {
  */
 
 void TakasuPoppo::smartGeneration() {
-
     CCObject *object;
     int randomGID = rand() % 3;
     int randomTrace = rand() % 2;
     int i = 0;
-    //    CCLog("randomGID: %i", randomGID);
     if (randomTrace > 0) {
-        CCARRAY_FOREACH(colorArray, object) {
+        CCARRAY_FOREACH_REVERSE(colorArray, object) {
             TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
             if (exObj->getID() == 7) {
                 i ++;
@@ -674,6 +672,21 @@ void TakasuPoppo::smartGeneration() {
     if(hyperBlockC){
         randomBlockC();
     }
+    
+    if(checkMoveto == 2){
+        CCObject *obj;
+        CCARRAY_FOREACH(colorArray, obj)
+        {
+            TPObjectExtension* ex = dynamic_cast<TPObjectExtension*>(obj);
+            if(ex != NULL && ex->getID() != 7 && ex->getSprite() && ex->getSprite() != NULL)
+            {
+                //ex->getSprite()->setPosition(ex->getPosition());
+            }
+        }
+        checkMoveto = false;
+        CCLOG( "ffffffffffffffffffffffff");
+        checkMoveto = 0;
+    }
     controlable = true;
     return;
 }
@@ -696,7 +709,7 @@ void TakasuPoppo::randomBlockC()
     CCObject* obj = new CCObject;
     CCARRAY_FOREACH(colorArray, obj){
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
-        if (exObj->getBlockType() == 0 && (rand() % 60) == 0 && exObj->getSprite() != NULL) {
+        if (exObj != NULL && exObj->getBlockType() == 0 && (rand() % 60) == 0 && exObj->getSprite() != NULL) {
             makeBlockToBeHBC(exObj);
             hyperBlockC = false;
             break;

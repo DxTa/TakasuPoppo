@@ -58,6 +58,8 @@ private:
     CCArray *colorArray;            //Main blocks array, consist of TPObjectEx, stupidly named
     CCArray *toDestroyArray;        //To be removed blocks will be inserted to this array
     CCArray *pickedArray;           //The array of object to be moved with swipe button, 1 object only
+    TPObjectExtension *mainSprite;
+    
     CCArray *hintArray;             //An array consisting of possible matches
     
     TPObjectExtension *movedSprite; //The sprite to be moved with swipe button
@@ -138,6 +140,10 @@ private:
     bool endLastScore = false;
     bool createThreeeHyper = false;
     float increaseComboTimes = 1;
+    //moveto
+    int checkMoveto = 0;
+    bool move =false;
+    CCPoint mainPoint = CCPoint();
 public:
     
     bool existHyperBlockA = false;          // true if there is a Hyper Block A
@@ -274,9 +280,9 @@ public:
     void switchControlable(TPObjectExtension *exObj);
     
     //Check if swapedSprite and movedSprite are in their position
-    void checkPosition();
+    void checkPosition(TPObjectExtension *exObj, TPObjectExtension *swpObj);
     //Runs and return, for when moving is not possible
-    void swapTilesBack();
+    void swapTilesBack(TPObjectExtension *exObj, TPObjectExtension *swpObj);
     
     TPObjectExtension* checkSwipe(TPBlockSet *blockSet);
     
@@ -362,6 +368,11 @@ public:
     void cleanHyperBlockC(CCNode* sender, void* data);
     void createMapWithHyperBlock();
     void modefiedLastBonus();
+    
+    //
+    void setControl();
+    void deleteMainSprite();
+    void setPositionAgain();
 };
 
 #endif

@@ -212,7 +212,6 @@ void TakasuPoppo::startGame() {
 
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
-    
     //================== Combo related updates ======================
     sprintf(comboCounterString, "Combo: %i", comboCounter);
     comboCounterLabel->setString(comboCounterString);
@@ -257,41 +256,77 @@ void TakasuPoppo::update(float dt) {
     //=================== Swipe related updates ======================
     if (controlable) {
         if (swipeRight) {
-            CCObject *object = NULL;
-            CCARRAY_FOREACH(pickedArray, object) {
-                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-                TakasuPoppo::swipedRight(exObject);
-                swipeRight = false;
-                pickedArray->removeObject(object);
-            }
+            TPObjectExtension* exd = mainSprite;
+
+//            CCARRAY_FOREACH(pickedArray, object) {
+//                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
+//                TakasuPoppo::swipedRight(exObject);
+//                swipeRight = false;
+//                //pickedArray->removeObject(object);
+//            }
+            TakasuPoppo::swipedRight(exd);
+            swipeRight = false;
+            mainSprite = NULL;
+            swipeLeft = false;
+            swipeUp = false;
+            swipeDown = false;
+            exd->release();
+
         }
         if (swipeLeft) {
-            CCObject *object = NULL;
-            CCARRAY_FOREACH(pickedArray, object) {
-                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-                TakasuPoppo::swipedLeft(exObject);
-                swipeLeft = false;
-                pickedArray->removeObject(object);
-            }
+            TPObjectExtension* exd = mainSprite;
+
+//            CCObject *object = NULL;
+//            CCARRAY_FOREACH(pickedArray, object) {
+//                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
+//                TakasuPoppo::swipedLeft(exObject);
+//                swipeLeft = false;
+//                pickedArray->removeObject(object);
+//            }
+            TakasuPoppo::swipedLeft(exd);
+            swipeRight = false;
+            mainSprite = NULL;
+            swipeLeft = false;
+            swipeUp = false;
+            swipeDown = false;
+            exd->release();
+
         }
         if (swipeUp) {
-            CCObject *object = NULL;
-            CCARRAY_FOREACH(pickedArray, object) {
-                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-                TakasuPoppo::swipedUp(exObject);
-                swipeUp = false;
-                pickedArray->removeObject(object);
-            }
-            
+            TPObjectExtension* exd = mainSprite;
+
+//            CCObject *object = NULL;
+//            CCARRAY_FOREACH(pickedArray, object) {
+//                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
+//                TakasuPoppo::swipedUp(exObject);
+//                swipeUp = false;
+//                pickedArray->removeObject(object);
+//            }
+//
+            TakasuPoppo::swipedUp(exd);
+            swipeRight = false;
+            mainSprite = NULL;
+            swipeLeft = false;
+            swipeUp = false;
+            swipeDown = false;
+            exd->release();
         }
         if (swipeDown) {
-            CCObject *object = NULL;
-            CCARRAY_FOREACH(pickedArray, object) {
-                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-                TakasuPoppo::swipedDown(exObject);
-                swipeDown = false;
-                pickedArray->removeObject(object);
-            }
+            TPObjectExtension* exd = mainSprite;
+//            CCARRAY_FOREACH(pickedArray, object) {
+//                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
+//                TakasuPoppo::swipedDown(exObject);
+//                swipeDown = false;
+//                pickedArray->removeObject(object);
+//            }
+            
+            TakasuPoppo::swipedDown(exd);
+            swipeRight = false;
+            mainSprite = NULL;
+            swipeLeft = false;
+            swipeUp = false;
+            swipeDown = false;
+            exd->release();
         }
     }
     //================================================================
@@ -421,11 +456,13 @@ void TakasuPoppo::update(float dt) {
 }
 
 void TakasuPoppo::fixedUpdate(float time) {
+    checkMoveto = true;
+    checkMoveto ++;
     TakasuPoppo::matchList();
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+        this->setTouchEnabled(false);
         this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
-        
     }
     
 }
@@ -471,6 +508,7 @@ void TakasuPoppo::logicExecution() {
                                        CCDelayTime::create(CLEAN_DELAY),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        NULL));
     this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
     this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), LOGIC_DELAY);

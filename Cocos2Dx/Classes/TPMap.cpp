@@ -88,6 +88,8 @@ void TakasuPoppo::checkEmpty() {
 }
 
 void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj) {
+    checkMoveto =true;
+
     char tileName[7][20];
     strcpy(tileName[0], "Poppo1A");
     strcpy(tileName[1], "Poppo2A");

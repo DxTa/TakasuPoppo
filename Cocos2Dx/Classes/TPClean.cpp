@@ -118,6 +118,7 @@ void TakasuPoppo::afterClean() {
     CCARRAY_FOREACH_REVERSE(colorArray, object) {
         TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
         if (exObj->getID() == 7 && exObj->getCoordination().y != 0) {
+
             CCObject *object2;
             CCARRAY_FOREACH_REVERSE(colorArray, object2) {
                 TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(object2);
@@ -140,6 +141,24 @@ void TakasuPoppo::afterClean() {
             }
         }
     }
+//
+//    for (int i = 0; i <= 48; i++) {
+//
+//        TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(i));
+//        if (exObj->getID() == 7 && exObj->getCoordination().y >=6) {
+//            
+//            CCObject *object2;
+//            TPObjectExtension* ex = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(exObj->getGid()- 8));
+//            if(ex != NULL && ex->getID() != 7 && ex->getSprite() != NULL)
+//            {
+//                ex->getSprite()->runAction(CCMoveTo::create(0.01, exObj->getPosition()));
+//                i=0;
+//                ex->setControlTrigger(true);
+//            }
+//            
+//        }exObj->setControlTrigger(true);
+//    }
+
 }
 
 void TakasuPoppo::changeID(CCNode *sender, void* data) {
@@ -151,13 +170,13 @@ void TakasuPoppo::changeID(CCNode *sender, void* data) {
 }
 
 void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
+    //checkMoveto =true;
     score =score + (int)(increasedScore * ONE_BLOCK *doubleScore);
     CCSprite *exSprite = exObj->getSprite();
     if (exSprite != NULL) {
-        exSprite->runAction(CCSequence::create(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID),(void*)exObj),CCDelayTime::create(CLEAN_DELAY),
-                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation),
-                                                                    (void*)exObj),
-                                               CCRemoveSelf::create(), NULL));
+        exSprite->runAction(CCSequence::create(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation),
+                                                                    (void*)exObj),CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID),(void*)exObj),CCDelayTime::create(CLEAN_DELAY),
+                                                            CCRemoveSelf::create(), NULL));
         
 
     }
@@ -790,7 +809,8 @@ void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
 
 void TakasuPoppo::scaleHyperBlockC(CCNode *sender, void* data){
     TPObjectExtension *exObj = (TPObjectExtension*)data;
-    exObj->getSprite()->runAction(CCScaleTo::create(0.1f, 1.2f));
+//    if(exObj != NULL && exObj->getSprite() && exObj->getSprite() != NULL)
+//        exObj->getSprite()->runAction(CCScaleTo::create(0.1f, 1.2f));
 }
 
 void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){

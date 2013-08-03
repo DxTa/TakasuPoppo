@@ -49,7 +49,7 @@ bool TakasuPoppo::lastScore()
             }
             if (exObj->getGid() == 49 && exObj->getBlockType() == 0 && gameTimer < 0) {
                 endLastScore = true;
-                this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+                //this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
                 return true;
             }
             

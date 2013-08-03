@@ -18,7 +18,6 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
     
     CCTouch *touch = (CCTouch*)touches->anyObject();
     CCPoint touchLoc = this->getParent()->convertTouchToNodeSpace(touch);
-    
     if (TakasuPoppo::touchPosValidation(touchLoc)) {
         CCPoint point = TakasuPoppo::tileCoorForPosition(touchLoc);
         if (point.x >= 0 || point.x <= 6 ||
@@ -27,18 +26,75 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
             if (exObject->getSprite() != NULL && exObject->getID() != 7) {
                 swipeRecognized = false;
                 startSwipePoint = touchLoc;
-                pickedArray->addObject(exObject);
+                mainSprite = exObject;
+                //pickedArray->addObject(exObject);
                 spriteContained = true;
                 if(exObject != NULL)
                     if(exObject->getID() != 7 && exObject->getBlockType() == 3 && exObject->getSprite() && exObject->getSprite() != NULL)
                     {
-
-                        TakasuPoppo::cleanHyperBlockC(exObject);
+                        cleanHyperBlockC(exObject);
+                        logicExecution();
                     }
+                
             }
+            
+            //============================ move by double click ===============
+//            
+//            if(move){
+//                TPObjectExtension *mainEx = TakasuPoppo::coorToExObj(mainPoint);
+//                CCPoint movePoint;
+//                movePoint.setPoint(point.x, point.y);
+//                if(mainEx->getControlTrigger())
+//                {
+//                    if(movePoint.x == mainPoint.x - 1 && movePoint.y == mainPoint.y && mainPoint.x - 1 >= 0 && mainPoint.x - 1 < 7)
+//                    {
+//                        movedSprite = NULL;
+//                        swapedSprite = NULL;
+//                        move = false;
+//                        swipedLeft(mainEx);
+//                        this->getParent()->runAction(CCDelayTime::create(2));
+//                        goto tt;
+//                    }
+//                    if(movePoint.x == mainPoint.x + 1 && movePoint.y == mainPoint.y && mainPoint.x + 1 >= 0 && mainPoint.x + 1 < 7)
+//                    {
+//                        movedSprite = NULL;
+//                        swapedSprite = NULL;
+//                        move = false;
+//                        swipedRight(mainEx);
+//                        this->getParent()->runAction(CCDelayTime::create(2));
+//                        goto tt;
+//                    }
+//                    if(movePoint.x == mainPoint.x && movePoint.y == mainPoint.y - 1 && mainPoint.y - 1 >= 0 && mainPoint.y - 1 < 7)
+//                    {
+//                        movedSprite = NULL;
+//                        swapedSprite = NULL;
+//                        move = false;
+//                        swipedUp(mainEx);
+//                        this->getParent()->runAction(CCDelayTime::create(2));
+//                        goto tt;
+//                    }
+//                    if(movePoint.x == mainPoint.x && movePoint.y == mainPoint.y + 1 && mainPoint.y + 1 >= 0 && mainPoint.y + 1 < 7)
+//                    {
+//                        movedSprite = NULL;
+//                        swapedSprite = NULL;
+//                        move = false;
+//                        swipedDown(mainEx);
+//                        this->getParent()->runAction(CCDelayTime::create(2));
+//                        goto tt;
+//                    }
+//                    move = true;
+//                    mainPoint.setPoint(point.x, point.y);
+//                }
+//            }
+//            else {
+//                move = true;
+//                mainPoint.setPoint(point.x, point.y);
+//            }
+//            //=================================================================
+            
         }
     }
-    
+tt:
     CCRect buttonRect = buttonSprite->boundingBox();
     CCRect clearRect = removeButton->boundingBox();
     CCRect refreshRect = refreshButton->boundingBox();
@@ -47,6 +103,8 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
     if (refreshRect.containsPoint(touchLoc))
         this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
                                            CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+    
+    
 }
 
 void TakasuPoppo::ccTouchesMoved (CCSet *touches, CCEvent *event) {
@@ -54,6 +112,7 @@ void TakasuPoppo::ccTouchesMoved (CCSet *touches, CCEvent *event) {
     if (spriteContained) {
         CCPoint touchLoc = this->getParent()->convertTouchToNodeSpace(touch);
         movingSwipePoint = touchLoc;
+        CCPoint point = TakasuPoppo::tileCoorForPosition(touchLoc);
         
         if (!swipeRecognized) swiping = true;
         else swiping = false;
@@ -101,7 +160,8 @@ void TakasuPoppo::ccTouchesEnded(CCSet *touches, CCEvent *event) {
         unsigned int m_gid = layer->tileGIDAt(transPoint);
         CCLog("Tile ID at position : %i", m_gid);
     }
-    pickedArray->removeAllObjects();
+    //pickedArray->removeAllObjects();
+    //mainSprite = NULL;
 }
 
 bool TakasuPoppo::touchPosValidation(CCPoint touchLoc) {
@@ -112,5 +172,3 @@ bool TakasuPoppo::touchPosValidation(CCPoint touchLoc) {
         return false;
     else return true;
 }
-
-
