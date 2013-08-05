@@ -23,14 +23,14 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
         if (point.x >= 0 || point.x <= 6 ||
             point.y >= 0 || point.y <= 6) {
             TPObjectExtension *exObject = TakasuPoppo::coorToExObj(TakasuPoppo::tileCoorForPosition(touchLoc));
-            if (exObject->getSprite() != NULL && exObject->getID() != 7) {
+            if (exObject != NULL && exObject->getSprite() != NULL && exObject->getID() != 7) {
                 swipeRecognized = false;
                 startSwipePoint = touchLoc;
                 mainSprite = exObject;
                 //pickedArray->addObject(exObject);
                 spriteContained = true;
                 if(exObject != NULL)
-                    if(exObject->getID() != 7 && exObject->getBlockType() == 3 && exObject->getSprite() && exObject->getSprite() != NULL)
+                    if(exObject->getID() != 7 && exObject->getBlockType() == HBC_BLOCK_TYPE && exObject->getSprite() && exObject->getSprite() != NULL)
                     {
                         cleanHyperBlockC(exObject);
                         logicExecution();
@@ -39,57 +39,65 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
             }
             
             //============================ move by double click ===============
-//            
-//            if(move){
-//                TPObjectExtension *mainEx = TakasuPoppo::coorToExObj(mainPoint);
-//                CCPoint movePoint;
-//                movePoint.setPoint(point.x, point.y);
-//                if(mainEx->getControlTrigger())
-//                {
-//                    if(movePoint.x == mainPoint.x - 1 && movePoint.y == mainPoint.y && mainPoint.x - 1 >= 0 && mainPoint.x - 1 < 7)
-//                    {
-//                        movedSprite = NULL;
-//                        swapedSprite = NULL;
-//                        move = false;
-//                        swipedLeft(mainEx);
-//                        this->getParent()->runAction(CCDelayTime::create(2));
-//                        goto tt;
-//                    }
-//                    if(movePoint.x == mainPoint.x + 1 && movePoint.y == mainPoint.y && mainPoint.x + 1 >= 0 && mainPoint.x + 1 < 7)
-//                    {
-//                        movedSprite = NULL;
-//                        swapedSprite = NULL;
-//                        move = false;
-//                        swipedRight(mainEx);
-//                        this->getParent()->runAction(CCDelayTime::create(2));
-//                        goto tt;
-//                    }
-//                    if(movePoint.x == mainPoint.x && movePoint.y == mainPoint.y - 1 && mainPoint.y - 1 >= 0 && mainPoint.y - 1 < 7)
-//                    {
-//                        movedSprite = NULL;
-//                        swapedSprite = NULL;
-//                        move = false;
-//                        swipedUp(mainEx);
-//                        this->getParent()->runAction(CCDelayTime::create(2));
-//                        goto tt;
-//                    }
-//                    if(movePoint.x == mainPoint.x && movePoint.y == mainPoint.y + 1 && mainPoint.y + 1 >= 0 && mainPoint.y + 1 < 7)
-//                    {
-//                        movedSprite = NULL;
-//                        swapedSprite = NULL;
-//                        move = false;
-//                        swipedDown(mainEx);
-//                        this->getParent()->runAction(CCDelayTime::create(2));
-//                        goto tt;
-//                    }
-//                    move = true;
-//                    mainPoint.setPoint(point.x, point.y);
-//                }
-//            }
-//            else {
-//                move = true;
-//                mainPoint.setPoint(point.x, point.y);
-//            }
+            
+            if(move){
+                TPObjectExtension *mainEx = TakasuPoppo::coorToExObj(mainPoint);
+                CCPoint movePoint;
+                movePoint.setPoint(point.x, point.y);
+                if(mainEx->getControlTrigger())
+                {
+                    if(movePoint.x == mainPoint.x - 1 && movePoint.y == mainPoint.y && mainPoint.x - 1 >= 0 && mainPoint.x - 1 < 7)
+                    {
+                        movedSprite = NULL;
+                        swapedSprite = NULL;
+                        move = false;
+                        swipedLeft(mainEx);
+                        swape = false;
+                        this->getParent()->runAction(CCDelayTime::create(2));
+                        goto tt;
+                    }
+                    if(movePoint.x == mainPoint.x + 1 && movePoint.y == mainPoint.y && mainPoint.x + 1 >= 0 && mainPoint.x + 1 < 7)
+                    {
+                        movedSprite = NULL;
+                        swapedSprite = NULL;
+                        move = false;
+                        swipedRight(mainEx);
+                        swape = false;
+                        this->getParent()->runAction(CCDelayTime::create(2));
+                        goto tt;
+                    }
+                    if(movePoint.x == mainPoint.x && movePoint.y == mainPoint.y - 1 && mainPoint.y - 1 >= 0 && mainPoint.y - 1 < 7)
+                    {
+                        movedSprite = NULL;
+                        swapedSprite = NULL;
+                        move = false;
+                        swipedUp(mainEx);
+                        swape = false;
+
+                        this->getParent()->runAction(CCDelayTime::create(2));
+                        goto tt;
+                    }
+                    if(movePoint.x == mainPoint.x && movePoint.y == mainPoint.y + 1 && mainPoint.y + 1 >= 0 && mainPoint.y + 1 < 7)
+                    {
+                        movedSprite = NULL;
+                        swapedSprite = NULL;
+                        move = false;
+                        swipedDown(mainEx);
+                        swape = false;
+
+                        this->getParent()->runAction(CCDelayTime::create(2));
+                        goto tt;
+                    }
+                    move = true;
+                    swape = true;
+                    mainPoint.setPoint(point.x, point.y);
+                }
+            }
+            else {
+                move = true;
+                swape = true;
+                mainPoint.setPoint(point.x, point.y);
+            }
 //            //=================================================================
             
         }

@@ -56,13 +56,13 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     debugTilesArray = new CCArray;
     TakasuPoppo::setupDebugButton();
     
-    sprintf(comboCounterString, "Combo: %i", comboCounter);
+    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
     comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
     comboCounterLabel->setZOrder(15);
     comboCounterLabel->setColor(ccc3(225, 225, 225));
     comboCounterLabel->setPosition(ccp(80, 850));
     
-    sprintf(comboTimerString, "Timer: %f", comboTimer);
+    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
     comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
     comboTimerLabel->setZOrder(15);
     comboTimerLabel->setColor(ccc3(225, 225, 225));
@@ -213,29 +213,39 @@ void TakasuPoppo::startGame() {
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
     //================== Combo related updates ======================
-    sprintf(comboCounterString, "Combo: %i", comboCounter);
+    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
     comboCounterLabel->setString(comboCounterString);
     
-    sprintf(comboTimerString, "Timer: %f", comboTimer);
+    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
     comboTimerLabel->setString(comboTimerString);
     
     
-    if (comboTimer > 0) {
-        comboTimer -= dt;
+    if (hbcComboTimer > 0) {
+        hbcComboTimer -= dt;
     }
-    if (comboTimer < 0) {
-        comboTimer = 0;
-        comboCounter = 0;
-        
-        //Reset bools here
-        existHyperBlockA = false;
-        existHyperBlockB = false;
-        existHyperBlockC = false;
+    if (hbcComboTimer < 0) {
+        hbcComboTimer = 0;
+        hbcComboCounter = 0;
     }
-    if (comboCounter >= COMBO_MAXCOUNT) {
+    if (hbcComboCounter >= HBC_COMBO_MAXCOUNT) {
         hyperBlockC =true;
-        comboCounter = comboCounter % COMBO_MAXCOUNT;
+        hbcComboCounter = hbcComboCounter % HBC_COMBO_MAXCOUNT;
     }
+    //===============================================================
+    
+    
+    //=================== Really Combo updates ======================
+    // ComboTimer is set to 3 if ComboCounter + 1 (user hit score)
+    if (ComboTimer > 0) {
+        ComboTimer -= dt;
+    }
+    if (ComboTimer < 0) {
+        ComboTimer = 0;
+        ComboCounter = 0;
+    }
+    CCLog("ComboTimer: %f", ComboTimer);
+    CCLog("ComboCounter: %d", ComboCounter);
+
     //===============================================================
     
     
@@ -255,78 +265,59 @@ void TakasuPoppo::update(float dt) {
     
     //=================== Swipe related updates ======================
     if (controlable) {
-        if (swipeRight) {
+        if (swipeRight && swape && !runningAfter) {
+            
             TPObjectExtension* exd = mainSprite;
-
-//            CCARRAY_FOREACH(pickedArray, object) {
-//                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-//                TakasuPoppo::swipedRight(exObject);
-//                swipeRight = false;
-//                //pickedArray->removeObject(object);
-//            }
+            move =false;
             TakasuPoppo::swipedRight(exd);
             swipeRight = false;
             mainSprite = NULL;
             swipeLeft = false;
             swipeUp = false;
             swipeDown = false;
+            if(exd != NULL)
             exd->release();
 
         }
-        if (swipeLeft) {
+        if (swipeLeft && swape && !runningAfter) {
+            
             TPObjectExtension* exd = mainSprite;
-
-//            CCObject *object = NULL;
-//            CCARRAY_FOREACH(pickedArray, object) {
-//                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-//                TakasuPoppo::swipedLeft(exObject);
-//                swipeLeft = false;
-//                pickedArray->removeObject(object);
-//            }
+            move =false;
             TakasuPoppo::swipedLeft(exd);
             swipeRight = false;
             mainSprite = NULL;
             swipeLeft = false;
             swipeUp = false;
             swipeDown = false;
-            exd->release();
+            if(exd != NULL)
+                exd->release();
 
         }
-        if (swipeUp) {
+        if (swipeUp && swape && !runningAfter) {
+            
             TPObjectExtension* exd = mainSprite;
-
-//            CCObject *object = NULL;
-//            CCARRAY_FOREACH(pickedArray, object) {
-//                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-//                TakasuPoppo::swipedUp(exObject);
-//                swipeUp = false;
-//                pickedArray->removeObject(object);
-//            }
-//
+            move =false;
             TakasuPoppo::swipedUp(exd);
             swipeRight = false;
             mainSprite = NULL;
             swipeLeft = false;
             swipeUp = false;
             swipeDown = false;
+            if(exd != NULL)
             exd->release();
         }
-        if (swipeDown) {
-            TPObjectExtension* exd = mainSprite;
-//            CCARRAY_FOREACH(pickedArray, object) {
-//                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-//                TakasuPoppo::swipedDown(exObject);
-//                swipeDown = false;
-//                pickedArray->removeObject(object);
-//            }
+        if (swipeDown && swape && !runningAfter) {
             
+            TPObjectExtension* exd = mainSprite;
             TakasuPoppo::swipedDown(exd);
+            move =false;
             swipeRight = false;
             mainSprite = NULL;
             swipeLeft = false;
             swipeUp = false;
             swipeDown = false;
-            exd->release();
+            if(exd != NULL)
+                exd->release();
         }
     }
     //================================================================
@@ -364,28 +355,20 @@ void TakasuPoppo::update(float dt) {
     
     if (isInFeverTime == true) {
         feverTimeLimit -= dt;
-
- //       CCLog("It is in ferver time now");
-
         if (feverTimeLimit < 0) {
             isInFeverTime = false;
             feverTimeLimit = 0;
-            
-  //          CCLog("It is not in fever Time");
-
         }
         
-        
     }
-
-//    CCLog("Fever Counter: %i", feverCounter);
-//    CCLog("Fever Timer: %f", feverTimer);
     //================================================================
 
+    
     //========================SCORE UPDATE ===========================
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
     lbScore->setString(str.c_str());
     //================================================================
+    
     
     //======================== Item Object ===========================
     switch (_spcialItemID) {
@@ -456,8 +439,6 @@ void TakasuPoppo::update(float dt) {
 }
 
 void TakasuPoppo::fixedUpdate(float time) {
-    checkMoveto = true;
-    checkMoveto ++;
     TakasuPoppo::matchList();
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
@@ -501,6 +482,11 @@ void TakasuPoppo::hintGeneration() {
 
 
 void TakasuPoppo::logicExecution() {
+    if(ComboCounter >= COMBO_REQUIRED)
+    {
+        ComboScoreRequired = 1.1;
+        CCLOG("SSSSSSSSS %d",ComboCounter);
+    }
     this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     inCleaning = true;
     this->runAction(CCSequence::create(
@@ -552,6 +538,7 @@ void TakasuPoppo::timeCounter() {
     if (gameTimer > 0) {
         gameTimer -= deltaTime;
         timerBar->setPercentage(1.66 * gameTimer);
+        scoresBeforeLastBonus = score;
     }
     if (gameTimer < 0) {
         timeBonus += deltaTime;
@@ -565,19 +552,19 @@ void TakasuPoppo::timeCounter() {
     }
 
     //====================== Gauge Bar updates =======================
-    if (gaugeComboCounter >= 0 && gaugeComboCounter <= 10) {
-        comboBar->setPercentage(gaugeComboCounter * 10);
+    if (gaugeComboCounter >= 0 && gaugeComboCounter <= GAUGE_COMBO_REQUIRED) {
+        comboBar->setPercentage(gaugeComboCounter * 100/GAUGE_COMBO_REQUIRED);
     }
 
     
-    if (gaugeComboCounter >= 10) {
+    if (gaugeComboCounter >= GAUGE_COMBO_REQUIRED) {
         isCreateGaugeCombo = true;
         
     }
     
-    if (gaugeComboCounter >= 10) {
+    if (gaugeComboCounter >= GAUGE_COMBO_REQUIRED) {
         comboBar->setPercentage(0);
-        gaugeComboCounter = gaugeComboCounter % 10;
+        gaugeComboCounter = gaugeComboCounter % GAUGE_COMBO_REQUIRED;
     }
     
     //================================================================

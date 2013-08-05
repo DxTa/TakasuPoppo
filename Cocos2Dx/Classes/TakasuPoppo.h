@@ -5,25 +5,6 @@
 #ifndef __TAKASUPOPPO_H__
 #define __TAKASUPOPPO_H__
 
-#define FONT_SIZE 30
-
-#define COMBO_MAXCOUNT 8
-#define COMBO_TIME
-
-#define HINT_TIME 5
-#define FALL_TIME 0.1
-#define MOVE_TIME 0.1
-#define SWAP_TIME 0.11
-
-#define GENERATION_DELAY 0.05
-#define CLEAN_DELAY 0.05
-#define LOGIC_DELAY 0.05
-#define MOVE_DELAY 0.05
-
-#define FEVER_COMBO_REQUIRED 5
-#define FEVER_TIME_REQUIRED 3
-
-#define DOUBLE_SCORE_TIME 20
 
 #include "cocos2d.h"
 #include "TPObjectExtension.h"
@@ -31,6 +12,7 @@
 #include "CCGestureRecognizer.h"
 #include "CCSwipeGestureRecognizer.h"
 #include "TPItemObject.h"
+#include "TPDefinition.h"
 
 USING_NS_CC;
 class TakasuPoppo : public cocos2d::CCLayer {
@@ -70,8 +52,8 @@ private:
     float moveCounter;              //Counter time for move swipe action
     float fallCounter;              //Counter time for falling counter action
     
-    float comboTimer = 0;           //Timer for combos
-    int comboCounter = 0;           //Counter for combos
+    float hbcComboTimer = 0;           //Timer for combos
+    int hbcComboCounter = 0;           //Counter for combos
     
     float deltaTime;                //Public variable for delta time
     
@@ -119,6 +101,7 @@ private:
     //SCORE
     CCLabelTTF *lbScore;
     int score = 0;
+    float ComboScoreRequired = 1;
     
     // Vinhnt - for fever time
     float feverTimer = 0;           //Timer for Fever Time
@@ -140,15 +123,14 @@ private:
     bool endLastScore = false;
     bool createThreeeHyper = false;
     float increaseComboTimes = 1;
+    int lastScores = 0;
+    int scoresBeforeLastBonus = 0;
     //moveto
-    int checkMoveto = 0;
     bool move =false;
     CCPoint mainPoint = CCPoint();
+    bool swape = true;
+    bool runningAfter = false;
 public:
-    
-    bool existHyperBlockA = false;          // true if there is a Hyper Block A
-    bool existHyperBlockB = false;          // true if there is a Hyper Block B
-    bool existHyperBlockC = false;          // true if there is a Hyper Block C
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
     
 #pragma mark Takasu Poppo
@@ -200,9 +182,6 @@ public:
     void generateRandomBlock(TPObjectExtension *exObj);
     //Generate a certain sprite on EX Object
     void generateBlock(TPObjectExtension *exObj1, int type);
-    
-    //Generate a Hyper Block A
-    void generateHyperBlockA(TPObjectExtension *exObj);
     
     //Returns a coordination for position
     CCPoint tileCoorForPosition(CCPoint position);
@@ -354,10 +333,17 @@ public:
     int doubleScoreStartTime;
     void makeBlockToBeMB3(TPObjectExtension* exObj);
     
-    // reWrite the init function
+    //Vinhnt - reWrite the init function
     virtual bool init(TPItemObject* itemObject);
     static TakasuPoppo* create(TPItemObject* itemObject);
     static CCScene* scene(TPItemObject* itemObject);
+    
+    // Vinhnt - for the really combo
+    float ComboTimer = 0;           //Timer for combos
+    int ComboCounter = 0;           //Counter for combos
+    
+    //Vinhnt - plus combo just in 1 function
+    void plusAllComboCounter();
     
     //ITEM function
     bool lastScore();
@@ -369,10 +355,10 @@ public:
     void createMapWithHyperBlock();
     void modefiedLastBonus();
     
-    //
+    //moveto
     void setControl();
-    void deleteMainSprite();
-    void setPositionAgain();
+    void afterCleanRunning();
+    void releaseAfterRunning();
 };
 
 #endif
