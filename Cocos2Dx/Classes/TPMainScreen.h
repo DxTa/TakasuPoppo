@@ -21,108 +21,81 @@ using namespace std;
 
 class TPMainScreen : public CCLayer{
 private:
-    CCSprite *background;
+    
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    CCSprite *menuBackground;
-    CCSprite *heartWindow;
-    CCSprite *rankingWindow;
-    CCSprite *rubiesBar;
-    CCSprite *settingButton;
+    //===================== New UI =========================
+    CCSprite *newBackground;
+    CCSprite *rankingContainer;
+    CCSprite *heartContainer;
+    CCSprite *heartTP1;
+    CCSprite *heartTP2;
+    CCSprite *heartTP3;
+    CCSprite *heartTP4;
+    CCSprite *heartTP5;
+    CCSprite *heartBox;
+    CCSprite *heartPlus;
+    CCSprite *rubyContainer;
+    CCSprite *rubyPlus;
+    CCSprite *settingBtn;
+    CCSprite *playBtn;
+    CCSprite *darkenBg;
     
-    CCSprite *startButton;
+    CCSprite *tutWin;
+    CCSprite *tutPrevBtn;
+    CCSprite *tutNextBtn;
+    CCSprite *tutContent1;
+    CCSprite *tutContent2;
+    CCSprite *tutContent3;
+    CCSprite *tutContent4;
+    CCSprite *tutContent5;
+    CCSprite *tutContent6;
+    CCSprite *tutCancelBtn;
     
-    CCSprite *heartButton;
-    CCRect heartButtonRect;
+    CCSprite *chargeWin;
+    CCSprite *chargeCclBtn;
+    CCSprite *chargeBtnScr1;
+    CCSprite *chargeLblScr1;
     
-    CCSprite *heart1;
-    CCSprite *heart2;
-    CCSprite *heart3;
-    CCSprite *heart4;
-    CCSprite *heart5;
+    CCSprite *chargeLblScr2;
+    CCSprite *chargeImgScr2;
+    CCSprite *chargeBtnScr2;
+    CCSprite *chargeCclBtn2;
     
-    CCSprite *itemWindow;
-    CCRect itemWindowRect;
+    CCSprite *chargeWin3;
+    CCSprite *chargeBtnScr3;
+    CCSprite *chargeLblScr3;
+    CCSprite *chargeCclBtn3;
     
-    CCSprite *item1;
-    CCRect item1Rect;
+    CCSprite *chargeBtnScr4;
+    CCSprite *chargeLblScr4;
     
-    CCSprite *item2;
-    CCRect item2Rect;
+    int tutPageNo;
+    char tutPageChar[50];
+    CCLabelTTF *tutPageLbl;
     
-    CCSprite *item3;
-    CCRect item3Rect;
+    int heartCount;
+    int heartChargeCount;
+    char heartViewChar[50];
+    char heartCharChar[50];
+    CCLabelTTF *heartChargedLabel;
+    CCLabelTTF *heartChargeLabel;
+    CCLabelTTF *heartChargingLabel;
     
-    CCSprite *item4;
-    CCRect item4Rect;
+    int crystalChargeCount;
+    char crystalChargeChar[50];
+    CCLabelTTF *crystalChargeLabel;
     
-    CCSprite *item5;
-    CCRect item5Rect;
-    
-    CCSprite *item6;
-    CCRect item6Rect;
-    
-    CCSprite *item7;
-    CCRect item7Rect;
-    
-    CCSprite *item8;
-    CCRect item8Rect;
-    
-    CCSprite *item9;
-    CCRect item9Rect;
-    
-    CCSprite *item10;
-    CCRect item10Rect;
-    
-    CCSprite *itemChosen;
-    CCRect itemChosenRect;
-    
-    CCSprite *buyHeartWindow;
-    
-    CCSprite *buyHeartPlus;
-    CCRect buyHeartPlusRect;
-    
-    CCSprite *buyHeartMinus;
-    CCRect buyHeartMinusRect;
-    
-    CCSprite *buyHeartCancelBtn;
-    CCRect buyHeartCancelRect;
-    
-    CCSprite *buyHeartConfirmBtn;
-    CCRect buyHeartConfirmRect;
-    
-    CCLabelTTF *buyHeartHrtLabel;
-    CCLabelTTF *buyHeartRbyLabel;
-    
-    CCLabelTTF *rubyCountLabel;
     int rubyCount;
-    char rubyCountChar[100];
+    char rubyCountChar[50];
+    CCLabelTTF *rubyCountLabel;
     
-    CCLabelTTF *rubyCostLabel;
-    int rubyCost;
-    char rubyCostChar[100];
-    
-    CCLabelTTF *heartBuyLabel;
-    int heartBuyInt;
-    char heartBuyChar[100];
-    
-    int rubyCountAfterPay;
-    bool rubyPaid;
-    
-    int heartAfterIncrease;
-    bool heartIncreased;
-    
-    float itemWindowMoveTimer = 1;
-    
-    bool itemWindowMoved = false;
-    bool itemWindowMoving = false;
-    bool itemChosenOn = false;
-    
-    bool heartWindowMoved = false;
-    bool heartWindowMoving = false;
-    bool heartChanged = false;
-    
-    int heartsCount;
-    
+    bool tutorialOn;
+    bool chargeOn;
+    bool charge2On;
+    bool charge3On;
+    bool charge4On;
+    bool chargeBack;
+    bool chargeExit;
 public:
     ~TPMainScreen();
     virtual bool init();
@@ -132,18 +105,13 @@ public:
     void update(float dt);
     void menuCloseCallback(CCObject *pSender);
     
-    void setHearts();
+    void setTutorial();
+    void setupHearts();
+    void setCharge();
     
-    void setItems();
+    void setCrystal(int decreasingAmount);
     
-    void setPlusHeart();
-    void setMinusHeart();
-    void setNewHeartCount();
-    void setRubyCount();
-    
-    float itemSizeY(CCSprite * itemSprite);
-    
-    CCSprite setHeartSprite(CCSprite *heart);
+    CCRect boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite);
     
     static CCScene* scene();
     CREATE_FUNC(TPMainScreen);
