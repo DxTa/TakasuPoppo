@@ -121,7 +121,6 @@ void TakasuPoppo::ccTouchesMoved (CCSet *touches, CCEvent *event) {
     if (spriteContained) {
         CCPoint touchLoc = this->getParent()->convertTouchToNodeSpace(touch);
         movingSwipePoint = touchLoc;
-        CCPoint point = TakasuPoppo::tileCoorForPosition(touchLoc);
         
         if (!swipeRecognized) swiping = true;
         else swiping = false;
