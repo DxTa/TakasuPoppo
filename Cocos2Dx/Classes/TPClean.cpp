@@ -116,8 +116,9 @@ void TakasuPoppo::afterClean() {
                     exObj2->getID() != 7 && exObj2->getSprite() && exObj2->getSprite() != NULL) {
                     int blocksAway = exObj->getCoordination().y - exObj2->getCoordination().y;
                     CCSprite *toMoveSprite =  exObj2->getSprite();
-                    toMoveSprite->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),CCCallFunc::create(this, callfunc_selector(TakasuPoppo::releaseAfterRunning)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)), NULL));
                     TakasuPoppo::swapColorID(exObj, exObj2);
+
+                    toMoveSprite->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),CCCallFunc::create(this, callfunc_selector(TakasuPoppo::releaseAfterRunning)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)), NULL));
 
                     // this is the place that cause the bug "can not move the block"
                     //                    exObj->setControlTrigger(!exObj->getControlTrigger());
@@ -126,6 +127,7 @@ void TakasuPoppo::afterClean() {
                     break;
                 }
             }
+            exObj->setControlTrigger(true);
         }
     }
 }

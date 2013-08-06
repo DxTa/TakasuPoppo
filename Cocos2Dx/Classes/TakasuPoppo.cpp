@@ -467,7 +467,7 @@ void TakasuPoppo::movingBoolSwitch(float dt) {
 }
 
 void TakasuPoppo::scheduleGenerate() {
-    this->schedule(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
+    this->scheduleOnce(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
 }
 
 void TakasuPoppo::hintGeneration() {

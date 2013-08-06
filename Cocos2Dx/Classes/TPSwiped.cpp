@@ -189,6 +189,9 @@ void TakasuPoppo::checkPosition(TPObjectExtension *exObj, TPObjectExtension *swp
         
         exObj->getSprite()->runAction(CCSequence::create(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj), CCMoveTo::create(SWAP_TIME, exObj->getPosition()), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::deleteMainSprite)), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj), NULL));
     }
+//    int i = exObj->getBlockType();
+//    exObj->setBlockType(swpObj->getBlockType());
+//    swpObj->setBlockType(i);
     
 }
 TPObjectExtension* TakasuPoppo::checkSwipe(TPBlockSet *blockSet){
