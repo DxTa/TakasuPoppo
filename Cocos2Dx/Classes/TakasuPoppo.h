@@ -63,7 +63,7 @@ private:
     
     float movingSpeed = 0.07;       //For all moving speed
     
-    float gameTimer = 60;
+    float gameTimer = 500;
     
     bool counterExist1 = false;
     bool counterExist2 = false;
@@ -359,6 +359,11 @@ public:
     void setControl();
     void afterCleanRunning();
     void releaseAfterRunning();
+    void setFalseControl();
+    void setTrueControlable(CCNode *sender, void* data);
+    void setFalseControlable(CCNode *sender, void* data);
+    void deleteMainSprite();
+
 };
 
 #endif

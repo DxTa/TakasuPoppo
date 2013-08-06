@@ -26,25 +26,26 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
             if (exObject != NULL && exObject->getSprite() != NULL && exObject->getID() != 7) {
                 swipeRecognized = false;
                 startSwipePoint = touchLoc;
-                mainSprite = exObject;
+                if(mainSprite == NULL)
+                    mainSprite = exObject;
                 //pickedArray->addObject(exObject);
                 spriteContained = true;
                 if(exObject != NULL)
                     if(exObject->getID() != 7 && exObject->getBlockType() == HBC_BLOCK_TYPE && exObject->getSprite() && exObject->getSprite() != NULL)
                     {
                         cleanHyperBlockC(exObject);
-                        logicExecution();
+                        //logicExecution();
                     }
                 
             }
             
             //============================ move by double click ===============
             
-            if(move){
+            if(move && !touchPosValidation(mainPoint)){
                 TPObjectExtension *mainEx = TakasuPoppo::coorToExObj(mainPoint);
                 CCPoint movePoint;
                 movePoint.setPoint(point.x, point.y);
-                if(mainEx->getControlTrigger())
+                if(mainEx != NULL && mainEx->getControlTrigger())
                 {
                     if(movePoint.x == mainPoint.x - 1 && movePoint.y == mainPoint.y && mainPoint.x - 1 >= 0 && mainPoint.x - 1 < 7)
                     {

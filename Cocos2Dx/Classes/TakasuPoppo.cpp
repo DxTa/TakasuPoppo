@@ -271,12 +271,12 @@ void TakasuPoppo::update(float dt) {
             move =false;
             TakasuPoppo::swipedRight(exd);
             swipeRight = false;
-            mainSprite = NULL;
+           // mainSprite = NULL;
             swipeLeft = false;
             swipeUp = false;
             swipeDown = false;
-            if(exd != NULL)
-            exd->release();
+//            if(exd != NULL)
+//            exd->release();
 
         }
         if (swipeLeft && swape && !runningAfter) {
@@ -285,12 +285,12 @@ void TakasuPoppo::update(float dt) {
             move =false;
             TakasuPoppo::swipedLeft(exd);
             swipeRight = false;
-            mainSprite = NULL;
+            //mainSprite = NULL;
             swipeLeft = false;
             swipeUp = false;
             swipeDown = false;
-            if(exd != NULL)
-                exd->release();
+//            if(exd != NULL)
+//                exd->release();
 
         }
         if (swipeUp && swape && !runningAfter) {
@@ -299,12 +299,12 @@ void TakasuPoppo::update(float dt) {
             move =false;
             TakasuPoppo::swipedUp(exd);
             swipeRight = false;
-            mainSprite = NULL;
+            //mainSprite = NULL;
             swipeLeft = false;
             swipeUp = false;
             swipeDown = false;
-            if(exd != NULL)
-            exd->release();
+//            if(exd != NULL)
+//            exd->release();
         }
         if (swipeDown && swape && !runningAfter) {
             
@@ -312,12 +312,12 @@ void TakasuPoppo::update(float dt) {
             TakasuPoppo::swipedDown(exd);
             move =false;
             swipeRight = false;
-            mainSprite = NULL;
+           // mainSprite = NULL;
             swipeLeft = false;
             swipeUp = false;
             swipeDown = false;
-            if(exd != NULL)
-                exd->release();
+//            if(exd != NULL)
+//                exd->release();
         }
     }
     //================================================================
@@ -442,7 +442,7 @@ void TakasuPoppo::fixedUpdate(float time) {
     TakasuPoppo::matchList();
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
-        this->setTouchEnabled(false);
+        //this->setTouchEnabled(false);
         this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
     }
     
@@ -546,8 +546,9 @@ void TakasuPoppo::timeCounter() {
         hintArray->removeAllObjects();
         if (this->getChildByTag(778)) this->removeChildByTag(778);
         hintDisplaying = false;
+        //this->setTouchEnabled(false);
         this->unschedule(schedule_selector(TakasuPoppo::hintGeneration));
-        TakasuPoppo::timeOver();
+        //TakasuPoppo::timeOver();
 
     }
 

@@ -106,21 +106,22 @@ void TakasuPoppo::afterClean() {
     CCObject *object;
     CCARRAY_FOREACH_REVERSE(colorArray, object) {
         TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
-        if (exObj->getID() == 7 && exObj->getCoordination().y != 0) {
+        if (exObj != NULL && exObj->getID() == 7 && exObj->getCoordination().y != 0) {
 
             CCObject *object2;
             CCARRAY_FOREACH_REVERSE(colorArray, object2) {
                 TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(object2);
-                if (exObj2->getCoordination().x == exObj->getCoordination().x &&
+                if (exObj2 != NULL && exObj2->getCoordination().x == exObj->getCoordination().x &&
                     exObj2->getCoordination().y < exObj->getCoordination().y &&
-                    exObj2->getID() != 7) {
+                    exObj2->getID() != 7 && exObj2->getSprite() && exObj2->getSprite() != NULL) {
                     int blocksAway = exObj->getCoordination().y - exObj2->getCoordination().y;
                     CCSprite *toMoveSprite =  exObj2->getSprite();
+                    toMoveSprite->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),CCCallFunc::create(this, callfunc_selector(TakasuPoppo::releaseAfterRunning)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)), NULL));
                     TakasuPoppo::swapColorID(exObj, exObj2);
-                    toMoveSprite->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),CCCallFunc::create(this, callfunc_selector(TakasuPoppo::releaseAfterRunning)),NULL));                    
+
                     // this is the place that cause the bug "can not move the block"
                     //                    exObj->setControlTrigger(!exObj->getControlTrigger());
-                    exObj2->setControlTrigger(!exObj2->getControlTrigger());
+                    exObj2->setControlTrigger(true);
                     exObj->setControlTrigger(true);                    
                     break;
                 }
@@ -140,7 +141,7 @@ void TakasuPoppo::changeID(CCNode *sender, void* data) {
 void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
     score =score + (int)(ComboScoreRequired * increasedScore * ONE_BLOCK *doubleScore);
     CCSprite *exSprite = exObj->getSprite();
-    if (exSprite != NULL) {
+    if (exSprite != NULL && exObj != NULL && exObj->getID() != 7) {
 
         CCPoint *spritePosition = new CCPoint(exSprite->getPosition());
         exSprite->runAction(CCSequence::create(
@@ -686,7 +687,7 @@ void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
         if (block != NULL && block->getID() == exObj->getID() &&
             block->getID() != 7 && block->getSprite() != NULL) {
             CCSprite *exSprite = block->getSprite();
-            exSprite->runAction(CCSequence::create(CCDelayTime::create(0.3f), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block),CCDelayTime::create(0.75f), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::newCleanOneBlock),(void*)block), NULL));
+            exSprite->runAction(CCSequence::create(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::newCleanOneBlock),(void*)block), NULL));
         }
     }
 }
@@ -839,4 +840,8 @@ void TakasuPoppo::plusAllComboCounter(){
 void TakasuPoppo::releaseAfterRunning()
 {
     runningAfter = false;
+}
+void TakasuPoppo::setFalseControl()
+{
+    this->setTouchEnabled(false);
 }

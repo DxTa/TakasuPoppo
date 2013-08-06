@@ -12,7 +12,7 @@
 #define FONT_SIZE 30
 
 // Combo and timer system
-#define HBC_COMBO_MAXCOUNT 8
+#define HBC_COMBO_MAXCOUNT 5
 #define HBC_COMBO_MAXTIME 5
 
 #define FEVER_COMBO_REQUIRED 5
