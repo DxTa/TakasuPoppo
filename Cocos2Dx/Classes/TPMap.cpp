@@ -63,6 +63,9 @@ void TakasuPoppo::createFixture() {
             this->addChild(randomTileSprite, 3, 300 + m_gid);
         }
     }
+    
+    if(createThreeeHyper)
+        createMapWithHyperBlock();
 }
 
 CCPoint TakasuPoppo::tileCoorForPosition(CCPoint position) {
@@ -186,10 +189,6 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
     generateRandomBlock(exObj1);
 }
 
-void TakasuPoppo::generateHyperBlockA(TPObjectExtension *exObj) {
-    exObj->setBlockType(1);
-    //TakasuPoppo::spriteChange(this, exObj);
-}
 
 #pragma mark Array
 

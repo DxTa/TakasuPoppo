@@ -165,7 +165,8 @@ CCRenderTexture *TakasuPoppo::outlineEffect(CCSprite *sprite, int size, ccColor3
 }
 
 void TakasuPoppo::popAnimation(CCNode* sender, void* data) {
-    TPObjectExtension *exObj = (TPObjectExtension*)data;
+    CCPoint *spritePosition = (CCPoint*)data;
+    CCPoint position = *spritePosition;
     CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
     cache->addSpriteFramesWithFile("starPop.plist");
     CCArray* animFrames = new CCArray;
@@ -178,7 +179,7 @@ void TakasuPoppo::popAnimation(CCNode* sender, void* data) {
     }
     CCAnimation* animation = CCAnimation::createWithSpriteFrames(animFrames, 0.05f);
     CCSprite *popSprite = CCSprite::create();
-    popSprite->setPosition(exObj->getPosition());
+    popSprite->setPosition(position);
     this->addChild(popSprite, 4);
     popSprite->runAction(CCSequence::create(CCAnimate::create(animation),
                                             CCRemoveSelf::create(),

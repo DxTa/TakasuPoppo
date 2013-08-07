@@ -16,15 +16,26 @@ using namespace std;
 
 #pragma mark Default
 
-CCScene* TakasuPoppo::scene() {
+CCScene* TakasuPoppo::scene(TPItemObject* itemObjectD) {
     CCScene *scene = CCScene::create();
-    TakasuPoppo *layer = TakasuPoppo::create();
+    TakasuPoppo *layer = TakasuPoppo::create(itemObjectD);
     scene->addChild(layer);
     return scene;
 }
 
-bool TakasuPoppo::init() {
+bool TakasuPoppo::init(TPItemObject* itemObject) {
     srand(time(NULL));
+    _itemObject = new TPItemObject(itemObject->getIsFirstItemOn(), itemObject->getIsSecondItemOn(), itemObject->getIsThirdItemOn(), itemObject->getSpecialItemID());
+
+    if(_itemObject->getIsFirstItemOn())
+        addTime();
+    if(_itemObject->getIsSecondItemOn()) {
+        increasedScores();
+    }
+    if(_itemObject->getIsThirdItemOn()){
+        createThreeeHyper = true;
+    }
+    
     if (!CCLayer::init()) return false;
     
     colorArray = new CCArray;
@@ -33,6 +44,7 @@ bool TakasuPoppo::init() {
     hintArray = new CCArray;
     
     TakasuPoppo::addBlocksToArray();
+    
     TakasuPoppo::addTileMap();
     TakasuPoppo::lookForMatches();
     
@@ -44,13 +56,13 @@ bool TakasuPoppo::init() {
     debugTilesArray = new CCArray;
     TakasuPoppo::setupDebugButton();
     
-    sprintf(comboCounterString, "Combo: %i", comboCounter);
+    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
     comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
     comboCounterLabel->setZOrder(15);
     comboCounterLabel->setColor(ccc3(225, 225, 225));
     comboCounterLabel->setPosition(ccp(80, 850));
     
-    sprintf(comboTimerString, "Timer: %f", comboTimer);
+    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
     comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
     comboTimerLabel->setZOrder(15);
     comboTimerLabel->setColor(ccc3(225, 225, 225));
@@ -61,12 +73,18 @@ bool TakasuPoppo::init() {
     //===============================================================
     
     //==========================SCORE ===============================
+    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("Score :", "Arial", FONT_SIZE);
+    lbScoreTitle->setZOrder(15);
+    lbScoreTitle->setColor(ccc3(225, 225, 225));
+    lbScoreTitle->setPosition(ccp(60, 890));
+    this->addChild(lbScoreTitle);
+    
+    
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-    str = "Score : " + str;
     lbScore = CCLabelTTF::create(str.c_str(), "Arial", FONT_SIZE);
     lbScore->setZOrder(15);
     lbScore->setColor(ccc3(225, 225, 225));
-    lbScore->setPosition(ccp(80, 890));
+    lbScore->setPosition(ccp(160, 890));
     this->addChild(lbScore);
     //===============================================================
     
@@ -82,6 +100,43 @@ bool TakasuPoppo::init() {
     CCSprite *comboGauge = CCSprite::create("ComboGauge.png");
     comboGauge->setPosition(ccp(400, 780));
     this->addChild(comboGauge, -2, -3);
+    
+    //===============================================================
+    
+    //======================== Item Object ==========================
+    
+    _spcialItemID = _itemObject->getSpecialItemID() ;
+    switch (_spcialItemID) {
+        case 3:
+            timeToCreateMB1 = rand() % 30 + 20;
+            isCleanMB1 = false;
+            isCreateMB1 = false;
+            CCLog("time will create MB1: %i", timeToCreateMB1);
+            break;
+            
+        case 4:
+            timeToCreateMB2 = rand() % 60;
+            isCleanMB2 = false;
+            isCreateMB2 = false;
+            isExistMB2 = false;
+            countMB2 = 0;
+            CCLog("time will create MB2: %i", timeToCreateMB2);
+            break;
+            
+        case 6:
+            doubleScoreStartTime = 0;
+            isCleanMB3 = false;
+            isCreateMB3 = false;
+            timeToCreateMB3 = rand() % 30 + 30;
+            CCLOG("Time to create MB2: %d", timeToCreateMB3);
+            
+        case 7:
+            increaseComboTimes = 1.1;
+            break;
+            
+        default:
+            break;
+    }
     
     //===============================================================
     
@@ -157,31 +212,40 @@ void TakasuPoppo::startGame() {
 
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
-    
     //================== Combo related updates ======================
-    sprintf(comboCounterString, "Combo: %i", comboCounter);
+    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
     comboCounterLabel->setString(comboCounterString);
     
-    sprintf(comboTimerString, "Timer: %f", comboTimer);
+    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
     comboTimerLabel->setString(comboTimerString);
     
     
-    if (comboTimer > 0) {
-        comboTimer -= dt;
+    if (hbcComboTimer > 0) {
+        hbcComboTimer -= dt;
     }
-    if (comboTimer < 0) {
-        comboTimer = 0;
-        comboCounter = 0;
-        
-        //Reset bools here
-        existHyperBlockA = false;
-        existHyperBlockB = false;
-        existHyperBlockC = false;
+    if (hbcComboTimer < 0) {
+        hbcComboTimer = 0;
+        hbcComboCounter = 0;
     }
-    if (comboCounter >= COMBO_MAXCOUNT) {
+    if (hbcComboCounter >= HBC_COMBO_MAXCOUNT) {
         hyperBlockC =true;
-        comboCounter = comboCounter % COMBO_MAXCOUNT;
+        hbcComboCounter = hbcComboCounter % HBC_COMBO_MAXCOUNT;
     }
+    //===============================================================
+    
+    
+    //=================== Really Combo updates ======================
+    // ComboTimer is set to 3 if ComboCounter + 1 (user hit score)
+    if (ComboTimer > 0) {
+        ComboTimer -= dt;
+    }
+    if (ComboTimer < 0) {
+        ComboTimer = 0;
+        ComboCounter = 0;
+    }
+    CCLog("ComboTimer: %f", ComboTimer);
+    CCLog("ComboCounter: %d", ComboCounter);
+
     //===============================================================
     
     
@@ -201,42 +265,59 @@ void TakasuPoppo::update(float dt) {
     
     //=================== Swipe related updates ======================
     if (controlable) {
-        if (swipeRight) {
-            CCObject *object = NULL;
-            CCARRAY_FOREACH(pickedArray, object) {
-                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-                TakasuPoppo::swipedRight(exObject);
-                swipeRight = false;
-                pickedArray->removeObject(object);
-            }
-        }
-        if (swipeLeft) {
-            CCObject *object = NULL;
-            CCARRAY_FOREACH(pickedArray, object) {
-                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-                TakasuPoppo::swipedLeft(exObject);
-                swipeLeft = false;
-                pickedArray->removeObject(object);
-            }
-        }
-        if (swipeUp) {
-            CCObject *object = NULL;
-            CCARRAY_FOREACH(pickedArray, object) {
-                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-                TakasuPoppo::swipedUp(exObject);
-                swipeUp = false;
-                pickedArray->removeObject(object);
-            }
+        if (swipeRight && swape && !runningAfter) {
             
+            TPObjectExtension* exd = mainSprite;
+            move =false;
+            TakasuPoppo::swipedRight(exd);
+            swipeRight = false;
+           // mainSprite = NULL;
+            swipeLeft = false;
+            swipeUp = false;
+            swipeDown = false;
+//            if(exd != NULL)
+//            exd->release();
+
         }
-        if (swipeDown) {
-            CCObject *object = NULL;
-            CCARRAY_FOREACH(pickedArray, object) {
-                TPObjectExtension *exObject = dynamic_cast<TPObjectExtension*>(object);
-                TakasuPoppo::swipedDown(exObject);
-                swipeDown = false;
-                pickedArray->removeObject(object);
-            }
+        if (swipeLeft && swape && !runningAfter) {
+            
+            TPObjectExtension* exd = mainSprite;
+            move =false;
+            TakasuPoppo::swipedLeft(exd);
+            swipeRight = false;
+            //mainSprite = NULL;
+            swipeLeft = false;
+            swipeUp = false;
+            swipeDown = false;
+//            if(exd != NULL)
+//                exd->release();
+
+        }
+        if (swipeUp && swape && !runningAfter) {
+            
+            TPObjectExtension* exd = mainSprite;
+            move =false;
+            TakasuPoppo::swipedUp(exd);
+            swipeRight = false;
+            //mainSprite = NULL;
+            swipeLeft = false;
+            swipeUp = false;
+            swipeDown = false;
+//            if(exd != NULL)
+//            exd->release();
+        }
+        if (swipeDown && swape && !runningAfter) {
+            
+            TPObjectExtension* exd = mainSprite;
+            TakasuPoppo::swipedDown(exd);
+            move =false;
+            swipeRight = false;
+           // mainSprite = NULL;
+            swipeLeft = false;
+            swipeUp = false;
+            swipeDown = false;
+//            if(exd != NULL)
+//                exd->release();
         }
     }
     //================================================================
@@ -274,29 +355,85 @@ void TakasuPoppo::update(float dt) {
     
     if (isInFeverTime == true) {
         feverTimeLimit -= dt;
-
- //       CCLog("It is in ferver time now");
-
         if (feverTimeLimit < 0) {
             isInFeverTime = false;
             feverTimeLimit = 0;
-            
-  //          CCLog("It is not in fever Time");
-
         }
         
-        
     }
-
-//    CCLog("Fever Counter: %i", feverCounter);
-//    CCLog("Fever Timer: %f", feverTimer);
     //================================================================
 
+    
     //========================SCORE UPDATE ===========================
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-    str = "Score : " + str;
     lbScore->setString(str.c_str());
     //================================================================
+    
+    
+    //======================== Item Object ===========================
+    switch (_spcialItemID) {
+        case 3:
+            if (gameTimer < timeToCreateMB1 && isCreateMB1 == false) {
+                isCreateMB1 = true;
+                CCLog("time will create MB1: %i", timeToCreateMB1);
+            }
+            if (isCreateMB1 == true) {
+                timeToCreateMB1 = -1;
+            }
+            if (isCleanMB1 == true) {
+                this->runAction(CCSequence::create(   CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::generateBlocksAfterCleanMB1)),NULL));
+         }
+            break;
+            
+        case 4:
+            if ( ( (rand() % 60) == timeToCreateMB2) && isCreateMB2 == false && isExistMB2 == false && countMB2 < 10) {
+                isCreateMB2 = true;
+                countMB2 ++;
+            }
+            if (isCleanMB2 == true) {
+                gameTimer += 2;
+                isCleanMB2 = false;
+            }
+            break;
+        
+        case 6:
+            
+            if (gameTimer < timeToCreateMB3 && isCreateMB3 == false) {
+                isCreateMB3 = true;
+            }
+            if (isCreateMB3 == true) {
+                timeToCreateMB3 = -1;
+            }
+            if (isCleanMB3 == true) {
+                doubleScoreStartTime = gameTimer;
+                isCleanMB3 = false;
+            }
+            if (doubleScoreStartTime != 0) {
+                if (gameTimer <= doubleScoreStartTime && gameTimer >= (doubleScoreStartTime - DOUBLE_SCORE_TIME) ) {
+                    // do some code logic here
+                    doubleScore = 2;
+                    CCLog("gameTimer: %f", gameTimer);
+                    CCLog("doubleScoreStartTime: %d", doubleScoreStartTime);
+                    CCLog("The Score is double now");
+                }
+                else{
+                    doubleScore = 1;
+                    CCLog("The Score is not double anymore");
+                }
+
+            }
+            break;
+            
+        case 5:
+            modefiedLastBonus();
+            break;
+
+        default:
+            break;
+    }
+    
+    //================================================================
+
     
 
 }
@@ -305,8 +442,8 @@ void TakasuPoppo::fixedUpdate(float time) {
     TakasuPoppo::matchList();
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+        //this->setTouchEnabled(false);
         this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
-        
     }
     
 }
@@ -345,6 +482,11 @@ void TakasuPoppo::hintGeneration() {
 
 
 void TakasuPoppo::logicExecution() {
+    if(ComboCounter >= COMBO_REQUIRED)
+    {
+        ComboScoreRequired = 1.1;
+        CCLOG("SSSSSSSSS %d",ComboCounter);
+    }
     this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     inCleaning = true;
     this->runAction(CCSequence::create(
@@ -352,6 +494,7 @@ void TakasuPoppo::logicExecution() {
                                        CCDelayTime::create(CLEAN_DELAY),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        NULL));
     this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
     this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), LOGIC_DELAY);
@@ -391,41 +534,64 @@ void TakasuPoppo::timeSetup() {
 }
 
 void TakasuPoppo::timeCounter() {
-    gameTimer -= deltaTime;
+    
     if (gameTimer > 0) {
+        gameTimer -= deltaTime;
         timerBar->setPercentage(1.66 * gameTimer);
+        scoresBeforeLastBonus = score;
     }
     if (gameTimer < 0) {
-        gameTimer = 60;
+        timeBonus += deltaTime;
+        hintCounter = 3;
+        hintArray->removeAllObjects();
+        if (this->getChildByTag(778)) this->removeChildByTag(778);
+        hintDisplaying = false;
+        //this->setTouchEnabled(false);
+        this->unschedule(schedule_selector(TakasuPoppo::hintGeneration));
+        //TakasuPoppo::timeOver();
+
     }
-    //    else {
-    //        unschedule(schedule_selector(TakasuPoppo::timeCounter));
-    //    }
-    
+
     //====================== Gauge Bar updates =======================
-//    CCLog("Gauge Counter: %i", gaugeComboCounter);
-    
-    if (gaugeComboCounter >= 0 && gaugeComboCounter <= 10) {
-        comboBar->setPercentage(gaugeComboCounter * 10);
+    if (gaugeComboCounter >= 0 && gaugeComboCounter <= GAUGE_COMBO_REQUIRED) {
+        comboBar->setPercentage(gaugeComboCounter * 100/GAUGE_COMBO_REQUIRED);
     }
 
     
-    if (gaugeComboCounter >= 10) {
+    if (gaugeComboCounter >= GAUGE_COMBO_REQUIRED) {
         isCreateGaugeCombo = true;
-//        CCLog("A Hyper Block B will be create");
         
     }
     
-    if (gaugeComboCounter >= 10) {
+    if (gaugeComboCounter >= GAUGE_COMBO_REQUIRED) {
         comboBar->setPercentage(0);
-        gaugeComboCounter = gaugeComboCounter % 10;
+        gaugeComboCounter = gaugeComboCounter % GAUGE_COMBO_REQUIRED;
     }
-    
     
     //================================================================
     
-    }
+}
 
 void TakasuPoppo::timeOver() {
-    
+    if (lastScore()) {
+        CCLOG("SCORE * %d",score);
+        this->unschedule(schedule_selector(TakasuPoppo::timeCounter));
+    }
+}
+
+//for Mission Block
+TakasuPoppo* TakasuPoppo::create(TPItemObject* itemObject){
+    TakasuPoppo *pRet = new TakasuPoppo();
+    if (pRet && pRet->init(itemObject)) \
+    { \
+        pRet->autorelease(); \
+        return pRet; \
+    } \
+    else \
+    { \
+        delete pRet; \
+        pRet = NULL; \
+        return NULL; \
+    } \
+
 }
