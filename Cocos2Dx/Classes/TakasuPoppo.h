@@ -283,6 +283,7 @@ public:
     void spriteChange(CCNode *sender, void* data);
     
     void popAnimation(CCNode *sender, void* data);
+    bool isObjectMoving(TPObjectExtension *obj);
 #pragma mark Debug
     void setupDebugButton();
     void switchGrid();
@@ -363,7 +364,7 @@ public:
     void setTrueControlable(CCNode *sender, void* data);
     void setFalseControlable(CCNode *sender, void* data);
     void deleteMainSprite();
-
+    
 };
 
 #endif

@@ -116,7 +116,19 @@ void TakasuPoppo::afterClean() {
                     exObj2->getID() != 7 && exObj2->getSprite() && exObj2->getSprite() != NULL) {
                     int blocksAway = exObj->getCoordination().y - exObj2->getCoordination().y;
                     CCSprite *toMoveSprite =  exObj2->getSprite();
-                    toMoveSprite->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),CCCallFunc::create(this, callfunc_selector(TakasuPoppo::releaseAfterRunning)), CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)), NULL));
+                    exObj->setControlTrigger(false);
+                    exObj2->setControlTrigger(false);
+                    toMoveSprite->stopActionByTag(ACT_MOVING);
+                    toMoveSprite->runAction(
+                                            CCSequence::create(
+                                                               CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
+                                                               CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),
+                                                               CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),
+                                                               CCCallFunc::create(this, callfunc_selector(TakasuPoppo::releaseAfterRunning)),
+                                                               CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
+                                                               NULL
+                                                               )
+                                            )->setTag(ACT_MOVING);
                     TakasuPoppo::swapColorID(exObj, exObj2);
 
                     // this is the place that cause the bug "can not move the block"
@@ -365,7 +377,8 @@ void TakasuPoppo::makeBlockToBeHBA(TPObjectExtension* exObj){
     
     exObj->setBlockType(HBA_BLOCK_TYPE);
     // change controlable
-    exObj->setControlTrigger(true);
+    if (TakasuPoppo::isObjectMoving(exObj) == false)
+        exObj->setControlTrigger(true);
     if(exObj->getID() != 7)
     {
         // change sprite when the block be hyper
@@ -386,7 +399,8 @@ void TakasuPoppo::makeBlockToBeHBA(TPObjectExtension* exObj){
 void TakasuPoppo::makeBlockToBeHBB(TPObjectExtension* exObj){
     exObj->setBlockType(HBB_BLOCK_TYPE);
     // change controlable
-    exObj->setControlTrigger(true);
+    if (TakasuPoppo::isObjectMoving(exObj) == false)
+        exObj->setControlTrigger(true);
     if(exObj->getID() != 7)
     {
         // change sprite when the block be hyper
@@ -406,7 +420,8 @@ void TakasuPoppo::makeBlockToBeHBC(TPObjectExtension *exObj){
     exObj->setBlockType(HBC_BLOCK_TYPE);
     exObj->setID(8);
     // change controlable
-    exObj->setControlTrigger(true);
+    if (TakasuPoppo::isObjectMoving(exObj) == false)
+        exObj->setControlTrigger(true);
     
     CCAnimation *animation = CCAnimation::create();
     for (int i = 1; i < 8; i++) {
@@ -687,7 +702,13 @@ void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
         if (block != NULL && block->getID() == exObj->getID() &&
             block->getID() != 7 && block->getSprite() != NULL) {
             CCSprite *exSprite = block->getSprite();
-            exSprite->runAction(CCSequence::create(CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::newCleanOneBlock),(void*)block), NULL));
+            exSprite->runAction(
+                                CCSequence::create(
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block),
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::newCleanOneBlock),(void*)block),
+                                                   NULL
+                                                   )
+                                );
         }
     }
 }
@@ -727,7 +748,14 @@ void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
         if (block != NULL && block->getID() == exObj->getID() &&
             block->getID() != 7 && block->getSprite() != NULL) {
             CCSprite *exSprite = block->getSprite();
-            exSprite->runAction(CCSequence::create(CCDelayTime::create(0.1f), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::newCleanOneBlock),(void*)block), NULL));
+            exSprite->runAction(
+                                CCSequence::create(CCDelayTime::create(0.1f),
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block),
+                                                   CCDelayTime::create(0.2f),
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::newCleanOneBlock),(void*)block),
+                                                   NULL
+                                                   )
+                                );
         }
     }
 }
@@ -806,7 +834,7 @@ void TakasuPoppo::newCleanOneBlock(cocos2d::CCNode *sender, void *data){
                 TakasuPoppo::cleanSprite(exobj);
             break;
     }
-    this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
+//    this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),

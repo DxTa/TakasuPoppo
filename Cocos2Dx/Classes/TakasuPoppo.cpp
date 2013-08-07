@@ -467,7 +467,8 @@ void TakasuPoppo::movingBoolSwitch(float dt) {
 }
 
 void TakasuPoppo::scheduleGenerate() {
-    this->schedule(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
+//    this->schedule(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
+    TakasuPoppo::smartGeneration();
 }
 
 void TakasuPoppo::hintGeneration() {
@@ -487,7 +488,7 @@ void TakasuPoppo::logicExecution() {
         ComboScoreRequired = 1.1;
         CCLOG("SSSSSSSSS %d",ComboCounter);
     }
-    this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
+//    this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),

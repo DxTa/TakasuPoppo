@@ -246,3 +246,9 @@ void TakasuPoppo::popAnimation(CCNode* sender, void* data) {
 //    }
 //}
 
+
+bool TakasuPoppo::isObjectMoving(TPObjectExtension *obj) {
+    if (obj->getSprite()->getPositionX() == obj->getPosition().x && obj->getSprite()->getPositionY() == obj->getPosition().y)
+        return false;
+    else return true;
+}

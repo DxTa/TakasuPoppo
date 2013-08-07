@@ -103,11 +103,20 @@ void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj) {
     
     CCSprite *randomTileSprite = CCSprite::create(spriteName);
     randomTileSprite->setPosition(ccp(exObj->getPosition().x, exObj->getPosition().y + 70));
-    randomTileSprite->runAction(CCMoveTo::create(0.1, exObj->getPosition()));
+    randomTileSprite->stopActionByTag(ACT_MOVING);
+    randomTileSprite->runAction(
+                                CCSequence::create(
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj),
+                                                   CCMoveTo::create(0.1, exObj->getPosition()),
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj),
+                                                   NULL
+                                                   )
+                                )->setTag(ACT_MOVING);
+//    randomTileSprite->runAction(CCMoveTo::create(0.1, exObj->getPosition()));
     
     exObj->setSprite(randomTileSprite);
     exObj->setID(randomTile);
-    if (exObj->getControlTrigger() == false) exObj->setControlTrigger(true);
+//    if (exObj->getControlTrigger() == false) exObj->setControlTrigger(true);
     this->addChild(randomTileSprite, 3, 300 + exObj->getGid());
 }
 
@@ -115,70 +124,133 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
     if (type == 0) {
         CCSprite *randomTileSprite = CCSprite::create("Poppo1A.png");
         randomTileSprite->setPosition(ccp(exObj1->getPosition().x, exObj1->getPosition().y + 70));
-        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
+        randomTileSprite->stopActionByTag(ACT_MOVING);
+        randomTileSprite->runAction(
+                                    CCSequence::create(
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCMoveTo::create(0.1, exObj1->getPosition()),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
+                                                       NULL
+                                                       )
+                                    )->setTag(ACT_MOVING);
+//        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(0);
-        if (exObj1->getControlTrigger() == false)  exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false)  exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
     if (type == 1) {
         CCSprite *randomTileSprite = CCSprite::create("Poppo2A.png");
         randomTileSprite->setPosition(ccp(exObj1->getPosition().x, exObj1->getPosition().y + 70));
-        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
+        randomTileSprite->stopActionByTag(ACT_MOVING);
+        randomTileSprite->runAction(
+                                    CCSequence::create(
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCMoveTo::create(0.1, exObj1->getPosition()),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
+                                                       NULL
+                                                       )
+                                    )->setTag(ACT_MOVING);
+//        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(1);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
     if (type == 2) {
         CCSprite *randomTileSprite = CCSprite::create("Poppo3A.png");
         randomTileSprite->setPosition(ccp(exObj1->getPosition().x, exObj1->getPosition().y + 70));
-        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
+        randomTileSprite->stopActionByTag(ACT_MOVING);
+        randomTileSprite->runAction(
+                                    CCSequence::create(
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCMoveTo::create(0.1, exObj1->getPosition()),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
+                                                       NULL
+                                                       )
+                                    )->setTag(ACT_MOVING);
+//        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(2);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
     if (type == 3) {
         CCSprite *randomTileSprite = CCSprite::create("Poppo4A.png");
         randomTileSprite->setPosition(ccp(exObj1->getPosition().x, exObj1->getPosition().y + 70));
-        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
+        randomTileSprite->stopActionByTag(ACT_MOVING);
+        randomTileSprite->runAction(
+                                    CCSequence::create(
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCMoveTo::create(0.1, exObj1->getPosition()),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
+                                                       NULL
+                                                       )
+                                    )->setTag(ACT_MOVING);
+//        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(3);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
     if (type == 4) {
         CCSprite *randomTileSprite = CCSprite::create("Poppo5A.png");
         randomTileSprite->setPosition(ccp(exObj1->getPosition().x, exObj1->getPosition().y + 70));
-        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
+        randomTileSprite->stopActionByTag(ACT_MOVING);
+        randomTileSprite->runAction(
+                                    CCSequence::create(
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCMoveTo::create(0.1, exObj1->getPosition()),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
+                                                       NULL
+                                                       )
+                                    )->setTag(ACT_MOVING);
+//        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(4);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
     if (type == 5) {
         CCSprite *randomTileSprite = CCSprite::create("Poppo6A.png");
         randomTileSprite->setPosition(ccp(exObj1->getPosition().x, exObj1->getPosition().y + 70));
-        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
+        randomTileSprite->stopActionByTag(ACT_MOVING);
+        randomTileSprite->runAction(
+                                    CCSequence::create(
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCMoveTo::create(0.1, exObj1->getPosition()),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
+                                                       NULL
+                                                       )
+                                    )->setTag(ACT_MOVING);
+//        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(5);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
     if (type == 6) {
         CCSprite *randomTileSprite = CCSprite::create("Poppo7A.png");
         randomTileSprite->setPosition(ccp(exObj1->getPosition().x, exObj1->getPosition().y + 70));
-        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
+        randomTileSprite->stopActionByTag(ACT_MOVING);
+        randomTileSprite->runAction(
+                                    CCSequence::create(
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCMoveTo::create(0.1, exObj1->getPosition()),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
+                                                       NULL
+                                                       )
+                                    )->setTag(ACT_MOVING);
+//        randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(6);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
@@ -209,5 +281,14 @@ void TakasuPoppo::setValuesForExObj(TPObjectExtension *exObj, int colorID, int g
     exObj->setControlTrigger(trigger);
     exObj->setBlockType(blockType);
     CCSprite *toMoveSprite = exObj->getSprite();
-    toMoveSprite->runAction(CCMoveTo::create(0.1, exObj->getPosition()));
+    toMoveSprite->stopActionByTag(ACT_MOVING);
+    toMoveSprite->runAction(
+                                CCSequence::create(
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj),
+                                                   CCMoveTo::create(0.1, exObj->getPosition()),
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj),
+                                                   NULL
+                                                   )
+                                )->setTag(ACT_MOVING);
+//    toMoveSprite->runAction(CCMoveTo::create(0.1, exObj->getPosition()));
 }

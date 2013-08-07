@@ -560,7 +560,8 @@ void TakasuPoppo::smartGeneration() {
                     break;
             }
             
-        }else if(exObj != NULL) exObj->setControlTrigger(true);
+        }
+//        else if(exObj != NULL) exObj->setControlTrigger(true);
         
 //    if(exObj != NULL && (exObj->getBlockType() == 10 || exObj->getBlockType() == 11 || exObj->getBlockType() == 12))
 //       {

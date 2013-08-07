@@ -54,6 +54,8 @@
 #define MOVED_HBA_BLOCK_TYPE 11
 #define MOVED_HBB_BLOCK_TYPE 12
 
+// Action tag
+#define ACT_MOVING  1
 
 USING_NS_CC;
 
