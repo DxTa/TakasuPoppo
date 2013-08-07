@@ -123,6 +123,7 @@ void TakasuPoppo::afterClean() {
                                             CCSequence::create(
                                                                CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                                                CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),
+                                                               CCMoveTo::create(0, exObj2->getPosition()),
                                                                CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),
                                                                CCCallFunc::create(this, callfunc_selector(TakasuPoppo::releaseAfterRunning)),
                                                                CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
@@ -748,6 +749,7 @@ void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
         if (block != NULL && block->getID() == exObj->getID() &&
             block->getID() != 7 && block->getSprite() != NULL) {
             CCSprite *exSprite = block->getSprite();
+
             exSprite->runAction(
                                 CCSequence::create(CCDelayTime::create(0.1f),
                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::scaleHyperBlockC),(void*)block),

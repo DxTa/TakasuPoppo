@@ -106,7 +106,7 @@ void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj) {
     randomTileSprite->stopActionByTag(ACT_MOVING);
     randomTileSprite->runAction(
                                 CCSequence::create(
-                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj),
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj),
                                                    CCMoveTo::create(0.1, exObj->getPosition()),
                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj),
                                                    NULL
@@ -127,7 +127,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         randomTileSprite->stopActionByTag(ACT_MOVING);
         randomTileSprite->runAction(
                                     CCSequence::create(
-                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj1),
                                                        CCMoveTo::create(0.1, exObj1->getPosition()),
                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
                                                        NULL
@@ -146,7 +146,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         randomTileSprite->stopActionByTag(ACT_MOVING);
         randomTileSprite->runAction(
                                     CCSequence::create(
-                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj1),
                                                        CCMoveTo::create(0.1, exObj1->getPosition()),
                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
                                                        NULL
@@ -165,7 +165,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         randomTileSprite->stopActionByTag(ACT_MOVING);
         randomTileSprite->runAction(
                                     CCSequence::create(
-                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj1),
                                                        CCMoveTo::create(0.1, exObj1->getPosition()),
                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
                                                        NULL
@@ -184,7 +184,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         randomTileSprite->stopActionByTag(ACT_MOVING);
         randomTileSprite->runAction(
                                     CCSequence::create(
-                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj1),
                                                        CCMoveTo::create(0.1, exObj1->getPosition()),
                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
                                                        NULL
@@ -203,7 +203,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         randomTileSprite->stopActionByTag(ACT_MOVING);
         randomTileSprite->runAction(
                                     CCSequence::create(
-                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj1),
                                                        CCMoveTo::create(0.1, exObj1->getPosition()),
                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
                                                        NULL
@@ -222,7 +222,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         randomTileSprite->stopActionByTag(ACT_MOVING);
         randomTileSprite->runAction(
                                     CCSequence::create(
-                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj1),
                                                        CCMoveTo::create(0.1, exObj1->getPosition()),
                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
                                                        NULL
@@ -241,7 +241,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         randomTileSprite->stopActionByTag(ACT_MOVING);
         randomTileSprite->runAction(
                                     CCSequence::create(
-                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj1),
+                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj1),
                                                        CCMoveTo::create(0.1, exObj1->getPosition()),
                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj1),
                                                        NULL
@@ -284,7 +284,7 @@ void TakasuPoppo::setValuesForExObj(TPObjectExtension *exObj, int colorID, int g
     toMoveSprite->stopActionByTag(ACT_MOVING);
     toMoveSprite->runAction(
                                 CCSequence::create(
-                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControl), (void*)exObj),
+                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj),
                                                    CCMoveTo::create(0.1, exObj->getPosition()),
                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj),
                                                    NULL
