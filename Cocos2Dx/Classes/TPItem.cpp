@@ -79,16 +79,16 @@ void TakasuPoppo::createMapWithHyperBlock()
     }
     TPObjectExtension* exA = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(gidA));
     if(exA != NULL && exA->getSprite() && exA->getSprite() != NULL &&
-       exA->getID() != 7 && exA->getBlockType() == NORMAL_BLOCK_TYPE)
+       exA->getID() != 7 && exA->getID() != 8 && exA->getBlockType() == NORMAL_BLOCK_TYPE)
         makeBlockToBeHBA(exA);
     
     TPObjectExtension* exB = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(gidB));
-    if(exB != NULL && exB->getSprite() && exB->getSprite() != NULL && exB->getID() != 7 &&
+    if(exB != NULL && exB->getSprite() && exB->getSprite() != NULL && exB->getID() != 7 && exA->getID() != 8 &&
        exB->getBlockType() == NORMAL_BLOCK_TYPE)
         makeBlockToBeHBB(exB);
 
     TPObjectExtension* exC = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(gidC));
-    if(exC != NULL && exC->getSprite() && exC->getSprite() != NULL && exC->getID() != 7 &&
+    if(exC != NULL && exC->getSprite() && exC->getSprite() != NULL && exC->getID() != 7 && exA->getID() != 8 &&
        exC->getBlockType() == NORMAL_BLOCK_TYPE)
         makeBlockToBeHBC(exC);
 }
