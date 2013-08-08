@@ -147,7 +147,7 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     this->setTouchEnabled(true);
     
-    this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
+    //this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
     
     this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
     
@@ -199,9 +199,9 @@ void TakasuPoppo::startGame() {
         
         TakasuPoppo::swipeSetup();
         
-        this->setTouchEnabled(true);
+        //this->setTouchEnabled(true);
         
-        this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
+        //this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
         
         this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
         this->schedule(schedule_selector(TakasuPoppo::timeCounter));
@@ -212,6 +212,22 @@ void TakasuPoppo::startGame() {
 
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
+    //if(runningAfter) this->setTouchEnabled(false);
+    TakasuPoppo::matchList();
+    bool c = checkUpdate();
+    if ((toDestroyArray->count() > 0 || c) && !inTheMove && !inTheFall)
+    {
+        //afterCleanRunning();
+        //setFalseControl();
+        this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
+    }else
+    {
+        this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+        //setControl();
+        //releaseAfterRunning();
+    }
+        
+
     //================== Combo related updates ======================
     sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
     comboCounterLabel->setString(comboCounterString);
@@ -438,14 +454,13 @@ void TakasuPoppo::update(float dt) {
 
 }
 
-void TakasuPoppo::fixedUpdate(float time) {
-    TakasuPoppo::matchList();
-    if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
+void TakasuPoppo::fixedUpdate(float time){
+    //TakasuPoppo::matchList();
+    if ((toDestroyArray->count() > 0 || checkUpdate()) && !inTheMove && !inTheFall) {
+        //count = 0;
         this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
-        //this->setTouchEnabled(false);
         this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
     }
-    
 }
 
 void TakasuPoppo::fallingBoolSwitch(float dt) {
@@ -487,15 +502,18 @@ void TakasuPoppo::logicExecution() {
         ComboScoreRequired = 1.1;
         CCLOG("SSSSSSSSS %d",ComboCounter);
     }
-    this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
+    //this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
                                        CCDelayTime::create(CLEAN_DELAY),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
-                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate)),
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::refreshMoving)),
+                                       CCDelayTime::create(movingSpeed * 7),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
-                                       NULL));
+                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
+                                       ,NULL));
     this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
     this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), LOGIC_DELAY);
 }
@@ -594,4 +612,16 @@ TakasuPoppo* TakasuPoppo::create(TPItemObject* itemObject){
         return NULL; \
     } \
 
+}
+
+bool TakasuPoppo::checkUpdate()
+{
+    CCObject* obj;
+    CCARRAY_FOREACH(colorArray, obj)
+    {
+        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
+        if(exObj->getID() == 7)
+            return true;
+    }
+    return false;
 }

@@ -61,7 +61,7 @@ private:
     
     float hintCounter = 3;          //Display hint after this counter
     
-    float movingSpeed = 0.07;       //For all moving speed
+    float movingSpeed = 0.02;       //For all moving speed
     
     float gameTimer = 500;
     
@@ -130,6 +130,14 @@ private:
     CCPoint mainPoint = CCPoint();
     bool swape = true;
     bool runningAfter = false;
+    int count = 0;
+    CCArray *boolMoveTo = new CCArray();
+    
+    // fixed hyper block C
+    bool isHBCinBlockSet = false;
+    float setCleanDelay();
+    void cleanHBC(TPObjectExtension* exObj);
+
 public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
     
@@ -363,6 +371,15 @@ public:
     void setTrueControlable(CCNode *sender, void* data);
     void setFalseControlable(CCNode *sender, void* data);
     void deleteMainSprite();
+    
+    void runningSwap(cocos2d::CCNode *sender, void *data);
+    bool swapruning = false;
+    void notRunningSwap(cocos2d::CCNode *sender, void *data);
+    bool checkAllRunning();
+    void refreshMoving();
+    //remove sprite
+    void removeSprite(CCNode* sender, void* data);
+    bool checkUpdate();
 
 };
 

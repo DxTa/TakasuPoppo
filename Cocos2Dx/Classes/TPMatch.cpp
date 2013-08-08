@@ -480,7 +480,6 @@ void TakasuPoppo::smartGeneration() {
         TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
         if (exObj != NULL && exObj->getID() == 7) {
             i ++;
-            
             switch (_spcialItemID) {
                 case 3:
                     // create Mission Block 1
@@ -560,7 +559,10 @@ void TakasuPoppo::smartGeneration() {
                     break;
             }
             
-        }else if(exObj != NULL) exObj->setControlTrigger(true);
+        }
+//        else
+//            exObj->getSprite()->setPosition(exObj->getPosition());
+        //else if(exObj != NULL) exObj->setControlTrigger(true);
         
 //    if(exObj != NULL && (exObj->getBlockType() == 10 || exObj->getBlockType() == 11 || exObj->getBlockType() == 12))
 //       {
@@ -569,9 +571,9 @@ void TakasuPoppo::smartGeneration() {
         
     }
     
-if(hyperBlockC){
-    randomBlockC();
-}
+    if(hyperBlockC){
+        randomBlockC();
+    }
     controlable = true;
     return;
 }
@@ -604,11 +606,11 @@ void TakasuPoppo::randomBlockC()
 }
 
 void TakasuPoppo::makeBlockToBeMB1(TPObjectExtension *exObj){
-    exObj->setBlockType(MB1_BLOCK_TYPE);
     // change controlable
     exObj->setControlTrigger(true);
-    if(exObj->getID() != 7)
+    if(exObj->getID() != 7 && exObj->getID() != 8 )
     {
+        exObj->setBlockType(MB1_BLOCK_TYPE);
         int imageId = exObj->getID() + 1;
         CCImage *poppoB = new CCImage;
         string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
@@ -624,10 +626,10 @@ void TakasuPoppo::makeBlockToBeMB1(TPObjectExtension *exObj){
 }
 
 void TakasuPoppo::makeBlockToBeMB2(TPObjectExtension *exObj){
-    exObj->setBlockType(MB2_BLOCK_TYPE);
     exObj->setControlTrigger(true);
-    if(exObj->getID() != 7)
+    if(exObj->getID() != 7 && exObj->getID() != 8)
     {
+        exObj->setBlockType(MB2_BLOCK_TYPE);
         int imageId = exObj->getID() + 1;
         CCImage *poppoB = new CCImage;
         string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
@@ -643,10 +645,11 @@ void TakasuPoppo::makeBlockToBeMB2(TPObjectExtension *exObj){
 }
 
 void TakasuPoppo::makeBlockToBeMB3(TPObjectExtension *exObj){
-    exObj->setBlockType(MB3_BLOCK_TYPE);
     exObj->setControlTrigger(true);
-    if(exObj->getID() != 7)
+    if(exObj->getID() != 7 && exObj->getID() != 8)
     {
+        exObj->setBlockType(MB3_BLOCK_TYPE);
+
         int imageId = exObj->getID() + 1;
         CCImage *poppoB = new CCImage;
         string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
