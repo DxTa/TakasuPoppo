@@ -304,7 +304,6 @@ bool TPMainScreen::init() {
     request->setResponseCallback(this, callfuncND_selector(TPMainScreen::onHttpRequestCompleted));
     CCHttpClient::getInstance()->send(request);
     request->release();
-    
     return true;
 }
 
@@ -773,6 +772,13 @@ void TPMainScreen::convertName(char *str_name)
             str_name[i] = ' ';
         }
     }
+}
+
+long TPMainScreen::getTime(){
+    struct cc_timeval now;
+    CCTime::gettimeofdayCocos2d(&now, NULL);
+    return (now.tv_sec * 1000 + now.tv_sec / 1000);
+    
 }
 
 Gamer::Gamer(string name, int score)

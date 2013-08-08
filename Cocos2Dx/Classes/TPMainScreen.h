@@ -141,6 +141,7 @@ public:
     virtual void scrollViewDidScroll(CCScrollView* view);
     virtual void scrollViewDidZoom(CCScrollView* view);
     void convertName(char *str_name);
+    long getTime();
     CREATE_FUNC(TPMainScreen);
 };
 
