@@ -295,6 +295,16 @@ bool TPMainScreen::init() {
     
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
     this->scheduleUpdate();
+    
+//    listGamer = new CCArray();
+    
+    CCHttpRequest *request = new CCHttpRequest();
+    request->setUrl((serverIP+":3000/users.json").c_str());
+    request->setRequestType(CCHttpRequest::kHttpGet);
+    request->setResponseCallback(this, callfuncND_selector(TPMainScreen::onHttpRequestCompleted));
+    CCHttpClient::getInstance()->send(request);
+    request->release();
+    
     return true;
 }
 
@@ -647,6 +657,128 @@ void TPMainScreen::setCrystal(int decreasingAmount) {
     heartChargeCount = 5 - heartCount;
     sprintf(heartViewChar, "%i", heartChargeCount);
     heartChargedLabel->setString(heartViewChar);
+}
+
+//============== Recieve data from Server and put into listGamer Array ================
+void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
+    CCHttpResponse *response = (CCHttpResponse*)data;
+
+    if (!response) {
+        return;
+    }
+    
+    if (!response->isSucceed()) {
+        CCLabelTTF *notConnectLabel = CCLabelTTF::create("Can't load data", "Time New Roman", 30);
+        notConnectLabel->setPosition(ccp(winSize.width/2, winSize.height/2));
+        notConnectLabel->setColor(ccYELLOW);
+        
+        CCLabelTTF *checkInternetMsg = CCLabelTTF::create("Please check your internet connection !!", "Time New Roman", 30);
+        checkInternetMsg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 40));
+        checkInternetMsg->setColor(ccYELLOW);
+       
+        this->addChild(checkInternetMsg,150);
+        this->addChild(notConnectLabel, 150);
+        return;
+    }
+    
+    //dump data recieve
+    std::vector<char> *buffer = response->getResponseData();
+    char *data1 = (char*)(malloc(buffer->size()* sizeof(char)));
+    int d = 0;
+    for ( ; d < buffer->size(); d++) {
+        data1[d] = (*buffer)[d];
+    }
+    data1[d+1]='\0';
+    rapidjson::Document document;
+    if(data1 != NULL && !document.Parse<0>(data1).HasParseError())
+    {
+        for (rapidjson::SizeType  i = 0; i < document.Size(); i++)
+        {
+            string name = document[i]["name"].GetString();
+            TPMainScreen::convertName((char*)name.c_str());
+            
+            Gamer *gamer = new Gamer(name,document[i]["point"].GetInt());
+            listGamer->addObject(gamer);
+        }
+
+    } else {
+       
+    }
+    CCLOG(" so luong gamer:%i",listGamer->count());
+    tableView = CCTableView::create(this, CCSizeMake(700, 400));
+    tableView->setDirection(kCCScrollViewDirectionVertical);
+    tableView->setAnchorPoint(ccp(0, 0));
+    tableView->setPosition(ccp(winSize.width / 8, 300));
+    tableView->setDelegate(this);
+    tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
+    this->addChild(tableView, 150);
+    tableView->reloadData();
+    
+}
+
+void TPMainScreen::tableCellTouched(CCTableView* table, CCTableViewCell* cell)
+{
+    
+}
+
+CCSize TPMainScreen::tableCellSizeForIndex(CCTableView *table, unsigned int index)
+{
+    return CCSizeMake(600, 80);
+}
+
+CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int index)
+{
+    CCTableViewCell *cell = table->dequeueCell();
+    cell = new CCTableViewCell();
+    cell->autorelease();
+    //
+    Gamer *gamer = (Gamer*)listGamer->objectAtIndex(index);
+    CCString *scoreGamer = CCString::createWithFormat("%d",gamer->getScore());
+    CCLabelTTF *scoreLabel = CCLabelTTF::create(scoreGamer->getCString(), "Helvetica", 30.0);
+    scoreLabel->setColor(ccYELLOW);
+    scoreLabel->setAnchorPoint(ccp(1, 0));
+    scoreLabel->setPosition(ccp(300,0));
+    scoreLabel->setTag(150);
+    cell->addChild(scoreLabel);
+    
+    CCLabelTTF *nameLabel = CCLabelTTF::create(gamer->getName().c_str(), "Helvetica", 30.0);
+    nameLabel->setAnchorPoint(CCPointZero);
+    nameLabel->setColor(ccYELLOW);
+    nameLabel->setPosition(CCPointZero);
+    cell->addChild(nameLabel,150);
+//    CCLOG("Name:%s Diem:%d",gamer->getName().c_str(),gamer->getScore());
+    return cell;
+}
+
+unsigned int TPMainScreen::numberOfCellsInTableView(CCTableView *table)
+{
+    return listGamer->count();
+}
+
+void TPMainScreen::scrollViewDidScroll(CCScrollView *view){
+}
+
+void TPMainScreen::scrollViewDidZoom(CCScrollView *view){
+}
+
+void TPMainScreen::convertName(char *str_name)
+{
+    int len = 0;
+    int i = 0;
+    len=strlen(str_name);
+    for(i=0;i<len;i++)
+    {
+        if(str_name[i] == '_')
+        {
+            str_name[i] = ' ';
+        }
+    }
+}
+
+Gamer::Gamer(string name, int score)
+{
+    this->_score = score;
+    this->_name = name;
 }
 
 #pragma mark Another

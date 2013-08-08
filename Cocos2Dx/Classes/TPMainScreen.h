@@ -9,19 +9,36 @@
 #ifndef __Cocos2Dx__TPMainScreen__
 #define __Cocos2Dx__TPMainScreen__
 
-#include <iostream>
+#define IP_SERVER "192.168.1.189"
 
-
+#include "CCTableViewCell.h"
+#include "CCTableView.h"
+#include "CCScrollView.h"
+#include "rapidjson.h"
+#include "document.h"
+#include "cocos-ext.h"
 #include <iostream>
 #include "cocos2d.h"
 #include "TPItemObject.h"
 
 USING_NS_CC;
 using namespace std;
+using namespace cocos2d::extension;
 
-class TPMainScreen : public CCLayer{
+class Gamer:public CCObject {
 private:
-    
+    CC_SYNTHESIZE(string,_name , Name);
+    CC_SYNTHESIZE(int , _score, Score);
+    CC_SYNTHESIZE(int, _reward, Reward);
+public:
+    Gamer(string name, int score);
+};
+
+class TPMainScreen : public CCLayer, CCTableViewDelegate, CCTableViewDataSource{
+private:
+    string serverIP = IP_SERVER;
+    CCArray *listGamer = new CCArray();
+    CCTableView *tableView;
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     //===================== New UI =========================
     CCSprite *newBackground;
@@ -114,6 +131,16 @@ public:
     CCRect boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite);
     
     static CCScene* scene();
+    
+    void onHttpRequestCompleted(CCNode *sender, void *data);
+    
+    virtual void tableCellTouched(CCTableView* table, CCTableViewCell* cell);
+    virtual CCSize tableCellSizeForIndex(CCTableView *table, unsigned int index);
+    virtual CCTableViewCell* tableCellAtIndex(CCTableView *table, unsigned int index);
+    virtual unsigned int numberOfCellsInTableView(CCTableView *table);
+    virtual void scrollViewDidScroll(CCScrollView* view);
+    virtual void scrollViewDidZoom(CCScrollView* view);
+    void convertName(char *str_name);
     CREATE_FUNC(TPMainScreen);
 };
 
