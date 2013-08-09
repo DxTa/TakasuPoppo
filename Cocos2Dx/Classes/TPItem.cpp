@@ -12,13 +12,14 @@
 
 bool TakasuPoppo::lastScore()
 {
+    
     this->runAction(CCDelayTime::create(5));
     CCObject* obj;
     int t = (int)(timeBonus/1.5);
     CCARRAY_FOREACH(colorArray, obj){
         this->runAction(CCDelayTime::create(4));
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
-        
+
         if(t==2){
             timeBonus = 0;
             if(exObj != NULL && exObj->getSprite() && exObj->getSprite() != NULL &&

@@ -11,15 +11,15 @@
 #include "TPBlockSet.h"
 void TakasuPoppo::cleanBlocks() {
     CCObject *object;
+    bool hyperA = false;
+    bool hyperB = false;
     if (toDestroyArray->count() != 0) {
         CCARRAY_FOREACH(toDestroyArray, object) {
-            
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
             if (blockSet->getType() == "hyperC") {
                 TakasuPoppo::cleanHyperBlockC(blockSet->getEx1());
             } else {
-                bool hyperA = false;
-                bool hyperB = false;
+
                 hintCounter = 3;
                 
                 TakasuPoppo::plusAllComboCounter();
@@ -81,7 +81,8 @@ void TakasuPoppo::cleanBlocks() {
                     if(checkSwipe(blockSet)->getBlockType() == MOVED_HBB_BLOCK_TYPE)
                         cleanB(checkSwipe(blockSet));
                     makeBlockToBeHBA(checkSwipe(blockSet));
-                    
+                    hyperA = false;
+                    break;
                 }
                 else if(hyperA)
                     makeBlockToBeHBA(blockSet->getEx2());
@@ -92,6 +93,8 @@ void TakasuPoppo::cleanBlocks() {
                     if(checkSwipe(blockSet)->getBlockType() == MOVED_HBB_BLOCK_TYPE)
                         cleanB(checkSwipe(blockSet));
                     makeBlockToBeHBB(checkSwipe(blockSet));
+                    hyperB = false;
+                    break;
                 }
                 else if(hyperB)
                     makeBlockToBeHBB(blockSet->getEx2());
@@ -100,13 +103,14 @@ void TakasuPoppo::cleanBlocks() {
                 }
                 // returm currentBlockSet to the default status
                 currentBlockSet = NULL;
-
+                
             }
-
+            
         }
     }
     toDestroyArray->removeAllObjects();
 }
+
 
 void TakasuPoppo::afterClean(){
     isHBCinBlockSet = false;
@@ -125,27 +129,32 @@ void TakasuPoppo::afterClean(){
                     if(checkAllRunning())
                     {
                         CCLOG("a sprite is running.....");
+                        CCBool* boolrun = new CCBool(true);
+                        TakasuPoppo::swapColorID(exObj, exObj2);
                         toMoveSprite->runAction(CCSequence::create(
+                                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::afterCleanRunning), (void*)boolrun),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable),(void*)exObj2),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable),(void*)exObj),
-                                                                   CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),
                                                                    CCDelayTime::create(SWAP_TIME * 2),
                                                                    CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),
+                                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::releaseAfterRunning), (void*)boolrun),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj2),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj), NULL));
-                        TakasuPoppo::swapColorID(exObj, exObj2);
                         break;
 
                     }
                     else{
+                        CCBool* boolrun = new CCBool(true);
+                        TakasuPoppo::swapColorID(exObj, exObj2);
                         toMoveSprite->runAction(CCSequence::create(
+                                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::afterCleanRunning), (void*)boolrun),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable),(void*)exObj2),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable),(void*)exObj),
-                                                                   CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterCleanRunning)),
                                                                    CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),
+                                                                   CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::releaseAfterRunning), (void*)boolrun),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj2),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj), NULL));
-                        TakasuPoppo::swapColorID(exObj, exObj2);
+  
                         break;
                     }
                 }
@@ -153,8 +162,8 @@ void TakasuPoppo::afterClean(){
             exObj->setControlTrigger(true);
         }
     }
+    toDestroyArray->removeAllObjects();
 }
-
 
 void TakasuPoppo::changeID(CCNode *sender, void* data) {
     TPObjectExtension *exObj = (TPObjectExtension*)data;
@@ -168,7 +177,7 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
     score =score + (int)(ComboScoreRequired * increasedScore * ONE_BLOCK *doubleScore);
     CCSprite *exSprite = exObj->getSprite();
     if (exSprite != NULL && exObj != NULL && exObj->getID() != 7 && exObj->getSprite() != NULL) {
-
+        exSprite->stopActionByTag(1210);
         CCPoint *spritePosition = new CCPoint(exObj->getPosition());
         exSprite->runAction(CCSequence::create(
                 CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID), (void*)exObj),
@@ -183,8 +192,11 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
 
 void TakasuPoppo::removeSprite(CCNode* sender, void* data)
 {
-    CCSprite *exSprite = (CCSprite*)data;
-    this->removeChild(exSprite);
+    if(data != NULL)
+    {
+        CCSprite *exSprite = (CCSprite*)data;
+        this->removeChild(exSprite);
+    }
 }
 
 /*
@@ -283,7 +295,7 @@ void TakasuPoppo::cleanHyperBlockB(TPObjectExtension* exObj) {
     
     int x = exObj->getCoordination().x;
     int y = exObj->getCoordination().y;
-        
+    
     if (isInCurrentBlockSet(exObj) == false) {
         
         TakasuPoppo::plusAllComboCounter();
@@ -440,6 +452,7 @@ void TakasuPoppo::makeBlockToBeHBB(TPObjectExtension* exObj){
 void TakasuPoppo::makeBlockToBeHBC(TPObjectExtension *exObj){
     exObj->setBlockType(HBC_BLOCK_TYPE);
     exObj->setID(8);
+
     CCAnimation *animation = CCAnimation::create();
     for (int i = 1; i < 8; i++) {
         char fileName[15] = {0};
@@ -890,14 +903,22 @@ void TakasuPoppo::plusAllComboCounter(){
     if (ComboTimer != 3) ComboTimer = 3;
     
 }
- void TakasuPoppo::afterCleanRunning()
+ void TakasuPoppo::afterCleanRunning(cocos2d::CCNode *sender, void *data)
 {
     runningAfter = true;
+    CCBool * boolMoving = (CCBool*)data;
+    boolAfterClean->addObject(boolMoving);
+    move = false;
+    swape = false;
+    
 }
-void TakasuPoppo::releaseAfterRunning()
+void TakasuPoppo::releaseAfterRunning(cocos2d::CCNode *sender, void *data)
 {
-    //runningAfter = false;
-}
+    CCBool * boolMoving = (CCBool*)data;
+    boolAfterClean->removeObject(boolMoving);
+    
+    move = false;
+    swape = false;}
 void TakasuPoppo::setFalseControl()
 {
     move = false;
@@ -915,10 +936,6 @@ void TakasuPoppo::setControl()
     move = false;
     swape = false;
     runningAfter = false;
-    swipeUp = false;
-    swipeDown = false;
-    swipeRight = false;
-    swipeLeft = false;
 }
 
 void TakasuPoppo::deleteMainSprite()
@@ -944,6 +961,21 @@ bool TakasuPoppo::checkAllRunning()
     }
     return false;
 }
+bool TakasuPoppo::checkAfterCleanRunning()
+{
+    CCObject* obj;
+    CCARRAY_FOREACH(boolAfterClean, obj)
+    {
+        CCBool* boolMoving = dynamic_cast<CCBool*>(obj);
+        if(boolMoving->getValue())
+        {
+            boolAfterClean->removeAllObjects();
+            return true;
+        }
+    }
+    return false;
+}
+
 void TakasuPoppo::notRunningSwap(cocos2d::CCNode *sender, void *data)
 {
     CCBool * boolMoving = (CCBool*)data;

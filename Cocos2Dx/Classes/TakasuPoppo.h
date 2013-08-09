@@ -130,9 +130,10 @@ private:
     CCPoint mainPoint = CCPoint();
     bool swape = true;
     bool runningAfter = false;
-    int count = 0;
     CCArray *boolMoveTo = new CCArray();
-    
+    CCArray *boolAfterClean = new CCArray();
+    //time----
+    bool endTime = false;
     // fixed hyper block C
     bool isHBCinBlockSet = false;
     float setCleanDelay();
@@ -361,8 +362,8 @@ public:
     
     //moveto
     void setControl();
-    void afterCleanRunning();
-    void releaseAfterRunning();
+    void afterCleanRunning(cocos2d::CCNode *sender, void *data);
+    void releaseAfterRunning(cocos2d::CCNode *sender, void *data);
     void setFalseControl();
     void setTrueControlable(CCNode *sender, void* data);
     void setFalseControlable(CCNode *sender, void* data);
@@ -373,11 +374,12 @@ public:
     void notRunningSwap(cocos2d::CCNode *sender, void *data);
     bool checkAllRunning();
     void refreshMoving();
+    bool checkAfterCleanRunning();
     //remove sprite
     void removeSprite(CCNode* sender, void* data);
-//    bool checkUpdate();
-
-
+    bool checkUpdate();
+    //checkResetMap
+    void checkResetMap();
 };
 
 #endif

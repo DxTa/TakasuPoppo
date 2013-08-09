@@ -406,6 +406,8 @@ TPObjectExtension *TakasuPoppo::coorToExObj(CCPoint coor) {
  */
 
 bool TakasuPoppo::matchAble(CCPoint coor, int type) {
+    if(type == 8)
+        return false;
     int x = coor.x;
     int y = coor.y;
     
@@ -564,14 +566,6 @@ void TakasuPoppo::smartGeneration() {
             }
             
         }
-//        else
-//            exObj->getSprite()->setPosition(exObj->getPosition());
-        //else if(exObj != NULL) exObj->setControlTrigger(true);
-        
-//    if(exObj != NULL && (exObj->getBlockType() == 10 || exObj->getBlockType() == 11 || exObj->getBlockType() == 12))
-//       {
-//           exObj->setBlockType(exObj->getBlockType() % 10);
-//       }
         
     }
     
