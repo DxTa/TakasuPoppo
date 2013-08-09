@@ -32,7 +32,11 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                 {
                     if(exObject->getID() != 7 && exObject->getBlockType() == HBC_BLOCK_TYPE && exObject->getSprite() && exObject->getSprite() != NULL)
                     {
-                        cleanHyperBlockC(exObject);
+                        isHBCinBlockSet = true;
+                        TPBlockSet* blockSet = new TPBlockSet(exObject, NULL, NULL, NULL, NULL, NULL, NULL, "hyperC", exObject->getCoordination().x, exObject->getCoordination().y);
+                        toDestroyArray->addObject(blockSet);
+                        
+                        
                         move = false;
                         swape = false;
                         return;

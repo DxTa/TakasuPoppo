@@ -28,6 +28,7 @@ TPBlockSet::TPBlockSet(TPObjectExtension *ex1, TPObjectExtension *ex2, TPObjectE
 
 CCArray *TPBlockSet::getBlocksArray() {
     CCArray *newArray = new CCArray;
+    newArray->autorelease();
     if (this->ex1 != NULL) newArray->addObject(this->ex1);
     if (this->ex2 != NULL) newArray->addObject(this->ex2);
     if (this->ex3 != NULL) newArray->addObject(this->ex3);

@@ -53,25 +53,76 @@ void TakasuPoppo::swipedDown(TPObjectExtension *exObj) {
 }
 
 #pragma mark Tile Interactions
+//void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
+//    TakasuPoppo::lookForMatches();
+//    TPObjectExtension *swpObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(swpGid- 1)); //Out of range error
+//    
+//    if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
+//    {
+//        //TakasuPoppo::swapColorID(exObj, swpObj);
+//        cleanHyperBlockC(swpObj);
+//        
+//        return;
+//    }
+//    else if(exObj->getBlockType() == HBC_BLOCK_TYPE)
+//    {
+//        //TakasuPoppo::swapColorID(exObj, swpObj);
+//        cleanHyperBlockC(exObj);
+//        return;
+//    }
+//    
+//    
+//    
+//    if (exObj != NULL &&
+//        exObj->getControlTrigger() != false &&
+//        swpObj != NULL &&
+//        swpObj->getControlTrigger() != false &&
+//        exObj->getID() != 7 &&
+//        swpObj->getID() != 7) {
+//
+//        
+//        TakasuPoppo::swapColorID(exObj, swpObj);
+//        
+//        
+//        
+//        
+//
+//        if (TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true ||
+//            TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true) {
+//            
+//            moveCounter = 0;
+//            this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), MOVE_DELAY);
+//            TakasuPoppo::checkPosition(exObj, swpObj);
+//            if(TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true){
+//                if(swpObj->getBlockType() == NORMAL_BLOCK_TYPE)
+//                    swpObj->setBlockType(MOVED_NORMAL_BLOCK_TYPE);
+//                if(swpObj->getBlockType() == HBA_BLOCK_TYPE)
+//                    swpObj->setBlockType(MOVED_HBA_BLOCK_TYPE);
+//                if(swpObj->getBlockType() == HBB_BLOCK_TYPE)
+//                    swpObj->setBlockType(MOVED_HBB_BLOCK_TYPE);
+//            }
+//            if(TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true){
+//                if(exObj->getBlockType() == NORMAL_BLOCK_TYPE)
+//                    exObj->setBlockType(MOVED_NORMAL_BLOCK_TYPE);
+//                if(exObj->getBlockType() == HBA_BLOCK_TYPE)
+//                    exObj->setBlockType(MOVED_HBA_BLOCK_TYPE);
+//                if(exObj->getBlockType() == HBB_BLOCK_TYPE)
+//                    exObj->setBlockType(MOVED_HBB_BLOCK_TYPE);
+//            }
+//            
+//        }
+//        else {
+//            TakasuPoppo::swapColorID(exObj, swpObj);
+//            if(exObj->getSprite() != NULL && swpObj->getSprite() != NULL)
+//                TakasuPoppo::swapTilesBack(exObj, swpObj);
+//        }
+//    }
+//    //this->setTouchEnabled(true);
+//
+//}
 void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
     TakasuPoppo::lookForMatches();
     TPObjectExtension *swpObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(swpGid- 1)); //Out of range error
-    
-    if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
-    {
-        //TakasuPoppo::swapColorID(exObj, swpObj);
-        cleanHyperBlockC(swpObj);
-        
-        return;
-    }
-    else if(exObj->getBlockType() == HBC_BLOCK_TYPE)
-    {
-        //TakasuPoppo::swapColorID(exObj, swpObj);
-        cleanHyperBlockC(exObj);
-        return;
-    }
-    
-    
     
     if (exObj != NULL &&
         exObj->getControlTrigger() != false &&
@@ -79,21 +130,31 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
         swpObj->getControlTrigger() != false &&
         exObj->getID() != 7 &&
         swpObj->getID() != 7) {
-
         
+        if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
+        {
+            swpObj->getSprite()->stopActionByTag(1210);
+        }
+        if(exObj->getBlockType() == HBC_BLOCK_TYPE)
+        {
+            exObj->getSprite()->stopActionByTag(1210);
+        }
         TakasuPoppo::swapColorID(exObj, swpObj);
         
-        
-        
-        
-
         if (TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true ||
             TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true) {
-            
+            TakasuPoppo::checkPosition(swpObj, exObj);
             moveCounter = 0;
             this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), MOVE_DELAY);
-            TakasuPoppo::checkPosition(exObj, swpObj);
             if(TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true){
+                if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
+                {
+                    makeBlockToBeHBC(swpObj);
+                }
+                if(exObj->getBlockType() == HBC_BLOCK_TYPE)
+                {
+                    makeBlockToBeHBC(exObj);
+                }
                 if(swpObj->getBlockType() == NORMAL_BLOCK_TYPE)
                     swpObj->setBlockType(MOVED_NORMAL_BLOCK_TYPE);
                 if(swpObj->getBlockType() == HBA_BLOCK_TYPE)
@@ -102,6 +163,15 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
                     swpObj->setBlockType(MOVED_HBB_BLOCK_TYPE);
             }
             if(TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true){
+                
+                if(exObj->getBlockType() == HBC_BLOCK_TYPE)
+                {
+                    makeBlockToBeHBC(exObj);
+                }
+                if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
+                {
+                    makeBlockToBeHBC(swpObj);
+                }
                 if(exObj->getBlockType() == NORMAL_BLOCK_TYPE)
                     exObj->setBlockType(MOVED_NORMAL_BLOCK_TYPE);
                 if(exObj->getBlockType() == HBA_BLOCK_TYPE)
@@ -114,11 +184,22 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
         else {
             TakasuPoppo::swapColorID(exObj, swpObj);
             if(exObj->getSprite() != NULL && swpObj->getSprite() != NULL)
-                TakasuPoppo::swapTilesBack(exObj, swpObj);
+            {
+                TakasuPoppo::swapTilesBack(swpObj, exObj);
+                if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
+                {
+                    makeBlockToBeHBC(swpObj);
+                }
+                if(exObj->getBlockType() == HBC_BLOCK_TYPE)
+                {
+                    makeBlockToBeHBC(exObj);
+                }
+                
+            }
         }
     }
     //this->setTouchEnabled(true);
-
+    
 }
 
 void TakasuPoppo::swapColorID(TPObjectExtension *exObj, TPObjectExtension *swpObj) {

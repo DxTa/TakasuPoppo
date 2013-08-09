@@ -170,6 +170,7 @@ void TakasuPoppo::popAnimation(CCNode* sender, void* data) {
     CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
     cache->addSpriteFramesWithFile("starPop.plist");
     CCArray* animFrames = new CCArray;
+    animFrames->autorelease();
     char str[100] = {0};
     for(int i = 0; i < 5; i++) {
         sprintf(str, "StarPop%d.png", i);

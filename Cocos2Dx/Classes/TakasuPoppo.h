@@ -63,7 +63,7 @@ private:
     
     float movingSpeed = 0.02;       //For all moving speed
     
-    float gameTimer = 500;
+    float gameTimer = FLT_MAX;
     
     bool counterExist1 = false;
     bool counterExist2 = false;
@@ -136,7 +136,6 @@ private:
     // fixed hyper block C
     bool isHBCinBlockSet = false;
     float setCleanDelay();
-    void cleanHBC(TPObjectExtension* exObj);
 
 public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
@@ -305,17 +304,14 @@ public:
     void makeBlockToBeHBC(TPObjectExtension* exobj);
     void cleanOneBlock(TPObjectExtension* exobj);
     bool isInCurrentBlockSet(TPObjectExtension* exobj);
-    
-    void cleanBlockSetNormal(TPBlockSet *blockSet);
-    
+        
     bool isValidEx(TPObjectExtension * ex);
     void randomBlockC();
     
     void cleanA(TPObjectExtension* exObj);
     void cleanB(TPObjectExtension* exObj);
     void scaleHyperBlockC(CCNode *sender, void* data);
-    void newCleanOneBlock(CCNode *sender, void* data);
-
+    void cleanOneBlock(CCNode *sender, void* data);
     
     int _spcialItemID;
     TPItemObject* _itemObject;
@@ -379,7 +375,8 @@ public:
     void refreshMoving();
     //remove sprite
     void removeSprite(CCNode* sender, void* data);
-    bool checkUpdate();
+//    bool checkUpdate();
+
 
 };
 

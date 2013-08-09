@@ -108,14 +108,14 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     _spcialItemID = _itemObject->getSpecialItemID() ;
     switch (_spcialItemID) {
         case 3:
-            timeToCreateMB1 = rand() % 30 + 20;
+            timeToCreateMB1 = rand() % (PLAY_TIME/2) + (PLAY_TIME/3) ;
             isCleanMB1 = false;
             isCreateMB1 = false;
             CCLog("time will create MB1: %i", timeToCreateMB1);
             break;
             
         case 4:
-            timeToCreateMB2 = rand() % 60;
+            timeToCreateMB2 = rand() % PLAY_TIME;
             isCleanMB2 = false;
             isCreateMB2 = false;
             isExistMB2 = false;
@@ -127,7 +127,7 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
             doubleScoreStartTime = 0;
             isCleanMB3 = false;
             isCreateMB3 = false;
-            timeToCreateMB3 = rand() % 30 + 30;
+            timeToCreateMB3 = rand() % (PLAY_TIME/2) + (PLAY_TIME/2);
             CCLOG("Time to create MB2: %d", timeToCreateMB3);
             
         case 7:
@@ -214,19 +214,20 @@ void TakasuPoppo::update(float dt) {
     deltaTime = dt;
     //if(runningAfter) this->setTouchEnabled(false);
     TakasuPoppo::matchList();
-    bool c = checkUpdate();
-    if ((toDestroyArray->count() > 0 || c) && !inTheMove && !inTheFall)
+//    bool c = checkUpdate();
+    if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall)
     {
         //afterCleanRunning();
         //setFalseControl();
-        this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
+//        this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
+        TakasuPoppo::fixedUpdate(0);
     }else
     {
         this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
         //setControl();
         //releaseAfterRunning();
     }
-        
+    
 
     //================== Combo related updates ======================
     sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
@@ -259,8 +260,8 @@ void TakasuPoppo::update(float dt) {
         ComboTimer = 0;
         ComboCounter = 0;
     }
-    CCLog("ComboTimer: %f", ComboTimer);
-    CCLog("ComboCounter: %d", ComboCounter);
+//    CCLog("ComboTimer: %f", ComboTimer);
+//    CCLog("ComboCounter: %d", ComboCounter);
 
     //===============================================================
     
@@ -402,7 +403,7 @@ void TakasuPoppo::update(float dt) {
             break;
             
         case 4:
-            if ( ( (rand() % 60) == timeToCreateMB2) && isCreateMB2 == false && isExistMB2 == false && countMB2 < 10) {
+            if ( ( (rand() % PLAY_TIME) == timeToCreateMB2) && isCreateMB2 == false && isExistMB2 == false && countMB2 < MISSION_BLOCK2_MAX_AMOUNT) {
                 isCreateMB2 = true;
                 countMB2 ++;
             }
@@ -428,13 +429,13 @@ void TakasuPoppo::update(float dt) {
                 if (gameTimer <= doubleScoreStartTime && gameTimer >= (doubleScoreStartTime - DOUBLE_SCORE_TIME) ) {
                     // do some code logic here
                     doubleScore = 2;
-                    CCLog("gameTimer: %f", gameTimer);
-                    CCLog("doubleScoreStartTime: %d", doubleScoreStartTime);
-                    CCLog("The Score is double now");
+//                    CCLog("gameTimer: %f", gameTimer);
+//                    CCLog("doubleScoreStartTime: %d", doubleScoreStartTime);
+//                    CCLog("The Score is double now");
                 }
                 else{
                     doubleScore = 1;
-                    CCLog("The Score is not double anymore");
+//                    CCLog("The Score is not double anymore");
                 }
 
             }
@@ -456,9 +457,9 @@ void TakasuPoppo::update(float dt) {
 
 void TakasuPoppo::fixedUpdate(float time){
     //TakasuPoppo::matchList();
-    if ((toDestroyArray->count() > 0 || checkUpdate()) && !inTheMove && !inTheFall) {
+    if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         //count = 0;
-        this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+//        this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
         this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
     }
 }
@@ -506,7 +507,8 @@ void TakasuPoppo::logicExecution() {
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
-                                       CCDelayTime::create(CLEAN_DELAY),
+                                       CCDelayTime::create(0.2f),
+                                       CCDelayTime::create(setCleanDelay()),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::refreshMoving)),
@@ -514,8 +516,11 @@ void TakasuPoppo::logicExecution() {
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
-    this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
-    this->schedule(schedule_selector(TakasuPoppo::fixedUpdate), LOGIC_DELAY);
+    if (!inTheFall && !inTheMove) {        
+        this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
+    }
+    
+
 }
 
 void TakasuPoppo::timeSetup() {
@@ -557,6 +562,7 @@ void TakasuPoppo::timeCounter() {
         gameTimer -= deltaTime;
         timerBar->setPercentage(1.66 * gameTimer);
         scoresBeforeLastBonus = score;
+//        CCLOG("game Timer: %f", gameTimer);
     }
     if (gameTimer < 0) {
         timeBonus += deltaTime;
@@ -614,14 +620,14 @@ TakasuPoppo* TakasuPoppo::create(TPItemObject* itemObject){
 
 }
 
-bool TakasuPoppo::checkUpdate()
-{
-    CCObject* obj;
-    CCARRAY_FOREACH(colorArray, obj)
-    {
-        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
-        if(exObj->getID() == 7)
-            return true;
-    }
-    return false;
-}
+//bool TakasuPoppo::checkUpdate()
+//{
+//    CCObject* obj;
+//    CCARRAY_FOREACH(colorArray, obj)
+//    {
+//        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
+//        if(exObj->getID() == 7)
+//            return true;
+//    }
+//    return false;
+//}

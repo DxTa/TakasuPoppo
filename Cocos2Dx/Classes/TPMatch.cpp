@@ -38,6 +38,7 @@ void TakasuPoppo::matchList() {
     for (int y = 0; y < 7; y++) {
         for (int x = 0; x < 5; x++) {
             CCArray *match = new CCArray;
+            match->autorelease();
             CCPoint coor = ccp(x, y);
             int gid = layer->tileGIDAt(coor);
             int gidToIndex = gid - 1;
@@ -132,6 +133,7 @@ void TakasuPoppo::matchList() {
     for (int x = 0; x < 7; x++) {
         for (int y = 0; y < 5; y++) {
             CCArray *match = new CCArray;
+            match->autorelease();
             CCPoint coor = ccp(x, y);
             int gid = layer->tileGIDAt(coor);
             int gidToIndex = gid - 1;
@@ -227,6 +229,7 @@ void TakasuPoppo::matchList() {
 
 CCArray *TakasuPoppo::getMatchHor(TPObjectExtension *exObj) {
     CCArray *matches = new CCArray;
+    matches->autorelease();
     int colNum= exObj->getCoordination().x;
     for (int ct = 1; colNum + ct < 7; ct++) {
         CCPoint coor = ccp(colNum + ct, exObj->getCoordination().y);
@@ -244,6 +247,7 @@ CCArray *TakasuPoppo::getMatchHor(TPObjectExtension *exObj) {
 
 CCArray *TakasuPoppo::getMatchVer(TPObjectExtension *exObj) {
     CCArray *matches = new CCArray;
+    matches->autorelease();
     int rowNum= exObj->getCoordination().y;
     for (int ct = 1; rowNum + ct < 7; ct++) {
         CCPoint coor = ccp(exObj->getCoordination().x, rowNum + ct);

@@ -585,7 +585,7 @@
 		84DA2875176702B200E179E7 /* BigTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BigTile.png; sourceTree = "<group>"; };
 		CEFBBE29177D3ECA0000F235 /* IOFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IOFile.cpp; sourceTree = "<group>"; };
 		CEFBBE2A177D3ECB0000F235 /* IOFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOFile.h; sourceTree = "<group>"; };
-		DC12FB641744D21300480D31 /* Cocos2Dx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocos2Dx.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC12FB641744D21300480D31 /* TakasuPoppo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakasuPoppo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC12FB671744D21300480D31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DC12FB691744D21300480D31 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DC12FB6B1744D21300480D31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1487,7 +1487,7 @@
 		DC12FB651744D21300480D31 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC12FB641744D21300480D31 /* Cocos2Dx.app */,
+				DC12FB641744D21300480D31 /* TakasuPoppo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2624,9 +2624,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DC12FB631744D21300480D31 /* Cocos2Dx */ = {
+		DC12FB631744D21300480D31 /* TakasuPoppo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC12FEE21744D22E00480D31 /* Build configuration list for PBXNativeTarget "Cocos2Dx" */;
+			buildConfigurationList = DC12FEE21744D22E00480D31 /* Build configuration list for PBXNativeTarget "TakasuPoppo" */;
 			buildPhases = (
 				DC12FB601744D21300480D31 /* Sources */,
 				DC12FB611744D21300480D31 /* Frameworks */,
@@ -2636,9 +2636,9 @@
 			);
 			dependencies = (
 			);
-			name = Cocos2Dx;
+			name = TakasuPoppo;
 			productName = Cocos2Dx;
-			productReference = DC12FB641744D21300480D31 /* Cocos2Dx.app */;
+			productReference = DC12FB641744D21300480D31 /* TakasuPoppo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2661,7 +2661,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DC12FB631744D21300480D31 /* Cocos2Dx */,
+				DC12FB631744D21300480D31 /* TakasuPoppo */,
 			);
 		};
 /* End PBXProject section */
@@ -3129,9 +3129,9 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/third_party/ios\"",
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PROVISIONING_PROFILE = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3162,11 +3162,11 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/third_party/ios\"",
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
-				"PROVISIONING_PROFILE[sdk=*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3176,8 +3176,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3194,8 +3194,8 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3205,9 +3205,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cocos2Dx/Prefix.pch;
@@ -3223,9 +3223,9 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
-				"PROVISIONING_PROFILE[sdk=*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -3244,7 +3244,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC12FEE21744D22E00480D31 /* Build configuration list for PBXNativeTarget "Cocos2Dx" */ = {
+		DC12FEE21744D22E00480D31 /* Build configuration list for PBXNativeTarget "TakasuPoppo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC12FEE31744D22E00480D31 /* Debug */,

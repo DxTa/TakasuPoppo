@@ -9,8 +9,8 @@
 #ifndef Cocos2Dx_TPDefinition_h
 #define Cocos2Dx_TPDefinition_h
 
+#include <limits.h>
 #define FONT_SIZE 30
-
 // Combo and timer system
 #define HBC_COMBO_MAXCOUNT 8
 #define HBC_COMBO_MAXTIME 5
@@ -33,6 +33,9 @@
 #define LOGIC_DELAY 0.05
 #define MOVE_DELAY 0.08
 
+#define HBC_CLEAN_DELAY 0.4
+
+#define PLAY_TIME 60
 // score system
 #define SCORE_THREE  200
 #define SCORE_FOUR  200
@@ -41,6 +44,7 @@
 
 //Item System
 #define DOUBLE_SCORE_TIME 20
+#define MISSION_BLOCK2_MAX_AMOUNT 10
 
 // Block Type System
 #define NORMAL_BLOCK_TYPE 0
