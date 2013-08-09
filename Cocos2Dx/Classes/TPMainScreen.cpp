@@ -296,7 +296,7 @@ bool TPMainScreen::init() {
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
     this->scheduleUpdate();
     
-//    listGamer = new CCArray();
+
     
     CCHttpRequest *request = new CCHttpRequest();
     request->setUrl((serverIP+":3000/users.json").c_str());
@@ -703,6 +703,7 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
     } else {
        
     }
+    free(data1);
     CCLOG(" so luong gamer:%i",listGamer->count());
     tableView = CCTableView::create(this, CCSizeMake(700, 400));
     tableView->setDirection(kCCScrollViewDirectionVertical);

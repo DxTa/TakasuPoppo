@@ -540,6 +540,16 @@
 		84A0CF3617B0A469009B449E /* poppo_tut_for_dis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_tut_for_dis.png; sourceTree = "<group>"; };
 		84A0CF3717B0A469009B449E /* poppo_tut_for_ebl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_tut_for_ebl.png; sourceTree = "<group>"; };
 		84A0CF3817B0A469009B449E /* poppo_tut_win.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_tut_win.png; sourceTree = "<group>"; };
+		84A0CF6117B3848E009B449E /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
+		84A0CF6217B3848E009B449E /* filestream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filestream.h; sourceTree = "<group>"; };
+		84A0CF6417B3848E009B449E /* pow10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pow10.h; sourceTree = "<group>"; };
+		84A0CF6517B3848E009B449E /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		84A0CF6617B3848E009B449E /* strfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strfunc.h; sourceTree = "<group>"; };
+		84A0CF6717B3848E009B449E /* prettywriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prettywriter.h; sourceTree = "<group>"; };
+		84A0CF6817B3848E009B449E /* rapidjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rapidjson.h; sourceTree = "<group>"; };
+		84A0CF6917B3848E009B449E /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		84A0CF6A17B3848E009B449E /* stringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringbuffer.h; sourceTree = "<group>"; };
+		84A0CF6B17B3848E009B449E /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
 		84AC3056178FF4D80073C6D5 /* 90x90TileMap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = 90x90TileMap.tmx; sourceTree = "<group>"; };
 		84AC3057178FF4D80073C6D5 /* NewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewBackground.png; sourceTree = "<group>"; };
 		84AC3058178FF4D90073C6D5 /* NewPrettyTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewPrettyTile.png; sourceTree = "<group>"; };
@@ -575,7 +585,7 @@
 		84DA2875176702B200E179E7 /* BigTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BigTile.png; sourceTree = "<group>"; };
 		CEFBBE29177D3ECA0000F235 /* IOFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IOFile.cpp; sourceTree = "<group>"; };
 		CEFBBE2A177D3ECB0000F235 /* IOFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOFile.h; sourceTree = "<group>"; };
-		DC12FB641744D21300480D31 /* Cocos2Dx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocos2Dx.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC12FB641744D21300480D31 /* TakasuPoppo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakasuPoppo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC12FB671744D21300480D31 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DC12FB691744D21300480D31 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DC12FB6B1744D21300480D31 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1352,6 +1362,31 @@
 			path = "Resources/Neo Poppo";
 			sourceTree = "<group>";
 		};
+		84A0CF6017B3848E009B449E /* rapidjson */ = {
+			isa = PBXGroup;
+			children = (
+				84A0CF6117B3848E009B449E /* document.h */,
+				84A0CF6217B3848E009B449E /* filestream.h */,
+				84A0CF6317B3848E009B449E /* internal */,
+				84A0CF6717B3848E009B449E /* prettywriter.h */,
+				84A0CF6817B3848E009B449E /* rapidjson.h */,
+				84A0CF6917B3848E009B449E /* reader.h */,
+				84A0CF6A17B3848E009B449E /* stringbuffer.h */,
+				84A0CF6B17B3848E009B449E /* writer.h */,
+			);
+			path = rapidjson;
+			sourceTree = "<group>";
+		};
+		84A0CF6317B3848E009B449E /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				84A0CF6417B3848E009B449E /* pow10.h */,
+				84A0CF6517B3848E009B449E /* stack.h */,
+				84A0CF6617B3848E009B449E /* strfunc.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
 		84AC3093179658AE0073C6D5 /* Pop */ = {
 			isa = PBXGroup;
 			children = (
@@ -1452,7 +1487,7 @@
 		DC12FB651744D21300480D31 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC12FB641744D21300480D31 /* Cocos2Dx.app */,
+				DC12FB641744D21300480D31 /* TakasuPoppo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1513,6 +1548,7 @@
 		DC12FB991744D21400480D31 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				84A0CF6017B3848E009B449E /* rapidjson */,
 				DC12FB9A1744D21400480D31 /* cocos2dx */,
 				DC12FD7D1744D22600480D31 /* CocosDenshion */,
 				DC12FD951744D22700480D31 /* extensions */,
@@ -2588,9 +2624,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DC12FB631744D21300480D31 /* Cocos2Dx */ = {
+		DC12FB631744D21300480D31 /* TakasuPoppo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC12FEE21744D22E00480D31 /* Build configuration list for PBXNativeTarget "Cocos2Dx" */;
+			buildConfigurationList = DC12FEE21744D22E00480D31 /* Build configuration list for PBXNativeTarget "TakasuPoppo" */;
 			buildPhases = (
 				DC12FB601744D21300480D31 /* Sources */,
 				DC12FB611744D21300480D31 /* Frameworks */,
@@ -2600,9 +2636,9 @@
 			);
 			dependencies = (
 			);
-			name = Cocos2Dx;
+			name = TakasuPoppo;
 			productName = Cocos2Dx;
-			productReference = DC12FB641744D21300480D31 /* Cocos2Dx.app */;
+			productReference = DC12FB641744D21300480D31 /* TakasuPoppo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2625,7 +2661,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DC12FB631744D21300480D31 /* Cocos2Dx */,
+				DC12FB631744D21300480D31 /* TakasuPoppo */,
 			);
 		};
 /* End PBXProject section */
@@ -3093,9 +3129,9 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/third_party/ios\"",
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PROVISIONING_PROFILE = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3126,11 +3162,11 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/third_party/ios\"",
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
-				"PROVISIONING_PROFILE[sdk=*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3158,8 +3194,8 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3170,6 +3206,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3186,8 +3223,9 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DD7371BC-0F7B-4F87-BC31-8F61202E391A";
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -3206,7 +3244,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC12FEE21744D22E00480D31 /* Build configuration list for PBXNativeTarget "Cocos2Dx" */ = {
+		DC12FEE21744D22E00480D31 /* Build configuration list for PBXNativeTarget "TakasuPoppo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC12FEE31744D22E00480D31 /* Debug */,
