@@ -16,7 +16,7 @@ void TakasuPoppo::cleanBlocks() {
     if (toDestroyArray->count() != 0) {
         CCARRAY_FOREACH(toDestroyArray, object) {
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
-            if (blockSet->getType() == "hyperC") {
+            if (blockSet->getType() == "hyperBlockC") {
                 TakasuPoppo::cleanHyperBlockC(blockSet->getEx1());
             } else {
 
@@ -298,17 +298,20 @@ void TakasuPoppo::cleanHyperBlockB(TPObjectExtension* exObj) {
     
     if (isInCurrentBlockSet(exObj) == false) {
         
-        TakasuPoppo::plusAllComboCounter();
+        
         
         exObj->setBlockType(NORMAL_BLOCK_TYPE);
-        for (int i = 0; i < 7; i++) {
+        
+        for (int i = 6; i >= 0 ; i--) {
             TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
-            if (block1 != NULL && block1->getSprite() != NULL && block1->getID() != 7 && block1->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block1);
+            if (i != y && block1->getSprite() != NULL && block1->getID() != 7 && block1->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block1);
             
             TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
-            if (block2 != NULL && block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block2);
+            if (i!=x && block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block2);
             
         }
+        
+        TakasuPoppo::plusAllComboCounter();
     }
     else { // this Hyper Block B is in the current Block, so dont plus the counter
         
@@ -318,13 +321,12 @@ void TakasuPoppo::cleanHyperBlockB(TPObjectExtension* exObj) {
         else {
             exObj->setBlockType(NORMAL_BLOCK_TYPE);
         }
-        
-        for (int i = 0; i < 7; i++) {
+        for (int i = 6; i >= 0 ; i--) {
             TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));
-            if (block1 != NULL && block1->getSprite() != NULL && block1->getID() != 7  && block1->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block1);
+            if (i != y && block1->getSprite() != NULL && block1->getID() != 7 && block1->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block1);
             
             TPObjectExtension* block2 = TakasuPoppo::coorToExObj(ccp(i, y));
-            if (block2 != NULL && block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block2);
+            if (i!=x && block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block2);
             
         }
 
@@ -496,9 +498,9 @@ bool TakasuPoppo::isValidEx(TPObjectExtension * ex){
 void TakasuPoppo::cleanA(TPObjectExtension* exObj){
     
     // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
-    if (isInCurrentBlockSet(exObj)  == false) {
-            TakasuPoppo::plusAllComboCounter();
-    }
+//    if (isInCurrentBlockSet(exObj)  == false) {
+//            TakasuPoppo::plusAllComboCounter();
+//    }
     
     CCPoint aPoint = exObj->getCoordination();
     int x = aPoint.x;
@@ -671,7 +673,7 @@ void TakasuPoppo::cleanHyperBlockB(CCNode* sender, void* data) {
     
     if (isInCurrentBlockSet(exObj) == false) {
         
-        TakasuPoppo::plusAllComboCounter();
+        
         
         exObj->setBlockType(NORMAL_BLOCK_TYPE);
         for (int i = 0; i < 7; i++) {
@@ -682,6 +684,7 @@ void TakasuPoppo::cleanHyperBlockB(CCNode* sender, void* data) {
             if (block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block2);
             
         }
+        TakasuPoppo::plusAllComboCounter();
     }
     else { // this Hyper Block B is in the current Block, so dont plus the counter
         
@@ -765,6 +768,7 @@ void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
     isHBCinBlockSet = true;
     
     TakasuPoppo::plusAllComboCounter();
+    
     exObj->setBlockType(NORMAL_BLOCK_TYPE);
     // random an ID and clean all block with this ID
     exObj->getSprite()->stopActionByTag(1210);

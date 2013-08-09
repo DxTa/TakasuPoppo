@@ -577,15 +577,15 @@ void TakasuPoppo::smartGeneration() {
 }
 
 bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {
-//    if (toDestroyArray->count() != 0) {
-//        CCObject *object;
-//        CCARRAY_FOREACH(toDestroyArray, object) {
-//            TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
-//            if (blockSet->getEx1()->getGid() == ex1->getGid()) {
-//                return false;
-//            }
-//        }
-//    }
+    if (toDestroyArray->count() != 0) {
+        CCObject *object;
+        CCARRAY_FOREACH(toDestroyArray, object) {
+            TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
+            if (blockSet->getEx1()->getGid() == ex1->getGid()) {
+                return false;
+            }
+        }
+    }
     return true;
 }
 

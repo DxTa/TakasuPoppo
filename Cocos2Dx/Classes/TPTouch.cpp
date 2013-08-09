@@ -26,21 +26,16 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
             if (exObject != NULL && exObject->getSprite() != NULL && exObject->getID() != 7) {
                 swipeRecognized = false;
                 startSwipePoint = touchLoc;
-                //pickedArray->addObject(exObject);
                 spriteContained = true;
                 if(exObject != NULL)
                 {
                     if(exObject->getID() != 7 && exObject->getBlockType() == HBC_BLOCK_TYPE && exObject->getSprite() && exObject->getSprite() != NULL && gameTimer > 0)
                     {
                         isHBCinBlockSet = true;
-                        TPBlockSet* blockSet = new TPBlockSet(exObject, NULL, NULL, NULL, NULL, NULL, NULL, "hyperC", exObject->getCoordination().x, exObject->getCoordination().y);
+                        TPBlockSet* blockSet = new TPBlockSet(exObject, NULL, NULL, NULL, NULL, NULL, NULL, "hyperBlockC", exObject->getCoordination().x, exObject->getCoordination().y);
                         toDestroyArray->addObject(blockSet);
-                        
-                        
                         move = false;
                         swape = false;
-//                        if(!checkAfterCleanRunning())
-//                            cleanHyperBlockC(exObject);
                         return;
                     }
                     else{
