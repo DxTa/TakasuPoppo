@@ -30,7 +30,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                 spriteContained = true;
                 if(exObject != NULL)
                 {
-                    if(exObject->getID() != 7 && exObject->getBlockType() == HBC_BLOCK_TYPE && exObject->getSprite() && exObject->getSprite() != NULL)
+                    if(exObject->getID() != 7 && exObject->getBlockType() == HBC_BLOCK_TYPE && exObject->getSprite() && exObject->getSprite() != NULL && gameTimer > 0)
                     {
                         isHBCinBlockSet = true;
                         TPBlockSet* blockSet = new TPBlockSet(exObject, NULL, NULL, NULL, NULL, NULL, NULL, "hyperC", exObject->getCoordination().x, exObject->getCoordination().y);
@@ -39,6 +39,8 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         
                         move = false;
                         swape = false;
+//                        if(!checkAfterCleanRunning())
+//                            cleanHyperBlockC(exObject);
                         return;
                     }
                     else{
@@ -109,11 +111,13 @@ tt:
     CCRect buttonRect = buttonSprite->boundingBox();
     CCRect clearRect = removeButton->boundingBox();
     CCRect refreshRect = refreshButton->boundingBox();
-    if (buttonRect.containsPoint(touchLoc) && !gridOn)TakasuPoppo::switchGrid();
-    if (clearRect.containsPoint(touchLoc) && gridOn)TakasuPoppo::remove();
+    if (buttonRect.containsPoint(touchLoc) && !gridOn) TakasuPoppo::switchGrid();
+    if (clearRect.containsPoint(touchLoc) && gridOn) TakasuPoppo::remove();
     if (refreshRect.containsPoint(touchLoc))
+    {
         this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
                                            CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+    }
     
     
 }

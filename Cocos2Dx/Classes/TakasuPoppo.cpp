@@ -217,13 +217,11 @@ void TakasuPoppo::update(float dt) {
 //    bool c = checkUpdate();
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall)
     {
-        //afterCleanRunning();
-        //setFalseControl();
-//        this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
-        TakasuPoppo::fixedUpdate(0);
+        TakasuPoppo::fixedUpdate(0.013);
+        //this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
     }else
     {
-        this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+        //this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
         //setControl();
         //releaseAfterRunning();
     }
@@ -451,16 +449,14 @@ void TakasuPoppo::update(float dt) {
     
     //================================================================
 
-    
-
 }
 
 void TakasuPoppo::fixedUpdate(float time){
     //TakasuPoppo::matchList();
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         //count = 0;
-//        this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
         this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
+        //TakasuPoppo::logicExecution();
     }
 }
 
@@ -483,7 +479,8 @@ void TakasuPoppo::movingBoolSwitch(float dt) {
 }
 
 void TakasuPoppo::scheduleGenerate() {
-    this->scheduleOnce(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
+    //this->scheduleOnce(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
+    TakasuPoppo::smartGeneration();
 }
 
 void TakasuPoppo::hintGeneration() {
@@ -500,7 +497,7 @@ void TakasuPoppo::hintGeneration() {
 void TakasuPoppo::logicExecution() {
     if(ComboCounter >= COMBO_REQUIRED)
     {
-        ComboScoreRequired = 1.1;
+        ComboScoreRequired = 1 + ((int)(ComboCounter/COMBO_REQUIRED)) / 10;
         CCLOG("SSSSSSSSS %d",ComboCounter);
     }
     //this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
@@ -512,14 +509,14 @@ void TakasuPoppo::logicExecution() {
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::refreshMoving)),
-                                       CCDelayTime::create(movingSpeed * 7),
+                                       CCDelayTime::create(movingSpeed * 6),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
     if (!inTheFall && !inTheMove) {        
         this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
     }
-    
+    //TakasuPoppo::fixedUpdate(0.013);
 
 }
 
@@ -557,13 +554,17 @@ void TakasuPoppo::timeSetup() {
 }
 
 void TakasuPoppo::timeCounter() {
-    
     if (gameTimer > 0) {
         gameTimer -= deltaTime;
         timerBar->setPercentage(1.66 * gameTimer);
         scoresBeforeLastBonus = score;
-//        CCLOG("game Timer: %f", gameTimer);
     }
+//=================================RESET GAME =====================
+    
+//    if(gameTimer < 5)
+//        checkResetMap();
+
+// ===============================================================
     if (gameTimer < 0) {
         timeBonus += deltaTime;
         hintCounter = 3;
@@ -572,7 +573,7 @@ void TakasuPoppo::timeCounter() {
         hintDisplaying = false;
         //this->setTouchEnabled(false);
         this->unschedule(schedule_selector(TakasuPoppo::hintGeneration));
-        //TakasuPoppo::timeOver();
+        TakasuPoppo::timeOver();
 
     }
 
@@ -597,10 +598,30 @@ void TakasuPoppo::timeCounter() {
 }
 
 void TakasuPoppo::timeOver() {
+    
+    CCObject *obj;
+    CCARRAY_FOREACH(colorArray, obj){
+        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
+        exObj->setControlTrigger(false);
+    }
+    move = false;
+    endTime = true;
+    runningAfter = true;
+    swape = false;
+    CCBool * boolMoving = new CCBool(true);
+    boolMoveTo->addObject(boolMoving);
+
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
-        this->unschedule(schedule_selector(TakasuPoppo::timeCounter));
+        //this->unscheduleUpdate();
     }
+
+    
+    this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+
+   // this->unschedule(schedule_selector(TakasuPoppo::timeCounter));
+
+
 }
 
 //for Mission Block
@@ -620,14 +641,14 @@ TakasuPoppo* TakasuPoppo::create(TPItemObject* itemObject){
 
 }
 
-//bool TakasuPoppo::checkUpdate()
-//{
-//    CCObject* obj;
-//    CCARRAY_FOREACH(colorArray, obj)
-//    {
-//        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
-//        if(exObj->getID() == 7)
-//            return true;
-//    }
-//    return false;
-//}
+bool TakasuPoppo::checkUpdate()
+{
+    CCObject* obj;
+    CCARRAY_FOREACH(colorArray, obj)
+    {
+        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
+        if(exObj->getID() == 7)
+            return true;
+    }
+    return false;
+}

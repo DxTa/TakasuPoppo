@@ -211,3 +211,43 @@ void TakasuPoppo::setValuesForExObj(TPObjectExtension *exObj, int colorID, int g
     CCSprite *toMoveSprite = exObj->getSprite();
     toMoveSprite->runAction(CCMoveTo::create(0.1, exObj->getPosition()));
 }
+
+void TakasuPoppo::checkResetMap()
+{
+    hbcComboTimer = 0;
+    hbcComboCounter = 0;
+    score = 0;
+    //gameTimer = 20;
+    lastScores = 0;
+    ComboCounter = 0;
+    ComboTimer = 0;
+    scoresBeforeLastBonus = 0;
+    ComboScoreRequired = 1;
+        feverTimer = 0;           //Timer for Fever Time
+    feverTimeLimit = 3;
+    feverCounter = 0;           //Counter for Fever Time
+    isCreateFeverTime = false;
+    isInFeverTime = false;
+    
+    hyperC = 10;
+    hyperBlockC = false;
+    gaugeComboCounter = 0;
+    isCreateGaugeCombo = false;
+    //item
+    timeBonus = 0;
+    increasedScore = 1;
+    doubleScore = 1;
+    endLastScore = false;
+    createThreeeHyper = false;
+    increaseComboTimes = 1;
+    
+    this->stopAllActions();
+    this->unscheduleUpdate();
+    
+    this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
+                                           CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+    this->scheduleUpdate();
+    this->setTouchEnabled(true);
+    this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
+    this->schedule(schedule_selector(TakasuPoppo::timeCounter));
+}

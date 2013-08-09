@@ -26,7 +26,7 @@
 #define HINT_TIME 5
 #define FALL_TIME 0.1
 #define MOVE_TIME 0.05
-#define SWAP_TIME 0.1
+#define SWAP_TIME 0.08
 
 #define GENERATION_DELAY 0.05
 #define CLEAN_DELAY 0.05
