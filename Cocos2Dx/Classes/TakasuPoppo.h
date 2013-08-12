@@ -187,9 +187,9 @@ public:
     //Check if there is an empty block, not in use
     void checkEmpty();
     //Generate a random sprite on EX object
-    void generateRandomBlock(TPObjectExtension *exObj);
+    void generateRandomBlock(TPObjectExtension *exObj, CCPoint fallCoor);
     //Generate a certain sprite on EX Object
-    void generateBlock(TPObjectExtension *exObj1, int type);
+    void generateBlock(TPObjectExtension *exObj1, int type, CCPoint fallCoor);
     
     //Returns a coordination for position
     CCPoint tileCoorForPosition(CCPoint position);
@@ -227,6 +227,12 @@ public:
     void smartGeneration();
     
     bool destroyCheck(TPObjectExtension *ex1);
+    
+    CCPoint getFallPos(TPObjectExtension *exObj, CCPoint lastRowAtColumn0,
+                       CCPoint lastRowAtColumn1, CCPoint lastRowAtColumn2,
+                       CCPoint lastRowAtColumn3, CCPoint lastRowAtColumn4,
+                       CCPoint lastRowAtColumn5, CCPoint lastRowAtColumn6);
+    
 #pragma mark Clean
     //Remove blocks from destroy array
     void cleanBlocks();

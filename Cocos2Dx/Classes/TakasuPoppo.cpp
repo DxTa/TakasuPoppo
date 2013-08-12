@@ -159,8 +159,6 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
 
 void TakasuPoppo::startGame() {
     hintCounter = 5;
-    
-    CCLOG("Timer %f", executionTime);
     executionTime -= deltaTime;
     
     CCSprite *counter3 = CCSprite::create("Counter3.png");
@@ -259,7 +257,6 @@ void TakasuPoppo::update(float dt) {
         ComboCounter = 0;
     }
 //    CCLog("ComboTimer: %f", ComboTimer);
-    CCLog("ComboCounter: %d", ComboCounter);
 
     //===============================================================
     
