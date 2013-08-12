@@ -9,7 +9,6 @@
 #ifndef Cocos2Dx_TPDefinition_h
 #define Cocos2Dx_TPDefinition_h
 
-#include <limits.h>
 #define FONT_SIZE 30
 // Combo and timer system
 #define HBC_COMBO_MAXCOUNT 8
