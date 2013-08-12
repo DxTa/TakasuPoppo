@@ -29,7 +29,7 @@
 
 #define GENERATION_DELAY 0.05
 #define CLEAN_DELAY 0.05
-#define LOGIC_DELAY 0.05
+#define LOGIC_DELAY 0.6
 #define MOVE_DELAY 0.08
 
 #define HBC_CLEAN_DELAY 0.4

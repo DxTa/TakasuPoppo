@@ -81,13 +81,13 @@ void TakasuPoppo::checkEmpty() {
     CCARRAY_FOREACH_REVERSE(colorArray, object) {
         TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
         if (exObj->getID() == 7) {
-            generateRandomBlock(exObj);
+//            generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj));
         }
     }
     controlable = true;
 }
 
-void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj) {
+void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj, CCPoint fallCoor) {
     char tileName[7][20];
     strcpy(tileName[0], "Poppo1A");
     strcpy(tileName[1], "Poppo2A");
@@ -102,8 +102,14 @@ void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj) {
     sprintf(spriteName, "%s.png", tileName[randomTile]);
     
     CCSprite *randomTileSprite = CCSprite::create(spriteName);
-    randomTileSprite->setPosition(ccp(exObj->getPosition().x, exObj->getPosition().y + 70));
-    randomTileSprite->runAction(CCMoveTo::create(0.1, exObj->getPosition()));
+    randomTileSprite->setPosition(fallCoor);
+    float fallTime = 0.1 * ((fallCoor.y - exObj->getPosition().y) / 90);
+    
+    CCLog("Fall Pos X%f Y%f", fallCoor.x, fallCoor.y);
+    CCLog("Des Pos X%f Y%f", exObj->getPosition().x, exObj->getPosition().y);
+    CCLog("Falltime %f", fallTime);
+    
+    randomTileSprite->runAction(CCMoveTo::create(fallTime, exObj->getPosition()));
     
     exObj->setSprite(randomTileSprite);
     exObj->setID(randomTile);
@@ -111,7 +117,7 @@ void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj) {
     this->addChild(randomTileSprite, 3, 300 + exObj->getGid());
 }
 
-void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
+void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type, CCPoint fallCoor) {
     if (type == 0) {
         CCSprite *randomTileSprite = CCSprite::create("Poppo1A.png");
         randomTileSprite->setPosition(ccp(exObj1->getPosition().x, exObj1->getPosition().y + 70));
@@ -182,11 +188,6 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type) {
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
-    if (type == 7) {
-        generateRandomBlock(exObj1);
-        return;
-    }
-    generateRandomBlock(exObj1);
 }
 
 

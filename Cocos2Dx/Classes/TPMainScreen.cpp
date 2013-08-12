@@ -301,7 +301,7 @@ bool TPMainScreen::init() {
     CCHttpRequest *request = new CCHttpRequest();
     request->setUrl((serverIP+":3000/users.json").c_str());
     request->setRequestType(CCHttpRequest::kHttpGet);
-    request->setResponseCallback(this, callfuncND_selector(TPMainScreen::onHttpRequestCompleted));
+    request->setResponseCallback(this, httpresponse_selector(TPMainScreen::onHttpRequestCompleted));
     CCHttpClient::getInstance()->send(request);
     request->release();
     return true;

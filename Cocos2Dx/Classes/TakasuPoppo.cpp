@@ -159,8 +159,6 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
 
 void TakasuPoppo::startGame() {
     hintCounter = 5;
-    
-    CCLOG("Timer %f", executionTime);
     executionTime -= deltaTime;
     
     CCSprite *counter3 = CCSprite::create("Counter3.png");
@@ -259,7 +257,6 @@ void TakasuPoppo::update(float dt) {
         ComboCounter = 0;
     }
 //    CCLog("ComboTimer: %f", ComboTimer);
-    CCLog("ComboCounter: %d", ComboCounter);
 
     //===============================================================
     
@@ -455,7 +452,10 @@ void TakasuPoppo::fixedUpdate(float time){
     //TakasuPoppo::matchList();
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         //count = 0;
-        this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
+        if (executingLogic == false) {
+            this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
+        }
+
         //TakasuPoppo::logicExecution();
     }
 }
@@ -513,6 +513,9 @@ void TakasuPoppo::logicExecution() {
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
+    logicCounter = 0;
+    this->schedule(schedule_selector(TakasuPoppo::logicDelaySwitch), 0);
+    
     if (!inTheFall && !inTheMove) {        
         this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
     }
@@ -649,4 +652,16 @@ bool TakasuPoppo::checkUpdate()
             return true;
     }
     return false;
+}
+
+void TakasuPoppo::logicDelaySwitch(){
+    CCLog("logicCounter: %f", logicCounter);
+    executingLogic = true;
+    logicCounter += deltaTime;
+    if (logicCounter > LOGIC_DELAY) {
+        executingLogic = false;
+        this->unschedule(schedule_selector(TakasuPoppo::logicDelaySwitch));
+    }
+
+    
 }

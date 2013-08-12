@@ -482,6 +482,36 @@ void TakasuPoppo::smartGeneration() {
     int randomGID = rand() % 3;
     int i = 0;
     CCObject *object;
+    
+    CCPoint lastRowAtColumn6;
+    CCPoint lastRowAtColumn5;
+    CCPoint lastRowAtColumn4;
+    CCPoint lastRowAtColumn3;
+    CCPoint lastRowAtColumn2;
+    CCPoint lastRowAtColumn1;
+    CCPoint lastRowAtColumn0;
+    
+    
+    for (int yCoor = 6; yCoor > 0; yCoor--) {
+        for (int xCoor = 6 ; xCoor > 0; xCoor--) {
+            CCPoint coor = ccp(xCoor, yCoor);
+            int gid = layer->tileGIDAt(coor);
+            int gidToIndex = gid - 1;
+            CCObject *object = colorArray->objectAtIndex(gidToIndex);
+            TPObjectExtension *checkObj = dynamic_cast<TPObjectExtension*>(object);
+            if (checkObj->getID() == 7) {
+                if (checkObj->getCoordination().x == 6)lastRowAtColumn6 = CCPoint(xCoor, yCoor);
+                if (checkObj->getCoordination().x == 5)lastRowAtColumn5 = CCPoint(xCoor, yCoor);
+                if (checkObj->getCoordination().x == 4)lastRowAtColumn4 = CCPoint(xCoor, yCoor);
+                if (checkObj->getCoordination().x == 3)lastRowAtColumn3 = CCPoint(xCoor, yCoor);
+                if (checkObj->getCoordination().x == 2)lastRowAtColumn2 = CCPoint(xCoor, yCoor);
+                if (checkObj->getCoordination().x == 1)lastRowAtColumn1 = CCPoint(xCoor, yCoor);
+                if (checkObj->getCoordination().x == 0)lastRowAtColumn0 = CCPoint(xCoor, yCoor);
+                break;
+            }
+        }
+    }
+    
     CCARRAY_FOREACH(colorArray, object) {
         TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
         if (exObj != NULL && exObj->getID() == 7) {
@@ -490,18 +520,27 @@ void TakasuPoppo::smartGeneration() {
                 case 3:
                     // create Mission Block 1
                     if (isCreateMB1 == true) {
-                        TakasuPoppo::generateRandomBlock(exObj);
+                        TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                        lastRowAtColumn1,lastRowAtColumn2,
+                                                                                        lastRowAtColumn3,lastRowAtColumn4,
+                                                                                        lastRowAtColumn5, lastRowAtColumn6));
                         TakasuPoppo::createSpecialBlock(exObj, MB1_BLOCK_TYPE);
                         isCreateMB1 = false;
                     } else {
                         if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
-                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                            lastRowAtColumn1,lastRowAtColumn2,
+                                                                                            lastRowAtColumn3,lastRowAtColumn4,
+                                                                                            lastRowAtColumn5, lastRowAtColumn6));
                             exObj->setControlTrigger(true);
                             TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
                             isCreateGaugeCombo = false;
                             
                         } else {
-                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                            lastRowAtColumn1,lastRowAtColumn2,
+                                                                                            lastRowAtColumn3,lastRowAtColumn4,
+                                                                                            lastRowAtColumn5, lastRowAtColumn6));
                             exObj->setControlTrigger(true);
                         }
                     }
@@ -511,19 +550,28 @@ void TakasuPoppo::smartGeneration() {
                 case 4:
                     // create Mission Block 2
                     if (isCreateMB2 == true) {
-                        TakasuPoppo::generateRandomBlock(exObj);
+                        TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                        lastRowAtColumn1,lastRowAtColumn2,
+                                                                                        lastRowAtColumn3,lastRowAtColumn4,
+                                                                                        lastRowAtColumn5, lastRowAtColumn6));
                         TakasuPoppo::createSpecialBlock(exObj, MB2_BLOCK_TYPE);
                         isCreateMB2 = false;
                         isExistMB2 = true;
                     } else {
                         if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
-                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                            lastRowAtColumn1,lastRowAtColumn2,
+                                                                                            lastRowAtColumn3,lastRowAtColumn4,
+                                                                                            lastRowAtColumn5, lastRowAtColumn6));
                             exObj->setControlTrigger(true);
                             TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
                             isCreateGaugeCombo = false;
                             
                         } else {
-                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                            lastRowAtColumn1,lastRowAtColumn2,
+                                                                                            lastRowAtColumn3,lastRowAtColumn4,
+                                                                                            lastRowAtColumn5, lastRowAtColumn6));
                             exObj->setControlTrigger(true);
                         }
                     }
@@ -532,18 +580,27 @@ void TakasuPoppo::smartGeneration() {
                 case 6:
                     // create Mission Block 3
                     if (isCreateMB3 == true) {
-                        TakasuPoppo::generateRandomBlock(exObj);
+                        TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                        lastRowAtColumn1,lastRowAtColumn2,
+                                                                                        lastRowAtColumn3,lastRowAtColumn4,
+                                                                                        lastRowAtColumn5, lastRowAtColumn6));
                         TakasuPoppo::createSpecialBlock(exObj, MB3_BLOCK_TYPE);
                         isCreateMB3 = false;
                     } else {
                         if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
-                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                            lastRowAtColumn1,lastRowAtColumn2,
+                                                                                            lastRowAtColumn3,lastRowAtColumn4,
+                                                                                            lastRowAtColumn5, lastRowAtColumn6));
                             exObj->setControlTrigger(true);
                             TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
                             isCreateGaugeCombo = false;
                             
                         } else {
-                            TakasuPoppo::generateRandomBlock(exObj);
+                            TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                            lastRowAtColumn1,lastRowAtColumn2,
+                                                                                            lastRowAtColumn3,lastRowAtColumn4,
+                                                                                            lastRowAtColumn5, lastRowAtColumn6));
                             exObj->setControlTrigger(true);
                         }
                     }
@@ -552,13 +609,19 @@ void TakasuPoppo::smartGeneration() {
                     
                 default:
                     if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
-                        TakasuPoppo::generateRandomBlock(exObj);
+                        TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                        lastRowAtColumn1,lastRowAtColumn2,
+                                                                                        lastRowAtColumn3,lastRowAtColumn4,
+                                                                                        lastRowAtColumn5, lastRowAtColumn6));
                         exObj->setControlTrigger(true);
                         TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
                         isCreateGaugeCombo = false;
                         
                     } else {
-                        TakasuPoppo::generateRandomBlock(exObj);
+                        TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
+                                                                                        lastRowAtColumn1,lastRowAtColumn2,
+                                                                                        lastRowAtColumn3,lastRowAtColumn4,
+                                                                                        lastRowAtColumn5, lastRowAtColumn6));
                         exObj->setControlTrigger(true);
                     }
 
@@ -574,6 +637,61 @@ void TakasuPoppo::smartGeneration() {
     }
     controlable = true;
     return;
+}
+
+CCPoint TakasuPoppo::getFallPos(TPObjectExtension *exObj, CCPoint lastRowAtColumn0,
+                                CCPoint lastRowAtColumn1, CCPoint lastRowAtColumn2,
+                                CCPoint lastRowAtColumn3, CCPoint lastRowAtColumn4,
+                                CCPoint lastRowAtColumn5, CCPoint lastRowAtColumn6) {
+    
+    CCPoint presentCoor = exObj->getCoordination();
+    int yDifference;
+    CCPoint presentPos = exObj->getPosition();
+    CCPoint fallPos;
+    
+    if (presentCoor.x == lastRowAtColumn6.x) {
+        yDifference = (int)lastRowAtColumn6.y - (int)presentCoor.y;
+        CCLog("LastRowCol6Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn6.y, (int)presentCoor.y, yDifference);
+        fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
+        return fallPos;
+    }
+    if (presentCoor.x == lastRowAtColumn5.x) {
+        yDifference = (int)lastRowAtColumn5.y - (int)presentCoor.y;
+        CCLog("LastRowCol5Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn5.y, (int)presentCoor.y, yDifference);
+        fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
+        return fallPos;
+    }
+    if (presentCoor.x == lastRowAtColumn4.x) {
+        yDifference = (int)lastRowAtColumn4.y - (int)presentCoor.y;
+        CCLog("LastRowCol4Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn4.y, (int)presentCoor.y, yDifference);
+        fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
+        return fallPos;
+    }
+    if (presentCoor.x == lastRowAtColumn3.x) {
+        yDifference = (int)lastRowAtColumn3.y - (int)presentCoor.y;
+        CCLog("LastRowCol3Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn3.y, (int)presentCoor.y, yDifference);
+        fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
+        return fallPos;
+    }
+    if (presentCoor.x == lastRowAtColumn2.x) {
+        yDifference = (int)lastRowAtColumn2.y - (int)presentCoor.y;
+        CCLog("LastRowCol2Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn2.y, (int)presentCoor.y, yDifference);
+        fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
+        return fallPos;
+    }
+    if (presentCoor.x == lastRowAtColumn1.x) {
+        yDifference = (int)lastRowAtColumn1.y - (int)presentCoor.y;
+        CCLog("LastRowCol1Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn1.y, (int)presentCoor.y, yDifference);
+        fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
+        return fallPos;
+    }
+    if (presentCoor.x == lastRowAtColumn0.x) {
+        yDifference = (int)lastRowAtColumn0.y - (int)presentCoor.y;
+        CCLog("LastRowCol0Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn0.y, (int)presentCoor.y, yDifference);
+        fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
+        return fallPos;
+    }
+    return exObj->getPosition();
 }
 
 bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {

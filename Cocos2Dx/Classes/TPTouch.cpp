@@ -169,8 +169,6 @@ void TakasuPoppo::ccTouchesEnded(CCSet *touches, CCEvent *event) {
         unsigned int m_gid = layer->tileGIDAt(transPoint);
         CCLog("Tile ID at position : %i", m_gid);
     }
-    //pickedArray->removeAllObjects();
-    //mainSprite = NULL;
 }
 
 bool TakasuPoppo::touchPosValidation(CCPoint touchLoc) {
