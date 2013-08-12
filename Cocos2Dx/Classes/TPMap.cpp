@@ -96,9 +96,29 @@ void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj) {
     strcpy(tileName[4], "Poppo5A");
     strcpy(tileName[5], "Poppo6A");
     strcpy(tileName[6], "Poppo7A");
-    int randomTile = rand() % 7;
+    int randomTile = -1;
+    if (hintArray->count() == 0) {
+        int exGID = exObj->getGid();
+        int leftleftID = -1, leftID = -1, rightID = -1, rightrightID = -1, downID = -1, downdownID = -1;
+        if (exGID % 7 != 0 && exGID % 7 != 1)
+            leftleftID = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(exGID - 2))->getID();
+        if (exGID % 7 != 0)
+            leftID = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(exGID - 1))->getID();
+        if (exGID % 7 != 6)
+            rightID = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(exGID + 1))->getID();
+        if (exGID % 7 != 5 && exGID % 7 != 6)
+            rightrightID = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(exGID + 2))->getID();
+        if (exGID + 7  < 49)
+            downID = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(exGID + 7))->getID();
+        if (exGID + 14 < 49)
+            downdownID = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(exGID + 14))->getID();
+        
+        randomTile = leftID == leftleftID ? leftID : leftID == rightID ? leftID : rightID == rightrightID ? rightID : downID == downdownID ? downID : -1;
+    }
+    if (randomTile == -1)
+        randomTile = rand() % 7;
     char spriteName[100];
-    
+
     sprintf(spriteName, "%s.png", tileName[randomTile]);
     
     CCSprite *randomTileSprite = CCSprite::create(spriteName);

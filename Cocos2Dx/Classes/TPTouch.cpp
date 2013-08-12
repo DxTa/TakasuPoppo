@@ -12,7 +12,8 @@
 void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
     
     hintCounter = 3;
-    hintArray->removeAllObjects();
+//    hintArray->removeAllObjects();
+    hintDisplaying = false;
     if (this->getChildByTag(778)) this->removeChildByTag(778);
     hintDisplaying = false;
     

@@ -259,7 +259,7 @@ void TakasuPoppo::update(float dt) {
         ComboCounter = 0;
     }
 //    CCLog("ComboTimer: %f", ComboTimer);
-    CCLog("ComboCounter: %d", ComboCounter);
+//    CCLog("ComboCounter: %d", ComboCounter);
 
     //===============================================================
     
@@ -461,7 +461,7 @@ void TakasuPoppo::fixedUpdate(float time){
 }
 
 void TakasuPoppo::fallingBoolSwitch(float dt) {
-    inTheFall = true;
+//    inTheFall = true;
     fallCounter += deltaTime;
     if (fallCounter > FALL_TIME) {
         inTheFall = false;
@@ -480,12 +480,13 @@ void TakasuPoppo::movingBoolSwitch(float dt) {
 
 void TakasuPoppo::scheduleGenerate() {
     //this->scheduleOnce(schedule_selector(TakasuPoppo::smartGeneration), GENERATION_DELAY);
+    TakasuPoppo::lookForMatches();
     TakasuPoppo::smartGeneration();
 }
 
 void TakasuPoppo::hintGeneration() {
     int hintCount = hintArray->count();
-    if (hintCount > 0) {
+    if (hintCount > 0 && hintDisplaying == true) {
         TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(hintArray->objectAtIndex(0));
         
         CCRenderTexture *tex = TakasuPoppo::outlineEffect(exObj->getSprite(), 10, ccc3(255, 255, 255), 90);
@@ -513,7 +514,8 @@ void TakasuPoppo::logicExecution() {
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
-    if (!inTheFall && !inTheMove) {        
+    if (!inTheFall && !inTheMove) {
+        inTheFall = true;
         this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
     }
 }
