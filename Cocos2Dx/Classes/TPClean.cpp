@@ -11,10 +11,10 @@
 #include "TPBlockSet.h"
 void TakasuPoppo::cleanBlocks() {
     CCObject *object;
-    bool hyperA = false;
-    bool hyperB = false;
     if (toDestroyArray->count() != 0) {
         CCARRAY_FOREACH(toDestroyArray, object) {
+            bool hyperA = false;
+            bool hyperB = false;
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
             if (blockSet->getType() == "hyperBlockC") {
                 TakasuPoppo::cleanHyperBlockC(blockSet->getEx1());
@@ -30,9 +30,8 @@ void TakasuPoppo::cleanBlocks() {
                 if(blockSet->getEx3() != NULL)
                 {
                     score = score + (int)(ComboScoreRequired * increasedScore * SCORE_THREE * doubleScore);
-                    //hyperA = true;
                 }
-                if(blockSet->getEx4() != NULL)
+                if(blockSet->getEx4() != NULL && blockSet->getEx4()->getID() != 7)
                 {
                     score = score + (int)(ComboScoreRequired * increasedScore * SCORE_FOUR * doubleScore);
                     hyperA = true;
@@ -60,7 +59,6 @@ void TakasuPoppo::cleanBlocks() {
                 if (isValidEx(blockSet->getEx4())) {
                     TakasuPoppo::cleanOneBlock(blockSet->getEx4());
                 }
-                
                 if (isValidEx(blockSet->getEx5())) {
                     TakasuPoppo::cleanOneBlock(blockSet->getEx5());
                 }
@@ -82,10 +80,16 @@ void TakasuPoppo::cleanBlocks() {
                         cleanB(checkSwipe(blockSet));
                     createSpecialBlock(checkSwipe(blockSet), HBA_BLOCK_TYPE);
                     hyperA = false;
-                    break;
+                    hyperB = false;
+                    //break;
                 }
                 else if(hyperA)
+                {
                     createSpecialBlock(blockSet->getEx2(), HBA_BLOCK_TYPE);
+                    hyperA = false;
+                    hyperB = false;
+                    //break;
+                }
                 else if (checkSwipe(blockSet)->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE && hyperB)
                 {
                     if(checkSwipe(blockSet)->getBlockType() == MOVED_HBA_BLOCK_TYPE)
@@ -93,15 +97,21 @@ void TakasuPoppo::cleanBlocks() {
                     if(checkSwipe(blockSet)->getBlockType() == MOVED_HBB_BLOCK_TYPE)
                         cleanB(checkSwipe(blockSet));
                     createSpecialBlock(checkSwipe(blockSet), HBB_BLOCK_TYPE);
+                    hyperA = false;
                     hyperB = false;
-                    break;
+                    //break;
                 }
                 else if(hyperB)
+                {
                     createSpecialBlock(blockSet->getEx2(), HBB_BLOCK_TYPE);
+                    hyperB = false;
+                    hyperA = false;
+                   // break;
+
+                }
                 else {
                     TakasuPoppo::cleanOneBlock(checkSwipe(blockSet));
                 }
-                // returm currentBlockSet to the default status
                 currentBlockSet = NULL;
                 
             }
