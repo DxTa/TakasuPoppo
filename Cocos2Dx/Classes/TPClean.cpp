@@ -462,11 +462,6 @@ bool TakasuPoppo::isValidEx(TPObjectExtension * ex){
 
 void TakasuPoppo::cleanA(TPObjectExtension* exObj){
     
-    // if this Hyper Block is not in current block, plus 1 to combo and fever Counter
-//    if (isInCurrentBlockSet(exObj)  == false) {
-//            TakasuPoppo::plusAllComboCounter();
-//    }
-    
     CCPoint aPoint = exObj->getCoordination();
     int x = aPoint.x;
     int y = aPoint.y;
@@ -537,8 +532,6 @@ void TakasuPoppo::cleanB(TPObjectExtension* exObj) {
     
     int x = exObj->getCoordination().x;
     int y = exObj->getCoordination().y;
-    
-//    TakasuPoppo::plusAllComboCounter();
     
     for (int i = 6; i >= 0 ; i--) {
         TPObjectExtension* block1 = TakasuPoppo::coorToExObj(ccp(x, i));

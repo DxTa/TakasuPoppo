@@ -61,9 +61,9 @@ private:
     
     float hintCounter = 3;          //Display hint after this counter
     
-    float movingSpeed = 0.02;       //For all moving speed
+    float movingSpeed = 0.05;       //For all moving speed
     
-    float gameTimer = PLAY_TIME;
+    float gameTimer = FLT_MAX;
     
     bool counterExist1 = false;
     bool counterExist2 = false;
@@ -351,6 +351,11 @@ public:
     
     //Vinhnt - plus combo just in 1 function
     void plusAllComboCounter();
+    
+    //Vinhnt - logic Delay
+    void logicDelaySwitch();
+    bool executingLogic = false;
+    float logicCounter = 0;
     
     //ITEM function
     bool lastScore();
