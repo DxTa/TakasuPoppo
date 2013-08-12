@@ -259,7 +259,7 @@ void TakasuPoppo::update(float dt) {
         ComboCounter = 0;
     }
 //    CCLog("ComboTimer: %f", ComboTimer);
-//    CCLog("ComboCounter: %d", ComboCounter);
+    CCLog("ComboCounter: %d", ComboCounter);
 
     //===============================================================
     
@@ -498,7 +498,7 @@ void TakasuPoppo::logicExecution() {
     if(ComboCounter >= COMBO_REQUIRED)
     {
         ComboScoreRequired = 1 + ((int)(ComboCounter/COMBO_REQUIRED)) / 10;
-        CCLOG("SSSSSSSSS %d",ComboCounter);
+//        CCLOG("SSSSSSSSS %d",ComboCounter);
     }
     //this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
     inCleaning = true;
@@ -516,8 +516,6 @@ void TakasuPoppo::logicExecution() {
     if (!inTheFall && !inTheMove) {        
         this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
     }
-    //TakasuPoppo::fixedUpdate(0.013);
-
 }
 
 void TakasuPoppo::timeSetup() {

@@ -63,7 +63,7 @@ private:
     
     float movingSpeed = 0.02;       //For all moving speed
     
-    float gameTimer = FLT_MAX;
+    float gameTimer = PLAY_TIME;
     
     bool counterExist1 = false;
     bool counterExist2 = false;
@@ -300,8 +300,6 @@ public:
     
     
     //Vinhnt - for HyperBlock
-    void makeBlockToBeHBA(TPObjectExtension* exObj);
-    void makeBlockToBeHBB(TPObjectExtension* exobj);
     void makeBlockToBeHBC(TPObjectExtension* exobj);
     void cleanOneBlock(TPObjectExtension* exobj);
     bool isInCurrentBlockSet(TPObjectExtension* exobj);
@@ -313,6 +311,7 @@ public:
     void cleanB(TPObjectExtension* exObj);
     void scaleHyperBlockC(CCNode *sender, void* data);
     void cleanOneBlock(CCNode *sender, void* data);
+    void createSpecialBlock(TPObjectExtension* exObj, int blockType);
     
     int _spcialItemID;
     TPItemObject* _itemObject;
@@ -320,7 +319,6 @@ public:
     bool isCleanMB1;
     bool isCreateMB1;
     int timeToCreateMB1;
-    void makeBlockToBeMB1(TPObjectExtension* exObj);
     void generateBlocksAfterCleanMB1();
     
     // Vinhnt - for Mission Block 2:
@@ -329,14 +327,12 @@ public:
     bool isExistMB2;
     int timeToCreateMB2;
     int countMB2;
-    void makeBlockToBeMB2(TPObjectExtension* exObj);
     
     // Vinhnt - for Mission Block 3 (Item 6 – double score)
     bool isCleanMB3;
     bool isCreateMB3;
     int timeToCreateMB3;
     int doubleScoreStartTime;
-    void makeBlockToBeMB3(TPObjectExtension* exObj);
     
     //Vinhnt - reWrite the init function
     virtual bool init(TPItemObject* itemObject);

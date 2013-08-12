@@ -667,15 +667,15 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
     }
     
     if (!response->isSucceed()) {
-        CCLabelTTF *notConnectLabel = CCLabelTTF::create("Can't load data", "Time New Roman", 30);
+        CCLabelTTF *notConnectLabel = CCLabelTTF::create("現在ランキングは閉じています", "Time New Roman", 30);
         notConnectLabel->setPosition(ccp(winSize.width/2, winSize.height/2));
         notConnectLabel->setColor(ccYELLOW);
         
-        CCLabelTTF *checkInternetMsg = CCLabelTTF::create("Please check your internet connection !!", "Time New Roman", 30);
-        checkInternetMsg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 40));
-        checkInternetMsg->setColor(ccYELLOW);
-       
-        this->addChild(checkInternetMsg,150);
+//        CCLabelTTF *checkInternetMsg = CCLabelTTF::create("Please check your internet connection !!", "Time New Roman", 30);
+//        checkInternetMsg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 40));
+//        checkInternetMsg->setColor(ccYELLOW);
+//       
+//        this->addChild(checkInternetMsg,150);
         this->addChild(notConnectLabel, 150);
         return;
     }

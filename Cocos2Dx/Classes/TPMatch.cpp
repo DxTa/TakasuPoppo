@@ -491,13 +491,13 @@ void TakasuPoppo::smartGeneration() {
                     // create Mission Block 1
                     if (isCreateMB1 == true) {
                         TakasuPoppo::generateRandomBlock(exObj);
-                        TakasuPoppo::makeBlockToBeMB1(exObj);
+                        TakasuPoppo::createSpecialBlock(exObj, MB1_BLOCK_TYPE);
                         isCreateMB1 = false;
                     } else {
                         if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
                             TakasuPoppo::generateRandomBlock(exObj);
                             exObj->setControlTrigger(true);
-                            TakasuPoppo::makeBlockToBeHBB(exObj);
+                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -512,14 +512,14 @@ void TakasuPoppo::smartGeneration() {
                     // create Mission Block 2
                     if (isCreateMB2 == true) {
                         TakasuPoppo::generateRandomBlock(exObj);
-                        TakasuPoppo::makeBlockToBeMB2(exObj);
+                        TakasuPoppo::createSpecialBlock(exObj, MB2_BLOCK_TYPE);
                         isCreateMB2 = false;
                         isExistMB2 = true;
                     } else {
                         if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
                             TakasuPoppo::generateRandomBlock(exObj);
                             exObj->setControlTrigger(true);
-                            TakasuPoppo::makeBlockToBeHBB(exObj);
+                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -533,13 +533,13 @@ void TakasuPoppo::smartGeneration() {
                     // create Mission Block 3
                     if (isCreateMB3 == true) {
                         TakasuPoppo::generateRandomBlock(exObj);
-                        TakasuPoppo::makeBlockToBeMB3(exObj);
+                        TakasuPoppo::createSpecialBlock(exObj, MB3_BLOCK_TYPE);
                         isCreateMB3 = false;
                     } else {
                         if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
                             TakasuPoppo::generateRandomBlock(exObj);
                             exObj->setControlTrigger(true);
-                            TakasuPoppo::makeBlockToBeHBB(exObj);
+                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -554,7 +554,7 @@ void TakasuPoppo::smartGeneration() {
                     if (isCreateGaugeCombo == true && (i % 3 == randomGID)) { // gauge combo: create new Hyper Block B
                         TakasuPoppo::generateRandomBlock(exObj);
                         exObj->setControlTrigger(true);
-                        TakasuPoppo::makeBlockToBeHBB(exObj);
+                        TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
                         isCreateGaugeCombo = false;
                         
                     } else {
@@ -577,15 +577,15 @@ void TakasuPoppo::smartGeneration() {
 }
 
 bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {
-//    if (toDestroyArray->count() != 0) {
-//        CCObject *object;
-//        CCARRAY_FOREACH(toDestroyArray, object) {
-//            TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
-//            if (blockSet->getEx1()->getGid() == ex1->getGid()) {
-//                return false;
-//            }
-//        }
-//    }
+    if (toDestroyArray->count() != 0) {
+        CCObject *object;
+        CCARRAY_FOREACH(toDestroyArray, object) {
+            TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
+            if (blockSet->getEx1()->getGid() == ex1->getGid()) {
+                return false;
+            }
+        }
+    }
     return true;
 }
 
@@ -603,35 +603,38 @@ void TakasuPoppo::randomBlockC()
 
 }
 
-void TakasuPoppo::makeBlockToBeMB1(TPObjectExtension *exObj){
+// intead of many function make block to be special block
+void TakasuPoppo::createSpecialBlock(TPObjectExtension *exObj, int blockType){
     // change controlable
     exObj->setControlTrigger(true);
-    if(exObj->getID() != 7 && exObj->getID() != 8 )
-    {
-        exObj->setBlockType(MB1_BLOCK_TYPE);
-        int imageId = exObj->getID() + 1;
-        CCImage *poppoB = new CCImage;
-        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
-        str = "Poppo" + str + "Mission1.png";
-        poppoB->initWithImageFile(str.c_str());
-        CCTexture2D *poppoTexture = new CCTexture2D;
-        poppoTexture->initWithImage(poppoB);
-        CCSprite *poppoSprite = exObj->getSprite();
-        poppoSprite->setTexture(poppoTexture);
-        exObj->setSprite(poppoSprite);
-    }
-
-}
-
-void TakasuPoppo::makeBlockToBeMB2(TPObjectExtension *exObj){
-    exObj->setControlTrigger(true);
     if(exObj->getID() != 7 && exObj->getID() != 8)
     {
-        exObj->setBlockType(MB2_BLOCK_TYPE);
+        exObj->setBlockType(blockType);
+        // change sprite when the block be hyper
         int imageId = exObj->getID() + 1;
         CCImage *poppoB = new CCImage;
         string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
-        str = "Poppo" + str + "Mission2.png";
+        switch (blockType) {
+            case HBA_BLOCK_TYPE:
+                str = "Poppo" + str + "HyperA.png";
+                break;
+            case HBB_BLOCK_TYPE:
+                str = "Poppo" + str + "HyperB.png";
+                break;
+            case MB1_BLOCK_TYPE:
+                str = "Poppo" + str + "Mission1.png";
+                break;
+            case MB2_BLOCK_TYPE:
+                str = "Poppo" + str + "Mission2.png";
+                break;
+            case MB3_BLOCK_TYPE:
+                str = "Poppo" + str + "Mission3.png";
+                break;
+
+            default:
+                break;
+        }
+        
         poppoB->initWithImageFile(str.c_str());
         CCTexture2D *poppoTexture = new CCTexture2D;
         poppoTexture->initWithImage(poppoB);
@@ -639,27 +642,6 @@ void TakasuPoppo::makeBlockToBeMB2(TPObjectExtension *exObj){
         poppoSprite->setTexture(poppoTexture);
         exObj->setSprite(poppoSprite);
     }
-
-}
-
-void TakasuPoppo::makeBlockToBeMB3(TPObjectExtension *exObj){
-    exObj->setControlTrigger(true);
-    if(exObj->getID() != 7 && exObj->getID() != 8)
-    {
-        exObj->setBlockType(MB3_BLOCK_TYPE);
-
-        int imageId = exObj->getID() + 1;
-        CCImage *poppoB = new CCImage;
-        string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
-        str = "Poppo" + str + "Mission3.png";
-        poppoB->initWithImageFile(str.c_str());
-        CCTexture2D *poppoTexture = new CCTexture2D;
-        poppoTexture->initWithImage(poppoB);
-        CCSprite *poppoSprite = exObj->getSprite();
-        poppoSprite->setTexture(poppoTexture);
-        exObj->setSprite(poppoSprite);
-    }
-    
 
 }
 
