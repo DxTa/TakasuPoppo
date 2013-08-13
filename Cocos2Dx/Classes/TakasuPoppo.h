@@ -114,8 +114,10 @@ private:
     int hyperC = 10;
     bool hyperBlockC = false;
     //Vinhnt - for Gauge Combo
-    int gaugeComboCounter = 0;
+    float gaugeComboCounter = 0;
     bool isCreateGaugeCombo = false;
+    int lastGaugeCombo = 0;
+    float gaugePeriod = GAUGE_PERIOD;
     
     //item
     float timeBonus = 0;

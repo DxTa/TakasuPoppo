@@ -626,8 +626,8 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
-                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
+                            exObj->setControlTrigger(false);
+                            TakasuPoppo::makeBlockToBeHBC(exObj);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -635,7 +635,7 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
+                            exObj->setControlTrigger(false);
                         }
                     }
 
@@ -657,8 +657,8 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
-                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
+                            exObj->setControlTrigger(false);
+                            TakasuPoppo::makeBlockToBeHBC(exObj);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -666,7 +666,7 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
+                            exObj->setControlTrigger(false);
                         }
                     }
                     break;
@@ -686,8 +686,8 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
-                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
+                            exObj->setControlTrigger(false);
+                            TakasuPoppo::makeBlockToBeHBC(exObj);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -707,8 +707,8 @@ void TakasuPoppo::smartGeneration() {
                                                                                         lastRowAtColumn1,lastRowAtColumn2,
                                                                                         lastRowAtColumn3,lastRowAtColumn4,
                                                                                         lastRowAtColumn5, lastRowAtColumn6));
-                        exObj->setControlTrigger(true);
-                        TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
+                        exObj->setControlTrigger(false);
+                        TakasuPoppo::makeBlockToBeHBC(exObj);
                         isCreateGaugeCombo = false;
                         
                     } else {
