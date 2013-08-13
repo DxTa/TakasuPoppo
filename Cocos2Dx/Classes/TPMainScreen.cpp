@@ -676,7 +676,7 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
 //        checkInternetMsg->setColor(ccYELLOW);
 //       
 //        this->addChild(checkInternetMsg,150);
-        this->addChild(notConnectLabel, 150);
+        this->addChild(notConnectLabel, 107);
         return;
     }
     

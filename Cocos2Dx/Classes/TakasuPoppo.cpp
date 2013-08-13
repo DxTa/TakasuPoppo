@@ -589,6 +589,16 @@ void TakasuPoppo::timeCounter() {
     }
 
     //====================== Gauge Bar updates =======================
+    if (gaugePeriod > 0) {
+        gaugePeriod -= deltaTime;
+    }
+    if (gaugePeriod < 0) {
+        if (gaugeComboCounter >= 0) {
+            gaugeComboCounter -= deltaTime/2;
+        }
+        else gaugeComboCounter = 0;
+    }
+
     if (gaugeComboCounter >= 0 && gaugeComboCounter <= GAUGE_COMBO_REQUIRED) {
         comboBar->setPercentage(gaugeComboCounter * 100/GAUGE_COMBO_REQUIRED);
     }
@@ -601,7 +611,7 @@ void TakasuPoppo::timeCounter() {
     
     if (gaugeComboCounter >= GAUGE_COMBO_REQUIRED) {
         comboBar->setPercentage(0);
-        gaugeComboCounter = gaugeComboCounter % GAUGE_COMBO_REQUIRED;
+        gaugeComboCounter = gaugeComboCounter - GAUGE_COMBO_REQUIRED;
     }
     
     //================================================================

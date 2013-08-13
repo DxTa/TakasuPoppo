@@ -38,6 +38,7 @@
 #define HBC_CLEAN_DELAY 0.3
 
 #define PLAY_TIME 60
+#define GAUGE_PERIOD 2 // after this period, if no more combo is created, minus gauge combo by 1
 // score system
 #define SCORE_THREE  200
 #define SCORE_FOUR  200

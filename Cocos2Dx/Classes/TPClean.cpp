@@ -837,6 +837,9 @@ void TakasuPoppo::plusAllComboCounter(){
     
     //count the combo for the Gauge Bar
     gaugeComboCounter += 1;
+    if (gaugePeriod != GAUGE_PERIOD) {
+        gaugePeriod = GAUGE_PERIOD;
+    }
     
     // count the really combo
     ComboCounter += 1;
