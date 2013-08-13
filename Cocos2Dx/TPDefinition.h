@@ -29,10 +29,13 @@
 
 #define GENERATION_DELAY 0.05
 #define CLEAN_DELAY 0.05
-#define LOGIC_DELAY 0.6
+#define LOGIC_DELAY 0.6 // afterCleanspeed * 6 + generateSpeed *6 + scaleTime + swapTime*2
 #define MOVE_DELAY 0.08
 
-#define HBC_CLEAN_DELAY 0.4
+#define AFTER_CLEAN_FALL_TIME 0.05
+#define GENERATE_FALL_TIME 0.05
+
+#define HBC_CLEAN_DELAY 0.3
 
 #define PLAY_TIME 60
 // score system

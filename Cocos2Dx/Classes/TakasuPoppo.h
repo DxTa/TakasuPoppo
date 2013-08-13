@@ -61,9 +61,9 @@ private:
     
     float hintCounter = 3;          //Display hint after this counter
     
-    float movingSpeed = 0.05;       //For all moving speed
+    float movingSpeed = AFTER_CLEAN_FALL_TIME;       //For all moving speed
     
-    float gameTimer = FLT_MAX;
+    float gameTimer = PLAY_TIME;
     
     bool counterExist1 = false;
     bool counterExist2 = false;
@@ -76,7 +76,7 @@ private:
     bool controlable;               //If the sprites are on the move, rends controlable false
     
     bool inTheMove;                 //True if there are sprites in moving action
-    bool inTheFall;                 //True if sprites are falling
+//    bool inTheFall;                 //True if sprites are falling
     bool isLogicRunnning;
     bool inCleaning;
     
@@ -86,6 +86,7 @@ private:
     bool swipeDown;                 //True if swipe down action is recognized
     
     bool hintDisplaying;            //Indicating that a hint is currently displayed
+    int hintCount;
     
     bool gridOn = false;
     
@@ -137,6 +138,8 @@ private:
     // fixed hyper block C
     bool isHBCinBlockSet = false;
     float setCleanDelay();
+    
+    bool createB = false;
 
 public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
@@ -161,6 +164,8 @@ public:
     
     //Hint display
     void hintGeneration();
+    // refresh the map if there is no combo can be make
+    void refreshWhenNoCombo();
     //Logic execution
     void logicExecution();
     
@@ -356,6 +361,7 @@ public:
     void logicDelaySwitch();
     bool executingLogic = false;
     float logicCounter = 0;
+    float logicDelayTime = LOGIC_DELAY;
     
     //ITEM function
     bool lastScore();

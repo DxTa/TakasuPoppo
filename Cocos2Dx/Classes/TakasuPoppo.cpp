@@ -7,6 +7,7 @@
 #include "TPObjectExtension.h"
 #include "TPBlockSet.h"
 #include "CCGestureRecognizer.h"
+#include "TPMainScreen.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -140,6 +141,7 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     //===============================================================
     
+    hintCount = TakasuPoppo::lookForMatches();
     
     this->scheduleUpdate();
     
@@ -153,7 +155,7 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     this->schedule(schedule_selector(TakasuPoppo::timeCounter));
     
-    
+    this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo), 2);
     return true;
 }
 
@@ -221,8 +223,8 @@ void TakasuPoppo::update(float dt) {
     
     
     TakasuPoppo::matchList();
-    
-    if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall)
+//    bool c = checkUpdate();
+    if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
     {
         TakasuPoppo::fixedUpdate(0.013);
         //this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
@@ -271,14 +273,21 @@ void TakasuPoppo::update(float dt) {
     
     
     //=================== Hint related updates ======================
+
     if (hintCounter > 0) {
         hintCounter -= dt;
     }
+    
     if (hintCounter <= 0 && hintDisplaying == false) {
         hintDisplaying = true;
         hintArray->removeAllObjects();
-        TakasuPoppo::lookForMatches();
+        hintCount = TakasuPoppo::lookForMatches();
         this->scheduleOnce(schedule_selector(TakasuPoppo::hintGeneration), 0);
+        if (hintCount == 0) {
+            this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
+                                               CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+
+        }
     }
     //================================================================
     
@@ -459,25 +468,26 @@ void TakasuPoppo::update(float dt) {
 
 void TakasuPoppo::fixedUpdate(float time){
     //TakasuPoppo::matchList();
-    if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
+    if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/) {
         //count = 0;
         if (executingLogic == false) {
-            //TakasuPoppo::logicExecution();
+            executingLogic = true;
             this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
+            //TakasuPoppo::logicExecution();
         }
 
         //TakasuPoppo::logicExecution();
     }
 }
 
-void TakasuPoppo::fallingBoolSwitch(float dt) {
-    inTheFall = true;
-    fallCounter += deltaTime;
-    if (fallCounter > FALL_TIME) {
-        inTheFall = false;
-        this->unschedule(schedule_selector(TakasuPoppo::fallingBoolSwitch));
-    }
-}
+//void TakasuPoppo::fallingBoolSwitch(float dt) {
+//    inTheFall = true;
+//    fallCounter += deltaTime;
+//    if (fallCounter > FALL_TIME) {
+//        inTheFall = false;
+//        this->unschedule(schedule_selector(TakasuPoppo::fallingBoolSwitch));
+//    }
+//}
 
 void TakasuPoppo::movingBoolSwitch(float dt) {
     inTheMove = true;
@@ -514,7 +524,7 @@ void TakasuPoppo::logicExecution() {
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
-                                       CCDelayTime::create(0.2f),
+//                                       CCDelayTime::create(0.2f),
                                        CCDelayTime::create(setCleanDelay()),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
@@ -526,9 +536,9 @@ void TakasuPoppo::logicExecution() {
     logicCounter = 0;
     this->schedule(schedule_selector(TakasuPoppo::logicDelaySwitch), 0);
     
-    if (!inTheFall && !inTheMove) {        
-        this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
-    }
+//    if (!inTheFall && !inTheMove) {        
+//        this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
+//    }
 }
 
 void TakasuPoppo::timeSetup() {
@@ -624,6 +634,12 @@ void TakasuPoppo::timeOver() {
 
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
+        CCScene *mainScene = TPMainScreen::scene();
+        CCDirector::sharedDirector()->setDepthTest(true);
+        CCTransitionScene* transition = CCTransitionFadeUp::create(1, mainScene);
+        CCDirector::sharedDirector()->replaceScene(transition);
+        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+
         //this->unscheduleUpdate();
     }
 
@@ -665,13 +681,28 @@ bool TakasuPoppo::checkUpdate()
 }
 
 void TakasuPoppo::logicDelaySwitch(){
-    CCLog("logicCounter: %f", logicCounter);
-    executingLogic = true;
     logicCounter += deltaTime;
-    if (logicCounter > LOGIC_DELAY) {
+    CCLog("logic counter: %f", logicCounter);
+    if (logicCounter > logicDelayTime) {
+        CCObject* obj;
+        CCARRAY_FOREACH(colorArray, obj){
+            TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
+            if (exObj->getID() != 7 && exObj->getSprite() != NULL && (exObj->getPosition().x == exObj->getSprite()->getPosition().x)) {
+                exObj->setControlTrigger(true);
+            }
+            
+        }
         executingLogic = false;
         this->unschedule(schedule_selector(TakasuPoppo::logicDelaySwitch));
     }
 
     
+}
+
+void TakasuPoppo::refreshWhenNoCombo(){
+    hintCount = TakasuPoppo::lookForMatches();
+    if (hintCount == 0) {
+        this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
+                                           CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+    }
 }
