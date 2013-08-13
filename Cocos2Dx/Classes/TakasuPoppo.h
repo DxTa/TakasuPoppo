@@ -387,6 +387,10 @@ public:
     bool checkUpdate();
     //checkResetMap
     void checkResetMap();
+    //checkB
+    bool checkCreateHyperB(CCPoint coor , int type);
+    bool checkVerMatch(CCPoint coor , int type);
+    bool checkHorMatch(CCPoint coor , int type);
 };
 
 #endif

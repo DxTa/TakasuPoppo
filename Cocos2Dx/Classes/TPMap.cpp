@@ -49,6 +49,7 @@ void TakasuPoppo::createFixture() {
             
             while (TakasuPoppo::isTileMatched(m_gid, randomTile)) randomTile = rand() % 7;
             
+            
             sprintf(spriteName, "%s.png", tileName[randomTile]);
             
             CCSprite *randomTileSprite = CCSprite::create(spriteName);
@@ -202,6 +203,17 @@ void TakasuPoppo::addBlocksToArray() {
 
 void TakasuPoppo::setValuesForExObj(TPObjectExtension *exObj, int colorID, int gid, CCSprite *sprite,
                                     CCPoint position, CCPoint coordination, bool trigger, int blockType) {
+//    
+//    if(gid == 1 || gid  == 3 || gid == 4 || gid == 16 || gid == 9)
+//    {
+//        exObj->setID(5);
+//        if (gid == 1)
+//        {
+//            //exObj->setBlockType(3);
+//        }
+//    }
+//    
+//    else
     exObj->setID(colorID);
     exObj->setGid(gid);
     exObj->setSprite(sprite);

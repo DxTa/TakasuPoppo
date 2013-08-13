@@ -225,6 +225,96 @@ void TakasuPoppo::matchList() {
         }
     }
     
+    //==================================check create B by Hor and Ver
+    CCObject *obj;
+    CCARRAY_FOREACH(toDestroyArray, obj)
+    {
+        TPBlockSet* blockset = dynamic_cast<TPBlockSet*>(obj);
+        if(blockset->getEx1() != NULL && checkCreateHyperB(blockset->getEx1()->getCoordination(), blockset->getEx1()->getID()))
+        {
+            if (blockset->getEx1()->getBlockType() == 2 || blockset->getEx1()->getBlockType() == 12) {
+                blockset->getEx1()->setBlockType(22);
+            }
+            if (blockset->getEx1()->getBlockType() == 1 || blockset->getEx1()->getBlockType() == 11) {
+                blockset->getEx1()->setBlockType(21);
+            }
+            if (blockset->getEx1()->getBlockType() == 0 || blockset->getEx1()->getBlockType() == 10) {
+                blockset->getEx1()->setBlockType(20);
+            }
+        }
+        if(blockset->getEx2() != NULL && checkCreateHyperB(blockset->getEx2()->getCoordination(), blockset->getEx2()->getID()))
+        {
+            if (blockset->getEx2()->getBlockType() == 2 || blockset->getEx2()->getBlockType() == 12) {
+                blockset->getEx2()->setBlockType(22);
+            }
+            if (blockset->getEx2()->getBlockType() == 1 || blockset->getEx2()->getBlockType() == 11) {
+                blockset->getEx2()->setBlockType(21);
+            }
+            if (blockset->getEx2()->getBlockType() == 0 || blockset->getEx2()->getBlockType() == 10) {
+                blockset->getEx2()->setBlockType(20);
+            }
+        }
+        if(blockset->getEx3() != NULL && checkCreateHyperB(blockset->getEx3()->getCoordination(), blockset->getEx3()->getID()))
+        {
+            if (blockset->getEx3()->getBlockType() == 2 || blockset->getEx3()->getBlockType() == 12) {
+                blockset->getEx3()->setBlockType(22);
+            }
+            if (blockset->getEx3()->getBlockType() == 1 || blockset->getEx3()->getBlockType() == 11) {
+                blockset->getEx3()->setBlockType(21);
+            }
+            if (blockset->getEx3()->getBlockType() == 0 || blockset->getEx3()->getBlockType() == 10) {
+                blockset->getEx3()->setBlockType(20);
+            }
+        }
+        if(blockset->getEx4() != NULL && checkCreateHyperB(blockset->getEx4()->getCoordination(), blockset->getEx4()->getID()))
+        {
+            if (blockset->getEx4()->getBlockType() == 2 || blockset->getEx4()->getBlockType() == 12) {
+                blockset->getEx4()->setBlockType(22);
+            }
+            if (blockset->getEx4()->getBlockType() == 1 || blockset->getEx4()->getBlockType() == 11) {
+                blockset->getEx4()->setBlockType(21);
+            }
+            if (blockset->getEx4()->getBlockType() == 0 || blockset->getEx4()->getBlockType() == 10) {
+                blockset->getEx4()->setBlockType(20);
+            }
+        }
+        if(blockset->getEx5() != NULL && checkCreateHyperB(blockset->getEx5()->getCoordination(), blockset->getEx5()->getID()))
+        {
+            if (blockset->getEx5()->getBlockType() == 2 || blockset->getEx5()->getBlockType() == 12) {
+                blockset->getEx5()->setBlockType(22);
+            }
+            if (blockset->getEx5()->getBlockType() == 1 || blockset->getEx5()->getBlockType() == 11) {
+                blockset->getEx5()->setBlockType(21);
+            }
+            if (blockset->getEx5()->getBlockType() == 0 || blockset->getEx5()->getBlockType() == 10) {
+                blockset->getEx5()->setBlockType(20);
+            }
+        }
+        if(blockset->getEx6() != NULL && checkCreateHyperB(blockset->getEx6()->getCoordination(), blockset->getEx6()->getID()))
+        {
+            if (blockset->getEx6()->getBlockType() == 2 || blockset->getEx6()->getBlockType() == 12) {
+                blockset->getEx6()->setBlockType(22);
+            }
+            if (blockset->getEx6()->getBlockType() == 1 || blockset->getEx6()->getBlockType() == 11) {
+                blockset->getEx6()->setBlockType(21);
+            }
+            if (blockset->getEx6()->getBlockType() == 0 || blockset->getEx6()->getBlockType() == 10) {
+                blockset->getEx6()->setBlockType(20);
+            }
+        }
+        if(blockset->getEx7() != NULL && checkCreateHyperB(blockset->getEx7()->getCoordination(), blockset->getEx7()->getID()))
+        {
+            if (blockset->getEx7()->getBlockType() == 2 || blockset->getEx7()->getBlockType() == 12) {
+                blockset->getEx7()->setBlockType(22);
+            }
+            if (blockset->getEx7()->getBlockType() == 1 || blockset->getEx7()->getBlockType() == 11) {
+                blockset->getEx7()->setBlockType(21);
+            }
+            if (blockset->getEx7()->getBlockType() == 0 || blockset->getEx7()->getBlockType() == 10) {
+                blockset->getEx7()->setBlockType(20);
+            }
+        }
+    }
 }
 
 CCArray *TakasuPoppo::getMatchHor(TPObjectExtension *exObj) {

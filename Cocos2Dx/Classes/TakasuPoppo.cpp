@@ -211,8 +211,17 @@ void TakasuPoppo::startGame() {
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
     //if(runningAfter) this->setTouchEnabled(false);
+//    if(lookForMatches() == 0)
+//        //reset
+//    {
+//        this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
+//                                               CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+//  
+//    }
+    
+    
     TakasuPoppo::matchList();
-//    bool c = checkUpdate();
+    
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall)
     {
         TakasuPoppo::fixedUpdate(0.013);
@@ -453,6 +462,7 @@ void TakasuPoppo::fixedUpdate(float time){
     if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
         //count = 0;
         if (executingLogic == false) {
+            //TakasuPoppo::logicExecution();
             this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
         }
 
