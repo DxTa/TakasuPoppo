@@ -651,43 +651,36 @@ CCPoint TakasuPoppo::getFallPos(TPObjectExtension *exObj, CCPoint lastRowAtColum
     
     if (presentCoor.x == lastRowAtColumn6.x) {
         yDifference = (int)lastRowAtColumn6.y - (int)presentCoor.y;
-        CCLog("LastRowCol6Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn6.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn5.x) {
         yDifference = (int)lastRowAtColumn5.y - (int)presentCoor.y;
-        CCLog("LastRowCol5Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn5.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn4.x) {
         yDifference = (int)lastRowAtColumn4.y - (int)presentCoor.y;
-        CCLog("LastRowCol4Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn4.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn3.x) {
         yDifference = (int)lastRowAtColumn3.y - (int)presentCoor.y;
-        CCLog("LastRowCol3Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn3.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn2.x) {
         yDifference = (int)lastRowAtColumn2.y - (int)presentCoor.y;
-        CCLog("LastRowCol2Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn2.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn1.x) {
         yDifference = (int)lastRowAtColumn1.y - (int)presentCoor.y;
-        CCLog("LastRowCol1Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn1.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn0.x) {
         yDifference = (int)lastRowAtColumn0.y - (int)presentCoor.y;
-        CCLog("LastRowCol0Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn0.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }

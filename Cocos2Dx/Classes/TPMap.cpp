@@ -103,17 +103,14 @@ void TakasuPoppo::generateRandomBlock(TPObjectExtension *exObj, CCPoint fallCoor
     
     CCSprite *randomTileSprite = CCSprite::create(spriteName);
     randomTileSprite->setPosition(fallCoor);
-    float fallTime = 0.1 * ((fallCoor.y - exObj->getPosition().y) / 90);
-    
-    CCLog("Fall Pos X%f Y%f", fallCoor.x, fallCoor.y);
-    CCLog("Des Pos X%f Y%f", exObj->getPosition().x, exObj->getPosition().y);
-    CCLog("Falltime %f", fallTime);
-    
+    float fallTime = GENERATE_FALL_TIME * ((fallCoor.y - exObj->getPosition().y) / 90);
     randomTileSprite->runAction(CCMoveTo::create(fallTime, exObj->getPosition()));
     
     exObj->setSprite(randomTileSprite);
     exObj->setID(randomTile);
-    if (exObj->getControlTrigger() == false) exObj->setControlTrigger(true);
+//    if (exObj->getControlTrigger() == false) exObj->setControlTrigger(true);
+    // fix the bugs: sometimes cant swap a sprite, and still swap a sprite even it is falling
+    exObj->setControlTrigger(false);
     this->addChild(randomTileSprite, 3, 300 + exObj->getGid());
 }
 

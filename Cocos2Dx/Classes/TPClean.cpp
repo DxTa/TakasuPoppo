@@ -150,6 +150,7 @@ void TakasuPoppo::afterClean(){
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::releaseAfterRunning), (void*)boolrun),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj2),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj), NULL));
+                        exObj2->setControlTrigger(false);
                         break;
 
                     }
@@ -165,14 +166,15 @@ void TakasuPoppo::afterClean(){
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj2),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj), NULL));
   
+                        exObj2->setControlTrigger(false);
                         break;
                     }
                 }
             }
-            exObj->setControlTrigger(true);
+            exObj->setControlTrigger(false);
         }
     }
-    toDestroyArray->removeAllObjects();
+//    toDestroyArray->removeAllObjects();
 }
 
 void TakasuPoppo::changeID(CCNode *sender, void* data) {
@@ -649,8 +651,6 @@ void TakasuPoppo::cleanHyperBlockB(CCNode* sender, void* data) {
 void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
     TPObjectExtension* exObj = (TPObjectExtension*)data;
     
-    TakasuPoppo::plusAllComboCounter();
-    
     exObj->setBlockType(NORMAL_BLOCK_TYPE);
     // random an ID and clean all block with this ID
     exObj->getSprite()->stopActionByTag(1210);
@@ -703,9 +703,6 @@ void TakasuPoppo::scaleHyperBlockC(CCNode *sender, void* data){
 void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
     
     isHBCinBlockSet = true;
-    
-    TakasuPoppo::plusAllComboCounter();
-    
     exObj->setBlockType(NORMAL_BLOCK_TYPE);
     // random an ID and clean all block with this ID
     exObj->getSprite()->stopActionByTag(1210);
@@ -822,8 +819,10 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
 
 float TakasuPoppo::setCleanDelay(){
     if (isHBCinBlockSet) {
+        logicDelayTime = LOGIC_DELAY + HBC_CLEAN_DELAY;
         return HBC_CLEAN_DELAY;
     } else {
+        logicDelayTime = LOGIC_DELAY + CLEAN_DELAY;
         return CLEAN_DELAY;
     }
 }
