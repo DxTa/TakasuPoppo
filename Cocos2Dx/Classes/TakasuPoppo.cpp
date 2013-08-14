@@ -156,6 +156,8 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     this->schedule(schedule_selector(TakasuPoppo::timeCounter));
     
     this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo), 2);
+    
+    this->schedule(schedule_selector(TakasuPoppo::matchList));
     return true;
 }
 
@@ -207,13 +209,15 @@ void TakasuPoppo::startGame() {
         this->schedule(schedule_selector(TakasuPoppo::timeCounter));
         
         this->unschedule(schedule_selector(TakasuPoppo::startGame));
+        
+
     }
 }
 
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
     //if(runningAfter) this->setTouchEnabled(false);
-    TakasuPoppo::matchList();
+//    TakasuPoppo::matchList();
 //    bool c = checkUpdate();
     if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
     {
@@ -505,24 +509,25 @@ void TakasuPoppo::hintGeneration() {
 
 
 void TakasuPoppo::logicExecution() {
+    
     if(ComboCounter >= COMBO_REQUIRED)
     {
         ComboScoreRequired = 1 + ((int)(ComboCounter/COMBO_REQUIRED)) / 10;
 //        CCLOG("SSSSSSSSS %d",ComboCounter);
     }
-    //this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
+    this->unschedule(schedule_selector(TakasuPoppo::matchList));
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
-//                                       CCDelayTime::create(0.2f),
                                        CCDelayTime::create(setCleanDelay()),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::refreshMoving)),
-                                       CCDelayTime::create(movingSpeed * 6),
+                                       CCDelayTime::create(movingSpeed * 6 + SWAP_TIME*2),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
+    CCLog("Logic Delay Time: %f", logicDelayTime);
     logicCounter = 0;
     this->schedule(schedule_selector(TakasuPoppo::logicDelaySwitch), 0);
     
@@ -681,9 +686,11 @@ bool TakasuPoppo::checkUpdate()
 }
 
 void TakasuPoppo::logicDelaySwitch(){
+//    this->unschedule(schedule_selector(TakasuPoppo::matchList));
     logicCounter += deltaTime;
     CCLog("logic counter: %f", logicCounter);
     if (logicCounter > logicDelayTime) {
+        this->schedule(schedule_selector(TakasuPoppo::matchList));
         CCObject* obj;
         CCARRAY_FOREACH(colorArray, obj){
             TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
@@ -692,6 +699,7 @@ void TakasuPoppo::logicDelaySwitch(){
             }
             
         }
+        controlable = true;
         executingLogic = false;
         this->unschedule(schedule_selector(TakasuPoppo::logicDelaySwitch));
     }

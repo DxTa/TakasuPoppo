@@ -171,7 +171,7 @@ void TakasuPoppo::afterClean(){
                     }
                 }
             }
-            exObj->setControlTrigger(false);
+            exObj->setControlTrigger(true);
         }
     }
 //    toDestroyArray->removeAllObjects();
@@ -678,7 +678,7 @@ void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
             cloneSprite->setZOrder(500);
             this->addChild(cloneSprite);
             
-            cloneSprite->runAction(CCSequence::create(CCScaleTo::create(0.2f, 1.5f),
+            cloneSprite->runAction(CCSequence::create(CCScaleTo::create(HBC_SCALE_DELAY, 1.5f),
                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::cleanOneBlock),(void*)block),
                                                       CCRemoveSelf::create(true),
                                                       NULL));
@@ -688,16 +688,6 @@ void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
     
     isHBCinBlockSet = true;
 
-}
-
-// For new instance of Clean Hyper Block C with scale animation
-
-void TakasuPoppo::scaleHyperBlockC(CCNode *sender, void* data){
-    
-    TPObjectExtension *exObj = (TPObjectExtension*)data;
-    if (exObj->getSprite() != NULL && exObj->getID() != 7) {
-        exObj->getSprite()->runAction(CCScaleTo::create(0.1f, 1.2f));
-    }
 }
 
 void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
@@ -730,7 +720,7 @@ void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
             cloneSprite->setZOrder(500);
             this->addChild(cloneSprite);
             
-            cloneSprite->runAction(CCSequence::create(CCScaleTo::create(0.2f, 1.5f),
+            cloneSprite->runAction(CCSequence::create(CCScaleTo::create(HBC_SCALE_DELAY, 1.5f),
                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::cleanOneBlock),(void*)block),
                                                       CCRemoveSelf::create(true),
                                                       NULL));
@@ -819,10 +809,10 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
 
 float TakasuPoppo::setCleanDelay(){
     if (isHBCinBlockSet) {
-        logicDelayTime = LOGIC_DELAY + HBC_CLEAN_DELAY;
-        return HBC_CLEAN_DELAY;
+        logicDelayTime = AFTER_CLEAN_FALL_TIME*6 + GENERATE_FALL_TIME*6 + SWAP_TIME*2 + CLEAN_DELAY + HBC_SCALE_DELAY;
+        return (HBC_SCALE_DELAY + CLEAN_DELAY);
     } else {
-        logicDelayTime = LOGIC_DELAY + CLEAN_DELAY;
+        logicDelayTime = AFTER_CLEAN_FALL_TIME*6 + GENERATE_FALL_TIME*6 + SWAP_TIME*2 + CLEAN_DELAY;
         return CLEAN_DELAY;
     }
 }
@@ -861,12 +851,14 @@ void TakasuPoppo::releaseAfterRunning(cocos2d::CCNode *sender, void *data)
     boolAfterClean->removeObject(boolMoving);
     
     move = false;
-    swape = false;}
+    swape = false;
+}
 void TakasuPoppo::setFalseControl()
 {
+    
     move = false;
     swape = false;
-    this->setTouchEnabled(false);
+//    this->setTouchEnabled(false);
     runningAfter =true;
     swipeUp = false;
     swipeDown = false;
@@ -875,7 +867,7 @@ void TakasuPoppo::setFalseControl()
 }
 void TakasuPoppo::setControl()
 {
-    this->setTouchEnabled(true);
+//    this->setTouchEnabled(true);
     move = false;
     swape = false;
     runningAfter = false;

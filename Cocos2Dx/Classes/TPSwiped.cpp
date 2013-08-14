@@ -268,27 +268,27 @@ void TakasuPoppo::setTrueControlable(CCNode *sender, void* data)
     TakasuPoppo::deleteMainSprite();
     move = false;
     swape = false;
-        TPObjectExtension * exObj = (TPObjectExtension*)data;
-        if(exObj != NULL)
-        {
-            exObj->setControlTrigger(true);
-//            if(exObj->getBlockType() == HBC_BLOCK_TYPE)
-//            {
-//                makeBlockToBeHBC(exObj);
-//            }
-        }
+//        TPObjectExtension * exObj = (TPObjectExtension*)data;
+//        if(exObj != NULL)
+//        {
+//            exObj->setControlTrigger(true);
+//////            if(exObj->getBlockType() == HBC_BLOCK_TYPE)
+//////            {
+//////                makeBlockToBeHBC(exObj);
+//////            }
+//        }
 }
 void TakasuPoppo::setFalseControlable(CCNode *sender, void* data)
 {
     TakasuPoppo::deleteMainSprite();
-    TPObjectExtension* exObj = (TPObjectExtension*)data;
-    if(exObj != NULL)
-    {
-        exObj->setControlTrigger(false);
-
-//        if(exObj->getBlockType() == HBC_BLOCK_TYPE)
-//            exObj->getSprite()->stopActionByTag(1210);
-    }
+//    TPObjectExtension* exObj = (TPObjectExtension*)data;
+//    if(exObj != NULL)
+//    {
+//        exObj->setControlTrigger(false);
+////
+//////        if(exObj->getBlockType() == HBC_BLOCK_TYPE)
+//////            exObj->getSprite()->stopActionByTag(1210);
+//    }
 }
 
 void TakasuPoppo::checkPosition(TPObjectExtension *exObj, TPObjectExtension *swpObj) {

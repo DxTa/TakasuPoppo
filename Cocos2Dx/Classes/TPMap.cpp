@@ -121,7 +121,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type, CCPoint fal
         randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(0);
-        if (exObj1->getControlTrigger() == false)  exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false)  exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
@@ -131,7 +131,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type, CCPoint fal
         randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(1);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
@@ -141,7 +141,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type, CCPoint fal
         randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(2);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
@@ -151,7 +151,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type, CCPoint fal
         randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(3);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
@@ -161,7 +161,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type, CCPoint fal
         randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(4);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
@@ -171,7 +171,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type, CCPoint fal
         randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(5);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }
@@ -181,7 +181,7 @@ void TakasuPoppo::generateBlock(TPObjectExtension *exObj1, int type, CCPoint fal
         randomTileSprite->runAction(CCMoveTo::create(0.1, exObj1->getPosition()));
         exObj1->setSprite(randomTileSprite);
         exObj1->setID(6);
-        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
+//        if (exObj1->getControlTrigger() == false) exObj1->setControlTrigger(true);
         this->addChild(randomTileSprite, 3, 300 + exObj1->getGid());
         return;
     }

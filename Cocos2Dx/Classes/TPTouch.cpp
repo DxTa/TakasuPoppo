@@ -33,7 +33,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                     {
                         isHBCinBlockSet = true;
                         TPBlockSet* blockSet = new TPBlockSet(exObject, NULL, NULL, NULL, NULL, NULL, NULL, "hyperBlockC", exObject->getCoordination().x, exObject->getCoordination().y);
-                        toDestroyArray->addObject(blockSet);
+                        if(TakasuPoppo::destroyCheck(exObject)) toDestroyArray->addObject(blockSet);
                         move = false;
                         swape = false;
                         return;

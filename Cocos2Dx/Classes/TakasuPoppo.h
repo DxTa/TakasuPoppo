@@ -320,7 +320,6 @@ public:
     
     void cleanA(TPObjectExtension* exObj);
     void cleanB(TPObjectExtension* exObj);
-    void scaleHyperBlockC(CCNode *sender, void* data);
     void cleanOneBlock(CCNode *sender, void* data);
     void createSpecialBlock(TPObjectExtension* exObj, int blockType);
     
@@ -362,6 +361,7 @@ public:
     bool executingLogic = false;
     float logicCounter = 0;
     float logicDelayTime = LOGIC_DELAY;
+    bool isMatchListDone = false;
     
     //ITEM function
     bool lastScore();

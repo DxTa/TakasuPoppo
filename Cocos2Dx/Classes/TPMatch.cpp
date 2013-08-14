@@ -224,7 +224,11 @@ void TakasuPoppo::matchList() {
             }
         }
     }
-    
+    if (toDestroyArray->count() > 0) {
+        isMatchListDone = true;
+    } else {
+        isMatchListDone = false;
+    }
 }
 
 CCArray *TakasuPoppo::getMatchHor(TPObjectExtension *exObj) {
@@ -322,6 +326,9 @@ int TakasuPoppo::lookForMatches() {
             
             if(aExObj != NULL)
             {
+                if (aExObj->getBlockType() == HBC_BLOCK_TYPE) {
+                    match++;
+                }
                 //Horizontal 3 matches
                 if (bExObj != NULL && bExObj->getID() == aExObj->getID()) {
                     if (TakasuPoppo::sumOfMatches(aExObj, bExObj, lExObj, sExObj, mExObj)) match++;
@@ -601,7 +608,7 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
+                            exObj->setControlTrigger(false);
                         }
                     }
                     break;
@@ -622,7 +629,7 @@ void TakasuPoppo::smartGeneration() {
                                                                                         lastRowAtColumn1,lastRowAtColumn2,
                                                                                         lastRowAtColumn3,lastRowAtColumn4,
                                                                                         lastRowAtColumn5, lastRowAtColumn6));
-                        exObj->setControlTrigger(true);
+                        exObj->setControlTrigger(false);
                     }
 
                     break;
@@ -635,7 +642,7 @@ void TakasuPoppo::smartGeneration() {
     if(hyperBlockC){
         randomBlockC();
     }
-    controlable = true;
+    
     return;
 }
 
@@ -705,8 +712,9 @@ void TakasuPoppo::randomBlockC()
     CCObject* obj = new CCObject;
     CCARRAY_FOREACH(colorArray, obj){
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
-        if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % 60) == 0 && exObj->getSprite() != NULL) {
+        if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % (int)gameTimer) == 0 && exObj->getSprite() != NULL) {
             makeBlockToBeHBC(exObj);
+            exObj->setControlTrigger(false);
             hyperBlockC = false;
             break;
         }
@@ -717,7 +725,6 @@ void TakasuPoppo::randomBlockC()
 // intead of many function make block to be special block
 void TakasuPoppo::createSpecialBlock(TPObjectExtension *exObj, int blockType){
     // change controlable
-    exObj->setControlTrigger(true);
     if(exObj->getID() != 7 && exObj->getID() != 8)
     {
         exObj->setBlockType(blockType);
