@@ -21,6 +21,7 @@
 		8434C47C176EB5EE00C8E722 /* Candy6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8434C479176EB5EE00C8E722 /* Candy6.png */; };
 		8434C47D176EB5EE00C8E722 /* Candy7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8434C47A176EB5EE00C8E722 /* Candy7.png */; };
 		843B6F2517681F25008D8A4C /* Candy.png in Resources */ = {isa = PBXBuildFile; fileRef = 843B6F2417681F25008D8A4C /* Candy.png */; };
+		8467A87817BB937D0082F3E8 /* poppo_scoreClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A87717BB937D0082F3E8 /* poppo_scoreClose.png */; };
 		8485C96117BB1F3C001B939A /* ComboBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94617BB1F3C001B939A /* ComboBarIn.png */; };
 		8485C96217BB1F3C001B939A /* ComboBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94717BB1F3C001B939A /* ComboBarOut.png */; };
 		8485C96317BB1F3C001B939A /* ComboGaugeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */; };
@@ -477,6 +478,7 @@
 		8434C479176EB5EE00C8E722 /* Candy6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Candy6.png; sourceTree = "<group>"; };
 		8434C47A176EB5EE00C8E722 /* Candy7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Candy7.png; sourceTree = "<group>"; };
 		843B6F2417681F25008D8A4C /* Candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Candy.png; sourceTree = "<group>"; };
+		8467A87717BB937D0082F3E8 /* poppo_scoreClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_scoreClose.png; sourceTree = "<group>"; };
 		8485C94617BB1F3C001B939A /* ComboBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarIn.png; sourceTree = "<group>"; };
 		8485C94717BB1F3C001B939A /* ComboBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarOut.png; sourceTree = "<group>"; };
 		8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGaugeCircle.png; sourceTree = "<group>"; };
@@ -1424,6 +1426,7 @@
 		84A0CF1317B0A469009B449E /* Neo Poppo */ = {
 			isa = PBXGroup;
 			children = (
+				8467A87717BB937D0082F3E8 /* poppo_scoreClose.png */,
 				8485C97C17BB4249001B939A /* poppo_empty_container.png */,
 				8485C97D17BB4249001B939A /* poppo_hintFrame.png */,
 				8485C95717BB1F3C001B939A /* poppo_overImage.png */,
@@ -2969,6 +2972,7 @@
 				8485C97B17BB33E7001B939A /* SettingContents.png in Resources */,
 				8485C97E17BB4249001B939A /* poppo_empty_container.png in Resources */,
 				8485C97F17BB4249001B939A /* poppo_hintFrame.png in Resources */,
+				8467A87817BB937D0082F3E8 /* poppo_scoreClose.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3315,8 +3319,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3333,8 +3337,8 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				PROVISIONING_PROFILE = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3344,9 +3348,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cocos2Dx/Prefix.pch;
@@ -3362,9 +3366,9 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
-				"PROVISIONING_PROFILE[sdk=*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				PROVISIONING_PROFILE = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
+				"PROVISIONING_PROFILE[sdk=*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
