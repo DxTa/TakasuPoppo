@@ -446,7 +446,20 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
             }
             
             break;
+        case MOVED_NORMAL_BLOCK_TYPE + 10:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockB(exobj);
+            break;
             
+        case (MOVED_HBA_BLOCK_TYPE + 10):
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockB(exobj);
+            break;
+        case (MOVED_HBB_BLOCK_TYPE + 10):
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockB(exobj);
+            break;
+
             
         default:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
