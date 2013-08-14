@@ -613,7 +613,7 @@ void TakasuPoppo::smartGeneration() {
         if (exObj != NULL && exObj->getID() == 7) {
             i ++;
             switch (_spcialItemID) {
-                case 3:
+                case SPECIAL_ITEM_1_ID:
                     // create Mission Block 1
                     if (isCreateMB1 == true) {
                         TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
@@ -643,7 +643,7 @@ void TakasuPoppo::smartGeneration() {
 
                     break;
                     
-                case 4:
+                case SPECIAL_ITEM_2_ID:
                     // create Mission Block 2
                     if (isCreateMB2 == true) {
                         TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
@@ -673,7 +673,7 @@ void TakasuPoppo::smartGeneration() {
                     }
                     break;
                     
-                case 6:
+                case SPECIAL_ITEM_4_ID:
                     // create Mission Block 3
                     if (isCreateMB3 == true) {
                         TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,

@@ -364,6 +364,9 @@ public:
     float logicCounter = 0;
     float logicDelayTime = LOGIC_DELAY;
     bool isMatchListDone = false;
+    // set logic Delay time in a dynamic way
+    int atcMaxDistance; // after clean max distance: measure by the numbers of moves, max is 6
+    int gbMaxDistance; // generate block max distance: max is 6
     
     //ITEM function
     bool lastScore();

@@ -108,14 +108,14 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     _spcialItemID = _itemObject->getSpecialItemID() ;
     switch (_spcialItemID) {
-        case 3:
+        case SPECIAL_ITEM_1_ID:
             timeToCreateMB1 = rand() % (PLAY_TIME/2) + (PLAY_TIME/3) ;
             isCleanMB1 = false;
             isCreateMB1 = false;
             CCLog("time will create MB1: %i", timeToCreateMB1);
             break;
             
-        case 4:
+        case SPECIAL_ITEM_2_ID:
             timeToCreateMB2 = rand() % PLAY_TIME;
             isCleanMB2 = false;
             isCreateMB2 = false;
@@ -124,14 +124,14 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
             CCLog("time will create MB2: %i", timeToCreateMB2);
             break;
             
-        case 6:
+        case SPECIAL_ITEM_4_ID:
             doubleScoreStartTime = 0;
             isCleanMB3 = false;
             isCreateMB3 = false;
             timeToCreateMB3 = rand() % (PLAY_TIME/2) + (PLAY_TIME/2);
             CCLOG("Time to create MB2: %d", timeToCreateMB3);
             
-        case 7:
+        case SPECIAL_ITEM_5_ID:
             increaseComboTimes = 1.1;
             break;
             
@@ -394,7 +394,7 @@ void TakasuPoppo::update(float dt) {
     
     //======================== Item Object ===========================
     switch (_spcialItemID) {
-        case 3:
+        case SPECIAL_ITEM_1_ID:
             if (gameTimer < timeToCreateMB1 && isCreateMB1 == false) {
                 isCreateMB1 = true;
                 CCLog("time will create MB1: %i", timeToCreateMB1);
@@ -407,7 +407,7 @@ void TakasuPoppo::update(float dt) {
          }
             break;
             
-        case 4:
+        case SPECIAL_ITEM_2_ID:
             if ( ( (rand() % PLAY_TIME) == timeToCreateMB2) && isCreateMB2 == false && isExistMB2 == false && countMB2 < MISSION_BLOCK2_MAX_AMOUNT) {
                 isCreateMB2 = true;
                 countMB2 ++;
@@ -418,7 +418,7 @@ void TakasuPoppo::update(float dt) {
             }
             break;
         
-        case 6:
+        case SPECIAL_ITEM_4_ID:
             
             if (gameTimer < timeToCreateMB3 && isCreateMB3 == false) {
                 isCreateMB3 = true;
@@ -434,19 +434,16 @@ void TakasuPoppo::update(float dt) {
                 if (gameTimer <= doubleScoreStartTime && gameTimer >= (doubleScoreStartTime - DOUBLE_SCORE_TIME) ) {
                     // do some code logic here
                     doubleScore = 2;
-//                    CCLog("gameTimer: %f", gameTimer);
-//                    CCLog("doubleScoreStartTime: %d", doubleScoreStartTime);
-//                    CCLog("The Score is double now");
+
                 }
                 else{
                     doubleScore = 1;
-//                    CCLog("The Score is not double anymore");
                 }
 
             }
             break;
             
-        case 5:
+        case SPECIAL_ITEM_3_ID:
             modefiedLastBonus();
             break;
 
