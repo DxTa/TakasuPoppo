@@ -86,6 +86,33 @@ private:
     CCSprite *chargeBtnScr4;
     CCSprite *chargeLblScr4;
     
+    
+    CCSprite *networkContainer;
+    
+    CCSprite *overContainer;
+    
+    CCSprite *itemContainer;
+    CCSprite *item1, *item1Shade;
+    CCSprite *item2, *item2Shade;
+    CCSprite *item3, *item3Shade;
+    CCSprite *item4, *item4Shade;
+    CCSprite *item5, *item5Shade;
+    CCSprite *item6, *item6Shade;
+    CCSprite *item7, *item7Shade;
+    CCSprite *item8, *item8Shade;
+    CCSprite *item9, *item9Shade;
+    CCSprite *item10, *item10Shade;
+    CCArray *itemShadeArray;
+    
+    CCSprite *settingContainer;
+    CCSprite *settingCancelBtn;
+    CCSprite *settingContents;
+    CCControlSlider *sfxSlider;
+    CCControlSlider *bgmSlider;
+    CCSprite *aboutBtn;
+    CCSprite *tutorialBtn;
+    
+    
     int tutPageNo;
     char tutPageChar[50];
     CCLabelTTF *tutPageLbl;
@@ -113,6 +140,15 @@ private:
     bool charge4On;
     bool chargeBack;
     bool chargeExit;
+    
+    bool settingOn;
+    bool gameOverOn;
+    bool itemOn;
+    
+    bool item1On;
+    bool item2On;
+    bool item3On;
+    int specialItemID;
 public:
     ~TPMainScreen();
     virtual bool init();
@@ -125,7 +161,9 @@ public:
     void setTutorial();
     void setupHearts();
     void setCharge();
-    
+    void setSetting();
+    void setItem();
+    void setSpecialItemShade(CCSprite *selectedItemShade);
     void setCrystal(int decreasingAmount);
     
     CCRect boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite);

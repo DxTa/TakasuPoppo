@@ -54,30 +54,30 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     
     //========================= Debugs =============================
-    debugTilesArray = new CCArray;
-    TakasuPoppo::setupDebugButton();
-    
-    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
-    comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
-    comboCounterLabel->setZOrder(15);
-    comboCounterLabel->setColor(ccc3(225, 225, 225));
-    comboCounterLabel->setPosition(ccp(80, 850));
-    
-    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
-    comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
-    comboTimerLabel->setZOrder(15);
-    comboTimerLabel->setColor(ccc3(225, 225, 225));
-    comboTimerLabel->setPosition(ccp(330, 850));
-    
-    this->addChild(comboCounterLabel);
-    this->addChild(comboTimerLabel);
+//    debugTilesArray = new CCArray;
+//    TakasuPoppo::setupDebugButton();
+//    
+//    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
+//    comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
+//    comboCounterLabel->setZOrder(15);
+//    comboCounterLabel->setColor(ccc3(225, 225, 225));
+//    comboCounterLabel->setPosition(ccp(80, 850));
+//    
+//    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
+//    comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
+//    comboTimerLabel->setZOrder(15);
+//    comboTimerLabel->setColor(ccc3(225, 225, 225));
+//    comboTimerLabel->setPosition(ccp(330, 850));
+//    
+//    this->addChild(comboCounterLabel);
+//    this->addChild(comboTimerLabel);
     //===============================================================
     
     //==========================SCORE ===============================
-    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("Score :", "Arial", FONT_SIZE);
+    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("SCORE", "Arial", FONT_SIZE);
     lbScoreTitle->setZOrder(15);
     lbScoreTitle->setColor(ccc3(225, 225, 225));
-    lbScoreTitle->setPosition(ccp(60, 890));
+    lbScoreTitle->setPosition(ccp(80, 780));
     this->addChild(lbScoreTitle);
     
     
@@ -85,22 +85,33 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     lbScore = CCLabelTTF::create(str.c_str(), "Arial", FONT_SIZE);
     lbScore->setZOrder(15);
     lbScore->setColor(ccc3(225, 225, 225));
-    lbScore->setPosition(ccp(160, 890));
+    lbScore->setPosition(ccp(180, 780));
     this->addChild(lbScore);
     //===============================================================
     
     //======================== Interface ============================
-    CCSprite *background = CCSprite::create("NewPrettyBackground.png");
-    background->setPosition(ccp(winSize.width/2, winSize.height/2));
+    CCSprite *background = CCSprite::create("poppo_background.png");
+    background->setPosition(ccp(winSize.width / 2,
+                                winSize.height / 2));
     this->addChild(background, -3, -1);
     
-    CCSprite *ideGauge = CCSprite::create("IdeGauge.png");
-    ideGauge->setPosition(ccp(210, 780));
+    CCSprite *upperCover = CCSprite::create("UpperCover.png");
+    upperCover->setPosition(ccp(winSize.width / 2, winSize.height - 40));
+    this->addChild(upperCover, -2, -4);
+    
+    CCSprite *ideGauge = CCSprite::create("ComboGaugeCircle.png");
+    ideGauge->setPosition(ccp(400, 780));
     this->addChild(ideGauge, 6, -2);
     
-    CCSprite *comboGauge = CCSprite::create("ComboGauge.png");
-    comboGauge->setPosition(ccp(400, 780));
+    CCSprite *comboGauge = CCSprite::create("ComboBarOut.png");
+    comboGauge->setPosition(ccp(510, 780));
     this->addChild(comboGauge, -2, -3);
+    
+    CCSprite *timerBar = CCSprite::create("TimeBarOut.png");
+    timerBar->setPosition(ccp(winSize.width / 2 - 2, 46));
+    this->addChild(timerBar, -2, -3);
+    
+    
     
     //===============================================================
     
@@ -145,17 +156,17 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     this->scheduleUpdate();
     
-    //    this->schedule(schedule_selector(TakasuPoppo::startGame));
+    this->schedule(schedule_selector(TakasuPoppo::startGame));
     
-    this->setTouchEnabled(true);
+//    this->setTouchEnabled(true);
     
     //this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
     
-    this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
-    
-    this->schedule(schedule_selector(TakasuPoppo::timeCounter));
-    
-    this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo), 2);
+//    this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
+//    
+//    this->schedule(schedule_selector(TakasuPoppo::timeCounter));
+//    
+//    this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo), 2);
     
     this->schedule(schedule_selector(TakasuPoppo::matchList));
     return true;
@@ -201,16 +212,15 @@ void TakasuPoppo::startGame() {
         
         TakasuPoppo::swipeSetup();
         
-        //this->setTouchEnabled(true);
+        this->setTouchEnabled(true);
         
         //this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
         
         this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
-        this->schedule(schedule_selector(TakasuPoppo::timeCounter));
+        this->schedule(schedule_selector(TakasuPoppo::timeCounter));        
+        this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo), 2);
         
         this->unschedule(schedule_selector(TakasuPoppo::startGame));
-        
-
     }
 }
 
@@ -229,11 +239,11 @@ void TakasuPoppo::update(float dt) {
     
 
     //================== Combo related updates ======================
-    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
-    comboCounterLabel->setString(comboCounterString);
-    
-    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
-    comboTimerLabel->setString(comboTimerString);
+//    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
+//    comboCounterLabel->setString(comboCounterString);
+//    
+//    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
+//    comboTimerLabel->setString(comboTimerString);
     
     
     if (hbcComboTimer > 0) {
@@ -532,7 +542,7 @@ void TakasuPoppo::logicExecution() {
 }
 
 void TakasuPoppo::timeSetup() {
-    CCSprite *timer = CCSprite::create("Timer.png");
+    CCSprite *timer = CCSprite::create("TimeBarIn.png");
     timer->setAnchorPoint(ccp(0, 0));
     timerBar = CCProgressTimer::create(timer);
     
@@ -546,14 +556,14 @@ void TakasuPoppo::timeSetup() {
     timerBar->setTag(405);
     this->addChild(timerBar, 5);
     
-    CCSprite *combo = CCSprite::create("Combo.png");
+    CCSprite *combo = CCSprite::create("ComboBarIn.png");
     combo->setAnchorPoint(ccp(0, 0));
     comboBar = CCProgressTimer::create(combo);
     
     comboBar->setType(kCCProgressTimerTypeBar);
     comboBar->setAnchorPoint(ccp(0, 0));
     
-    comboBar->setPosition(195, 760);
+    comboBar->setPosition(ccp(408, 760));
     comboBar->setMidpoint(ccp(0, 0));
     comboBar->setBarChangeRate(ccp(1, 0));
     
