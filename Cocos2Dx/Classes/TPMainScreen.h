@@ -104,6 +104,11 @@ private:
     CCSprite *item10, *item10Shade;
     CCArray *itemShadeArray;
     
+    CCSprite *scoreContainer;
+    CCSprite *scoreClose;
+    CCSprite *scoreDancingTakasu;
+    CCLabelTTF *scoreLabel;
+    
     CCSprite *settingContainer;
     CCSprite *settingCancelBtn;
     CCSprite *settingContents;
@@ -149,6 +154,9 @@ private:
     bool item2On;
     bool item3On;
     int specialItemID;
+    
+    bool gameOver;
+    int gameScore;
 public:
     ~TPMainScreen();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);

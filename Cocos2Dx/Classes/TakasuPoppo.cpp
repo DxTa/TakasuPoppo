@@ -647,7 +647,7 @@ void TakasuPoppo::timeOver() {
         CCLOG("SCORE * %d",score);
         CCScene *mainScene = TPMainScreen::scene(true, score);
         CCDirector::sharedDirector()->setDepthTest(true);
-        CCTransitionScene* transition = CCTransitionFadeUp::create(1, mainScene);
+        CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
         CCDirector::sharedDirector()->replaceScene(transition);
         CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 
