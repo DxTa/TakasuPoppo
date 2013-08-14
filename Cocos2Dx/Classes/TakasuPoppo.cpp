@@ -377,6 +377,7 @@ void TakasuPoppo::update(float dt) {
     
     if (isInFeverTime == true) {
         feverTimeLimit -= dt;
+        
         if (feverTimeLimit < 0) {
             isInFeverTime = false;
             feverTimeLimit = 0;
