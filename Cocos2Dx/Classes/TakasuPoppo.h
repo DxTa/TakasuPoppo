@@ -140,6 +140,8 @@ private:
     // fixed hyper block C
     bool isHBCinBlockSet = false;
     float setCleanDelay();
+    
+    bool createB = false;
 
 public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
@@ -393,6 +395,10 @@ public:
     bool checkUpdate();
     //checkResetMap
     void checkResetMap();
+    //checkB
+    bool checkCreateHyperB(CCPoint coor , int type);
+    bool checkVerMatch(CCPoint coor , int type);
+    bool checkHorMatch(CCPoint coor , int type);
 };
 
 #endif

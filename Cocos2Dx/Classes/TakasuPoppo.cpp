@@ -216,9 +216,6 @@ void TakasuPoppo::startGame() {
 
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
-    //if(runningAfter) this->setTouchEnabled(false);
-//    TakasuPoppo::matchList();
-//    bool c = checkUpdate();
     if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
     {
         TakasuPoppo::fixedUpdate(0.013);
@@ -468,6 +465,7 @@ void TakasuPoppo::fixedUpdate(float time){
         if (executingLogic == false) {
             executingLogic = true;
             this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
+            //TakasuPoppo::logicExecution();
         }
 
         //TakasuPoppo::logicExecution();
@@ -691,6 +689,7 @@ void TakasuPoppo::logicDelaySwitch(){
     CCLog("logic counter: %f", logicCounter);
     if (logicCounter > logicDelayTime) {
         this->schedule(schedule_selector(TakasuPoppo::matchList));
+        
         CCObject* obj;
         CCARRAY_FOREACH(colorArray, obj){
             TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);

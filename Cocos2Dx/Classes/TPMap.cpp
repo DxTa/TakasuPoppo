@@ -49,6 +49,7 @@ void TakasuPoppo::createFixture() {
             
             while (TakasuPoppo::isTileMatched(m_gid, randomTile)) randomTile = rand() % 7;
             
+            
             sprintf(spriteName, "%s.png", tileName[randomTile]);
             
             CCSprite *randomTileSprite = CCSprite::create(spriteName);

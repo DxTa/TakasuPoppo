@@ -9,24 +9,26 @@
 
 #include "TakasuPoppo.h"
 #include "TPBlockSet.h"
-void TakasuPoppo::cleanBlocks() {
+void TakasuPoppo::cleanBlocks() {    
     CCObject *object;
+    createB = false;
     if (toDestroyArray->count() != 0) {
-        CCARRAY_FOREACH(toDestroyArray, object) {
+        
+        
+        CCARRAY_FOREACH(toDestroyArray, object) {            
             bool hyperA = false;
             bool hyperB = false;
             TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
             if (blockSet->getType() == "hyperBlockC") {
                 TakasuPoppo::cleanHyperBlockC(blockSet->getEx1());
             } else {
-
                 hintCounter = 3;
-                
                 TakasuPoppo::plusAllComboCounter();
                 // update current block set
                 currentBlockSet = blockSet->getBlocksArray();
                 
                 //===============================
+                
                 if(blockSet->getEx3() != NULL)
                 {
                     score = score + (int)(ComboScoreRequired * increasedScore * SCORE_THREE * doubleScore);
@@ -71,8 +73,28 @@ void TakasuPoppo::cleanBlocks() {
                 if (isValidEx(blockSet->getEx7())) {
                     TakasuPoppo::cleanOneBlock(blockSet->getEx5());
                 }
-                
-                if (checkSwipe(blockSet)->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE && hyperA)
+        
+                if(checkSwipe(blockSet)->getBlockType() >= 20)
+                {
+                    hyperA = false;
+                    if (checkSwipe(blockSet)->getBlockType() == 21) {
+                        cleanA(checkSwipe(blockSet));
+                    }
+                    if (checkSwipe(blockSet)->getBlockType() == 22) {
+                        cleanB(checkSwipe(blockSet));
+                    }
+                    if(createB)
+                    {
+                        createSpecialBlock(checkSwipe(blockSet), HBB_BLOCK_TYPE);
+                        createB = false;
+                    }
+                    else
+                    {
+                        createB = true;
+                    }
+
+                }
+                else if (checkSwipe(blockSet)->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE && hyperA)
                 {
                     if(checkSwipe(blockSet)->getBlockType() == MOVED_HBA_BLOCK_TYPE)
                         cleanA(checkSwipe(blockSet));
@@ -81,14 +103,12 @@ void TakasuPoppo::cleanBlocks() {
                     createSpecialBlock(checkSwipe(blockSet), HBA_BLOCK_TYPE);
                     hyperA = false;
                     hyperB = false;
-                    //break;
                 }
                 else if(hyperA)
                 {
                     createSpecialBlock(blockSet->getEx2(), HBA_BLOCK_TYPE);
                     hyperA = false;
                     hyperB = false;
-                    //break;
                 }
                 else if (checkSwipe(blockSet)->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE && hyperB)
                 {
@@ -99,26 +119,40 @@ void TakasuPoppo::cleanBlocks() {
                     createSpecialBlock(checkSwipe(blockSet), HBB_BLOCK_TYPE);
                     hyperA = false;
                     hyperB = false;
-                    //break;
                 }
                 else if(hyperB)
                 {
                     createSpecialBlock(blockSet->getEx2(), HBB_BLOCK_TYPE);
                     hyperB = false;
                     hyperA = false;
-                   // break;
 
                 }
                 else {
-                    TakasuPoppo::cleanOneBlock(checkSwipe(blockSet));
+                    cleanOneBlock(checkSwipe(blockSet));
                 }
                 currentBlockSet = NULL;
-                
             }
-            
         }
     }
+    // ===================== create    hyperB ===============
     toDestroyArray->removeAllObjects();
+
+    CCObject* ox;
+    CCARRAY_FOREACH(colorArray, ox)
+    {
+        TPObjectExtension *ex = dynamic_cast<TPObjectExtension*>(ox);
+        int i = ex->getBlockType();
+        if (ex->getBlockType() >= 20) {
+            createSpecialBlock(ex, HBB_BLOCK_TYPE);
+            //ex->setControlTrigger(true);
+            ex->setBlockType(i);
+        }
+    }
+    //=======================================================
+    
+
+    toDestroyArray->removeAllObjects();
+    
 }
 
 
@@ -457,6 +491,9 @@ bool TakasuPoppo::isInCurrentBlockSet(TPObjectExtension *exObj){
 }
 
 bool TakasuPoppo::isValidEx(TPObjectExtension * ex){
+//    if (ex != NULL && (checkCreateHyperB(ex->getCoordination(), ex->getID()) || ex->getBlockType() == 13)) {
+//        return false;
+//    }
     if(ex != NULL && ex->getID() != 7 && ex->getSprite() && ex->getSprite() != NULL && ex->getBlockType() < MOVED_NORMAL_BLOCK_TYPE)
             return true;
     else    return false;
@@ -923,4 +960,82 @@ void TakasuPoppo::refreshMoving()
     boolMoveTo->removeAllObjects();
     move = false;
     swape = false;
+}
+
+bool TakasuPoppo::checkHorMatch(CCPoint coor , int type)
+{
+    if(type == 8)
+        return false;
+    int x = coor.x;
+    int y = coor.y;
+    
+    CCPoint ePoint = ccp(x, y - 1);
+    CCPoint hPoint = ccp(x, y - 2);
+    CCPoint oPoint = ccp(x, y + 1);
+    CCPoint qPoint = ccp(x, y + 2);
+    TPObjectExtension *eExObj = TakasuPoppo::coorToExObj(ePoint);
+    TPObjectExtension *hExObj = TakasuPoppo::coorToExObj(hPoint);
+    TPObjectExtension *oExObj = TakasuPoppo::coorToExObj(oPoint);
+    TPObjectExtension *qExObj = TakasuPoppo::coorToExObj(qPoint);
+    
+    if (eExObj != NULL && eExObj->getID() == type &&
+        hExObj != NULL && hExObj->getID() == type) {
+        return true;
+    }
+    
+    if (oExObj != NULL && oExObj->getID() == type &&
+        qExObj != NULL && qExObj->getID() == type) {
+        return true;
+    }
+    
+    if (oExObj != NULL && oExObj->getID() == type &&
+        eExObj != NULL && eExObj->getID() == type) {
+        return true;
+    }
+    return false;
+}
+
+bool TakasuPoppo::checkVerMatch(CCPoint coor , int type)
+{
+    if(type == 8)
+        return false;
+    int x = coor.x;
+    int y = coor.y;
+    
+    CCPoint bPoint = ccp(x + 1, y);
+    CCPoint cPoint = ccp(x + 2, y);
+    CCPoint mPoint = ccp(x - 2, y);
+    CCPoint nPoint = ccp(x - 1, y);
+    
+    TPObjectExtension *bExObj = TakasuPoppo::coorToExObj(bPoint);
+    TPObjectExtension *cExObj = TakasuPoppo::coorToExObj(cPoint);
+    TPObjectExtension *mExObj = TakasuPoppo::coorToExObj(mPoint);
+    TPObjectExtension *nExObj = TakasuPoppo::coorToExObj(nPoint);
+
+    
+    if (bExObj != NULL && bExObj->getID() == type &&
+        cExObj != NULL && cExObj->getID() == type) {
+        return true;
+    }
+    
+    if (nExObj != NULL && nExObj->getID() == type &&
+        mExObj != NULL && mExObj->getID() == type) {
+        return true;
+    }
+    
+    if (nExObj != NULL && nExObj->getID() == type &&
+        bExObj != NULL && bExObj->getID() == type) {
+        return true;
+    }
+    return false;
+}
+
+bool TakasuPoppo::checkCreateHyperB(CCPoint coor , int type)
+{
+    if(checkVerMatch(coor, type) && checkHorMatch(coor, type))
+    {
+        CCLOG( "True Cmnr");
+        return true;
+    }
+    return false;
 }
