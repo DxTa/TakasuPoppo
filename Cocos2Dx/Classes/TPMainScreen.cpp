@@ -15,14 +15,14 @@ using namespace cocos2d;
 using namespace CocosDenshion;
 using namespace std;
 
-CCScene *TPMainScreen::scene() {
+CCScene *TPMainScreen::scene(bool isGameOver, int score) {
     CCScene *scene = CCScene::create();
-    TPMainScreen *layer = TPMainScreen::create();
+    TPMainScreen *layer = TPMainScreen::create(isGameOver, score);
     scene->addChild(layer);
     return scene;
 }
 
-bool TPMainScreen::init() {
+bool TPMainScreen::init(bool isGameOver, int score) {
     if (!CCLayer::init()) return false;
     
     //===================== New UI =========================
@@ -1116,6 +1116,22 @@ Gamer::Gamer(string name, int score)
 {
     this->_score = score;
     this->_name = name;
+}
+
+TPMainScreen* TPMainScreen::create(bool isGameOver, int score){
+    TPMainScreen *pRet = new TPMainScreen();
+    if (pRet && pRet->init(isGameOver, score)) \
+    { \
+        pRet->autorelease(); \
+        return pRet; \
+    } \
+    else \
+    { \
+        delete pRet; \
+        pRet = NULL; \
+        return NULL; \
+    } \
+    
 }
 
 #pragma mark Another

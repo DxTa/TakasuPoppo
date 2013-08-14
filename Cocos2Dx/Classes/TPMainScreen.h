@@ -151,7 +151,6 @@ private:
     int specialItemID;
 public:
     ~TPMainScreen();
-    virtual bool init();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
     virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
     
@@ -168,8 +167,6 @@ public:
     
     CCRect boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite);
     
-    static CCScene* scene();
-    
     void onHttpRequestCompleted(CCNode *sender, void *data);
     
     virtual void tableCellTouched(CCTableView* table, CCTableViewCell* cell);
@@ -180,7 +177,11 @@ public:
     virtual void scrollViewDidZoom(CCScrollView* view);
     void convertName(char *str_name);
     long getTime();
-    CREATE_FUNC(TPMainScreen);
+
+    virtual bool init(bool isGameOver, int score);
+    static TPMainScreen* create(bool isGameOver, int score);
+    static CCScene* scene(bool isGameOver, int score);
+
 };
 
 #endif /* defined(__Cocos2Dx__TPMainScreen__) */

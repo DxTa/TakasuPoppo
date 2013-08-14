@@ -157,11 +157,14 @@ void TakasuPoppo::cleanBlocks() {
 
 
 void TakasuPoppo::afterClean(){
+    // when it run to afterClean, all block has ben clean and remove it from toDestroyArray, so we set isHBCinBlockSet = false
     isHBCinBlockSet = false;
+    
     CCObject *object;
     CCARRAY_FOREACH_REVERSE(colorArray, object) {
         TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
         if (exObj != NULL && exObj->getID() == 7 && exObj->getCoordination().y != 0) {
+
             CCObject *object2;
             CCARRAY_FOREACH_REVERSE(colorArray, object2) {
                 TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(object2);
@@ -846,11 +849,11 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
 
 float TakasuPoppo::setCleanDelay(){
     if (isHBCinBlockSet) {
-        logicDelayTime = AFTER_CLEAN_FALL_TIME*6 + GENERATE_FALL_TIME*6 + SWAP_TIME*2 + CLEAN_DELAY + HBC_SCALE_DELAY;
-        return (HBC_SCALE_DELAY + CLEAN_DELAY);
+        logicDelayTime = AFTER_CLEAN_FALL_TIME*6 + GENERATE_FALL_TIME*6 + SWAP_TIME*2 + CLEAN_DELAY + POP_ANIMATION_DELAY + HBC_SCALE_DELAY;
+        return (HBC_SCALE_DELAY + CLEAN_DELAY + POP_ANIMATION_DELAY);
     } else {
-        logicDelayTime = AFTER_CLEAN_FALL_TIME*6 + GENERATE_FALL_TIME*6 + SWAP_TIME*2 + CLEAN_DELAY;
-        return CLEAN_DELAY;
+        logicDelayTime = AFTER_CLEAN_FALL_TIME*6 + GENERATE_FALL_TIME*6 + SWAP_TIME*2 + CLEAN_DELAY + POP_ANIMATION_DELAY;
+        return (CLEAN_DELAY + POP_ANIMATION_DELAY);
     }
 }
 
