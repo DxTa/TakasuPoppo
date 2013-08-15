@@ -24,7 +24,7 @@ bool TPTopScreen::init(){
     }
     
     _screenSize = CCDirector::sharedDirector()->getWinSize();
-    _topScreen = CCSprite::create("bg.png");
+    _topScreen = CCSprite::create("poppo_start.png");
     _topScreen->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
     this->addChild(_topScreen);
     this->setTouchEnabled(true);

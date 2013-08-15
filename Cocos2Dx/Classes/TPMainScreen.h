@@ -145,7 +145,6 @@ private:
     bool chargeExit;
     
     bool settingOn;
-    bool gameOverOn;
     bool itemOn;
     
     bool item1On;
@@ -153,8 +152,8 @@ private:
     bool item3On;
     int specialItemID;
     
-    bool gameOver;
-    int gameScore;
+    bool gameOverIsOn;
+    int gameScoreOfNow;
 public:
     ~TPMainScreen();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);

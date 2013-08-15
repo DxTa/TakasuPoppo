@@ -143,6 +143,9 @@ private:
     
     bool createB = false;
 
+    //Animation of burning old man
+    bool burningTakasuOn;
+    
 public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
     
@@ -304,6 +307,8 @@ public:
     void spriteChange(CCNode *sender, void* data);
     
     void popAnimation(CCNode *sender, void* data);
+    
+    void burnOnTakasu();
 #pragma mark Debug
     void setupDebugButton();
     void switchGrid();
