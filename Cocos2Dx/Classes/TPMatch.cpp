@@ -59,7 +59,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3,
                                                               NULL, NULL, NULL, NULL,
                                                               "TrioHor", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                     if (match->count() == 4) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -72,7 +72,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4,
                                                               NULL, NULL, NULL,
                                                               "QuadHor", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                     if (match->count() == 5) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -87,7 +87,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
                                                               NULL, NULL,
                                                               "PentaHor", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                     if (match->count() == 6) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -104,7 +104,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
                                                               exObj6, NULL,
                                                               "HexHor", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                     if (match->count() == 7) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -123,7 +123,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
                                                               exObj6, exObj7,
                                                               "HeptaHor", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                 }
             }
@@ -154,7 +154,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3,
                                                               NULL, NULL, NULL, NULL,
                                                               "TrioVer", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                     if (match->count() == 4) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -167,7 +167,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4,
                                                               NULL, NULL, NULL,
                                                               "QuadVer", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                     if (match->count() == 5) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -182,7 +182,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
                                                               NULL, NULL, 
                                                        "PentaVer", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                     if (match->count() == 6) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -199,7 +199,7 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
                                                               exObj6, NULL,
                                                               "HexVer", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                     if (match->count() == 7) {
                         TPObjectExtension *exObj2 = dynamic_cast<TPObjectExtension*>(match->objectAtIndex(1));
@@ -218,13 +218,106 @@ void TakasuPoppo::matchList() {
                         TPBlockSet *blockSet = new TPBlockSet(exObj, exObj2, exObj3, exObj4, exObj5,
                                                               exObj6, exObj7,
                                                               "HeptaVer", exObj->getCoordination().x, exObj->getCoordination().y);
-                        if (TakasuPoppo::destroyCheck(exObj)) toDestroyArray->addObject(blockSet);
+                        if (TakasuPoppo::destroyCheck(exObj, exObj2)) toDestroyArray->addObject(blockSet);
                     }
                 }
             }
         }
     }
-    
+    //==================================check create B by Hor and Ver ====================
+    CCObject *obj;
+    if(toDestroyArray->count() != 0)
+    {
+        CCARRAY_FOREACH(toDestroyArray, obj)
+        {
+            TPBlockSet* blockset = dynamic_cast<TPBlockSet*>(obj);
+            if(blockset->getEx1() != NULL && checkCreateHyperB(blockset->getEx1()->getCoordination(), blockset->getEx1()->getID()))
+            {
+                if (blockset->getEx1()->getBlockType() == 2 || blockset->getEx1()->getBlockType() == 12) {
+                    blockset->getEx1()->setBlockType(22);
+                }
+                if (blockset->getEx1()->getBlockType() == 1 || blockset->getEx1()->getBlockType() == 11) {
+                    blockset->getEx1()->setBlockType(21);
+                }
+                if (blockset->getEx1()->getBlockType() == 0 || blockset->getEx1()->getBlockType() == 10) {
+                    blockset->getEx1()->setBlockType(20);
+                }
+            }
+            if(blockset->getEx2() != NULL && checkCreateHyperB(blockset->getEx2()->getCoordination(), blockset->getEx2()->getID()))
+            {
+                if (blockset->getEx2()->getBlockType() == 2 || blockset->getEx2()->getBlockType() == 12) {
+                    blockset->getEx2()->setBlockType(22);
+                }
+                if (blockset->getEx2()->getBlockType() == 1 || blockset->getEx2()->getBlockType() == 11) {
+                    blockset->getEx2()->setBlockType(21);
+                }
+                if (blockset->getEx2()->getBlockType() == 0 || blockset->getEx2()->getBlockType() == 10) {
+                    blockset->getEx2()->setBlockType(20);
+                }
+            }
+            if(blockset->getEx3() != NULL && checkCreateHyperB(blockset->getEx3()->getCoordination(), blockset->getEx3()->getID()))
+            {
+                if (blockset->getEx3()->getBlockType() == 2 || blockset->getEx3()->getBlockType() == 12) {
+                    blockset->getEx3()->setBlockType(22);
+                }
+                if (blockset->getEx3()->getBlockType() == 1 || blockset->getEx3()->getBlockType() == 11) {
+                    blockset->getEx3()->setBlockType(21);
+                }
+                if (blockset->getEx3()->getBlockType() == 0 || blockset->getEx3()->getBlockType() == 10) {
+                    blockset->getEx3()->setBlockType(20);
+                }
+            }
+            if(blockset->getEx4() != NULL && checkCreateHyperB(blockset->getEx4()->getCoordination(), blockset->getEx4()->getID()))
+            {
+                if (blockset->getEx4()->getBlockType() == 2 || blockset->getEx4()->getBlockType() == 12) {
+                    blockset->getEx4()->setBlockType(22);
+                }
+                if (blockset->getEx4()->getBlockType() == 1 || blockset->getEx4()->getBlockType() == 11) {
+                    blockset->getEx4()->setBlockType(21);
+                }
+                if (blockset->getEx4()->getBlockType() == 0 || blockset->getEx4()->getBlockType() == 10) {
+                    blockset->getEx4()->setBlockType(20);
+                }
+            }
+            if(blockset->getEx5() != NULL && checkCreateHyperB(blockset->getEx5()->getCoordination(), blockset->getEx5()->getID()))
+            {
+                if (blockset->getEx5()->getBlockType() == 2 || blockset->getEx5()->getBlockType() == 12) {
+                    blockset->getEx5()->setBlockType(22);
+                }
+                if (blockset->getEx5()->getBlockType() == 1 || blockset->getEx5()->getBlockType() == 11) {
+                    blockset->getEx5()->setBlockType(21);
+                }
+                if (blockset->getEx5()->getBlockType() == 0 || blockset->getEx5()->getBlockType() == 10) {
+                    blockset->getEx5()->setBlockType(20);
+                }
+            }
+            if(blockset->getEx6() != NULL && checkCreateHyperB(blockset->getEx6()->getCoordination(), blockset->getEx6()->getID()))
+            {
+                if (blockset->getEx6()->getBlockType() == 2 || blockset->getEx6()->getBlockType() == 12) {
+                    blockset->getEx6()->setBlockType(22);
+                }
+                if (blockset->getEx6()->getBlockType() == 1 || blockset->getEx6()->getBlockType() == 11) {
+                    blockset->getEx6()->setBlockType(21);
+                }
+                if (blockset->getEx6()->getBlockType() == 0 || blockset->getEx6()->getBlockType() == 10) {
+                    blockset->getEx6()->setBlockType(20);
+                }
+            }
+            if(blockset->getEx7() != NULL && checkCreateHyperB(blockset->getEx7()->getCoordination(), blockset->getEx7()->getID()))
+            {
+                if (blockset->getEx7()->getBlockType() == 2 || blockset->getEx7()->getBlockType() == 12) {
+                    blockset->getEx7()->setBlockType(22);
+                }
+                if (blockset->getEx7()->getBlockType() == 1 || blockset->getEx7()->getBlockType() == 11) {
+                    blockset->getEx7()->setBlockType(21);
+                }
+                if (blockset->getEx7()->getBlockType() == 0 || blockset->getEx7()->getBlockType() == 10) {
+                    blockset->getEx7()->setBlockType(20);
+                }
+            }
+            
+        }
+    }
 }
 
 CCArray *TakasuPoppo::getMatchHor(TPObjectExtension *exObj) {
@@ -322,6 +415,9 @@ int TakasuPoppo::lookForMatches() {
             
             if(aExObj != NULL)
             {
+                if (aExObj->getBlockType() == HBC_BLOCK_TYPE) {
+                    match++;
+                }
                 //Horizontal 3 matches
                 if (bExObj != NULL && bExObj->getID() == aExObj->getID()) {
                     if (TakasuPoppo::sumOfMatches(aExObj, bExObj, lExObj, sExObj, mExObj)) match++;
@@ -517,7 +613,7 @@ void TakasuPoppo::smartGeneration() {
         if (exObj != NULL && exObj->getID() == 7) {
             i ++;
             switch (_spcialItemID) {
-                case 3:
+                case SPECIAL_ITEM_1_ID:
                     // create Mission Block 1
                     if (isCreateMB1 == true) {
                         TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
@@ -532,8 +628,8 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
-                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
+                            exObj->setControlTrigger(false);
+                            TakasuPoppo::makeBlockToBeHBC(exObj);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -541,13 +637,13 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
+                            exObj->setControlTrigger(false);
                         }
                     }
 
                     break;
                     
-                case 4:
+                case SPECIAL_ITEM_2_ID:
                     // create Mission Block 2
                     if (isCreateMB2 == true) {
                         TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
@@ -563,8 +659,8 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
-                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
+                            exObj->setControlTrigger(false);
+                            TakasuPoppo::makeBlockToBeHBC(exObj);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -572,12 +668,12 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
+                            exObj->setControlTrigger(false);
                         }
                     }
                     break;
                     
-                case 6:
+                case SPECIAL_ITEM_4_ID:
                     // create Mission Block 3
                     if (isCreateMB3 == true) {
                         TakasuPoppo::generateRandomBlock(exObj, TakasuPoppo::getFallPos(exObj, lastRowAtColumn0,
@@ -592,8 +688,8 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
-                            TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
+                            exObj->setControlTrigger(false);
+                            TakasuPoppo::makeBlockToBeHBC(exObj);
                             isCreateGaugeCombo = false;
                             
                         } else {
@@ -601,7 +697,7 @@ void TakasuPoppo::smartGeneration() {
                                                                                             lastRowAtColumn1,lastRowAtColumn2,
                                                                                             lastRowAtColumn3,lastRowAtColumn4,
                                                                                             lastRowAtColumn5, lastRowAtColumn6));
-                            exObj->setControlTrigger(true);
+                            exObj->setControlTrigger(false);
                         }
                     }
                     break;
@@ -613,8 +709,8 @@ void TakasuPoppo::smartGeneration() {
                                                                                         lastRowAtColumn1,lastRowAtColumn2,
                                                                                         lastRowAtColumn3,lastRowAtColumn4,
                                                                                         lastRowAtColumn5, lastRowAtColumn6));
-                        exObj->setControlTrigger(true);
-                        TakasuPoppo::createSpecialBlock(exObj, HBB_BLOCK_TYPE);
+                        exObj->setControlTrigger(false);
+                        TakasuPoppo::makeBlockToBeHBC(exObj);
                         isCreateGaugeCombo = false;
                         
                     } else {
@@ -622,7 +718,7 @@ void TakasuPoppo::smartGeneration() {
                                                                                         lastRowAtColumn1,lastRowAtColumn2,
                                                                                         lastRowAtColumn3,lastRowAtColumn4,
                                                                                         lastRowAtColumn5, lastRowAtColumn6));
-                        exObj->setControlTrigger(true);
+                        exObj->setControlTrigger(false);
                     }
 
                     break;
@@ -635,7 +731,7 @@ void TakasuPoppo::smartGeneration() {
     if(hyperBlockC){
         randomBlockC();
     }
-    controlable = true;
+    
     return;
 }
 
@@ -651,58 +747,64 @@ CCPoint TakasuPoppo::getFallPos(TPObjectExtension *exObj, CCPoint lastRowAtColum
     
     if (presentCoor.x == lastRowAtColumn6.x) {
         yDifference = (int)lastRowAtColumn6.y - (int)presentCoor.y;
-        CCLog("LastRowCol6Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn6.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn5.x) {
         yDifference = (int)lastRowAtColumn5.y - (int)presentCoor.y;
-        CCLog("LastRowCol5Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn5.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn4.x) {
         yDifference = (int)lastRowAtColumn4.y - (int)presentCoor.y;
-        CCLog("LastRowCol4Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn4.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn3.x) {
         yDifference = (int)lastRowAtColumn3.y - (int)presentCoor.y;
-        CCLog("LastRowCol3Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn3.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn2.x) {
         yDifference = (int)lastRowAtColumn2.y - (int)presentCoor.y;
-        CCLog("LastRowCol2Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn2.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn1.x) {
         yDifference = (int)lastRowAtColumn1.y - (int)presentCoor.y;
-        CCLog("LastRowCol1Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn1.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     if (presentCoor.x == lastRowAtColumn0.x) {
         yDifference = (int)lastRowAtColumn0.y - (int)presentCoor.y;
-        CCLog("LastRowCol0Y %i - PresentCoorY %i = Y %i", (int)lastRowAtColumn0.y, (int)presentCoor.y, yDifference);
         fallPos = ccp(presentPos.x, 675 + 90 + yDifference * 90);
         return fallPos;
     }
     return exObj->getPosition();
 }
 
-bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1) {
-    if (toDestroyArray->count() != 0) {
-        CCObject *object;
-        CCARRAY_FOREACH(toDestroyArray, object) {
-            TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
-            if (blockSet->getEx1()->getGid() == ex1->getGid()) {
-                return false;
+bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1, TPObjectExtension *ex2) {
+    if (ex2 == NULL) { // check it for HBC when blockSet just has 1 block
+        if (toDestroyArray->count() != 0) {
+            CCObject *object;
+            CCARRAY_FOREACH(toDestroyArray, object) {
+                TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
+                if (blockSet->getEx1()->getGid() == ex1->getGid()) {
+                    return false;
+                }
             }
         }
+    } else {
+        if (toDestroyArray->count() != 0) {
+            CCObject *object;
+            CCARRAY_FOREACH(toDestroyArray, object) {
+                TPBlockSet *blockSet = dynamic_cast<TPBlockSet*>(object);
+                if ((blockSet->getEx1()->getGid() == ex1->getGid()) && (blockSet->getEx2()->getGid() == ex2->getGid())) {
+                    return false;
+                }
+            }
+        }
+
     }
     return true;
 }
@@ -712,8 +814,9 @@ void TakasuPoppo::randomBlockC()
     CCObject* obj = new CCObject;
     CCARRAY_FOREACH(colorArray, obj){
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
-        if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % 60) == 0 && exObj->getSprite() != NULL) {
+        if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % (int)gameTimer) == 0 && exObj->getSprite() != NULL) {
             makeBlockToBeHBC(exObj);
+            exObj->setControlTrigger(false);
             hyperBlockC = false;
             break;
         }
@@ -724,7 +827,6 @@ void TakasuPoppo::randomBlockC()
 // intead of many function make block to be special block
 void TakasuPoppo::createSpecialBlock(TPObjectExtension *exObj, int blockType){
     // change controlable
-    exObj->setControlTrigger(true);
     if(exObj->getID() != 7 && exObj->getID() != 8)
     {
         exObj->setBlockType(blockType);

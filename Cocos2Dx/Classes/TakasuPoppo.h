@@ -61,9 +61,9 @@ private:
     
     float hintCounter = 3;          //Display hint after this counter
     
-    float movingSpeed = 0.05;       //For all moving speed
+    float movingSpeed = AFTER_CLEAN_FALL_TIME;       //For all moving speed
     
-    float gameTimer = FLT_MAX;
+    float gameTimer = PLAY_TIME;
     
     bool counterExist1 = false;
     bool counterExist2 = false;
@@ -76,7 +76,7 @@ private:
     bool controlable;               //If the sprites are on the move, rends controlable false
     
     bool inTheMove;                 //True if there are sprites in moving action
-    bool inTheFall;                 //True if sprites are falling
+//    bool inTheFall;                 //True if sprites are falling
     bool isLogicRunnning;
     bool inCleaning;
     
@@ -86,6 +86,7 @@ private:
     bool swipeDown;                 //True if swipe down action is recognized
     
     bool hintDisplaying;            //Indicating that a hint is currently displayed
+    int hintCount;
     
     bool gridOn = false;
     
@@ -113,8 +114,10 @@ private:
     int hyperC = 10;
     bool hyperBlockC = false;
     //Vinhnt - for Gauge Combo
-    int gaugeComboCounter = 0;
+    float gaugeComboCounter = 0;
     bool isCreateGaugeCombo = false;
+    int lastGaugeCombo = 0;
+    float gaugePeriod = GAUGE_PERIOD;
     
     //item
     float timeBonus = 0;
@@ -137,6 +140,8 @@ private:
     // fixed hyper block C
     bool isHBCinBlockSet = false;
     float setCleanDelay();
+    
+    bool createB = false;
 
 public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
@@ -161,6 +166,8 @@ public:
     
     //Hint display
     void hintGeneration();
+    // refresh the map if there is no combo can be make
+    void refreshWhenNoCombo();
     //Logic execution
     void logicExecution();
     
@@ -226,7 +233,7 @@ public:
     //Generate a match if there is a shortage
     void smartGeneration();
     
-    bool destroyCheck(TPObjectExtension *ex1);
+    bool destroyCheck(TPObjectExtension *ex1, TPObjectExtension *ex2);
     
     CCPoint getFallPos(TPObjectExtension *exObj, CCPoint lastRowAtColumn0,
                        CCPoint lastRowAtColumn1, CCPoint lastRowAtColumn2,
@@ -315,7 +322,6 @@ public:
     
     void cleanA(TPObjectExtension* exObj);
     void cleanB(TPObjectExtension* exObj);
-    void scaleHyperBlockC(CCNode *sender, void* data);
     void cleanOneBlock(CCNode *sender, void* data);
     void createSpecialBlock(TPObjectExtension* exObj, int blockType);
     
@@ -356,6 +362,11 @@ public:
     void logicDelaySwitch();
     bool executingLogic = false;
     float logicCounter = 0;
+    float logicDelayTime = LOGIC_DELAY;
+    bool isMatchListDone = false;
+    // set logic Delay time in a dynamic way
+    int acMaxDistance; // after clean max distance: measure by the numbers of moves, max is 6
+    int gbMaxDistance; // generate block max distance: max is 6
     
     //ITEM function
     bool lastScore();
@@ -387,6 +398,10 @@ public:
     bool checkUpdate();
     //checkResetMap
     void checkResetMap();
+    //checkB
+    bool checkCreateHyperB(CCPoint coor , int type);
+    bool checkVerMatch(CCPoint coor , int type);
+    bool checkHorMatch(CCPoint coor , int type);
 };
 
 #endif
