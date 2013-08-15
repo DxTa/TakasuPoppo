@@ -194,6 +194,7 @@ void TakasuPoppo::afterClean(){
                         CCLOG("a sprite is running.....");
                         CCBool* boolrun = new CCBool(true);
                         TakasuPoppo::swapColorID(exObj, exObj2);
+                        exObj2->setControlTrigger(false);
                         toMoveSprite->runAction(CCSequence::create(
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::afterCleanRunning), (void*)boolrun),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable),(void*)exObj2),
@@ -210,6 +211,7 @@ void TakasuPoppo::afterClean(){
                     else{
                         CCBool* boolrun = new CCBool(true);
                         TakasuPoppo::swapColorID(exObj, exObj2);
+                        exObj2->setControlTrigger(false);
                         toMoveSprite->runAction(CCSequence::create(
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::afterCleanRunning), (void*)boolrun),
                                                                    CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable),(void*)exObj2),
