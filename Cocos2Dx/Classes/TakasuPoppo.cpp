@@ -529,7 +529,7 @@ void TakasuPoppo::logicExecution() {
                                        CCDelayTime::create(setCleanDelay()),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
-                                       CCDelayTime::create(movingSpeed * 6 + SWAP_TIME*2),
+                                       CCDelayTime::create(movingSpeed * fallDistance + SWAP_TIME*2),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));

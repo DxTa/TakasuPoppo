@@ -890,10 +890,10 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
 
 float TakasuPoppo::setCleanDelay(){
     if (isHBCinBlockSet) {
-        logicDelayTime = AFTER_CLEAN_FALL_TIME*6 + GENERATE_FALL_TIME*6 + SWAP_TIME*2 + CLEAN_DELAY + POP_ANIMATION_DELAY + HBC_SCALE_DELAY;
+        logicDelayTime = AFTER_CLEAN_FALL_TIME*fallDistance + GENERATE_FALL_TIME*fallDistance + SWAP_TIME*2 + CLEAN_DELAY + POP_ANIMATION_DELAY + HBC_SCALE_DELAY;
         return (HBC_SCALE_DELAY + CLEAN_DELAY + POP_ANIMATION_DELAY);
     } else {
-        logicDelayTime = AFTER_CLEAN_FALL_TIME*6 + GENERATE_FALL_TIME*6 + SWAP_TIME*2 + CLEAN_DELAY + POP_ANIMATION_DELAY;
+        logicDelayTime = AFTER_CLEAN_FALL_TIME*fallDistance + GENERATE_FALL_TIME*fallDistance + SWAP_TIME*2 + CLEAN_DELAY + POP_ANIMATION_DELAY;
         return (CLEAN_DELAY + POP_ANIMATION_DELAY);
     }
 }

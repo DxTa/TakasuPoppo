@@ -231,6 +231,9 @@ void TakasuPoppo::matchList() {
         CCARRAY_FOREACH(toDestroyArray, obj)
         {
             TPBlockSet* blockset = dynamic_cast<TPBlockSet*>(obj);
+            // check and set fallDistance here
+            setFallDistance(blockset);
+            
             if(blockset->getEx1() != NULL && checkCreateHyperB(blockset->getEx1()->getCoordination(), blockset->getEx1()->getID()))
             {
                 if (blockset->getEx1()->getBlockType() == 2 || blockset->getEx1()->getBlockType() == 12) {
@@ -997,5 +1000,43 @@ void TakasuPoppo::generateBlocksAfterCleanMB1() {
     }
     
     isCleanMB1 = false;
+}
+
+void TakasuPoppo::setFallDistance(TPBlockSet *blockSet){
+    fallDistance = 0;
+    
+    // if blockSet is Vertical
+    if ( strstr(blockSet->getType().c_str(), "Ver") != NULL) {
+        fallDistance += 3;
+    }
+    
+    // if blockSet is Horizonal
+    if ( strstr(blockSet->getType().c_str(), "Hor")  != NULL ) {
+        fallDistance += 1;
+    }
+    
+    if (blockSet->getType() == "hyperBlockC") {
+        fallDistance = 6;
+    }
+
+    CCObject* obj = NULL;
+    CCArray* blockArray = blockSet->getBlocksArray();
+    CCARRAY_FOREACH(blockArray, obj){
+        CCLog("cuc cut: %d", blockArray->count() );
+//        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
+        TPObjectExtension *exObj = dynamic_cast<TPObjectExtension *>(obj);
+        if (exObj->getBlockType() == HBA_BLOCK_TYPE) {
+            fallDistance += 3;
+        }
+        
+        if (exObj->getBlockType() == HBB_BLOCK_TYPE) {
+            fallDistance = 6;
+        }
+    }
+    
+    if (fallDistance >= 6) {
+        fallDistance = 6;
+    }
+
 }
 

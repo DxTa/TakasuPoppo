@@ -365,8 +365,8 @@ public:
     float logicDelayTime = LOGIC_DELAY;
     bool isMatchListDone = false;
     // set logic Delay time in a dynamic way
-    int acMaxDistance; // after clean max distance: measure by the max distance between 2 blocks , max is 6
-    int gbMaxDistance; // generate block max distance: max is 6
+    int fallDistance = 0; // after clean and generate block fall distance is the same.
+    void setFallDistance(TPBlockSet* blockSet);
     
     //ITEM function
     bool lastScore();
