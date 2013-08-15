@@ -56,7 +56,7 @@
 #define SPECIAL_ITEM_4_ID 4 // MISSION BLOCK 3
 #define SPECIAL_ITEM_5_ID 5
 
-
+#define SWIPE_DISTANCE 15 //In pixels
 // Block Type System
 #define NORMAL_BLOCK_TYPE 0
 #define HBA_BLOCK_TYPE 1
