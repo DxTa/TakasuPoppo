@@ -233,7 +233,7 @@ public:
     //Generate a match if there is a shortage
     void smartGeneration();
     
-    bool destroyCheck(TPObjectExtension *ex1);
+    bool destroyCheck(TPObjectExtension *ex1, TPObjectExtension *ex2);
     
     CCPoint getFallPos(TPObjectExtension *exObj, CCPoint lastRowAtColumn0,
                        CCPoint lastRowAtColumn1, CCPoint lastRowAtColumn2,

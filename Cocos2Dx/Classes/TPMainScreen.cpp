@@ -689,7 +689,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     if (itemOn) {
         CCRect startRect = playBtn->boundingBox();
         if (startRect.containsPoint(touchLoc) && itemOn) {
-            TPItemObject* itemObject = new TPItemObject(item1On, item2On, item3On, 6);
+            TPItemObject* itemObject = new TPItemObject(item1On, item2On, item3On, specialItemID);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
             CCDirector::sharedDirector()->setDepthTest(true);
             CCTransitionScene* transition = CCTransitionSlideInT::create(1, gameScene);
@@ -735,7 +735,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         
         CCRect item4Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item4);
         if (item4Rect.containsPoint(touchLoc) && specialItemID != 1) {
-            specialItemID = 1;
+            specialItemID = SPECIAL_ITEM_1_ID;
             TPMainScreen::setItem();
             return;
         }
@@ -747,7 +747,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         
         CCRect item5Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item5);
         if (item5Rect.containsPoint(touchLoc) && specialItemID != 2) {
-            specialItemID = 2;
+            specialItemID = SPECIAL_ITEM_2_ID;
             TPMainScreen::setItem();
             return;
         }
@@ -759,7 +759,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         
         CCRect item6Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item6);
         if (item6Rect.containsPoint(touchLoc) && specialItemID != 3) {
-            specialItemID = 3;
+            specialItemID = SPECIAL_ITEM_3_ID;
             TPMainScreen::setItem();
             return;
         }
@@ -771,7 +771,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         
         CCRect item7Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item7);
         if (item7Rect.containsPoint(touchLoc) && specialItemID != 4) {
-            specialItemID = 4;
+            specialItemID = SPECIAL_ITEM_4_ID;
             TPMainScreen::setItem();
             return;
         }
@@ -783,7 +783,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         
         CCRect item8Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item8);
         if (item8Rect.containsPoint(touchLoc) && specialItemID != 5) {
-            specialItemID = 5;
+            specialItemID = SPECIAL_ITEM_5_ID;
             TPMainScreen::setItem();
             return;
         }
