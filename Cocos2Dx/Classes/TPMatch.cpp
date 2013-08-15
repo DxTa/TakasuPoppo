@@ -814,11 +814,22 @@ void TakasuPoppo::randomBlockC()
     CCObject* obj = new CCObject;
     CCARRAY_FOREACH(colorArray, obj){
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
-        if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % (int)gameTimer) == 0 && exObj->getSprite() != NULL) {
-            makeBlockToBeHBC(exObj);
-            exObj->setControlTrigger(false);
-            hyperBlockC = false;
-            break;
+        if ((int)gameTimer > 0) {
+            if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % (int)gameTimer) == 0 && exObj->getSprite() != NULL) {
+                makeBlockToBeHBC(exObj);
+                exObj->setControlTrigger(false);
+                hyperBlockC = false;
+                break;
+            }
+
+        } else {
+            if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && exObj->getSprite() != NULL) {
+                makeBlockToBeHBC(exObj);
+                exObj->setControlTrigger(false);
+                hyperBlockC = false;
+                break;
+            }
+
         }
     }
 

@@ -404,13 +404,19 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
                 if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                     TakasuPoppo::cleanSprite(exobj);
             }
+            else TakasuPoppo::cleanSprite(exobj);
             
             break;
         case MB2_BLOCK_TYPE:
-            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+            if (gameTimer >= 0) {
+                if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                    TakasuPoppo::cleanSprite(exobj);
+                isCleanMB2 = true;
+                isExistMB2 = false;
+
+            } else {
                 TakasuPoppo::cleanSprite(exobj);
-            isCleanMB2 = true;
-            isExistMB2 = false;
+            }
 
             break;
         case MB3_BLOCK_TYPE:
@@ -703,6 +709,7 @@ void TakasuPoppo::cleanHyperBlockB(CCNode* sender, void* data) {
 
 void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
     TPObjectExtension* exObj = (TPObjectExtension*)data;
+    plusAllComboCounter();
     
     exObj->setBlockType(NORMAL_BLOCK_TYPE);
     // random an ID and clean all block with this ID
@@ -744,6 +751,7 @@ void TakasuPoppo::cleanHyperBlockC(CCNode* sender, void* data) {
 }
 
 void TakasuPoppo::cleanHyperBlockC(TPObjectExtension* exObj){
+    plusAllComboCounter();
     
     isHBCinBlockSet = true;
     exObj->setBlockType(NORMAL_BLOCK_TYPE);
@@ -807,13 +815,19 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
                 if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                     TakasuPoppo::cleanSprite(exobj);
             }
+            else TakasuPoppo::cleanSprite(exobj);
             
             break;
         case MB2_BLOCK_TYPE:
-            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+            if (gameTimer >= 0) {
+                if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                    TakasuPoppo::cleanSprite(exobj);
+                isCleanMB2 = true;
+                isExistMB2 = false;
+                
+            } else {
                 TakasuPoppo::cleanSprite(exobj);
-            isCleanMB2 = true;
-            isExistMB2 = false;
+            }
             
             break;
         case MB3_BLOCK_TYPE:
@@ -821,7 +835,6 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanSprite(exobj);
             break;
-            
         case MOVED_HBA_BLOCK_TYPE:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockA(exobj);
@@ -850,6 +863,19 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
             }
             
             break;
+        case MOVED_NORMAL_BLOCK_TYPE + 10:
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockB(exobj);
+            break;
+            
+        case (MOVED_HBA_BLOCK_TYPE + 10):
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockB(exobj);
+            break;
+        case (MOVED_HBB_BLOCK_TYPE + 10):
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanHyperBlockB(exobj);
+            break;
             
             
         default:
@@ -857,7 +883,6 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
                 TakasuPoppo::cleanSprite(exobj);
             break;
     }
-
 }
 
 float TakasuPoppo::setCleanDelay(){
