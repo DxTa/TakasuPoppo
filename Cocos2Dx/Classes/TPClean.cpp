@@ -73,7 +73,12 @@ void TakasuPoppo::cleanBlocks() {
                 if (isValidEx(blockSet->getEx7())) {
                     TakasuPoppo::cleanOneBlock(blockSet->getEx5());
                 }
-        
+                
+                if(checkSwipe(blockSet)->getBlockType() == 13)
+                {
+                    createSpecialBlock(checkSwipe(blockSet), HBB_BLOCK_TYPE);
+                }
+                
                 if(checkSwipe(blockSet)->getBlockType() >= 20)
                 {
                     hyperA = false;
@@ -83,15 +88,13 @@ void TakasuPoppo::cleanBlocks() {
                     if (checkSwipe(blockSet)->getBlockType() == 22) {
                         cleanB(checkSwipe(blockSet));
                     }
-                    if(createB)
-                    {
-                        createSpecialBlock(checkSwipe(blockSet), HBB_BLOCK_TYPE);
-                        createB = false;
-                    }
-                    else
-                    {
-                        createB = true;
-                    }
+                    if(checkSwipe(blockSet)->getBlockType() == 26)
+                        isCleanMB1 = true;
+                    if(checkSwipe(blockSet)->getBlockType() == 27)
+                        isCleanMB2 = true;
+                    if(checkSwipe(blockSet)->getBlockType() == 28)
+                        isCleanMB3 = true;
+                    checkSwipe(blockSet)->setBlockType(13);
 
                 }
                 else if (checkSwipe(blockSet)->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE && hyperA)
@@ -100,6 +103,12 @@ void TakasuPoppo::cleanBlocks() {
                         cleanA(checkSwipe(blockSet));
                     if(checkSwipe(blockSet)->getBlockType() == MOVED_HBB_BLOCK_TYPE)
                         cleanB(checkSwipe(blockSet));
+                    if(checkSwipe(blockSet)->getBlockType() == MB1_BLOCK_TYPE + 10)
+                        isCleanMB1 = true;
+                    if(checkSwipe(blockSet)->getBlockType() == MB2_BLOCK_TYPE + 10)
+                        isCleanMB2 = true;
+                    if(checkSwipe(blockSet)->getBlockType() == MB3_BLOCK_TYPE + 10)
+                        isCleanMB3 = true;
                     createSpecialBlock(checkSwipe(blockSet), HBA_BLOCK_TYPE);
                     hyperA = false;
                     hyperB = false;
@@ -116,6 +125,13 @@ void TakasuPoppo::cleanBlocks() {
                         cleanA(checkSwipe(blockSet));
                     if(checkSwipe(blockSet)->getBlockType() == MOVED_HBB_BLOCK_TYPE)
                         cleanB(checkSwipe(blockSet));
+                    if(checkSwipe(blockSet)->getBlockType() == MB1_BLOCK_TYPE + 10)
+                        isCleanMB1 = true;
+                    if(checkSwipe(blockSet)->getBlockType() == MB2_BLOCK_TYPE + 10)
+                        isCleanMB2 = true;
+                    if(checkSwipe(blockSet)->getBlockType() == MB3_BLOCK_TYPE + 10)
+                        isCleanMB3 = true;
+                    
                     createSpecialBlock(checkSwipe(blockSet), HBB_BLOCK_TYPE);
                     hyperA = false;
                     hyperB = false;
@@ -134,23 +150,23 @@ void TakasuPoppo::cleanBlocks() {
             }
         }
     }
-    // ===================== create    hyperB ===============
-    toDestroyArray->removeAllObjects();
-
-    CCObject* ox;
-    CCARRAY_FOREACH(colorArray, ox)
-    {
-        TPObjectExtension *ex = dynamic_cast<TPObjectExtension*>(ox);
-        int i = ex->getBlockType();
-        if (ex->getBlockType() >= 20) {
-            createSpecialBlock(ex, HBB_BLOCK_TYPE);
-            //ex->setControlTrigger(true);
-            ex->setBlockType(i);
-        }
-    }
-    //=======================================================
-    
-
+//    // ===================== create    hyperB ===============
+//    toDestroyArray->removeAllObjects();
+//
+//    CCObject* ox;
+//    CCARRAY_FOREACH(colorArray, ox)
+//    {
+//        TPObjectExtension *ex = dynamic_cast<TPObjectExtension*>(ox);
+//        int i = ex->getBlockType();
+//        if (ex->getBlockType() >= 20) {
+//            createSpecialBlock(ex, HBB_BLOCK_TYPE);
+//            //ex->setControlTrigger(true);
+//            ex->setBlockType(i);
+//        }
+//    }
+//    //=======================================================
+//    
+//
     toDestroyArray->removeAllObjects();
     
 }

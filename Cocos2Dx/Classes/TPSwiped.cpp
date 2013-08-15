@@ -161,6 +161,12 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
                     swpObj->setBlockType(MOVED_HBA_BLOCK_TYPE);
                 if(swpObj->getBlockType() == HBB_BLOCK_TYPE)
                     swpObj->setBlockType(MOVED_HBB_BLOCK_TYPE);
+                if(swpObj->getBlockType() == MB1_BLOCK_TYPE)
+                    swpObj->setBlockType(MB1_BLOCK_TYPE + 10);
+                if(swpObj->getBlockType() == MB2_BLOCK_TYPE)
+                    swpObj->setBlockType(MB2_BLOCK_TYPE + 10);
+                if(swpObj->getBlockType() == MB3_BLOCK_TYPE)
+                    swpObj->setBlockType(MB3_BLOCK_TYPE + 10);
             }
             if(TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true){
                 
@@ -178,6 +184,12 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
                     exObj->setBlockType(MOVED_HBA_BLOCK_TYPE);
                 if(exObj->getBlockType() == HBB_BLOCK_TYPE)
                     exObj->setBlockType(MOVED_HBB_BLOCK_TYPE);
+                if(exObj->getBlockType() == MB1_BLOCK_TYPE)
+                    exObj->setBlockType(MB1_BLOCK_TYPE + 10);
+                if(exObj->getBlockType() == MB2_BLOCK_TYPE)
+                    exObj->setBlockType(MB2_BLOCK_TYPE + 10);
+                if(exObj->getBlockType() == MB3_BLOCK_TYPE)
+                    exObj->setBlockType(MB3_BLOCK_TYPE + 10);
             }
             
         }

@@ -242,6 +242,18 @@ void TakasuPoppo::matchList() {
                 if (blockset->getEx1()->getBlockType() == 0 || blockset->getEx1()->getBlockType() == 10) {
                     blockset->getEx1()->setBlockType(20);
                 }
+                if (blockset->getEx1()->getBlockType() == 6 || blockset->getEx1()->getBlockType() == 16) {
+                    blockset->getEx1()->setBlockType(26);
+                }
+                if (blockset->getEx1()->getBlockType() == 7 || blockset->getEx1()->getBlockType() == 17) {
+                    blockset->getEx1()->setBlockType(27);
+                }
+                if (blockset->getEx1()->getBlockType() == 8 || blockset->getEx1()->getBlockType() == 18) {
+                    blockset->getEx1()->setBlockType(28);
+                }
+
+
+
             }
             if(blockset->getEx2() != NULL && checkCreateHyperB(blockset->getEx2()->getCoordination(), blockset->getEx2()->getID()))
             {
@@ -253,6 +265,15 @@ void TakasuPoppo::matchList() {
                 }
                 if (blockset->getEx2()->getBlockType() == 0 || blockset->getEx2()->getBlockType() == 10) {
                     blockset->getEx2()->setBlockType(20);
+                }
+                if (blockset->getEx2()->getBlockType() == 6 || blockset->getEx2()->getBlockType() == 16) {
+                    blockset->getEx2()->setBlockType(26);
+                }
+                if (blockset->getEx2()->getBlockType() == 7 || blockset->getEx2()->getBlockType() == 17) {
+                    blockset->getEx2()->setBlockType(27);
+                }
+                if (blockset->getEx2()->getBlockType() == 8 || blockset->getEx2()->getBlockType() == 18) {
+                    blockset->getEx2()->setBlockType(28);
                 }
             }
             if(blockset->getEx3() != NULL && checkCreateHyperB(blockset->getEx3()->getCoordination(), blockset->getEx3()->getID()))
@@ -266,6 +287,15 @@ void TakasuPoppo::matchList() {
                 if (blockset->getEx3()->getBlockType() == 0 || blockset->getEx3()->getBlockType() == 10) {
                     blockset->getEx3()->setBlockType(20);
                 }
+                if (blockset->getEx3()->getBlockType() == 6 || blockset->getEx3()->getBlockType() == 16) {
+                    blockset->getEx3()->setBlockType(26);
+                }
+                if (blockset->getEx3()->getBlockType() == 7 || blockset->getEx3()->getBlockType() == 17) {
+                    blockset->getEx3()->setBlockType(27);
+                }
+                if (blockset->getEx3()->getBlockType() == 8 || blockset->getEx3()->getBlockType() == 18) {
+                    blockset->getEx3()->setBlockType(28);
+                }
             }
             if(blockset->getEx4() != NULL && checkCreateHyperB(blockset->getEx4()->getCoordination(), blockset->getEx4()->getID()))
             {
@@ -278,6 +308,18 @@ void TakasuPoppo::matchList() {
                 if (blockset->getEx4()->getBlockType() == 0 || blockset->getEx4()->getBlockType() == 10) {
                     blockset->getEx4()->setBlockType(20);
                 }
+                if (blockset->getEx4()->getBlockType() == 6 || blockset->getEx4()->getBlockType() == 16) {
+                    blockset->getEx4()->setBlockType(26);
+                }
+
+                if (blockset->getEx4()->getBlockType() == 7 || blockset->getEx4()->getBlockType() == 17) {
+                    blockset->getEx4()->setBlockType(27);
+                }
+
+                if (blockset->getEx4()->getBlockType() == 8 || blockset->getEx4()->getBlockType() == 18) {
+                    blockset->getEx4()->setBlockType(28);
+                }
+
             }
             if(blockset->getEx5() != NULL && checkCreateHyperB(blockset->getEx5()->getCoordination(), blockset->getEx5()->getID()))
             {
@@ -289,6 +331,15 @@ void TakasuPoppo::matchList() {
                 }
                 if (blockset->getEx5()->getBlockType() == 0 || blockset->getEx5()->getBlockType() == 10) {
                     blockset->getEx5()->setBlockType(20);
+                }
+                if (blockset->getEx5()->getBlockType() == 6 || blockset->getEx5()->getBlockType() == 16) {
+                    blockset->getEx5()->setBlockType(26);
+                }
+                if (blockset->getEx5()->getBlockType() == 7 || blockset->getEx5()->getBlockType() == 17) {
+                    blockset->getEx5()->setBlockType(27);
+                }
+                if (blockset->getEx5()->getBlockType() == 8 || blockset->getEx5()->getBlockType() == 18) {
+                    blockset->getEx5()->setBlockType(28);
                 }
             }
             if(blockset->getEx6() != NULL && checkCreateHyperB(blockset->getEx6()->getCoordination(), blockset->getEx6()->getID()))
@@ -302,6 +353,18 @@ void TakasuPoppo::matchList() {
                 if (blockset->getEx6()->getBlockType() == 0 || blockset->getEx6()->getBlockType() == 10) {
                     blockset->getEx6()->setBlockType(20);
                 }
+                if (blockset->getEx6()->getBlockType() == 6 || blockset->getEx6()->getBlockType() == 16) {
+                    blockset->getEx6()->setBlockType(26);
+                }
+
+                if (blockset->getEx6()->getBlockType() == 7 || blockset->getEx6()->getBlockType() == 17) {
+                    blockset->getEx6()->setBlockType(27);
+                }
+
+                if (blockset->getEx6()->getBlockType() == 8 || blockset->getEx6()->getBlockType() == 18) {
+                    blockset->getEx6()->setBlockType(28);
+                }
+
             }
             if(blockset->getEx7() != NULL && checkCreateHyperB(blockset->getEx7()->getCoordination(), blockset->getEx7()->getID()))
             {
@@ -313,6 +376,15 @@ void TakasuPoppo::matchList() {
                 }
                 if (blockset->getEx7()->getBlockType() == 0 || blockset->getEx7()->getBlockType() == 10) {
                     blockset->getEx7()->setBlockType(20);
+                }
+                if (blockset->getEx7()->getBlockType() == 6 || blockset->getEx7()->getBlockType() == 16) {
+                    blockset->getEx7()->setBlockType(26);
+                }
+                if (blockset->getEx7()->getBlockType() == 7 || blockset->getEx7()->getBlockType() == 17) {
+                    blockset->getEx7()->setBlockType(27);
+                }
+                if (blockset->getEx7()->getBlockType() == 8 || blockset->getEx7()->getBlockType() == 18) {
+                    blockset->getEx7()->setBlockType(28);
                 }
             }
             
