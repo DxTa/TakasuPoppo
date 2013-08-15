@@ -548,7 +548,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         }
         
         CCRect startRect = playBtn->boundingBox();
-        if (startRect.containsPoint(touchLoc) && !itemOn) {
+        if (startRect.containsPoint(touchLoc) && !itemOn && !settingOn && !chargeOn && !tutorialOn) {
             itemOn = true;
             TPMainScreen::setItem();
             networkContainer->setVisible(false);
@@ -688,7 +688,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     //=============== Item Controls =================
     if (itemOn) {
         CCRect startRect = playBtn->boundingBox();
-        if (startRect.containsPoint(touchLoc) && itemOn) {
+        if (startRect.containsPoint(touchLoc) && itemOn && !settingOn && !tutorialOn && !chargeOn) {
             TPItemObject* itemObject = new TPItemObject(item1On, item2On, item3On, specialItemID);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
             CCDirector::sharedDirector()->setDepthTest(true);
