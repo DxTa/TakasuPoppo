@@ -11,7 +11,7 @@
 
 #define FONT_SIZE 30
 // Combo and timer system
-#define HBC_COMBO_MAXCOUNT 8
+#define HBC_COMBO_MAXCOUNT 3
 #define HBC_COMBO_MAXTIME 5
 
 #define FEVER_COMBO_REQUIRED 5
@@ -28,13 +28,18 @@
 #define SWAP_TIME 0.08
 
 #define GENERATION_DELAY 0.05
-#define CLEAN_DELAY 0.05
-#define LOGIC_DELAY 0.6
+#define CLEAN_DELAY 0.1
+#define LOGIC_DELAY 0.7 // afterCleanspeed * 6 + generateSpeed *6 + scaleTime + swapTime*2
 #define MOVE_DELAY 0.08
 
-#define HBC_CLEAN_DELAY 0.4
+#define AFTER_CLEAN_FALL_TIME 0.05
+#define GENERATE_FALL_TIME 0.05
+#define POP_ANIMATION_DELAY 0.04
+
+#define HBC_SCALE_DELAY 0.2
 
 #define PLAY_TIME 60
+#define GAUGE_PERIOD 2 // after this period, if no more combo is created, minus gauge combo by 1
 // score system
 #define SCORE_THREE  200
 #define SCORE_FOUR  200
@@ -44,6 +49,13 @@
 //Item System
 #define DOUBLE_SCORE_TIME 20
 #define MISSION_BLOCK2_MAX_AMOUNT 10
+
+#define SPECIAL_ITEM_1_ID 1 // MISSION BLOCK 1 - ITEM 4
+#define SPECIAL_ITEM_2_ID 2 // MISSION BLOCK 2 - ITEM 5
+#define SPECIAL_ITEM_3_ID 3
+#define SPECIAL_ITEM_4_ID 4 // MISSION BLOCK 3
+#define SPECIAL_ITEM_5_ID 5
+
 
 // Block Type System
 #define NORMAL_BLOCK_TYPE 0

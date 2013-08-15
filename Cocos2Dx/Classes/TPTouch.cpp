@@ -33,7 +33,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                     {
                         isHBCinBlockSet = true;
                         TPBlockSet* blockSet = new TPBlockSet(exObject, NULL, NULL, NULL, NULL, NULL, NULL, "hyperBlockC", exObject->getCoordination().x, exObject->getCoordination().y);
-                        toDestroyArray->addObject(blockSet);
+                        if(TakasuPoppo::destroyCheck(exObject, NULL)) toDestroyArray->addObject(blockSet);
                         move = false;
                         swape = false;
                         return;
@@ -59,7 +59,8 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         move = false;
                         swipedLeft(mainEx);
                         swape = false;
-                        goto tt;
+                        return;
+//                        goto tt;
                     }
                     if(movePoint.x == mainPoint.x + 1 && movePoint.y == mainPoint.y && mainPoint.x + 1 >= 0 && mainPoint.x + 1 < 7)
                     {
@@ -68,7 +69,8 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         move = false;
                         swipedRight(mainEx);
                         swape = false;
-                        goto tt;
+                        return;
+//                        goto tt;
                     }
                     if(movePoint.x == mainPoint.x && movePoint.y == mainPoint.y - 1 && mainPoint.y - 1 >= 0 && mainPoint.y - 1 < 7)
                     {
@@ -77,7 +79,8 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         move = false;
                         swipedUp(mainEx);
                         swape = false;
-                        goto tt;
+                        return;
+//                        goto tt;
                     }
                     if(movePoint.x == mainPoint.x && movePoint.y == mainPoint.y + 1 && mainPoint.y + 1 >= 0 && mainPoint.y + 1 < 7)
                     {
@@ -86,7 +89,8 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         move = false;
                         swipedDown(mainEx);
                         swape = false;
-                        goto tt;
+                        return;
+//                        goto tt;
                     }
                     move = true;
                     swape = true;
@@ -102,18 +106,19 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
             
         }
     }
-tt:
-    CCRect buttonRect = buttonSprite->boundingBox();
-    CCRect clearRect = removeButton->boundingBox();
-    CCRect refreshRect = refreshButton->boundingBox();
-    if (buttonRect.containsPoint(touchLoc) && !gridOn) TakasuPoppo::switchGrid();
-    if (clearRect.containsPoint(touchLoc) && gridOn) TakasuPoppo::remove();
-    if (refreshRect.containsPoint(touchLoc))
-    {
-        this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
-                                           CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
-    }
+//tt:
     
+//    CCRect buttonRect = buttonSprite->boundingBox();
+//    CCRect clearRect = removeButton->boundingBox();
+//    CCRect refreshRect = refreshButton->boundingBox();
+//    if (buttonRect.containsPoint(touchLoc) && !gridOn) TakasuPoppo::switchGrid();
+//    if (clearRect.containsPoint(touchLoc) && gridOn) TakasuPoppo::remove();
+//    if (refreshRect.containsPoint(touchLoc))
+//    {
+//        this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
+//                                           CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+//    }
+//    
     
 }
 

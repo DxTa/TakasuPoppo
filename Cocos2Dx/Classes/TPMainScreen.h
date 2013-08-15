@@ -9,8 +9,6 @@
 #ifndef __Cocos2Dx__TPMainScreen__
 #define __Cocos2Dx__TPMainScreen__
 
-#define IP_SERVER "192.168.1.189"
-
 #include "CCTableViewCell.h"
 #include "CCTableView.h"
 #include "CCScrollView.h"
@@ -36,7 +34,7 @@ public:
 
 class TPMainScreen : public CCLayer, CCTableViewDelegate, CCTableViewDataSource{
 private:
-    string serverIP = IP_SERVER;
+
     CCArray *listGamer = new CCArray();
     CCTableView *tableView;
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
@@ -86,6 +84,38 @@ private:
     CCSprite *chargeBtnScr4;
     CCSprite *chargeLblScr4;
     
+    
+    CCSprite *networkContainer;
+    
+    CCSprite *overContainer;
+    
+    CCSprite *itemContainer;
+    CCSprite *item1, *item1Shade;
+    CCSprite *item2, *item2Shade;
+    CCSprite *item3, *item3Shade;
+    CCSprite *item4, *item4Shade;
+    CCSprite *item5, *item5Shade;
+    CCSprite *item6, *item6Shade;
+    CCSprite *item7, *item7Shade;
+    CCSprite *item8, *item8Shade;
+    CCSprite *item9, *item9Shade;
+    CCSprite *item10, *item10Shade;
+    CCArray *itemShadeArray;
+    
+    CCSprite *scoreContainer;
+    CCSprite *scoreClose;
+    CCSprite *scoreDancingTakasu;
+    CCLabelTTF *scoreLabel;
+    
+    CCSprite *settingContainer;
+    CCSprite *settingCancelBtn;
+    CCSprite *settingContents;
+    CCControlSlider *sfxSlider;
+    CCControlSlider *bgmSlider;
+    CCSprite *aboutBtn;
+    CCSprite *tutorialBtn;
+    
+    
     int tutPageNo;
     char tutPageChar[50];
     CCLabelTTF *tutPageLbl;
@@ -113,9 +143,20 @@ private:
     bool charge4On;
     bool chargeBack;
     bool chargeExit;
+    
+    bool settingOn;
+    bool gameOverOn;
+    bool itemOn;
+    
+    bool item1On;
+    bool item2On;
+    bool item3On;
+    int specialItemID;
+    
+    bool gameOver;
+    int gameScore;
 public:
     ~TPMainScreen();
-    virtual bool init();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
     virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
     
@@ -125,12 +166,12 @@ public:
     void setTutorial();
     void setupHearts();
     void setCharge();
-    
+    void setSetting();
+    void setItem();
+    void setSpecialItemShade(CCSprite *selectedItemShade);
     void setCrystal(int decreasingAmount);
     
     CCRect boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite);
-    
-    static CCScene* scene();
     
     void onHttpRequestCompleted(CCNode *sender, void *data);
     
@@ -142,7 +183,11 @@ public:
     virtual void scrollViewDidZoom(CCScrollView* view);
     void convertName(char *str_name);
     long getTime();
-    CREATE_FUNC(TPMainScreen);
+
+    virtual bool init(bool isGameOver, int score);
+    static TPMainScreen* create(bool isGameOver, int score);
+    static CCScene* scene(bool isGameOver, int score);
+
 };
 
 #endif /* defined(__Cocos2Dx__TPMainScreen__) */

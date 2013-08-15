@@ -21,6 +21,37 @@
 		8434C47C176EB5EE00C8E722 /* Candy6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8434C479176EB5EE00C8E722 /* Candy6.png */; };
 		8434C47D176EB5EE00C8E722 /* Candy7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8434C47A176EB5EE00C8E722 /* Candy7.png */; };
 		843B6F2517681F25008D8A4C /* Candy.png in Resources */ = {isa = PBXBuildFile; fileRef = 843B6F2417681F25008D8A4C /* Candy.png */; };
+		8467A87817BB937D0082F3E8 /* poppo_scoreClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A87717BB937D0082F3E8 /* poppo_scoreClose.png */; };
+		8485C96117BB1F3C001B939A /* ComboBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94617BB1F3C001B939A /* ComboBarIn.png */; };
+		8485C96217BB1F3C001B939A /* ComboBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94717BB1F3C001B939A /* ComboBarOut.png */; };
+		8485C96317BB1F3C001B939A /* ComboGaugeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */; };
+		8485C96417BB1F3C001B939A /* TimeBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94917BB1F3C001B939A /* TimeBarIn.png */; };
+		8485C96517BB1F3C001B939A /* TimeBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94A17BB1F3C001B939A /* TimeBarOut.png */; };
+		8485C96617BB1F3C001B939A /* UpperCover.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94B17BB1F3C001B939A /* UpperCover.png */; };
+		8485C96717BB1F3C001B939A /* itemNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94D17BB1F3C001B939A /* itemNotAvailable.png */; };
+		8485C96817BB1F3C001B939A /* ItemShade.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94E17BB1F3C001B939A /* ItemShade.png */; };
+		8485C96917BB1F3C001B939A /* poppoItem1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94F17BB1F3C001B939A /* poppoItem1.png */; };
+		8485C96A17BB1F3C001B939A /* poppoItem2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95017BB1F3C001B939A /* poppoItem2.png */; };
+		8485C96B17BB1F3C001B939A /* poppoItem3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95117BB1F3C001B939A /* poppoItem3.png */; };
+		8485C96C17BB1F3C001B939A /* poppoItem4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95217BB1F3C001B939A /* poppoItem4.png */; };
+		8485C96D17BB1F3C001B939A /* poppoItem5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95317BB1F3C001B939A /* poppoItem5.png */; };
+		8485C96E17BB1F3C001B939A /* poppoItem6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95417BB1F3C001B939A /* poppoItem6.png */; };
+		8485C96F17BB1F3C001B939A /* poppoItem7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95517BB1F3C001B939A /* poppoItem7.png */; };
+		8485C97017BB1F3C001B939A /* poppoItem8.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95617BB1F3C001B939A /* poppoItem8.png */; };
+		8485C97117BB1F3C001B939A /* poppo_overImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95717BB1F3C001B939A /* poppo_overImage.png */; };
+		8485C97217BB1F3C001B939A /* poppo_welcomeContent.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95817BB1F3C001B939A /* poppo_welcomeContent.png */; };
+		8485C97317BB1F3C001B939A /* AboutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95A17BB1F3C001B939A /* AboutButton.png */; };
+		8485C97417BB1F3C001B939A /* HowToPlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95B17BB1F3C001B939A /* HowToPlayButton.png */; };
+		8485C97517BB1F3C001B939A /* Slider1Mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95C17BB1F3C001B939A /* Slider1Mark.png */; };
+		8485C97617BB1F3C001B939A /* Slider1Progress.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95D17BB1F3C001B939A /* Slider1Progress.png */; };
+		8485C97717BB1F3C001B939A /* Slider2Mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95E17BB1F3C001B939A /* Slider2Mark.png */; };
+		8485C97817BB1F3C001B939A /* Slider2Progress.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C95F17BB1F3C001B939A /* Slider2Progress.png */; };
+		8485C97917BB1F3C001B939A /* SliderBody.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C96017BB1F3C001B939A /* SliderBody.png */; };
+		8485C97B17BB33E7001B939A /* SettingContents.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C97A17BB33E7001B939A /* SettingContents.png */; };
+		8485C97E17BB4249001B939A /* poppo_empty_container.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C97C17BB4249001B939A /* poppo_empty_container.png */; };
+		8485C97F17BB4249001B939A /* poppo_hintFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C97D17BB4249001B939A /* poppo_hintFrame.png */; };
+		8491456717BC83EE00E41006 /* TPUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8491456517BC83EE00E41006 /* TPUser.cpp */; };
+		8491456A17BCA6C000E41006 /* TPTopScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8491456817BCA6C000E41006 /* TPTopScreen.cpp */; };
 		8496669D1765B89C00621605 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 8496669C1765B89C00621605 /* HelloWorld.png */; };
 		8496669F1765B8B000621605 /* FramgiaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8496669E1765B8B000621605 /* FramgiaLogo.png */; };
 		849A47E7179D10040003F905 /* ComboGauge.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47E4179D10040003F905 /* ComboGauge.png */; };
@@ -449,6 +480,39 @@
 		8434C479176EB5EE00C8E722 /* Candy6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Candy6.png; sourceTree = "<group>"; };
 		8434C47A176EB5EE00C8E722 /* Candy7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Candy7.png; sourceTree = "<group>"; };
 		843B6F2417681F25008D8A4C /* Candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Candy.png; sourceTree = "<group>"; };
+		8467A87717BB937D0082F3E8 /* poppo_scoreClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_scoreClose.png; sourceTree = "<group>"; };
+		8485C94617BB1F3C001B939A /* ComboBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarIn.png; sourceTree = "<group>"; };
+		8485C94717BB1F3C001B939A /* ComboBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarOut.png; sourceTree = "<group>"; };
+		8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGaugeCircle.png; sourceTree = "<group>"; };
+		8485C94917BB1F3C001B939A /* TimeBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TimeBarIn.png; sourceTree = "<group>"; };
+		8485C94A17BB1F3C001B939A /* TimeBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TimeBarOut.png; sourceTree = "<group>"; };
+		8485C94B17BB1F3C001B939A /* UpperCover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UpperCover.png; sourceTree = "<group>"; };
+		8485C94D17BB1F3C001B939A /* itemNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = itemNotAvailable.png; sourceTree = "<group>"; };
+		8485C94E17BB1F3C001B939A /* ItemShade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ItemShade.png; sourceTree = "<group>"; };
+		8485C94F17BB1F3C001B939A /* poppoItem1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItem1.png; sourceTree = "<group>"; };
+		8485C95017BB1F3C001B939A /* poppoItem2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItem2.png; sourceTree = "<group>"; };
+		8485C95117BB1F3C001B939A /* poppoItem3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItem3.png; sourceTree = "<group>"; };
+		8485C95217BB1F3C001B939A /* poppoItem4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItem4.png; sourceTree = "<group>"; };
+		8485C95317BB1F3C001B939A /* poppoItem5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItem5.png; sourceTree = "<group>"; };
+		8485C95417BB1F3C001B939A /* poppoItem6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItem6.png; sourceTree = "<group>"; };
+		8485C95517BB1F3C001B939A /* poppoItem7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItem7.png; sourceTree = "<group>"; };
+		8485C95617BB1F3C001B939A /* poppoItem8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItem8.png; sourceTree = "<group>"; };
+		8485C95717BB1F3C001B939A /* poppo_overImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_overImage.png; sourceTree = "<group>"; };
+		8485C95817BB1F3C001B939A /* poppo_welcomeContent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_welcomeContent.png; sourceTree = "<group>"; };
+		8485C95A17BB1F3C001B939A /* AboutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutButton.png; sourceTree = "<group>"; };
+		8485C95B17BB1F3C001B939A /* HowToPlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HowToPlayButton.png; sourceTree = "<group>"; };
+		8485C95C17BB1F3C001B939A /* Slider1Mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slider1Mark.png; sourceTree = "<group>"; };
+		8485C95D17BB1F3C001B939A /* Slider1Progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slider1Progress.png; sourceTree = "<group>"; };
+		8485C95E17BB1F3C001B939A /* Slider2Mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slider2Mark.png; sourceTree = "<group>"; };
+		8485C95F17BB1F3C001B939A /* Slider2Progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Slider2Progress.png; sourceTree = "<group>"; };
+		8485C96017BB1F3C001B939A /* SliderBody.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SliderBody.png; sourceTree = "<group>"; };
+		8485C97A17BB33E7001B939A /* SettingContents.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingContents.png; sourceTree = "<group>"; };
+		8485C97C17BB4249001B939A /* poppo_empty_container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_empty_container.png; sourceTree = "<group>"; };
+		8485C97D17BB4249001B939A /* poppo_hintFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_hintFrame.png; sourceTree = "<group>"; };
+		8491456517BC83EE00E41006 /* TPUser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPUser.cpp; sourceTree = "<group>"; };
+		8491456617BC83EE00E41006 /* TPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPUser.h; sourceTree = "<group>"; };
+		8491456817BCA6C000E41006 /* TPTopScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPTopScreen.cpp; sourceTree = "<group>"; };
+		8491456917BCA6C000E41006 /* TPTopScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTopScreen.h; sourceTree = "<group>"; };
 		8496669C1765B89C00621605 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelloWorld.png; path = Resources/HelloWorld.png; sourceTree = "<group>"; };
 		8496669E1765B8B000621605 /* FramgiaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FramgiaLogo.png; path = ../FramgiaLogo.png; sourceTree = "<group>"; };
 		849A47E4179D10040003F905 /* ComboGauge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGauge.png; sourceTree = "<group>"; };
@@ -1218,6 +1282,54 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		8485C94517BB1F3C001B939A /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				8485C94617BB1F3C001B939A /* ComboBarIn.png */,
+				8485C94717BB1F3C001B939A /* ComboBarOut.png */,
+				8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */,
+				8485C94917BB1F3C001B939A /* TimeBarIn.png */,
+				8485C94A17BB1F3C001B939A /* TimeBarOut.png */,
+				8485C94B17BB1F3C001B939A /* UpperCover.png */,
+			);
+			name = Game;
+			path = "Resources/Neo Poppo/Game";
+			sourceTree = "<group>";
+		};
+		8485C94C17BB1F3C001B939A /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				8485C94D17BB1F3C001B939A /* itemNotAvailable.png */,
+				8485C94E17BB1F3C001B939A /* ItemShade.png */,
+				8485C94F17BB1F3C001B939A /* poppoItem1.png */,
+				8485C95017BB1F3C001B939A /* poppoItem2.png */,
+				8485C95117BB1F3C001B939A /* poppoItem3.png */,
+				8485C95217BB1F3C001B939A /* poppoItem4.png */,
+				8485C95317BB1F3C001B939A /* poppoItem5.png */,
+				8485C95417BB1F3C001B939A /* poppoItem6.png */,
+				8485C95517BB1F3C001B939A /* poppoItem7.png */,
+				8485C95617BB1F3C001B939A /* poppoItem8.png */,
+			);
+			name = Items;
+			path = "Resources/Neo Poppo/Items";
+			sourceTree = "<group>";
+		};
+		8485C95917BB1F3C001B939A /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				8485C97A17BB33E7001B939A /* SettingContents.png */,
+				8485C95A17BB1F3C001B939A /* AboutButton.png */,
+				8485C95B17BB1F3C001B939A /* HowToPlayButton.png */,
+				8485C95C17BB1F3C001B939A /* Slider1Mark.png */,
+				8485C95D17BB1F3C001B939A /* Slider1Progress.png */,
+				8485C95E17BB1F3C001B939A /* Slider2Mark.png */,
+				8485C95F17BB1F3C001B939A /* Slider2Progress.png */,
+				8485C96017BB1F3C001B939A /* SliderBody.png */,
+			);
+			name = Setting;
+			path = "Resources/Neo Poppo/Setting";
+			sourceTree = "<group>";
+		};
 		84942B0C177D820900E61AEC /* PListReader */ = {
 			isa = PBXGroup;
 			children = (
@@ -1320,6 +1432,11 @@
 		84A0CF1317B0A469009B449E /* Neo Poppo */ = {
 			isa = PBXGroup;
 			children = (
+				8467A87717BB937D0082F3E8 /* poppo_scoreClose.png */,
+				8485C97C17BB4249001B939A /* poppo_empty_container.png */,
+				8485C97D17BB4249001B939A /* poppo_hintFrame.png */,
+				8485C95717BB1F3C001B939A /* poppo_overImage.png */,
+				8485C95817BB1F3C001B939A /* poppo_welcomeContent.png */,
 				84A0CF1417B0A469009B449E /* poppo_background.png */,
 				84A0CF1517B0A469009B449E /* poppo_charge_btn.png */,
 				84A0CF1617B0A469009B449E /* poppo_charge_ccl.png */,
@@ -1395,11 +1512,11 @@
 				DEF5F5EA17A9F77D0063C3BA /* Poppo3Mission3.png */,
 				DEF5F5EB17A9F77D0063C3BA /* Poppo4Mission3.png */,
 				DEF5F5EC17A9F77D0063C3BA /* Poppo5Mission3.png */,
-				DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */,
 				DEF5F5EE17A9F77D0063C3BA /* Poppo7Mission3.png */,
 				DE0F00AA17A8BDF500F7ECCC /* Poppo1HyperA.png */,
 				DE0F00AB17A8BDF500F7ECCC /* Poppo1HyperB.png */,
 				DE0F00AC17A8BDF500F7ECCC /* Poppo1Mission1.png */,
+				DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */,
 				DE0F00AD17A8BDF500F7ECCC /* Poppo1Mission2.png */,
 				DE0F00AE17A8BDF500F7ECCC /* Poppo2HyperA.png */,
 				DE0F00AF17A8BDF500F7ECCC /* Poppo2HyperB.png */,
@@ -1522,6 +1639,9 @@
 		DC12FB781744D21400480D31 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8485C94517BB1F3C001B939A /* Game */,
+				8485C94C17BB1F3C001B939A /* Items */,
+				8485C95917BB1F3C001B939A /* Setting */,
 				84A0CF1317B0A469009B449E /* Neo Poppo */,
 				849A78C317A7B0CE00782C50 /* Fonts */,
 				849A78A017A7B02A00782C50 /* Menu */,
@@ -2596,6 +2716,8 @@
 		DC12FED91744D22E00480D31 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8491456517BC83EE00E41006 /* TPUser.cpp */,
+				8491456617BC83EE00E41006 /* TPUser.h */,
 				849A78E817AA27C200782C50 /* TPItem.cpp */,
 				849A788917A7AFF700782C50 /* TPBlockSet.cpp */,
 				849A788A17A7AFF700782C50 /* TPBlockSet.h */,
@@ -2610,13 +2732,15 @@
 				849A789117A7AFF700782C50 /* TPObjectExtension.cpp */,
 				849A789217A7AFF700782C50 /* TPObjectExtension.h */,
 				849A789317A7AFF700782C50 /* TPParticles.cpp */,
-				849A789417A7AFF700782C50 /* TPSwiped.cpp */,
 				849A789517A7AFF700782C50 /* TPTouch.cpp */,
+				849A789417A7AFF700782C50 /* TPSwiped.cpp */,
 				DC12FEDA1744D22E00480D31 /* AppDelegate.h */,
 				DC12FEDB1744D22E00480D31 /* AppDelegate.cpp */,
 				DC12FEDD1744D22E00480D31 /* TakasuPoppo.h */,
 				DC12FEDE1744D22E00480D31 /* TakasuPoppo.cpp */,
 				DE0606E717ABB51800191B1B /* TPDefinition.h */,
+				8491456817BCA6C000E41006 /* TPTopScreen.cpp */,
+				8491456917BCA6C000E41006 /* TPTopScreen.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -2830,6 +2954,35 @@
 				84A0CF5D17B0A46A009B449E /* poppo_tut_win.png in Resources */,
 				84A0CF5E17B0A58F009B449E /* Default@2x.png in Resources */,
 				84A0CF5F17B0A5A4009B449E /* Default.png in Resources */,
+				8485C96117BB1F3C001B939A /* ComboBarIn.png in Resources */,
+				8485C96217BB1F3C001B939A /* ComboBarOut.png in Resources */,
+				8485C96317BB1F3C001B939A /* ComboGaugeCircle.png in Resources */,
+				8485C96417BB1F3C001B939A /* TimeBarIn.png in Resources */,
+				8485C96517BB1F3C001B939A /* TimeBarOut.png in Resources */,
+				8485C96617BB1F3C001B939A /* UpperCover.png in Resources */,
+				8485C96717BB1F3C001B939A /* itemNotAvailable.png in Resources */,
+				8485C96817BB1F3C001B939A /* ItemShade.png in Resources */,
+				8485C96917BB1F3C001B939A /* poppoItem1.png in Resources */,
+				8485C96A17BB1F3C001B939A /* poppoItem2.png in Resources */,
+				8485C96B17BB1F3C001B939A /* poppoItem3.png in Resources */,
+				8485C96C17BB1F3C001B939A /* poppoItem4.png in Resources */,
+				8485C96D17BB1F3C001B939A /* poppoItem5.png in Resources */,
+				8485C96E17BB1F3C001B939A /* poppoItem6.png in Resources */,
+				8485C96F17BB1F3C001B939A /* poppoItem7.png in Resources */,
+				8485C97017BB1F3C001B939A /* poppoItem8.png in Resources */,
+				8485C97117BB1F3C001B939A /* poppo_overImage.png in Resources */,
+				8485C97217BB1F3C001B939A /* poppo_welcomeContent.png in Resources */,
+				8485C97317BB1F3C001B939A /* AboutButton.png in Resources */,
+				8485C97417BB1F3C001B939A /* HowToPlayButton.png in Resources */,
+				8485C97517BB1F3C001B939A /* Slider1Mark.png in Resources */,
+				8485C97617BB1F3C001B939A /* Slider1Progress.png in Resources */,
+				8485C97717BB1F3C001B939A /* Slider2Mark.png in Resources */,
+				8485C97817BB1F3C001B939A /* Slider2Progress.png in Resources */,
+				8485C97917BB1F3C001B939A /* SliderBody.png in Resources */,
+				8485C97B17BB33E7001B939A /* SettingContents.png in Resources */,
+				8485C97E17BB4249001B939A /* poppo_empty_container.png in Resources */,
+				8485C97F17BB4249001B939A /* poppo_hintFrame.png in Resources */,
+				8467A87817BB937D0082F3E8 /* poppo_scoreClose.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3096,6 +3249,8 @@
 				849A789F17A7AFF700782C50 /* TPTouch.cpp in Sources */,
 				DE22A42A17A7C40A00B2FBC7 /* TPItemObject.cpp in Sources */,
 				849A78E917AA27C200782C50 /* TPItem.cpp in Sources */,
+				8491456717BC83EE00E41006 /* TPUser.cpp in Sources */,
+				8491456A17BCA6C000E41006 /* TPTopScreen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3106,8 +3261,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3130,8 +3285,8 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				PROVISIONING_PROFILE = "839123D0-D590-454D-88A6-D8572824C3D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3141,9 +3296,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -3164,9 +3319,9 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
-				"PROVISIONING_PROFILE[sdk=*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				PROVISIONING_PROFILE = "839123D0-D590-454D-88A6-D8572824C3D9";
+				"PROVISIONING_PROFILE[sdk=*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3176,8 +3331,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3194,8 +3349,8 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
+				PROVISIONING_PROFILE = "839123D0-D590-454D-88A6-D8572824C3D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3205,9 +3360,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cocos2Dx/Prefix.pch;
@@ -3223,9 +3378,9 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
-				"PROVISIONING_PROFILE[sdk=*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "28D2FE7B-8535-4C7A-8783-FEA0A75B22F4";
+				PROVISIONING_PROFILE = "839123D0-D590-454D-88A6-D8572824C3D9";
+				"PROVISIONING_PROFILE[sdk=*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

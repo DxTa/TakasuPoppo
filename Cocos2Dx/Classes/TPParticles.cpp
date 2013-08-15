@@ -178,7 +178,7 @@ void TakasuPoppo::popAnimation(CCNode* sender, void* data) {
         frame->setOriginalSizeInPixels(CCSizeMake(300, 300));
         animFrames->addObject(frame);
     }
-    CCAnimation* animation = CCAnimation::createWithSpriteFrames(animFrames, 0.05f);
+    CCAnimation* animation = CCAnimation::createWithSpriteFrames(animFrames, POP_ANIMATION_DELAY);
     CCSprite *popSprite = CCSprite::create();
     popSprite->setPosition(position);
     this->addChild(popSprite, 4);

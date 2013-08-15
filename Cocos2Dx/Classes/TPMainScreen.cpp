@@ -10,23 +10,25 @@
 #include "SimpleAudioEngine.h"
 #include "TakasuPoppo.h"
 #include "TPItemObject.h"
+#include "TPUser.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 using namespace std;
 
-CCScene *TPMainScreen::scene() {
+CCScene *TPMainScreen::scene(bool isGameOver, int score) {
     CCScene *scene = CCScene::create();
-    TPMainScreen *layer = TPMainScreen::create();
+    TPMainScreen *layer = TPMainScreen::create(isGameOver, score);
     scene->addChild(layer);
     return scene;
 }
 
-bool TPMainScreen::init() {
+bool TPMainScreen::init(bool isGameOver, int score) {
     if (!CCLayer::init()) return false;
     
     //===================== New UI =========================
     heartCount = 1;
+    itemShadeArray = new CCArray;
     
     newBackground = CCSprite::create("poppo_background.png");
     newBackground->setPosition(ccp(winSize.width / 2,
@@ -296,81 +298,283 @@ bool TPMainScreen::init() {
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
     this->scheduleUpdate();
     
-
     
+    //===================== New Setting =========================
+    settingContainer = CCSprite::create("poppo_tut_win.png");
+    settingContainer->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    this->addChild(settingContainer, 130, 144);
+    
+    settingCancelBtn = CCSprite::create("poppo_charge_ccl.png");
+    settingCancelBtn->setPosition(ccp(settingContainer->getContentSize().width - 10,
+                                      settingContainer->getContentSize().height - 30));
+    settingContainer->addChild(settingCancelBtn, 131, 145);
+    
+    settingContents = CCSprite::create("SettingContents.png");
+    settingContents->setPosition(ccp(settingContainer->getContentSize().width / 2 + 20,
+                                     settingContainer->getContentSize().height - 170));
+    settingContainer->addChild(settingContents, 132, 145);
+    
+    bgmSlider = CCControlSlider::create("SliderBody.png", "Slider1Progress.png", "Slider2Mark.png");
+    bgmSlider->setPosition(ccp(settingContainer->getContentSize().width / 2,
+                               settingContainer->getContentSize().height - 240));
+    bgmSlider->setEnabled(true);
+    bgmSlider->setMinimumValue(0);
+    bgmSlider->setMaximumValue(100);
+    bgmSlider->setValue(40);
+    settingContainer->addChild(bgmSlider, 133, 146);
+    
+    sfxSlider = CCControlSlider::create("SliderBody.png", "Slider2Progress.png", "Slider1Mark.png");
+    sfxSlider->setPosition(ccp(settingContainer->getContentSize().width / 2,
+                               settingContainer->getContentSize().height - 345));
+    sfxSlider->setEnabled(true);
+    sfxSlider->setMinimumValue(0);
+    sfxSlider->setMaximumValue(100);
+    sfxSlider->setValue(60);
+    settingContainer->addChild(sfxSlider, 133, 147);
+    
+    
+    aboutBtn = CCSprite::create("AboutButton.png");
+    aboutBtn->setPosition(ccp(settingContainer->getContentSize().width / 2 - 130,
+                              settingContainer->getContentSize().height - 490));
+    
+    settingContainer->addChild(aboutBtn, 133, 148);
+    
+    tutorialBtn = CCSprite::create("HowToPlayButton.png");
+    tutorialBtn->setPosition(ccp(settingContainer->getContentSize().width / 2 + 130,
+                              settingContainer->getContentSize().height - 490));
+    
+    settingContainer->addChild(tutorialBtn, 133, 149);
+    settingContainer->setVisible(false);
+    
+    //===================== NewItem =========================
+    
+    itemContainer = CCSprite::create("poppo_empty_container.png");
+    itemContainer->setPosition(ccp(rankingContainer->getContentSize().width / 2,
+                                    rankingContainer->getContentSize().height - 50));
+    this->addChild(itemContainer, 101, 155);
+    
+    item1 = CCSprite::create("poppoItem1.png");
+    item1->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
+                           itemContainer->getContentSize().height / 2 + 130));
+    itemContainer->addChild(item1, 102, 156);
+    
+    item2 = CCSprite::create("poppoItem2.png");
+    item2->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+                           itemContainer->getContentSize().height / 2 + 130));
+    itemContainer->addChild(item2, 102, 157);
+    
+    item3 = CCSprite::create("poppoItem3.png");
+    item3->setPosition(ccp(itemContainer->getContentSize().width / 2 + 100,
+                           itemContainer->getContentSize().height / 2 + 130));
+    itemContainer->addChild(item3, 102, 158);
+    
+    item4 = CCSprite::create("poppoItem4.png");
+    item4->setPosition(ccp(itemContainer->getContentSize().width / 2 + 225,
+                           itemContainer->getContentSize().height / 2 + 130));
+    itemContainer->addChild(item4, 102, 159);
+    
+    item5 = CCSprite::create("poppoItem5.png");
+    item5->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
+                           itemContainer->getContentSize().height / 2 + 10));
+    itemContainer->addChild(item5, 102, 160);
+    
+    item6 = CCSprite::create("poppoItem6.png");
+    item6->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+                           itemContainer->getContentSize().height / 2 + 10));
+    itemContainer->addChild(item6, 102, 161);
+    
+    item7 = CCSprite::create("poppoItem7.png");
+    item7->setPosition(ccp(itemContainer->getContentSize().width / 2 + 100,
+                           itemContainer->getContentSize().height / 2 + 10));
+    itemContainer->addChild(item7, 102, 162);
+    
+    item8 = CCSprite::create("poppoItem8.png");
+    item8->setPosition(ccp(itemContainer->getContentSize().width / 2 + 225,
+                           itemContainer->getContentSize().height / 2 + 10));
+    itemContainer->addChild(item8, 102, 163);
+    
+    item9 = CCSprite::create("itemNotAvailable.png");
+    item9->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
+                           itemContainer->getContentSize().height / 2 - 110));
+    itemContainer->addChild(item9, 102, 164);
+    
+    item10 = CCSprite::create("itemNotAvailable.png");
+    item10->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+                            itemContainer->getContentSize().height / 2 - 110));
+    itemContainer->addChild(item10, 102, 165);
+    
+    
+    item1Shade = CCSprite::create("ItemShade.png");
+    item1Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
+                           itemContainer->getContentSize().height / 2 + 130));
+    itemContainer->addChild(item1Shade, 103, 166);
+    item1Shade->setVisible(false);
+
+    item2Shade = CCSprite::create("ItemShade.png");
+    item2Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+                           itemContainer->getContentSize().height / 2 + 130));
+    itemContainer->addChild(item2Shade, 103, 167);
+    item2Shade->setVisible(false);
+    
+    item3Shade = CCSprite::create("ItemShade.png");
+    item3Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 + 100,
+                           itemContainer->getContentSize().height / 2 + 130));
+    itemContainer->addChild(item3Shade, 103, 168);
+    item3Shade->setVisible(false);
+    
+    item4Shade = CCSprite::create("ItemShade.png");
+    item4Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 + 225,
+                           itemContainer->getContentSize().height / 2 + 130));
+    itemContainer->addChild(item4Shade, 103, 169);
+    item4Shade->setVisible(false);
+    itemShadeArray->addObject(item4Shade);
+    
+    item5Shade = CCSprite::create("ItemShade.png");
+    item5Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
+                           itemContainer->getContentSize().height / 2 + 10));
+    itemContainer->addChild(item5Shade, 103, 170);
+    item5Shade->setVisible(false);
+    itemShadeArray->addObject(item5Shade);
+    
+    item6Shade = CCSprite::create("ItemShade.png");
+    item6Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+                           itemContainer->getContentSize().height / 2 + 10));
+    itemContainer->addChild(item6Shade, 103, 171);
+    item6Shade->setVisible(false);
+    itemShadeArray->addObject(item6Shade);
+    
+    item7Shade = CCSprite::create("ItemShade.png");
+    item7Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 + 100,
+                           itemContainer->getContentSize().height / 2 + 10));
+    itemContainer->addChild(item7Shade, 103, 172);
+    item7Shade->setVisible(false);
+    itemShadeArray->addObject(item7Shade);
+    
+    item8Shade = CCSprite::create("ItemShade.png");
+    item8Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 + 225,
+                           itemContainer->getContentSize().height / 2 + 10));
+    itemContainer->addChild(item8Shade, 103, 173);
+    item8Shade->setVisible(false);
+    itemShadeArray->addObject(item8Shade);
+    
+    item9Shade = CCSprite::create("itemNotAvailable.png");
+    item9Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
+                           itemContainer->getContentSize().height / 2 - 110));
+    itemContainer->addChild(item9Shade, 103, 174);
+    item9Shade->setVisible(false);
+    itemShadeArray->addObject(item9Shade);
+    
+    item10Shade = CCSprite::create("itemNotAvailable.png");
+    item10Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+                            itemContainer->getContentSize().height / 2 - 110));
+    itemContainer->addChild(item10Shade, 103, 175);
+    item10Shade->setVisible(false);
+    itemShadeArray->addObject(item10Shade);
+    
+    itemContainer->setVisible(false);
+    
+    //===================== Request =========================
     CCHttpRequest *request = new CCHttpRequest();
+    string serverIP = TPUser::shareTPUser()->getServerIp();
     request->setUrl((serverIP+":3000/users.json").c_str());
     request->setRequestType(CCHttpRequest::kHttpGet);
     request->setResponseCallback(this, httpresponse_selector(TPMainScreen::onHttpRequestCompleted));
     CCHttpClient::getInstance()->send(request);
     request->release();
+    
+    networkContainer = CCSprite::create("poppo_empty_container.png");
+    networkContainer->setPosition(ccp(winSize.width / 2,
+                                      winSize.height / 2 + 50));
+    this->addChild(networkContainer, 101, 150);
+    
+    //===================== New Charge ======================
+    
+    
+//    if (isGameOver) {
+//        networkContainer->setVisible(false);
+//        playBtn->setVisible(false);
+//        
+//        scoreContainer = CCSprite::create("poppo_empty_container.png");
+//        scoreContainer->setPosition(ccp(winSize.width / 2,
+//                                        winSize.height - 50));
+//        this->addChild(scoreContainer, 101, 176);
+//        
+//        scoreDancingTakasu = CCSprite::create("poppo_overImage.png");
+//        scoreDancingTakasu->setPosition(ccp(scoreContainer->getContentSize().width - 140,
+//                                            -200));
+//        scoreContainer->addChild(scoreDancingTakasu, 105, 178);
+//        
+//        string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
+//        scoreLabel = CCLabelTTF::create(str.c_str(), "Arial", 70);
+//        scoreLabel->setColor(ccc3(225, 225, 225));
+//        scoreLabel->setPosition(ccp(scoreContainer->getContentSize().width / 2,
+//                                    scoreContainer->getContentSize().height / 2 + 100));
+//        scoreContainer->addChild(scoreLabel, 105, 177);
+//        
+//        scoreClose = CCSprite::create("poppo_scoreClose.png");
+//        scoreClose->setPosition(ccp(scoreContainer->getContentSize().width / 2,
+//                                    - 500));
+//        scoreContainer->addChild(scoreClose, 103, 179);
+//    }
+//    
     return true;
 }
 
 void TPMainScreen::update(float dt) {
-    
+   
 }
 
 #pragma mark Touches
 
 bool TPMainScreen::ccTouchBegan(CCTouch *touch, CCEvent *event) {
-    
+    if (bgmSlider->isTouchInside(touch)) {
+        
+    }
     return true;
 }
 
 void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     CCPoint touchLoc = this->getParent()->convertTouchToNodeSpace(touch);
     
-    if (!tutorialOn && !chargeOn) {
+    if (!tutorialOn && !chargeOn && !settingOn) {
         CCRect settingBtnRect = settingBtn->boundingBox();
         if (settingBtnRect.containsPoint(touchLoc)) {
-            tutorialOn = true;
-            TPMainScreen::setTutorial();
-            
+            settingOn = true;
+            TPMainScreen::setSetting();
         }
         
-        CCPoint chargeBtnPnt = heartContainer->convertToWorldSpace(heartPlus->getPosition());
-        CCRect chargeBtnRect = CCRectMake(chargeBtnPnt.x - heartPlus->getContentSize().width / 2,
-                                          chargeBtnPnt.y - heartPlus->getContentSize().height / 2,
-                                          heartPlus->getContentSize().width,
-                                          heartPlus->getContentSize().height);
-        
+        CCRect chargeBtnRect = TPMainScreen::boundingBoxWorldSpace(heartContainer, heartPlus);
         if (chargeBtnRect.containsPoint(touchLoc)) {
             chargeOn = true;
             TPMainScreen::setCharge();
         }
         
         CCRect startRect = playBtn->boundingBox();
-        if (startRect.containsPoint(touchLoc)) {
-            //run into takasu
-            TPItemObject* itemObject = new TPItemObject(true, true, true, 6);
-            CCScene *gameScene = TakasuPoppo::scene(itemObject);
-            CCDirector::sharedDirector()->setDepthTest(true);
-            CCTransitionScene* transition = CCTransitionFadeUp::create(1, gameScene);
-            CCDirector::sharedDirector()->replaceScene(transition);
-            CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+        if (startRect.containsPoint(touchLoc) && !itemOn) {
+            itemOn = true;
+            TPMainScreen::setItem();
+            networkContainer->setVisible(false);
+            return;
         }
     }
     
+//    if (gameOver) {
+//        CCRect closeButtonRect = scoreClose->boundingBox();
+//        if (closeButtonRect.containsPoint(touchLoc)) {
+//            scoreContainer->setVisible(false);
+//            
+//            playBtn->setVisible(true);
+//            networkContainer->setVisible(true);
+//            
+//            gameOver = false;
+//            return;
+//        }
+//    }
     //============== Tutorial Controls ================
     if (tutorialOn) {
-        CCPoint tutNextBtnPnt = tutWin->convertToWorldSpace(tutNextBtn->getPosition());
-        CCRect tutNextBtnRect = CCRectMake(tutNextBtnPnt.x - tutNextBtn->getContentSize().width / 2,
-                                           tutNextBtnPnt.y - tutNextBtn->getContentSize().height / 2,
-                                           tutNextBtn->getContentSize().width,
-                                           tutNextBtn->getContentSize().height);
-        
-        CCPoint tutPrevBtnPnt = tutWin->convertToWorldSpace(tutPrevBtn->getPosition());
-        CCRect tutPrevBtnRect = CCRectMake(tutPrevBtnPnt.x - tutPrevBtn->getContentSize().width / 2,
-                                           tutPrevBtnPnt.y - tutPrevBtn->getContentSize().height / 2,
-                                           tutPrevBtn->getContentSize().width,
-                                           tutPrevBtn->getContentSize().height);
-        
-        CCPoint tutCancelBtnPnt = tutWin->convertToWorldSpace(tutCancelBtn->getPosition());
-        CCRect tutCancelBtnRect = CCRectMake(tutCancelBtnPnt.x - tutCancelBtn->getContentSize().width / 2,
-                                             tutCancelBtnPnt.y - tutCancelBtn->getContentSize().height / 2,
-                                             tutCancelBtn->getContentSize().width,
-                                             tutCancelBtn->getContentSize().height);
+        CCRect tutNextBtnRect = TPMainScreen::boundingBoxWorldSpace(tutWin, tutNextBtn);
+        CCRect tutPrevBtnRect = TPMainScreen::boundingBoxWorldSpace(tutWin, tutPrevBtn);
+        CCRect tutCancelBtnRect = TPMainScreen::boundingBoxWorldSpace(tutWin, tutCancelBtn);
         
         if (tutNextBtnRect.containsPoint(touchLoc) && tutPageNo < 6) {
             tutPageNo += 1;
@@ -465,6 +669,132 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             TPMainScreen::setCharge();
         }
     }
+    
+    //=============== Tut Controls =================
+    if (settingOn) {
+        CCRect howToRect = TPMainScreen::boundingBoxWorldSpace(settingContainer, tutorialBtn);
+        if (howToRect.containsPoint(touchLoc)) {
+            tutorialOn = true;
+            settingOn = false;
+            TPMainScreen::setSetting();
+            TPMainScreen::setTutorial();
+        }
+        
+        CCRect cancelSettingRect = TPMainScreen::boundingBoxWorldSpace(settingContainer, settingCancelBtn);
+        if (cancelSettingRect.containsPoint(touchLoc)) {
+            settingOn = false;
+            TPMainScreen::setSetting();
+        }
+    }
+    
+    //=============== Item Controls =================
+    if (itemOn) {
+        CCRect startRect = playBtn->boundingBox();
+        if (startRect.containsPoint(touchLoc) && itemOn) {
+            TPItemObject* itemObject = new TPItemObject(item1On, item2On, item3On, specialItemID);
+            CCScene *gameScene = TakasuPoppo::scene(itemObject);
+            CCDirector::sharedDirector()->setDepthTest(true);
+            CCTransitionScene* transition = CCTransitionSlideInT::create(1, gameScene);
+            CCDirector::sharedDirector()->replaceScene(transition);
+            CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+        }
+        
+        CCRect item1Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item1);
+        if (item1Rect.containsPoint(touchLoc) && !item1On) {
+            item1On = true;
+            TPMainScreen::setItem();
+            return;
+        }
+        if (item1Rect.containsPoint(touchLoc) && item1On) {
+            item1On = false;
+            TPMainScreen::setItem();
+            return;
+        }
+        
+        CCRect item2Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item2);
+        if (item2Rect.containsPoint(touchLoc) && !item2On) {
+            item2On = true;
+            TPMainScreen::setItem();
+            return;
+        }
+        if (item2Rect.containsPoint(touchLoc) && item2On) {
+            item2On = false;
+            TPMainScreen::setItem();
+            return;
+        }
+        
+        CCRect item3Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item3);
+        if (item3Rect.containsPoint(touchLoc) && !item3On) {
+            item3On = true;
+            TPMainScreen::setItem();
+            return;
+        }
+        if (item3Rect.containsPoint(touchLoc) && item3On) {
+            item3On = false;
+            TPMainScreen::setItem();
+            return;
+        }
+        
+        CCRect item4Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item4);
+        if (item4Rect.containsPoint(touchLoc) && specialItemID != 1) {
+            specialItemID = SPECIAL_ITEM_1_ID;
+            TPMainScreen::setItem();
+            return;
+        }
+        if (item4Rect.containsPoint(touchLoc) && specialItemID == 1) {
+            specialItemID = 0;
+            TPMainScreen::setItem();
+            return;
+        }
+        
+        CCRect item5Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item5);
+        if (item5Rect.containsPoint(touchLoc) && specialItemID != 2) {
+            specialItemID = SPECIAL_ITEM_2_ID;
+            TPMainScreen::setItem();
+            return;
+        }
+        if (item5Rect.containsPoint(touchLoc) && specialItemID == 2) {
+            specialItemID = 0;
+            TPMainScreen::setItem();
+            return;
+        }
+        
+        CCRect item6Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item6);
+        if (item6Rect.containsPoint(touchLoc) && specialItemID != 3) {
+            specialItemID = SPECIAL_ITEM_3_ID;
+            TPMainScreen::setItem();
+            return;
+        }
+        if (item6Rect.containsPoint(touchLoc) && specialItemID == 3) {
+            specialItemID = 0;
+            TPMainScreen::setItem();
+            return;
+        }
+        
+        CCRect item7Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item7);
+        if (item7Rect.containsPoint(touchLoc) && specialItemID != 4) {
+            specialItemID = SPECIAL_ITEM_4_ID;
+            TPMainScreen::setItem();
+            return;
+        }
+        if (item7Rect.containsPoint(touchLoc) && specialItemID == 4) {
+            specialItemID = 0;
+            TPMainScreen::setItem();
+            return;
+        }
+        
+        CCRect item8Rect = TPMainScreen::boundingBoxWorldSpace(itemContainer, item8);
+        if (item8Rect.containsPoint(touchLoc) && specialItemID != 5) {
+            specialItemID = SPECIAL_ITEM_5_ID;
+            TPMainScreen::setItem();
+            return;
+        }
+        if (item8Rect.containsPoint(touchLoc) && specialItemID == 5) {
+            specialItemID = 0;
+            TPMainScreen::setItem();
+            return;
+        }
+    }
 }
 
 CCRect TPMainScreen::boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite) {
@@ -477,6 +807,60 @@ CCRect TPMainScreen::boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *chi
 }
 
 #pragma mark New Designs
+
+void TPMainScreen::setItem() {
+    if (itemOn) {
+        networkContainer->setVisible(false);
+        itemContainer->setVisible(true);
+        if (item1On) item1Shade->setVisible(true);
+        if (!item1On) item1Shade->setVisible(false);
+        
+        if (item2On) item2Shade->setVisible(true);
+        if (!item2On) item2Shade->setVisible(false);
+        
+        if (item3On) item3Shade->setVisible(true);
+        if (!item3On) item3Shade->setVisible(false);
+        
+        if (specialItemID == 1) TPMainScreen::setSpecialItemShade(item4Shade);
+        if (specialItemID == 2) TPMainScreen::setSpecialItemShade(item5Shade);
+        if (specialItemID == 3) TPMainScreen::setSpecialItemShade(item6Shade);
+        if (specialItemID == 4) TPMainScreen::setSpecialItemShade(item7Shade);
+        if (specialItemID == 5) TPMainScreen::setSpecialItemShade(item8Shade);
+        if (specialItemID == 0) {
+            CCObject *object;
+            CCARRAY_FOREACH(itemShadeArray, object) {
+                CCSprite *shadeSprite = dynamic_cast<CCSprite*>(object);
+                shadeSprite->setVisible(false);
+            }
+        }
+    }
+    if (!itemOn) {
+        itemContainer->setVisible(false);
+        networkContainer->setVisible(true);
+    }
+}
+
+void TPMainScreen::setSpecialItemShade(CCSprite *selectedItemShade) {
+    CCObject *object;
+    CCARRAY_FOREACH(itemShadeArray, object) {
+        CCSprite *shadeSprite = dynamic_cast<CCSprite*>(object);
+        shadeSprite->setVisible(false);
+    }
+    selectedItemShade->setVisible(true);
+}
+
+void TPMainScreen::setSetting() {
+    if (settingOn) {
+        darkenBg->setVisible(true);
+        darkenBg->setZOrder(129);
+
+        settingContainer->setVisible(true);
+    }
+    if (!settingOn) {
+        darkenBg->setVisible(false);
+        settingContainer->setVisible(false);
+    }
+}
 
 void TPMainScreen::setTutorial() {
     if (tutorialOn) {
@@ -661,22 +1045,17 @@ void TPMainScreen::setCrystal(int decreasingAmount) {
 //============== Recieve data from Server and put into listGamer Array ================
 void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
     CCHttpResponse *response = (CCHttpResponse*)data;
-
+    
     if (!response) {
         return;
     }
     
     if (!response->isSucceed()) {
         CCLabelTTF *notConnectLabel = CCLabelTTF::create("現在ランキングは閉じています", "Time New Roman", 30);
-        notConnectLabel->setPosition(ccp(winSize.width/2, winSize.height/2));
+        notConnectLabel->setPosition(ccp(networkContainer->getContentSize().width / 2,
+                                         networkContainer->getContentSize().height / 2));
         notConnectLabel->setColor(ccYELLOW);
-        
-//        CCLabelTTF *checkInternetMsg = CCLabelTTF::create("Please check your internet connection !!", "Time New Roman", 30);
-//        checkInternetMsg->setPosition(ccp(winSize.width / 2, winSize.height / 2 - 40));
-//        checkInternetMsg->setColor(ccYELLOW);
-//       
-//        this->addChild(checkInternetMsg,150);
-        this->addChild(notConnectLabel, 150);
+        networkContainer->addChild(notConnectLabel, 107);
         return;
     }
     
@@ -704,30 +1083,27 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
        
     }
     free(data1);
-    CCLOG(" so luong gamer:%i",listGamer->count());
     tableView = CCTableView::create(this, CCSizeMake(700, 400));
     tableView->setDirection(kCCScrollViewDirectionVertical);
     tableView->setAnchorPoint(ccp(0, 0));
-    tableView->setPosition(ccp(winSize.width / 8, 300));
+    tableView->setPosition(ccp(networkContainer->getContentSize().width / 2 - 200,
+                               networkContainer->getContentSize().height / 2 - 200));
     tableView->setDelegate(this);
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
-    this->addChild(tableView, 150);
+    networkContainer->addChild(tableView, 102, 151);
     tableView->reloadData();
     
 }
 
-void TPMainScreen::tableCellTouched(CCTableView* table, CCTableViewCell* cell)
-{
+void TPMainScreen::tableCellTouched(CCTableView* table, CCTableViewCell* cell) {
     
 }
 
-CCSize TPMainScreen::tableCellSizeForIndex(CCTableView *table, unsigned int index)
-{
+CCSize TPMainScreen::tableCellSizeForIndex(CCTableView *table, unsigned int index) {
     return CCSizeMake(600, 80);
 }
 
-CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int index)
-{
+CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int index) {
     CCTableViewCell *cell = table->dequeueCell();
     cell = new CCTableViewCell();
     cell->autorelease();
@@ -746,7 +1122,6 @@ CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int
     nameLabel->setColor(ccYELLOW);
     nameLabel->setPosition(CCPointZero);
     cell->addChild(nameLabel,150);
-//    CCLOG("Name:%s Diem:%d",gamer->getName().c_str(),gamer->getScore());
     return cell;
 }
 
@@ -786,6 +1161,22 @@ Gamer::Gamer(string name, int score)
 {
     this->_score = score;
     this->_name = name;
+}
+
+TPMainScreen* TPMainScreen::create(bool isGameOver, int score){
+    TPMainScreen *pRet = new TPMainScreen();
+    if (pRet && pRet->init(isGameOver, score)) \
+    { \
+        pRet->autorelease(); \
+        return pRet; \
+    } \
+    else \
+    { \
+        delete pRet; \
+        pRet = NULL; \
+        return NULL; \
+    } \
+    
 }
 
 #pragma mark Another

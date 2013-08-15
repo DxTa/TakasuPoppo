@@ -7,6 +7,8 @@
 #include "TPObjectExtension.h"
 #include "TPBlockSet.h"
 #include "CCGestureRecognizer.h"
+#include "TPMainScreen.h"
+#include "TPUser.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -53,30 +55,30 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     
     //========================= Debugs =============================
-    debugTilesArray = new CCArray;
-    TakasuPoppo::setupDebugButton();
-    
-    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
-    comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
-    comboCounterLabel->setZOrder(15);
-    comboCounterLabel->setColor(ccc3(225, 225, 225));
-    comboCounterLabel->setPosition(ccp(80, 850));
-    
-    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
-    comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
-    comboTimerLabel->setZOrder(15);
-    comboTimerLabel->setColor(ccc3(225, 225, 225));
-    comboTimerLabel->setPosition(ccp(330, 850));
-    
-    this->addChild(comboCounterLabel);
-    this->addChild(comboTimerLabel);
+//    debugTilesArray = new CCArray;
+//    TakasuPoppo::setupDebugButton();
+//    
+//    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
+//    comboCounterLabel = CCLabelTTF::create(comboCounterString, "Arial", FONT_SIZE);
+//    comboCounterLabel->setZOrder(15);
+//    comboCounterLabel->setColor(ccc3(225, 225, 225));
+//    comboCounterLabel->setPosition(ccp(80, 850));
+//    
+//    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
+//    comboTimerLabel = CCLabelTTF::create(comboTimerString, "Arial", FONT_SIZE);
+//    comboTimerLabel->setZOrder(15);
+//    comboTimerLabel->setColor(ccc3(225, 225, 225));
+//    comboTimerLabel->setPosition(ccp(330, 850));
+//    
+//    this->addChild(comboCounterLabel);
+//    this->addChild(comboTimerLabel);
     //===============================================================
     
     //==========================SCORE ===============================
-    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("Score :", "Arial", FONT_SIZE);
+    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("SCORE", "Arial", FONT_SIZE);
     lbScoreTitle->setZOrder(15);
     lbScoreTitle->setColor(ccc3(225, 225, 225));
-    lbScoreTitle->setPosition(ccp(60, 890));
+    lbScoreTitle->setPosition(ccp(80, 780));
     this->addChild(lbScoreTitle);
     
     
@@ -84,22 +86,33 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     lbScore = CCLabelTTF::create(str.c_str(), "Arial", FONT_SIZE);
     lbScore->setZOrder(15);
     lbScore->setColor(ccc3(225, 225, 225));
-    lbScore->setPosition(ccp(160, 890));
+    lbScore->setPosition(ccp(180, 780));
     this->addChild(lbScore);
     //===============================================================
     
     //======================== Interface ============================
-    CCSprite *background = CCSprite::create("NewPrettyBackground.png");
-    background->setPosition(ccp(winSize.width/2, winSize.height/2));
+    CCSprite *background = CCSprite::create("poppo_background.png");
+    background->setPosition(ccp(winSize.width / 2,
+                                winSize.height / 2));
     this->addChild(background, -3, -1);
     
-    CCSprite *ideGauge = CCSprite::create("IdeGauge.png");
-    ideGauge->setPosition(ccp(210, 780));
+    CCSprite *upperCover = CCSprite::create("UpperCover.png");
+    upperCover->setPosition(ccp(winSize.width / 2, winSize.height - 40));
+    this->addChild(upperCover, -2, -4);
+    
+    CCSprite *ideGauge = CCSprite::create("ComboGaugeCircle.png");
+    ideGauge->setPosition(ccp(400, 780));
     this->addChild(ideGauge, 6, -2);
     
-    CCSprite *comboGauge = CCSprite::create("ComboGauge.png");
-    comboGauge->setPosition(ccp(400, 780));
+    CCSprite *comboGauge = CCSprite::create("ComboBarOut.png");
+    comboGauge->setPosition(ccp(510, 780));
     this->addChild(comboGauge, -2, -3);
+    
+    CCSprite *timerBar = CCSprite::create("TimeBarOut.png");
+    timerBar->setPosition(ccp(winSize.width / 2 - 2, 46));
+    this->addChild(timerBar, -2, -3);
+    
+    
     
     //===============================================================
     
@@ -107,14 +120,14 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     _spcialItemID = _itemObject->getSpecialItemID() ;
     switch (_spcialItemID) {
-        case 3:
+        case SPECIAL_ITEM_1_ID:
             timeToCreateMB1 = rand() % (PLAY_TIME/2) + (PLAY_TIME/3) ;
             isCleanMB1 = false;
             isCreateMB1 = false;
             CCLog("time will create MB1: %i", timeToCreateMB1);
             break;
             
-        case 4:
+        case SPECIAL_ITEM_2_ID:
             timeToCreateMB2 = rand() % PLAY_TIME;
             isCleanMB2 = false;
             isCreateMB2 = false;
@@ -123,14 +136,14 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
             CCLog("time will create MB2: %i", timeToCreateMB2);
             break;
             
-        case 6:
+        case SPECIAL_ITEM_4_ID:
             doubleScoreStartTime = 0;
             isCleanMB3 = false;
             isCreateMB3 = false;
             timeToCreateMB3 = rand() % (PLAY_TIME/2) + (PLAY_TIME/2);
             CCLOG("Time to create MB2: %d", timeToCreateMB3);
             
-        case 7:
+        case SPECIAL_ITEM_5_ID:
             increaseComboTimes = 1.1;
             break;
             
@@ -140,20 +153,23 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     
     //===============================================================
     
+    hintCount = TakasuPoppo::lookForMatches();
     
     this->scheduleUpdate();
     
-    //    this->schedule(schedule_selector(TakasuPoppo::startGame));
+    this->schedule(schedule_selector(TakasuPoppo::startGame));
     
-    this->setTouchEnabled(true);
+//    this->setTouchEnabled(true);
     
     //this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
     
-    this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
+//    this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
+//    
+//    this->schedule(schedule_selector(TakasuPoppo::timeCounter));
+//    
+//    this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo), 2);
     
-    this->schedule(schedule_selector(TakasuPoppo::timeCounter));
-    
-    
+    this->schedule(schedule_selector(TakasuPoppo::matchList));
     return true;
 }
 
@@ -197,12 +213,13 @@ void TakasuPoppo::startGame() {
         
         TakasuPoppo::swipeSetup();
         
-        //this->setTouchEnabled(true);
+        this->setTouchEnabled(true);
         
         //this->schedule(schedule_selector(TakasuPoppo::fixedUpdate));
         
         this->scheduleOnce(schedule_selector(TakasuPoppo::timeSetup), 0);
-        this->schedule(schedule_selector(TakasuPoppo::timeCounter));
+        this->schedule(schedule_selector(TakasuPoppo::timeCounter));        
+        this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo), 2);
         
         this->unschedule(schedule_selector(TakasuPoppo::startGame));
     }
@@ -210,10 +227,7 @@ void TakasuPoppo::startGame() {
 
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
-    //if(runningAfter) this->setTouchEnabled(false);
-    TakasuPoppo::matchList();
-//    bool c = checkUpdate();
-    if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall)
+    if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
     {
         TakasuPoppo::fixedUpdate(0.013);
         //this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
@@ -226,11 +240,11 @@ void TakasuPoppo::update(float dt) {
     
 
     //================== Combo related updates ======================
-    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
-    comboCounterLabel->setString(comboCounterString);
-    
-    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
-    comboTimerLabel->setString(comboTimerString);
+//    sprintf(comboCounterString, "Combo: %i", hbcComboCounter);
+//    comboCounterLabel->setString(comboCounterString);
+//    
+//    sprintf(comboTimerString, "Timer: %f", hbcComboTimer);
+//    comboTimerLabel->setString(comboTimerString);
     
     
     if (hbcComboTimer > 0) {
@@ -262,14 +276,21 @@ void TakasuPoppo::update(float dt) {
     
     
     //=================== Hint related updates ======================
+
     if (hintCounter > 0) {
         hintCounter -= dt;
     }
+    
     if (hintCounter <= 0 && hintDisplaying == false) {
         hintDisplaying = true;
         hintArray->removeAllObjects();
-        TakasuPoppo::lookForMatches();
+        hintCount = TakasuPoppo::lookForMatches();
         this->scheduleOnce(schedule_selector(TakasuPoppo::hintGeneration), 0);
+        if (hintCount == 0) {
+            this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
+                                               CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+
+        }
     }
     //================================================================
     
@@ -367,6 +388,7 @@ void TakasuPoppo::update(float dt) {
     
     if (isInFeverTime == true) {
         feverTimeLimit -= dt;
+        
         if (feverTimeLimit < 0) {
             isInFeverTime = false;
             feverTimeLimit = 0;
@@ -384,7 +406,7 @@ void TakasuPoppo::update(float dt) {
     
     //======================== Item Object ===========================
     switch (_spcialItemID) {
-        case 3:
+        case SPECIAL_ITEM_1_ID:
             if (gameTimer < timeToCreateMB1 && isCreateMB1 == false) {
                 isCreateMB1 = true;
                 CCLog("time will create MB1: %i", timeToCreateMB1);
@@ -397,7 +419,7 @@ void TakasuPoppo::update(float dt) {
          }
             break;
             
-        case 4:
+        case SPECIAL_ITEM_2_ID:
             if ( ( (rand() % PLAY_TIME) == timeToCreateMB2) && isCreateMB2 == false && isExistMB2 == false && countMB2 < MISSION_BLOCK2_MAX_AMOUNT) {
                 isCreateMB2 = true;
                 countMB2 ++;
@@ -408,7 +430,7 @@ void TakasuPoppo::update(float dt) {
             }
             break;
         
-        case 6:
+        case SPECIAL_ITEM_4_ID:
             
             if (gameTimer < timeToCreateMB3 && isCreateMB3 == false) {
                 isCreateMB3 = true;
@@ -424,19 +446,16 @@ void TakasuPoppo::update(float dt) {
                 if (gameTimer <= doubleScoreStartTime && gameTimer >= (doubleScoreStartTime - DOUBLE_SCORE_TIME) ) {
                     // do some code logic here
                     doubleScore = 2;
-//                    CCLog("gameTimer: %f", gameTimer);
-//                    CCLog("doubleScoreStartTime: %d", doubleScoreStartTime);
-//                    CCLog("The Score is double now");
+
                 }
                 else{
                     doubleScore = 1;
-//                    CCLog("The Score is not double anymore");
                 }
 
             }
             break;
             
-        case 5:
+        case SPECIAL_ITEM_3_ID:
             modefiedLastBonus();
             break;
 
@@ -450,24 +469,26 @@ void TakasuPoppo::update(float dt) {
 
 void TakasuPoppo::fixedUpdate(float time){
     //TakasuPoppo::matchList();
-    if (toDestroyArray->count() > 0 && !inTheMove && !inTheFall) {
+    if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/) {
         //count = 0;
         if (executingLogic == false) {
+            executingLogic = true;
             this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
+            //TakasuPoppo::logicExecution();
         }
 
         //TakasuPoppo::logicExecution();
     }
 }
 
-void TakasuPoppo::fallingBoolSwitch(float dt) {
-    inTheFall = true;
-    fallCounter += deltaTime;
-    if (fallCounter > FALL_TIME) {
-        inTheFall = false;
-        this->unschedule(schedule_selector(TakasuPoppo::fallingBoolSwitch));
-    }
-}
+//void TakasuPoppo::fallingBoolSwitch(float dt) {
+//    inTheFall = true;
+//    fallCounter += deltaTime;
+//    if (fallCounter > FALL_TIME) {
+//        inTheFall = false;
+//        this->unschedule(schedule_selector(TakasuPoppo::fallingBoolSwitch));
+//    }
+//}
 
 void TakasuPoppo::movingBoolSwitch(float dt) {
     inTheMove = true;
@@ -495,34 +516,35 @@ void TakasuPoppo::hintGeneration() {
 
 
 void TakasuPoppo::logicExecution() {
+    
     if(ComboCounter >= COMBO_REQUIRED)
     {
         ComboScoreRequired = 1 + ((int)(ComboCounter/COMBO_REQUIRED)) / 10;
 //        CCLOG("SSSSSSSSS %d",ComboCounter);
     }
-    //this->unschedule(schedule_selector(TakasuPoppo::smartGeneration));
+    this->unschedule(schedule_selector(TakasuPoppo::matchList));
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
-                                       CCDelayTime::create(0.2f),
                                        CCDelayTime::create(setCleanDelay()),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::refreshMoving)),
-                                       CCDelayTime::create(movingSpeed * 6),
+                                       CCDelayTime::create(movingSpeed * 6 + SWAP_TIME*2),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
+    CCLog("Logic Delay Time: %f", logicDelayTime);
     logicCounter = 0;
     this->schedule(schedule_selector(TakasuPoppo::logicDelaySwitch), 0);
     
-    if (!inTheFall && !inTheMove) {        
-        this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
-    }
+//    if (!inTheFall && !inTheMove) {        
+//        this->schedule(schedule_selector(TakasuPoppo::fallingBoolSwitch), FALL_TIME);
+//    }
 }
 
 void TakasuPoppo::timeSetup() {
-    CCSprite *timer = CCSprite::create("Timer.png");
+    CCSprite *timer = CCSprite::create("TimeBarIn.png");
     timer->setAnchorPoint(ccp(0, 0));
     timerBar = CCProgressTimer::create(timer);
     
@@ -536,14 +558,14 @@ void TakasuPoppo::timeSetup() {
     timerBar->setTag(405);
     this->addChild(timerBar, 5);
     
-    CCSprite *combo = CCSprite::create("Combo.png");
+    CCSprite *combo = CCSprite::create("ComboBarIn.png");
     combo->setAnchorPoint(ccp(0, 0));
     comboBar = CCProgressTimer::create(combo);
     
     comboBar->setType(kCCProgressTimerTypeBar);
     comboBar->setAnchorPoint(ccp(0, 0));
     
-    comboBar->setPosition(195, 760);
+    comboBar->setPosition(ccp(408, 760));
     comboBar->setMidpoint(ccp(0, 0));
     comboBar->setBarChangeRate(ccp(1, 0));
     
@@ -579,6 +601,16 @@ void TakasuPoppo::timeCounter() {
     }
 
     //====================== Gauge Bar updates =======================
+    if (gaugePeriod > 0) {
+        gaugePeriod -= deltaTime;
+    }
+    if (gaugePeriod < 0) {
+        if (gaugeComboCounter >= 0) {
+            gaugeComboCounter -= deltaTime/2;
+        }
+        else gaugeComboCounter = 0;
+    }
+
     if (gaugeComboCounter >= 0 && gaugeComboCounter <= GAUGE_COMBO_REQUIRED) {
         comboBar->setPercentage(gaugeComboCounter * 100/GAUGE_COMBO_REQUIRED);
     }
@@ -591,7 +623,7 @@ void TakasuPoppo::timeCounter() {
     
     if (gaugeComboCounter >= GAUGE_COMBO_REQUIRED) {
         comboBar->setPercentage(0);
-        gaugeComboCounter = gaugeComboCounter % GAUGE_COMBO_REQUIRED;
+        gaugeComboCounter = gaugeComboCounter - GAUGE_COMBO_REQUIRED;
     }
     
     //================================================================
@@ -614,6 +646,13 @@ void TakasuPoppo::timeOver() {
 
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
+        TPUser::shareTPUser()->setUserScore(score);
+        CCScene *mainScene = TPMainScreen::scene(true, score);
+        CCDirector::sharedDirector()->setDepthTest(true);
+        CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
+        CCDirector::sharedDirector()->replaceScene(transition);
+        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+
         //this->unscheduleUpdate();
     }
 
@@ -655,13 +694,32 @@ bool TakasuPoppo::checkUpdate()
 }
 
 void TakasuPoppo::logicDelaySwitch(){
-    CCLog("logicCounter: %f", logicCounter);
-    executingLogic = true;
+//    this->unschedule(schedule_selector(TakasuPoppo::matchList));
     logicCounter += deltaTime;
-    if (logicCounter > LOGIC_DELAY) {
+    CCLog("logic counter: %f", logicCounter);
+    if (logicCounter > logicDelayTime) {
+        this->schedule(schedule_selector(TakasuPoppo::matchList));
+        
+        CCObject* obj;
+        CCARRAY_FOREACH(colorArray, obj){
+            TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
+            if (exObj->getID() != 7 && exObj->getSprite() != NULL && (exObj->getPosition().x == exObj->getSprite()->getPosition().x)) {
+                exObj->setControlTrigger(true);
+            }
+            
+        }
+        controlable = true;
         executingLogic = false;
         this->unschedule(schedule_selector(TakasuPoppo::logicDelaySwitch));
     }
 
     
+}
+
+void TakasuPoppo::refreshWhenNoCombo(){
+    hintCount = TakasuPoppo::lookForMatches();
+    if (hintCount == 0) {
+        this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
+                                           CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+    }
 }
