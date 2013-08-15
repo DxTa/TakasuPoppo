@@ -380,19 +380,12 @@ public:
     
     //moveto
     void setControl();
-    void afterCleanRunning(cocos2d::CCNode *sender, void *data);
-    void releaseAfterRunning(cocos2d::CCNode *sender, void *data);
     void setFalseControl();
     void setTrueControlable(CCNode *sender, void* data);
     void setFalseControlable(CCNode *sender, void* data);
     void deleteMainSprite();
     
-    void runningSwap(cocos2d::CCNode *sender, void *data);
     bool swapruning = false;
-    void notRunningSwap(cocos2d::CCNode *sender, void *data);
-    bool checkAllRunning();
-    void refreshMoving();
-    bool checkAfterCleanRunning();
     //remove sprite
     void removeSprite(CCNode* sender, void* data);
     bool checkUpdate();
