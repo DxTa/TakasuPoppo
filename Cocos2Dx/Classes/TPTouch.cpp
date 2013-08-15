@@ -35,7 +35,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         TPBlockSet* blockSet = new TPBlockSet(exObject, NULL, NULL, NULL, NULL, NULL, NULL, "hyperBlockC", exObject->getCoordination().x, exObject->getCoordination().y);
                         if(TakasuPoppo::destroyCheck(exObject, NULL)) toDestroyArray->addObject(blockSet);
                         move = false;
-                        swape = true;
+                        swape = false;
                         return;
                     }
                     else{
@@ -57,6 +57,11 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         movedSprite = NULL;
                         swapedSprite = NULL;
                         move = false;
+                        spriteContained = false;
+                        swipeLeft = false;
+                        swipeRight = false;
+                        swipeUp = false;
+                        swipeDown = false;
                         swipedLeft(mainEx);
                         swape = false;
                         return;
@@ -67,6 +72,12 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         movedSprite = NULL;
                         swapedSprite = NULL;
                         move = false;
+                        spriteContained = false;
+                        swipeLeft = false;
+                        swipeRight = false;
+                        swipeUp = false;
+                        swipeDown = false;
+
                         swipedRight(mainEx);
                         swape = false;
                         return;
@@ -77,6 +88,13 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         movedSprite = NULL;
                         swapedSprite = NULL;
                         move = false;
+                        spriteContained = false;
+                        swipeLeft = false;
+                        swipeRight = false;
+                        swipeUp = false;
+                        swipeDown = false;
+
+
                         swipedUp(mainEx);
                         swape = false;
                         return;
@@ -87,6 +105,13 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         movedSprite = NULL;
                         swapedSprite = NULL;
                         move = false;
+                        spriteContained = false;
+                        swipeLeft = false;
+                        swipeRight = false;
+                        swipeUp = false;
+                        swipeDown = false;
+
+
                         swipedDown(mainEx);
                         swape = false;
                         return;

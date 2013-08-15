@@ -32,7 +32,7 @@
 #define LOGIC_DELAY 0.7 // afterCleanspeed * 6 + generateSpeed *6 + scaleTime + swapTime*2
 #define MOVE_DELAY 0.08
 
-#define AFTER_CLEAN_FALL_TIME 0.8
+#define AFTER_CLEAN_FALL_TIME 0.05
 #define GENERATE_FALL_TIME 0.05
 #define POP_ANIMATION_DELAY 0.04
 
