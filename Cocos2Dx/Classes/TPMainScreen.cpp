@@ -25,7 +25,8 @@ CCScene *TPMainScreen::scene(bool isGameOver, int score) {
 
 bool TPMainScreen::init(bool isGameOver, int score) {
     if (!CCLayer::init()) return false;
-    
+    gameOverIsOn = isGameOver;
+    gameScoreOfNow = score;
     //===================== New UI =========================
     heartCount = 1;
     itemShadeArray = new CCArray;
@@ -487,36 +488,36 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                                       winSize.height / 2 + 50));
     this->addChild(networkContainer, 101, 150);
     
-    //===================== New Charge ======================
+    //===================== Gameover ======================
     
     
-//    if (isGameOver) {
-//        networkContainer->setVisible(false);
-//        playBtn->setVisible(false);
-//        
-//        scoreContainer = CCSprite::create("poppo_empty_container.png");
-//        scoreContainer->setPosition(ccp(winSize.width / 2,
-//                                        winSize.height - 50));
-//        this->addChild(scoreContainer, 101, 176);
-//        
-//        scoreDancingTakasu = CCSprite::create("poppo_overImage.png");
-//        scoreDancingTakasu->setPosition(ccp(scoreContainer->getContentSize().width - 140,
-//                                            -200));
-//        scoreContainer->addChild(scoreDancingTakasu, 105, 178);
-//        
-//        string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-//        scoreLabel = CCLabelTTF::create(str.c_str(), "Arial", 70);
-//        scoreLabel->setColor(ccc3(225, 225, 225));
-//        scoreLabel->setPosition(ccp(scoreContainer->getContentSize().width / 2,
-//                                    scoreContainer->getContentSize().height / 2 + 100));
-//        scoreContainer->addChild(scoreLabel, 105, 177);
-//        
-//        scoreClose = CCSprite::create("poppo_scoreClose.png");
-//        scoreClose->setPosition(ccp(scoreContainer->getContentSize().width / 2,
-//                                    - 500));
-//        scoreContainer->addChild(scoreClose, 103, 179);
-//    }
-//    
+    if (gameOverIsOn) {
+        networkContainer->setVisible(false);
+        playBtn->setVisible(false);
+        
+        scoreContainer = CCSprite::create("poppo_empty_container.png");
+        scoreContainer->setPosition(ccp(winSize.width / 2,
+                                        winSize.height - 50));
+        this->addChild(scoreContainer, 101, 176);
+        
+        scoreDancingTakasu = CCSprite::create("poppo_overImage.png");
+        scoreDancingTakasu->setPosition(ccp(scoreContainer->getContentSize().width - 140,
+                                            -200));
+        scoreContainer->addChild(scoreDancingTakasu, 105, 178);
+        
+        string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
+        scoreLabel = CCLabelTTF::create(str.c_str(), "Arial", 70);
+        scoreLabel->setColor(ccc3(225, 225, 225));
+        scoreLabel->setPosition(ccp(scoreContainer->getContentSize().width / 2,
+                                    scoreContainer->getContentSize().height / 2 + 100));
+        scoreContainer->addChild(scoreLabel, 105, 177);
+        
+        scoreClose = CCSprite::create("poppo_scoreClose.png");
+        scoreClose->setPosition(ccp(scoreContainer->getContentSize().width / 2,
+                                    - 500));
+        scoreContainer->addChild(scoreClose, 103, 179);
+    }
+    
     return true;
 }
 
@@ -530,6 +531,7 @@ bool TPMainScreen::ccTouchBegan(CCTouch *touch, CCEvent *event) {
     if (bgmSlider->isTouchInside(touch)) {
         
     }
+    
     return true;
 }
 
@@ -550,7 +552,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         }
         
         CCRect startRect = playBtn->boundingBox();
-        if (startRect.containsPoint(touchLoc) && !itemOn && !settingOn && !chargeOn && !tutorialOn) {
+        if (startRect.containsPoint(touchLoc) && !itemOn && !settingOn && !chargeOn && !tutorialOn && !gameOverIsOn) {
             itemOn = true;
             TPMainScreen::setItem();
             networkContainer->setVisible(false);
@@ -558,18 +560,18 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         }
     }
     
-//    if (gameOver) {
-//        CCRect closeButtonRect = scoreClose->boundingBox();
-//        if (closeButtonRect.containsPoint(touchLoc)) {
-//            scoreContainer->setVisible(false);
-//            
-//            playBtn->setVisible(true);
-//            networkContainer->setVisible(true);
-//            
-//            gameOver = false;
-//            return;
-//        }
-//    }
+    if (gameOverIsOn) {
+        CCRect closeButtonRect = TPMainScreen::boundingBoxWorldSpace(scoreContainer, scoreClose);
+        if (closeButtonRect.containsPoint(touchLoc)) {
+            scoreContainer->setVisible(false);
+            
+            playBtn->setVisible(true);
+            networkContainer->setVisible(true);
+            
+            gameOverIsOn = false;
+            return;
+        }
+    }
     //============== Tutorial Controls ================
     if (tutorialOn) {
         CCRect tutNextBtnRect = TPMainScreen::boundingBoxWorldSpace(tutWin, tutNextBtn);

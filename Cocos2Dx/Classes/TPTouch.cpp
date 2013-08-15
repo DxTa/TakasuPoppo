@@ -202,10 +202,10 @@ void TakasuPoppo::ccTouchesEnded(CCSet *touches, CCEvent *event) {
 }
 
 bool TakasuPoppo::touchPosValidation(CCPoint touchLoc) {
-    if (touchLoc.x < 0 ||
-        touchLoc.y < 90 ||
-        touchLoc.x >= map->getContentSize().width ||
-        touchLoc.y >= map->getContentSize().height + 90)
+    if (touchLoc.x < 4 ||
+        touchLoc.y < 180||
+        touchLoc.x >= map->getContentSize().width + 4 ||
+        touchLoc.y >= map->getContentSize().height + 180)
         return false;
     else return true;
 }
