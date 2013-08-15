@@ -208,8 +208,6 @@ void TakasuPoppo::afterClean(){
                                                                CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),
                                                                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj2),
                                                                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj), NULL));
-  
-                    exObj2->setControlTrigger(false);
                     break;
                 }
             }

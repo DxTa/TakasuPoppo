@@ -275,9 +275,7 @@ void TakasuPoppo::switchControlable(TPObjectExtension *exObj) {
 
 void TakasuPoppo::setTrueControlable(CCNode *sender, void* data)
 {
-//TakasuPoppo::deleteMainSprite();
-   // move = false;
-   // swape = false;
+    deleteMainSprite();
         TPObjectExtension * exObj = (TPObjectExtension*)data;
         if(exObj != NULL)
 //        {
