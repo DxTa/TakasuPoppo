@@ -9,8 +9,6 @@
 #ifndef __Cocos2Dx__TPMainScreen__
 #define __Cocos2Dx__TPMainScreen__
 
-#define IP_SERVER "192.168.1.189"
-
 #include "CCTableViewCell.h"
 #include "CCTableView.h"
 #include "CCScrollView.h"
@@ -36,7 +34,7 @@ public:
 
 class TPMainScreen : public CCLayer, CCTableViewDelegate, CCTableViewDataSource{
 private:
-    string serverIP = IP_SERVER;
+
     CCArray *listGamer = new CCArray();
     CCTableView *tableView;
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();

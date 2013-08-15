@@ -8,6 +8,7 @@
 #include "TPBlockSet.h"
 #include "CCGestureRecognizer.h"
 #include "TPMainScreen.h"
+#include "TPUser.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -644,6 +645,7 @@ void TakasuPoppo::timeOver() {
 
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
+        TPUser::shareTPUser()->setUserScore(score);
         CCScene *mainScene = TPMainScreen::scene(true, score);
         CCDirector::sharedDirector()->setDepthTest(true);
         CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
