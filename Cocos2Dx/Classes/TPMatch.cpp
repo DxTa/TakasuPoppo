@@ -987,8 +987,8 @@ void TakasuPoppo::generateBlocksAfterCleanMB1() {
             sprintf(spriteName, "%s.png", tileName[randomTile]);
             
             CCSprite *randomTileSprite = CCSprite::create(spriteName);
-            CCPoint tilePosition = ccp(tileSprite->getPositionX() + tileSprite->getContentSize().width/2,
-                                       tileSprite->getPositionY() + 90 + tileSprite->getContentSize().height/2);
+            CCPoint tilePosition = ccp(tileSprite->getPositionX() + 4 + tileSprite->getContentSize().width/2,
+                                       tileSprite->getPositionY() + 180 + tileSprite->getContentSize().height/2);
             CCPoint tileCoordination = TakasuPoppo::tileCoorForPosition(tilePosition);
             randomTileSprite->setPosition(ccp(tilePosition.x, tilePosition.y + 10));
             CCObject *object = colorArray->objectAtIndex(m_gid - 1);
