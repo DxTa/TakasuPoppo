@@ -58,6 +58,7 @@ private:
     float deltaTime;                //Public variable for delta time
     
     float executionTime = 3.5;
+    float endTimeCounter = 4.5;
     
     float hintCounter = 3;          //Display hint after this counter
     
@@ -68,6 +69,10 @@ private:
     bool counterExist1 = false;
     bool counterExist2 = false;
     bool counterExist3 = false;
+    
+    bool prepareToEnd = false;
+    bool timeOverOn = false;
+    bool takasuBonusOn = false;
     
     bool spriteContained;           //Bool for the touch on sprite's trigger
     bool swiping;                   //Bool for swiping action
@@ -158,6 +163,7 @@ public:
     //Setup timer, preparing for the game
     void startGame();
     
+    void endGame();
     //Fixed update for executing game's logic
     void fixedUpdate(float time);
     
@@ -401,6 +407,8 @@ public:
     bool checkCreateHyperB(CCPoint coor , int type);
     bool checkVerMatch(CCPoint coor , int type);
     bool checkHorMatch(CCPoint coor , int type);
+    bool isObjectMoving(TPObjectExtension *obj);
+    bool floatCompare(float x, float y, float epsilon);
 };
 
 #endif

@@ -224,6 +224,41 @@ void TakasuPoppo::startGame() {
     }
 }
 
+void TakasuPoppo::endGame() {
+    endTimeCounter -= deltaTime;
+    
+    CCSprite *counter3 = CCSprite::create("TimeUp.png");
+    CCSprite *counter1 = CCSprite::create("LastBonus.png");
+    
+    counter3->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    counter1->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    
+    counter3->setTag(1406);
+    counter1->setTag(1404);
+    
+    if (endTimeCounter < 4) {
+        if (!timeOverOn) this->addChild(counter3, 5);
+        timeOverOn = true;
+    }
+    if (endTimeCounter < 3) {
+        if (timeOverOn) this->removeChildByTag(1406, true);
+        timeOverOn = false;
+    }
+    if (endTimeCounter < 2) {
+        if (!takasuBonusOn) this->addChild(counter1, 5);
+        takasuBonusOn = true;
+    }
+    if (endTimeCounter < 1) {
+        if (takasuBonusOn) this->removeChildByTag(1404, true);
+        takasuBonusOn = false;
+    }
+    if (endTimeCounter <= 0) {
+        TakasuPoppo::timeOver();
+        this->unschedule(schedule_selector(TakasuPoppo::endGame));
+    }
+}
+
+
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
     if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
@@ -604,6 +639,11 @@ void TakasuPoppo::timeCounter() {
         //this->setTouchEnabled(false);
         this->unschedule(schedule_selector(TakasuPoppo::hintGeneration));
         TakasuPoppo::timeOver();
+        if (!prepareToEnd) {
+            executionTime = 3;
+            this->schedule(schedule_selector(TakasuPoppo::endGame));
+            prepareToEnd = true;
+        }
 
     }
 
