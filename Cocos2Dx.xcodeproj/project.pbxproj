@@ -73,6 +73,8 @@
 		8491FD4417BE3EFD0074F257 /* Poppo6C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3D17BE3EFD0074F257 /* Poppo6C.png */; };
 		8491FD4517BE3EFD0074F257 /* Poppo7C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3E17BE3EFD0074F257 /* Poppo7C.png */; };
 		8491FD4717BE41AF0074F257 /* poppo_ranking_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD4617BE41AF0074F257 /* poppo_ranking_line.png */; };
+		8491FD4917BE59360074F257 /* poppo_avatar_container.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD4817BE59360074F257 /* poppo_avatar_container.png */; };
+		8491FD4B17BE59470074F257 /* poppo_ranking_first.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD4A17BE59470074F257 /* poppo_ranking_first.png */; };
 		8496669D1765B89C00621605 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 8496669C1765B89C00621605 /* HelloWorld.png */; };
 		8496669F1765B8B000621605 /* FramgiaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8496669E1765B8B000621605 /* FramgiaLogo.png */; };
 		849A47E7179D10040003F905 /* ComboGauge.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47E4179D10040003F905 /* ComboGauge.png */; };
@@ -555,6 +557,8 @@
 		8491FD3D17BE3EFD0074F257 /* Poppo6C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo6C.png; sourceTree = "<group>"; };
 		8491FD3E17BE3EFD0074F257 /* Poppo7C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7C.png; sourceTree = "<group>"; };
 		8491FD4617BE41AF0074F257 /* poppo_ranking_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_ranking_line.png; sourceTree = "<group>"; };
+		8491FD4817BE59360074F257 /* poppo_avatar_container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_avatar_container.png; sourceTree = "<group>"; };
+		8491FD4A17BE59470074F257 /* poppo_ranking_first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_ranking_first.png; sourceTree = "<group>"; };
 		8496669C1765B89C00621605 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelloWorld.png; path = Resources/HelloWorld.png; sourceTree = "<group>"; };
 		8496669E1765B8B000621605 /* FramgiaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FramgiaLogo.png; path = ../FramgiaLogo.png; sourceTree = "<group>"; };
 		849A47E4179D10040003F905 /* ComboGauge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGauge.png; sourceTree = "<group>"; };
@@ -1336,6 +1340,8 @@
 		8485C94517BB1F3C001B939A /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				8491FD4A17BE59470074F257 /* poppo_ranking_first.png */,
+				8491FD4817BE59360074F257 /* poppo_avatar_container.png */,
 				8491FD4617BE41AF0074F257 /* poppo_ranking_line.png */,
 				847F0EE817BDD1E600DCA90A /* BestScore.png */,
 				8467A88917BCCFC60082F3E8 /* BottomCover.png */,
@@ -3076,6 +3082,8 @@
 				8491FD4417BE3EFD0074F257 /* Poppo6C.png in Resources */,
 				8491FD4517BE3EFD0074F257 /* Poppo7C.png in Resources */,
 				8491FD4717BE41AF0074F257 /* poppo_ranking_line.png in Resources */,
+				8491FD4917BE59360074F257 /* poppo_avatar_container.png in Resources */,
+				8491FD4B17BE59470074F257 /* poppo_ranking_first.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
