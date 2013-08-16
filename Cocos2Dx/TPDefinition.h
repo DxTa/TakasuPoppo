@@ -23,12 +23,12 @@
 
 // time and delay system
 #define HINT_TIME 5
-#define FALL_TIME 0.1
+//#define FALL_TIME 0.1
 #define MOVE_TIME 0.05
 #define SWAP_TIME 0.08
 
 #define GENERATION_DELAY 0.05
-#define CLEAN_DELAY 0.3
+#define CLEAN_DELAY 0.05
 #define LOGIC_DELAY 0.7 // afterCleanspeed * 6 + generateSpeed *6 + scaleTime + swapTime*2
 #define MOVE_DELAY 0.08
 
@@ -38,7 +38,7 @@
 
 #define HBC_SCALE_DELAY 0.2
 
-#define PLAY_TIME 10
+#define PLAY_TIME 60
 #define GAUGE_PERIOD 2 // after this period, if no more combo is created, minus gauge combo by 1
 // score system
 #define SCORE_THREE  200

@@ -232,8 +232,8 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
         exSprite->stopActionByTag(1210);
         CCPoint *spritePosition = new CCPoint(exObj->getPosition());
         exSprite->runAction(CCSequence::create(
-                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID), (void*)exObj),
                 CCDelayTime::create(CLEAN_DELAY),
+                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID), (void*)exObj),
                 CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation), (void*)spritePosition),
 //                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::removeSprite), (void*)exSprite),
                                                CCRemoveSelf::create(true),
