@@ -149,6 +149,7 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
             TakasuPoppo::checkPosition(swpObj, exObj);
             moveCounter = 0;
             this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), MOVE_DELAY);
+            
             if(TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true){
                 if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
                 {
@@ -343,7 +344,7 @@ TPObjectExtension* TakasuPoppo::checkSwipe(TPBlockSet *blockSet){
 }
 
 bool TakasuPoppo::isObjectMoving(TPObjectExtension *obj) {
-    if (obj != NULL && obj->getID() != 7 && floatCompare(obj->getSprite()->getPositionX(), obj->getPosition().x, 0.00001) == true && floatCompare(obj->getSprite()->getPositionY(), obj->getPosition().y, 0.00001) == true)
+    if (obj != NULL && obj->getSprite() != NULL && obj->getID() != 7 && floatCompare(obj->getSprite()->getPositionX(), obj->getPosition().x, 0.00001) == true && floatCompare(obj->getSprite()->getPositionY(), obj->getPosition().y, 0.00001) == true)
         return false;
     else return true;
 }
