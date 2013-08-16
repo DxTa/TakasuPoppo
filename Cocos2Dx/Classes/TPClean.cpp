@@ -940,6 +940,7 @@ void TakasuPoppo::setControl()
 
 void TakasuPoppo::deleteMainSprite()
 {
+    returnNormalSprite(mainSprite);
     mainSprite = NULL;
 }
 

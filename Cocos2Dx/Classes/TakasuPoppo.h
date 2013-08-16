@@ -403,6 +403,12 @@ public:
     bool checkHorMatch(CCPoint coor , int type);
     bool isObjectMoving(TPObjectExtension *obj);
     bool floatCompare(float x, float y, float epsilon);
+    
+    //change sprite when touch
+    void makeSpriteTouched(TPObjectExtension *exObj);
+    void returnNormalSprite(TPObjectExtension *exObj);
+    void makeSpriteTouched(CCNode* sender, void* data);
+    void returnNormalSprite(CCNode* sender, void* data);
 };
 
 #endif
