@@ -21,7 +21,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
         CCPoint point = TakasuPoppo::tileCoorForPosition(touchLoc);
         if (point.x >= 0 || point.x <= 6 ||
             point.y >= 0 || point.y <= 6) {
-            returnNormalSprite(mainSprite);
+            //returnNormalSprite(mainSprite);
             
             TPObjectExtension *exObject = TakasuPoppo::coorToExObj(TakasuPoppo::tileCoorForPosition(touchLoc));
             if (exObject != NULL && exObject->getSprite() != NULL && exObject->getID() != 7) {
@@ -124,7 +124,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                     move = true;
                     swape = true;
                     mainPoint.setPoint(point.x, point.y);
-                    returnNormalSprite(mainEx);
+                    //returnNormalSprite(mainEx);
                 }
             }
             else {

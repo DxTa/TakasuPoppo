@@ -42,7 +42,9 @@ private:
     CCSprite *newBackground;
     CCSprite *rankingContainer;
     
+    CCSprite *rankingBestContainer;
     CCSprite *rankingBestScoreLabel;
+    CCSprite *rankingLine;
     CCLabelTTF *rankingPlayerName;
     CCLabelTTF *rankingPlayerBestScore;
     

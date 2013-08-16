@@ -925,7 +925,7 @@ void TakasuPoppo::createSpecialBlock(TPObjectExtension *exObj, int blockType){
                 str = "Poppo" + str + "B.png";
                 break;
             case HBB_BLOCK_TYPE:
-                str = "Poppo" + str + "HyperC.png";
+                str = "Poppo" + str + "C.png";
                 break;
             case MB1_BLOCK_TYPE:
                 str = "Poppo" + str + "Mission1.png";

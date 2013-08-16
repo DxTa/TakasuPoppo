@@ -38,7 +38,7 @@
 
 #define HBC_SCALE_DELAY 0.2
 
-#define PLAY_TIME 600
+#define PLAY_TIME 6
 #define GAUGE_PERIOD 2 // after this period, if no more combo is created, minus gauge combo by 1
 // score system
 #define SCORE_THREE  200
