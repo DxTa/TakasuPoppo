@@ -886,7 +886,7 @@ bool TakasuPoppo::destroyCheck(TPObjectExtension *ex1, TPObjectExtension *ex2) {
 
 void TakasuPoppo::randomBlockC()
 {
-    CCObject* obj = new CCObject;
+    CCObject* obj;
     CCARRAY_FOREACH(colorArray, obj){
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
         if ((int)gameTimer > 0) {
@@ -1038,6 +1038,8 @@ void TakasuPoppo::setFallDistance(TPBlockSet *blockSet){
     if (fallDistance >= 6) {
         fallDistance = 6;
     }
+    
+    CCLog("fall Distance: %d", fallDistance);
 
 }
 

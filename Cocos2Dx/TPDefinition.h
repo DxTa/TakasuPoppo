@@ -28,12 +28,12 @@
 #define SWAP_TIME 0.08
 
 #define GENERATION_DELAY 0.05
-#define CLEAN_DELAY 0.1
+#define CLEAN_DELAY 0.3
 #define LOGIC_DELAY 0.7 // afterCleanspeed * 6 + generateSpeed *6 + scaleTime + swapTime*2
 #define MOVE_DELAY 0.08
 
-#define AFTER_CLEAN_FALL_TIME 0.05
-#define GENERATE_FALL_TIME 0.05
+#define AFTER_CLEAN_FALL_TIME 0.06
+#define GENERATE_FALL_TIME 0.06
 #define POP_ANIMATION_DELAY 0.04
 
 #define HBC_SCALE_DELAY 0.2

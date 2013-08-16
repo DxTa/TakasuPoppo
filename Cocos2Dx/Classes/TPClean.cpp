@@ -403,9 +403,9 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
             break;
         case MB1_BLOCK_TYPE:
             if (gameTimer >= 0) {
-                isCleanMB1 = true;
                 if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                     TakasuPoppo::cleanSprite(exobj);
+                isCleanMB1 = true;
             }
             else TakasuPoppo::cleanSprite(exobj);
             
