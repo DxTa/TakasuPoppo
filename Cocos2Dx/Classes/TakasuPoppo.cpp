@@ -75,19 +75,18 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     //===============================================================
     
     //==========================SCORE ===============================
-    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("SCORE", "Arial", FONT_SIZE);
-    lbScoreTitle->setZOrder(15);
-    lbScoreTitle->setColor(ccc3(225, 225, 225));
-    lbScoreTitle->setPosition(ccp(80, 920));
-    this->addChild(lbScoreTitle);
+//    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("SCORE", "Arial", FONT_SIZE);
+//    lbScoreTitle->setZOrder(15);
+//    lbScoreTitle->setColor(ccc3(225, 225, 225));
+//    lbScoreTitle->setPosition(ccp(80, 920));
+//    this->addChild(lbScoreTitle);
     
     
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-    lbScore = CCLabelTTF::create(str.c_str(), "Arial", FONT_SIZE);
-    lbScore->setZOrder(15);
-    lbScore->setColor(ccc3(225, 225, 225));
-    lbScore->setPosition(ccp(180, 920));
-    this->addChild(lbScore);
+    bmScore = CCLabelBMFont::create(str.c_str(), "TakasuScore.fnt", 30, kCCTextAlignmentLeft);
+    bmScore->setZOrder(15);
+    bmScore->setPosition(ccp(180, 920));
+    this->addChild(bmScore);
     //===============================================================
     
     //======================== Interface ============================
@@ -409,7 +408,7 @@ void TakasuPoppo::update(float dt) {
     
     //========================SCORE UPDATE ===========================
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-    lbScore->setString(str.c_str());
+    bmScore->setString(str.c_str());
     //================================================================
     
     
@@ -656,7 +655,6 @@ void TakasuPoppo::timeOver() {
         CCLOG("SCORE * %d",score);
         TPUser::shareTPUser()->setUserScore(score);
         CCScene *mainScene = TPMainScreen::scene(true, score);
-        CCDirector::sharedDirector()->setDepthTest(true);
         CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
         CCDirector::sharedDirector()->replaceScene(transition);
         CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);

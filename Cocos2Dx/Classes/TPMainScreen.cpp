@@ -25,8 +25,13 @@ CCScene *TPMainScreen::scene(bool isGameOver, int score) {
 
 bool TPMainScreen::init(bool isGameOver, int score) {
     if (!CCLayer::init()) return false;
-    gameOverIsOn = isGameOver;
-    gameScoreOfNow = score;
+    
+    if (isGameOver) {
+        gameOverIsOn = isGameOver;
+        gameScoreOfNow = score;
+        CCLog("Score: %i", gameScoreOfNow);
+    }
+    
     //===================== New UI =========================
     heartCount = 1;
     itemShadeArray = new CCArray;
@@ -404,6 +409,10 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                             itemContainer->getContentSize().height / 2 - 110));
     itemContainer->addChild(item10, 102, 165);
     
+    itemLabel = CCSprite::create("poppoItemLabel.png");
+    itemLabel->setPosition(ccp(itemContainer->getContentSize().width / 2 + 160,
+                    itemContainer->getContentSize().height / 2 - 110));
+    itemContainer->addChild(itemLabel, 102);
     
     item1Shade = CCSprite::create("ItemShade.png");
     item1Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
@@ -505,12 +514,21 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                                             -200));
         scoreContainer->addChild(scoreDancingTakasu, 105, 178);
         
-        string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-        scoreLabel = CCLabelTTF::create(str.c_str(), "Arial", 70);
-        scoreLabel->setColor(ccc3(225, 225, 225));
-        scoreLabel->setPosition(ccp(scoreContainer->getContentSize().width / 2,
-                                    scoreContainer->getContentSize().height / 2 + 100));
-        scoreContainer->addChild(scoreLabel, 105, 177);
+        string str = static_cast<ostringstream*>( &(ostringstream() << gameScoreOfNow) )->str();
+        scoreBitMap = CCLabelBMFont::create(str.c_str(), "TakasuScore.fnt", 150, kCCTextAlignmentCenter);
+        scoreBitMap->setPosition(ccp(scoreContainer->getContentSize().width / 2 - 100,
+                                     - 80));
+        scoreContainer->addChild(scoreBitMap, 105, 177);
+        
+        scoreBest = CCSprite::create("BestScore.png");
+        scoreBest->setPosition(ccp(scoreContainer->getContentSize().width / 2 - 140,
+                                   - 140));
+        scoreContainer->addChild(scoreBest, 105, 180);
+        
+        scoreLabel = CCLabelTTF::create(str.c_str(), "Berlin Sans FB", 30);
+        scoreLabel->setPosition(ccp(scoreContainer->getContentSize().width / 2 - 20,
+                                    - 140));
+        scoreContainer->addChild(scoreLabel, 105, 181);
         
         scoreClose = CCSprite::create("poppo_scoreClose.png");
         scoreClose->setPosition(ccp(scoreContainer->getContentSize().width / 2,
@@ -695,7 +713,6 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         if (startRect.containsPoint(touchLoc) && itemOn && !settingOn && !tutorialOn && !chargeOn) {
             TPItemObject* itemObject = new TPItemObject(item1On, item2On, item3On, specialItemID);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
-            CCDirector::sharedDirector()->setDepthTest(true);
             CCTransitionScene* transition = CCTransitionSlideInT::create(1, gameScene);
             CCDirector::sharedDirector()->replaceScene(transition);
             CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);

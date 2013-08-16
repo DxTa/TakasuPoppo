@@ -30,7 +30,10 @@
 		8467A89417BCCFC60082F3E8 /* TimeUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A88E17BCCFC60082F3E8 /* TimeUp.png */; };
 		8467A89717BCD7100082F3E8 /* burningTakasu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8467A89517BCD7100082F3E8 /* burningTakasu.plist */; };
 		8467A89817BCD7100082F3E8 /* burningTakasu.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 8467A89617BCD7100082F3E8 /* burningTakasu.pvr.ccz */; };
-		847F0EDF17BCE82E00DCA90A /* poppo_background3.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EDE17BCE82E00DCA90A /* poppo_background3.png */; };
+		847F0EE617BDC61700DCA90A /* TakasuScore.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EE417BDC61700DCA90A /* TakasuScore.fnt */; };
+		847F0EE717BDC61700DCA90A /* TakasuScore.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EE517BDC61700DCA90A /* TakasuScore.png */; };
+		847F0EE917BDD1E600DCA90A /* BestScore.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EE817BDD1E600DCA90A /* BestScore.png */; };
+		847F0EEB17BDD64700DCA90A /* poppoItemLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EEA17BDD64700DCA90A /* poppoItemLabel.png */; };
 		8485C96117BB1F3C001B939A /* ComboBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94617BB1F3C001B939A /* ComboBarIn.png */; };
 		8485C96217BB1F3C001B939A /* ComboBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94717BB1F3C001B939A /* ComboBarOut.png */; };
 		8485C96317BB1F3C001B939A /* ComboGaugeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */; };
@@ -498,7 +501,10 @@
 		8467A88E17BCCFC60082F3E8 /* TimeUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TimeUp.png; sourceTree = "<group>"; };
 		8467A89517BCD7100082F3E8 /* burningTakasu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = burningTakasu.plist; sourceTree = "<group>"; };
 		8467A89617BCD7100082F3E8 /* burningTakasu.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = burningTakasu.pvr.ccz; sourceTree = "<group>"; };
-		847F0EDE17BCE82E00DCA90A /* poppo_background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_background3.png; sourceTree = "<group>"; };
+		847F0EE417BDC61700DCA90A /* TakasuScore.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TakasuScore.fnt; sourceTree = "<group>"; };
+		847F0EE517BDC61700DCA90A /* TakasuScore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TakasuScore.png; sourceTree = "<group>"; };
+		847F0EE817BDD1E600DCA90A /* BestScore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BestScore.png; sourceTree = "<group>"; };
+		847F0EEA17BDD64700DCA90A /* poppoItemLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItemLabel.png; sourceTree = "<group>"; };
 		8485C94617BB1F3C001B939A /* ComboBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarIn.png; sourceTree = "<group>"; };
 		8485C94717BB1F3C001B939A /* ComboBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarOut.png; sourceTree = "<group>"; };
 		8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGaugeCircle.png; sourceTree = "<group>"; };
@@ -1303,7 +1309,7 @@
 		8485C94517BB1F3C001B939A /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				847F0EDE17BCE82E00DCA90A /* poppo_background3.png */,
+				847F0EE817BDD1E600DCA90A /* BestScore.png */,
 				8467A88917BCCFC60082F3E8 /* BottomCover.png */,
 				8467A88A17BCCFC60082F3E8 /* Go.png */,
 				8467A88B17BCCFC60082F3E8 /* LastBonus.png */,
@@ -1324,6 +1330,7 @@
 		8485C94C17BB1F3C001B939A /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				847F0EEA17BDD64700DCA90A /* poppoItemLabel.png */,
 				8485C94D17BB1F3C001B939A /* itemNotAvailable.png */,
 				8485C94E17BB1F3C001B939A /* ItemShade.png */,
 				8485C94F17BB1F3C001B939A /* poppoItem1.png */,
@@ -1446,6 +1453,8 @@
 		849A78C317A7B0CE00782C50 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				847F0EE417BDC61700DCA90A /* TakasuScore.fnt */,
+				847F0EE517BDC61700DCA90A /* TakasuScore.png */,
 				849A78C417A7B0CE00782C50 /* Berlin Sans FB Demi.TTF */,
 				849A78C517A7B0CE00782C50 /* Berlin Sans FB.TTF */,
 				849A78C617A7B0CE00782C50 /* BRLNSB.TTF */,
@@ -3018,7 +3027,10 @@
 				8467A89417BCCFC60082F3E8 /* TimeUp.png in Resources */,
 				8467A89717BCD7100082F3E8 /* burningTakasu.plist in Resources */,
 				8467A89817BCD7100082F3E8 /* burningTakasu.pvr.ccz in Resources */,
-				847F0EDF17BCE82E00DCA90A /* poppo_background3.png in Resources */,
+				847F0EE617BDC61700DCA90A /* TakasuScore.fnt in Resources */,
+				847F0EE717BDC61700DCA90A /* TakasuScore.png in Resources */,
+				847F0EE917BDD1E600DCA90A /* BestScore.png in Resources */,
+				847F0EEB17BDD64700DCA90A /* poppoItemLabel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
