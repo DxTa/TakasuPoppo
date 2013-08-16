@@ -334,9 +334,9 @@ void TakasuPoppo::update(float dt) {
     if (controlable) {
         if (swipeRight && swape && !runningAfter) {
             
-            TPObjectExtension* exd = mainSprite;
+            //TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedRight(exd);
+            TakasuPoppo::swipedRight(mainSprite);
             swipeRight = false;
            // mainSprite = NULL;
             swipeLeft = false;
@@ -348,9 +348,9 @@ void TakasuPoppo::update(float dt) {
         }
         if (swipeLeft && swape && !runningAfter) {
             
-            TPObjectExtension* exd = mainSprite;
+            //TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedLeft(exd);
+            TakasuPoppo::swipedLeft(mainSprite);
             swipeRight = false;
             //mainSprite = NULL;
             swipeLeft = false;
@@ -362,9 +362,9 @@ void TakasuPoppo::update(float dt) {
         }
         if (swipeUp && swape && !runningAfter) {
             
-            TPObjectExtension* exd = mainSprite;
+            //TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedUp(exd);
+            TakasuPoppo::swipedUp(mainSprite);
             swipeRight = false;
             //mainSprite = NULL;
             swipeLeft = false;
@@ -375,8 +375,8 @@ void TakasuPoppo::update(float dt) {
         }
         if (swipeDown && swape && !runningAfter) {
             
-            TPObjectExtension* exd = mainSprite;
-            TakasuPoppo::swipedDown(exd);
+            //TPObjectExtension* exd = mainSprite;
+            TakasuPoppo::swipedDown(mainSprite);
             move =false;
             swipeRight = false;
            // mainSprite = NULL;
@@ -566,6 +566,7 @@ void TakasuPoppo::logicExecution() {
 //        CCLOG("SSSSSSSSS %d",ComboCounter);
     }
     this->unschedule(schedule_selector(TakasuPoppo::matchList));
+    this->unschedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
@@ -749,11 +750,12 @@ void TakasuPoppo::logicDelaySwitch(){
     CCLog("logic counter: %f", logicCounter);
     if (logicCounter > logicDelayTime) {
         this->schedule(schedule_selector(TakasuPoppo::matchList));
+        this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
         
         CCObject* obj;
         CCARRAY_FOREACH(colorArray, obj){
             TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
-            if (exObj->getID() != 7 && exObj->getSprite() != NULL && (exObj->getPosition().x == exObj->getSprite()->getPosition().x)) {
+            if (exObj->getID() != 7 && exObj->getSprite() != NULL && (exObj->getPosition().x == exObj->getSprite()->getPositionX())) {
                 exObj->setControlTrigger(true);
             }
             
@@ -768,8 +770,21 @@ void TakasuPoppo::logicDelaySwitch(){
 
 void TakasuPoppo::refreshWhenNoCombo(){
     hintCount = TakasuPoppo::lookForMatches();
-    if (hintCount == 0) {
+    if (hintCount == 0 && toDestroyArray->count() == 0 && checkRefresh()) {
         this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
                                            CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
     }
+}
+
+bool TakasuPoppo::checkRefresh()
+{
+    CCObject *object;
+    CCARRAY_FOREACH_REVERSE(colorArray, object) {
+        TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
+        if (exObj->getID() == 7) {
+            return false;
+        }
+    }
+    return true;
+    
 }

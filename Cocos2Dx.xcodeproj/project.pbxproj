@@ -34,6 +34,7 @@
 		847F0EE717BDC61700DCA90A /* TakasuScore.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EE517BDC61700DCA90A /* TakasuScore.png */; };
 		847F0EE917BDD1E600DCA90A /* BestScore.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EE817BDD1E600DCA90A /* BestScore.png */; };
 		847F0EEB17BDD64700DCA90A /* poppoItemLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EEA17BDD64700DCA90A /* poppoItemLabel.png */; };
+		847F0EEE17BE2BC500DCA90A /* PoppoMelody.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EED17BE2BC500DCA90A /* PoppoMelody.mp3 */; };
 		8485C96117BB1F3C001B939A /* ComboBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94617BB1F3C001B939A /* ComboBarIn.png */; };
 		8485C96217BB1F3C001B939A /* ComboBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94717BB1F3C001B939A /* ComboBarOut.png */; };
 		8485C96317BB1F3C001B939A /* ComboGaugeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */; };
@@ -64,6 +65,16 @@
 		8485C97F17BB4249001B939A /* poppo_hintFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C97D17BB4249001B939A /* poppo_hintFrame.png */; };
 		8491456717BC83EE00E41006 /* TPUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8491456517BC83EE00E41006 /* TPUser.cpp */; };
 		8491456A17BCA6C000E41006 /* TPTopScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8491456817BCA6C000E41006 /* TPTopScreen.cpp */; };
+		8491FD3F17BE3EFD0074F257 /* Poppo1C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3817BE3EFD0074F257 /* Poppo1C.png */; };
+		8491FD4017BE3EFD0074F257 /* Poppo2C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3917BE3EFD0074F257 /* Poppo2C.png */; };
+		8491FD4117BE3EFD0074F257 /* Poppo3C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3A17BE3EFD0074F257 /* Poppo3C.png */; };
+		8491FD4217BE3EFD0074F257 /* Poppo4C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3B17BE3EFD0074F257 /* Poppo4C.png */; };
+		8491FD4317BE3EFD0074F257 /* Poppo5C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3C17BE3EFD0074F257 /* Poppo5C.png */; };
+		8491FD4417BE3EFD0074F257 /* Poppo6C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3D17BE3EFD0074F257 /* Poppo6C.png */; };
+		8491FD4517BE3EFD0074F257 /* Poppo7C.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD3E17BE3EFD0074F257 /* Poppo7C.png */; };
+		8491FD4717BE41AF0074F257 /* poppo_ranking_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD4617BE41AF0074F257 /* poppo_ranking_line.png */; };
+		8491FD4917BE59360074F257 /* poppo_avatar_container.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD4817BE59360074F257 /* poppo_avatar_container.png */; };
+		8491FD4B17BE59470074F257 /* poppo_ranking_first.png in Resources */ = {isa = PBXBuildFile; fileRef = 8491FD4A17BE59470074F257 /* poppo_ranking_first.png */; };
 		8496669D1765B89C00621605 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 8496669C1765B89C00621605 /* HelloWorld.png */; };
 		8496669F1765B8B000621605 /* FramgiaLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8496669E1765B8B000621605 /* FramgiaLogo.png */; };
 		849A47E7179D10040003F905 /* ComboGauge.png in Resources */ = {isa = PBXBuildFile; fileRef = 849A47E4179D10040003F905 /* ComboGauge.png */; };
@@ -523,6 +534,7 @@
 		847F0EE517BDC61700DCA90A /* TakasuScore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TakasuScore.png; sourceTree = "<group>"; };
 		847F0EE817BDD1E600DCA90A /* BestScore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BestScore.png; sourceTree = "<group>"; };
 		847F0EEA17BDD64700DCA90A /* poppoItemLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItemLabel.png; sourceTree = "<group>"; };
+		847F0EED17BE2BC500DCA90A /* PoppoMelody.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PoppoMelody.mp3; sourceTree = "<group>"; };
 		8485C94617BB1F3C001B939A /* ComboBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarIn.png; sourceTree = "<group>"; };
 		8485C94717BB1F3C001B939A /* ComboBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarOut.png; sourceTree = "<group>"; };
 		8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGaugeCircle.png; sourceTree = "<group>"; };
@@ -555,6 +567,16 @@
 		8491456617BC83EE00E41006 /* TPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPUser.h; sourceTree = "<group>"; };
 		8491456817BCA6C000E41006 /* TPTopScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPTopScreen.cpp; sourceTree = "<group>"; };
 		8491456917BCA6C000E41006 /* TPTopScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTopScreen.h; sourceTree = "<group>"; };
+		8491FD3817BE3EFD0074F257 /* Poppo1C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo1C.png; sourceTree = "<group>"; };
+		8491FD3917BE3EFD0074F257 /* Poppo2C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo2C.png; sourceTree = "<group>"; };
+		8491FD3A17BE3EFD0074F257 /* Poppo3C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo3C.png; sourceTree = "<group>"; };
+		8491FD3B17BE3EFD0074F257 /* Poppo4C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo4C.png; sourceTree = "<group>"; };
+		8491FD3C17BE3EFD0074F257 /* Poppo5C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo5C.png; sourceTree = "<group>"; };
+		8491FD3D17BE3EFD0074F257 /* Poppo6C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo6C.png; sourceTree = "<group>"; };
+		8491FD3E17BE3EFD0074F257 /* Poppo7C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7C.png; sourceTree = "<group>"; };
+		8491FD4617BE41AF0074F257 /* poppo_ranking_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_ranking_line.png; sourceTree = "<group>"; };
+		8491FD4817BE59360074F257 /* poppo_avatar_container.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_avatar_container.png; sourceTree = "<group>"; };
+		8491FD4A17BE59470074F257 /* poppo_ranking_first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_ranking_first.png; sourceTree = "<group>"; };
 		8496669C1765B89C00621605 /* HelloWorld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HelloWorld.png; path = Resources/HelloWorld.png; sourceTree = "<group>"; };
 		8496669E1765B8B000621605 /* FramgiaLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FramgiaLogo.png; path = ../FramgiaLogo.png; sourceTree = "<group>"; };
 		849A47E4179D10040003F905 /* ComboGauge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGauge.png; sourceTree = "<group>"; };
@@ -1344,9 +1366,21 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		847F0EEC17BE2BC500DCA90A /* BGMs */ = {
+			isa = PBXGroup;
+			children = (
+				847F0EED17BE2BC500DCA90A /* PoppoMelody.mp3 */,
+			);
+			name = BGMs;
+			path = Resources/BGMs;
+			sourceTree = "<group>";
+		};
 		8485C94517BB1F3C001B939A /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				8491FD4A17BE59470074F257 /* poppo_ranking_first.png */,
+				8491FD4817BE59360074F257 /* poppo_avatar_container.png */,
+				8491FD4617BE41AF0074F257 /* poppo_ranking_line.png */,
 				847F0EE817BDD1E600DCA90A /* BestScore.png */,
 				8467A88917BCCFC60082F3E8 /* BottomCover.png */,
 				8467A88A17BCCFC60082F3E8 /* Go.png */,
@@ -1579,6 +1613,13 @@
 		84AC3093179658AE0073C6D5 /* Pop */ = {
 			isa = PBXGroup;
 			children = (
+				8491FD3817BE3EFD0074F257 /* Poppo1C.png */,
+				8491FD3917BE3EFD0074F257 /* Poppo2C.png */,
+				8491FD3A17BE3EFD0074F257 /* Poppo3C.png */,
+				8491FD3B17BE3EFD0074F257 /* Poppo4C.png */,
+				8491FD3C17BE3EFD0074F257 /* Poppo5C.png */,
+				8491FD3D17BE3EFD0074F257 /* Poppo6C.png */,
+				8491FD3E17BE3EFD0074F257 /* Poppo7C.png */,
 				8467A89517BCD7100082F3E8 /* burningTakasu.plist */,
 				8467A89617BCD7100082F3E8 /* burningTakasu.pvr.ccz */,
 				DEF5F5E817A9F77D0063C3BA /* Poppo1Mission3.png */,
@@ -1715,9 +1756,13 @@
 		DC12FB781744D21400480D31 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				FB33939F17BE3C1600A12A5A /* GreenBox.png */,
 				FB3393A017BE3C1600A12A5A /* SubmitButton.png */,
 				FB3393A117BE3C1600A12A5A /* SubmitButtonOnClicked.png */,
+=======
+				847F0EEC17BE2BC500DCA90A /* BGMs */,
+>>>>>>> 8c6390cf5abedffc9e64b292f326b4a172258542
 				8485C94517BB1F3C001B939A /* Game */,
 				8485C94C17BB1F3C001B939A /* Items */,
 				8485C95917BB1F3C001B939A /* Setting */,
@@ -3107,6 +3152,7 @@
 				847F0EE717BDC61700DCA90A /* TakasuScore.png in Resources */,
 				847F0EE917BDD1E600DCA90A /* BestScore.png in Resources */,
 				847F0EEB17BDD64700DCA90A /* poppoItemLabel.png in Resources */,
+<<<<<<< HEAD
 				FB3393A217BE3C1600A12A5A /* GreenBox.png in Resources */,
 				FB3393A317BE3C1600A12A5A /* SubmitButton.png in Resources */,
 				FB3393A417BE3C1600A12A5A /* SubmitButtonOnClicked.png in Resources */,
@@ -3123,6 +3169,19 @@
 				FB3393C317BE49E300A12A5A /* SocialBG.png in Resources */,
 				FB3393C417BE49E300A12A5A /* TweetButton.png in Resources */,
 				FB3393C517BE49E300A12A5A /* TweetButtonOnClicked.png in Resources */,
+=======
+				847F0EEE17BE2BC500DCA90A /* PoppoMelody.mp3 in Resources */,
+				8491FD3F17BE3EFD0074F257 /* Poppo1C.png in Resources */,
+				8491FD4017BE3EFD0074F257 /* Poppo2C.png in Resources */,
+				8491FD4117BE3EFD0074F257 /* Poppo3C.png in Resources */,
+				8491FD4217BE3EFD0074F257 /* Poppo4C.png in Resources */,
+				8491FD4317BE3EFD0074F257 /* Poppo5C.png in Resources */,
+				8491FD4417BE3EFD0074F257 /* Poppo6C.png in Resources */,
+				8491FD4517BE3EFD0074F257 /* Poppo7C.png in Resources */,
+				8491FD4717BE41AF0074F257 /* poppo_ranking_line.png in Resources */,
+				8491FD4917BE59360074F257 /* poppo_avatar_container.png in Resources */,
+				8491FD4B17BE59470074F257 /* poppo_ranking_first.png in Resources */,
+>>>>>>> 8c6390cf5abedffc9e64b292f326b4a172258542
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3473,8 +3532,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3491,8 +3550,8 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3502,9 +3561,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vinh Nguyen (P5ZMFEL9XZ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cocos2Dx/Prefix.pch;
@@ -3520,9 +3579,9 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
-				"PROVISIONING_PROFILE[sdk=*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
+				PROVISIONING_PROFILE = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A1ABE03-7EEE-4BEF-9A26-71CEEEE743E8";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

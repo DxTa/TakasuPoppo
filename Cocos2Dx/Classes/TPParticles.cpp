@@ -218,7 +218,7 @@ void TakasuPoppo::burnOnTakasu() {
 
 void TakasuPoppo::makeSpriteTouched(TPObjectExtension *exObj){
     // change controlable
-    if(exObj->getID() != 7 && exObj->getID() != 8)
+    if(exObj != NULL && exObj->getID() != 7 && exObj->getID() != 8)
     {
         // change sprite when the block be hyper
         int imageId = exObj->getID() + 1;
@@ -285,6 +285,7 @@ void TakasuPoppo::returnNormalSprite(TPObjectExtension *exObj)
 
 void TakasuPoppo::returnNormalSprite(CCNode* sender, void* data)
 {
+    //deleteMainSprite();
     TPObjectExtension* exObj = (TPObjectExtension*)data;
     if(exObj != NULL && exObj->getID() != 7 && exObj->getID() != 8)
     {

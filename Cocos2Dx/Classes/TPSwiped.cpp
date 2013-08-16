@@ -126,7 +126,6 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
     
     if(!swpObj->getControlTrigger() || !exObj->getControlTrigger() || isObjectMoving(swpObj) || isObjectMoving(exObj))
     {
-        returnNormalSprite(exObj);
         return ;
     }
     
@@ -150,8 +149,13 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
         if (TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true ||
             TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true) {
             TakasuPoppo::checkPosition(swpObj, exObj);
+            this->runAction(CCSequence::create(CCDelayTime::create(SWAP_TIME+0.02),
+                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlableBlockSet), (void*)swpObj),
+                                            CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlableBlockSet), (void*)exObj),
+                                               NULL));
             moveCounter = 0;
-            this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), MOVE_DELAY);
+            this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), SWAP_TIME);
+            
             if(TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true){
                 if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
                 {
@@ -213,12 +217,8 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
                     makeBlockToBeHBC(exObj);
                 }
             }
-            else
-                returnNormalSprite(exObj);
         }
     }
-    else
-        returnNormalSprite(exObj);
     //this->setTouchEnabled(true);
     
 }
@@ -255,7 +255,7 @@ void TakasuPoppo::swapTilesBack(TPObjectExtension *exObj, TPObjectExtension *swp
         
     {
             exObj->getSprite()->runAction(CCSequence::create(
-                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::makeSpriteTouched), (void*)exObj),
+//                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::makeSpriteTouched), (void*)exObj),
                                                         CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)swpObj),
                                                         CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj),
 //                                                        CCMoveTo::create(SWAP_TIME, moveDes),
@@ -264,11 +264,11 @@ void TakasuPoppo::swapTilesBack(TPObjectExtension *exObj, TPObjectExtension *swp
 //                                                        CCMoveTo::create(SWAP_TIME, swapDes),
 //                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)swpObj),
                                                         CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj),
-                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::returnNormalSprite), (void*)exObj),
+//                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::returnNormalSprite), (void*)exObj),
                                                              NULL)
                                                             );
             swpObj->getSprite()->runAction(CCSequence::create(
-                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::makeSpriteTouched), (void*)swpObj),
+//                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::makeSpriteTouched), (void*)swpObj),
 //                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj),
 //                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)swpObj),
 //                                                        CCMoveTo::create(SWAP_TIME, swapDes),
@@ -277,14 +277,9 @@ void TakasuPoppo::swapTilesBack(TPObjectExtension *exObj, TPObjectExtension *swp
                                                         CCMoveBy::create(SWAP_TIME, moveDes-swapDes),
  //                                                       CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj),
                                                         CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)swpObj),
-                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::returnNormalSprite), (void*)swpObj),  
+//                                                        CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::returnNormalSprite), (void*)swpObj),
                                                               NULL));
             
-    }
-    else
-    {
-        returnNormalSprite(exObj);
-        returnNormalSprite(swpObj);
     }
 }
 
@@ -297,7 +292,7 @@ void TakasuPoppo::switchControlable(TPObjectExtension *exObj) {
 
 void TakasuPoppo::setTrueControlable(CCNode *sender, void* data)
 {
-    deleteMainSprite();
+ //   deleteMainSprite();
         TPObjectExtension * exObj = (TPObjectExtension*)data;
         if(exObj != NULL)
         {
@@ -307,7 +302,6 @@ void TakasuPoppo::setTrueControlable(CCNode *sender, void* data)
 //////            {
 //////                makeBlockToBeHBC(exObj);
 //////            }
-         //   returnNormalSprite(exObj);
         }
 }
 void TakasuPoppo::setFalseControlable(CCNode *sender, void* data)
@@ -330,25 +324,25 @@ void TakasuPoppo::checkPosition(TPObjectExtension *exObj, TPObjectExtension *swp
         if (swpObj->getSprite()->getPosition().x != swpObj->getPosition().x ||
             swpObj->getSprite()->getPosition().y != swpObj->getPosition().y ) {
             swpObj->getSprite()->runAction(CCSequence::create(
-                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::makeSpriteTouched), (void*)swpObj),
+//                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::makeSpriteTouched), (void*)swpObj),
                                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)swpObj),
                                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj),
                                                               CCMoveTo::create(SWAP_TIME, moveDes),
 //                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj),
 //                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)swpObj),
-                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::returnNormalSprite), (void*)swpObj),
+//                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::returnNormalSprite), (void*)swpObj),
                                                                NULL));
         }
         if (exObj->getSprite()->getPosition().x != exObj->getPosition().x ||
             exObj->getSprite()->getPosition().y != exObj->getPosition().y ) {
             exObj->getSprite()->runAction(CCSequence::create(
-                                                             CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::makeSpriteTouched), (void*)exObj),
+//                                                             CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::makeSpriteTouched), (void*)exObj),
 //                                                             CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)exObj),
 //                                                             CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable), (void*)swpObj),
                                                              CCMoveTo::create(SWAP_TIME, swapDes),
                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)exObj),
                                                              CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable), (void*)swpObj),
-                                                             CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::returnNormalSprite), (void*)exObj),
+ //                                                            CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::returnNormalSprite), (void*)exObj),
                                                              NULL));
         }
     }
@@ -366,7 +360,7 @@ TPObjectExtension* TakasuPoppo::checkSwipe(TPBlockSet *blockSet){
 }
 
 bool TakasuPoppo::isObjectMoving(TPObjectExtension *obj) {
-    if (obj != NULL && obj->getID() != 7 && floatCompare(obj->getSprite()->getPositionX(), obj->getPosition().x, 0.00001) == true && floatCompare(obj->getSprite()->getPositionY(), obj->getPosition().y, 0.00001) == true)
+    if (obj != NULL && obj->getSprite() != NULL && obj->getID() != 7 && floatCompare(obj->getSprite()->getPositionX(), obj->getPosition().x, 0.00001) == true && floatCompare(obj->getSprite()->getPositionY(), obj->getPosition().y, 0.00001) == true)
         return false;
     else return true;
 }
@@ -381,4 +375,65 @@ bool TakasuPoppo::floatCompare(float x, float y, float epsilon) {
     else return false;
 }
 
-
+void TakasuPoppo::setFalseControlableBlockSet(cocos2d::CCNode *sender, void *data){
+    TPObjectExtension* exObj = (TPObjectExtension*) data;
+    
+    int exID, exGID, leftGID, rightGID, downGID, upGID, left = 0, right = 0, up = 0, down = 0;
+    TPObjectExtension* tempObj;
+    CCArray *rsH, *rsV;
+    rsH = new CCArray;
+    rsV = new CCArray;
+    rsH->autorelease();
+    rsV->autorelease();
+    
+    exGID = exObj->getGid();
+    exID = exObj->getID();
+    
+    for (int i = 0; i < 6; i++) {
+        if ((exGID-1) % 7 > i && left == 0) {
+            leftGID = exGID - i - 1;
+            tempObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(leftGID - 1));
+            if (tempObj->getID() == exID) {
+                rsV->addObject(tempObj);
+            }
+            else
+                left = 1;
+        }
+        if ((exGID-1) % 7 < (7-i-1) && right == 0) {
+            rightGID = exGID + i + 1;
+            tempObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(rightGID - 1));
+            if (tempObj->getID() == exID)
+                rsV->addObject(tempObj);
+            else
+                right = 1;
+        }
+        if ((exGID+7*(i+1)) < 50 && down == 0) {
+            downGID = exGID + 7*(i+1);
+            tempObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(downGID - 1));
+            if (tempObj->getID() == exID)
+                rsH->addObject(tempObj);
+            else
+                down = 1;
+        }
+        if ((exGID-7*(i+1)) > 0 && up == 0) {
+            upGID = exGID - 7*(i+1);
+            tempObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(upGID - 1));
+            if (tempObj->getID() == exID)
+                rsH->addObject(tempObj);
+            else
+                up = 1;
+        }
+    }
+    if (rsH->count() > 1 || rsV->count() > 1) {
+        CCObject *obj;
+        CCARRAY_FOREACH(rsH, obj) {
+            tempObj = dynamic_cast<TPObjectExtension*>(obj);
+            tempObj->setControlTrigger(false);
+        }
+        CCARRAY_FOREACH(rsV, obj) {
+            tempObj = dynamic_cast<TPObjectExtension*>(obj);
+            tempObj->setControlTrigger(false);
+        }
+        exObj->setControlTrigger(false);
+    }
+}
