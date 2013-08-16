@@ -285,7 +285,7 @@ void TakasuPoppo::returnNormalSprite(TPObjectExtension *exObj)
 
 void TakasuPoppo::returnNormalSprite(CCNode* sender, void* data)
 {
-    deleteMainSprite();
+    //deleteMainSprite();
     TPObjectExtension* exObj = (TPObjectExtension*)data;
     if(exObj != NULL && exObj->getID() != 7 && exObj->getID() != 8)
     {

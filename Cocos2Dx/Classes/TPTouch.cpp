@@ -43,7 +43,7 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                     }
                     else{
                         mainSprite = exObject;
-                        makeSpriteTouched(mainSprite);
+                        //makeSpriteTouched(mainSprite);
                     }
                 }                    
             }
