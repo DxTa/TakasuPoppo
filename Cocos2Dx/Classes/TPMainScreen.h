@@ -102,10 +102,14 @@ private:
     CCSprite *item10, *item10Shade;
     CCArray *itemShadeArray;
     
+    CCSprite *itemLabel;
+    
     CCSprite *scoreContainer;
     CCSprite *scoreClose;
     CCSprite *scoreDancingTakasu;
+    CCSprite *scoreBest;
     CCLabelTTF *scoreLabel;
+    CCLabelBMFont *scoreBitMap;
     
     CCSprite *settingContainer;
     CCSprite *settingCancelBtn;

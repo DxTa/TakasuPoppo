@@ -101,6 +101,7 @@ private:
     
     //SCORE
     CCLabelTTF *lbScore;
+    CCLabelBMFont *bmScore;
     int score = 0;
     float ComboScoreRequired = 1;
     
