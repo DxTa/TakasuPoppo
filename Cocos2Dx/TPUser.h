@@ -20,14 +20,7 @@ USING_NS_CC;
 class TPUser :public CCObject {
 private:
     string _serverIP;
-//    string _userName;
-//    string _userEmail;
-//    int _userScore;
-//    int _userReward;
-//    int _heart;
-//    int _lastTime;
-//    int _crystal;
-    
+
 public:
     TPUser();
     static TPUser* shareTPUser();
@@ -55,6 +48,9 @@ public:
     
     int getCrystal();
     void setCrystal(int crystal);
+    
+    bool getExistUser();
+    void setExistUser(bool existUser);
     
 };
 
