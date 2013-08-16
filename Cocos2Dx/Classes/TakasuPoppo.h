@@ -401,6 +401,8 @@ public:
     bool checkCreateHyperB(CCPoint coor , int type);
     bool checkVerMatch(CCPoint coor , int type);
     bool checkHorMatch(CCPoint coor , int type);
+    bool isObjectMoving(TPObjectExtension *obj);
+    bool floatCompare(float x, float y, float epsilon);
 };
 
 #endif
