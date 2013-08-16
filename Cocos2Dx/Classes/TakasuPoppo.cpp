@@ -709,7 +709,7 @@ void TakasuPoppo::logicDelaySwitch(){
         CCObject* obj;
         CCARRAY_FOREACH(colorArray, obj){
             TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
-            if (exObj->getID() != 7 && exObj->getSprite() != NULL && (exObj->getPosition().x == exObj->getSprite()->getPosition().x)) {
+            if (exObj->getID() != 7 && exObj->getSprite() != NULL && (exObj->getPosition().x == exObj->getSprite()->getPositionX())) {
                 exObj->setControlTrigger(true);
             }
             
