@@ -1007,12 +1007,14 @@ void TakasuPoppo::setFallDistance(TPBlockSet *blockSet){
     
     // if blockSet is Vertical
     if ( strstr(blockSet->getType().c_str(), "Ver") != NULL) {
-        fallDistance += 3;
+        if(isInFeverTime) fallDistance += 5;
+        else fallDistance += 3;
     }
     
     // if blockSet is Horizonal
     if ( strstr(blockSet->getType().c_str(), "Hor")  != NULL ) {
-        fallDistance += 1;
+        if(isInFeverTime) fallDistance += 3;
+        else fallDistance += 1;
     }
     
     if (blockSet->getType() == "hyperBlockC") {
@@ -1022,13 +1024,12 @@ void TakasuPoppo::setFallDistance(TPBlockSet *blockSet){
     CCObject* obj = NULL;
     CCArray* blockArray = blockSet->getBlocksArray();
     CCARRAY_FOREACH(blockArray, obj){
-        CCLog("cuc cut: %d", blockArray->count() );
-//        TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
-        TPObjectExtension *exObj = dynamic_cast<TPObjectExtension *>(obj);
+        
+    TPObjectExtension *exObj = dynamic_cast<TPObjectExtension *>(obj);
         if (exObj->getBlockType() == HBA_BLOCK_TYPE) {
             fallDistance += 3;
         }
-        
+    
         if (exObj->getBlockType() == HBB_BLOCK_TYPE) {
             fallDistance = 6;
         }
