@@ -243,7 +243,7 @@ public:
     //Generate a match if there is a shortage
     void smartGeneration();
     
-    bool destroyCheck(TPObjectExtension *ex1, TPObjectExtension *ex2);
+    bool destroyCheck(TPBlockSet* blockSet);
     
     CCPoint getFallPos(TPObjectExtension *exObj, CCPoint lastRowAtColumn0,
                        CCPoint lastRowAtColumn1, CCPoint lastRowAtColumn2,
@@ -379,6 +379,7 @@ public:
     // set logic Delay time in a dynamic way
     int fallDistance = 0; // after clean and generate block fall distance is the same.
     void setFallDistance(TPBlockSet* blockSet);
+    void setFalseControlableBlockSet(CCNode *sender, void* data);
     
     //ITEM function
     bool lastScore();

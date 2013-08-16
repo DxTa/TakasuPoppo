@@ -28,7 +28,7 @@
 #define SWAP_TIME 0.08
 
 #define GENERATION_DELAY 0.05
-#define CLEAN_DELAY 0.05
+#define CLEAN_DELAY 0.08
 #define LOGIC_DELAY 0.7 // afterCleanspeed * 6 + generateSpeed *6 + scaleTime + swapTime*2
 #define MOVE_DELAY 0.08
 

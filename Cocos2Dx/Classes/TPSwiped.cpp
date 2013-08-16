@@ -147,8 +147,12 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
         if (TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true ||
             TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true) {
             TakasuPoppo::checkPosition(swpObj, exObj);
+            this->runAction(CCSequence::create(CCDelayTime::create(SWAP_TIME+0.02),
+                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlableBlockSet), (void*)swpObj),
+                                            CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlableBlockSet), (void*)exObj),
+                                               NULL));
             moveCounter = 0;
-            this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), MOVE_DELAY);
+            this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), SWAP_TIME);
             
             if(TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true){
                 if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
@@ -359,4 +363,65 @@ bool TakasuPoppo::floatCompare(float x, float y, float epsilon) {
     else return false;
 }
 
-
+void TakasuPoppo::setFalseControlableBlockSet(cocos2d::CCNode *sender, void *data){
+    TPObjectExtension* exObj = (TPObjectExtension*) data;
+    
+    int exID, exGID, leftGID, rightGID, downGID, upGID, left = 0, right = 0, up = 0, down = 0;
+    TPObjectExtension* tempObj;
+    CCArray *rsH, *rsV;
+    rsH = new CCArray;
+    rsV = new CCArray;
+    rsH->autorelease();
+    rsV->autorelease();
+    
+    exGID = exObj->getGid();
+    exID = exObj->getID();
+    
+    for (int i = 0; i < 6; i++) {
+        if ((exGID-1) % 7 > i && left == 0) {
+            leftGID = exGID - i - 1;
+            tempObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(leftGID - 1));
+            if (tempObj->getID() == exID) {
+                rsV->addObject(tempObj);
+            }
+            else
+                left = 1;
+        }
+        if ((exGID-1) % 7 < (7-i-1) && right == 0) {
+            rightGID = exGID + i + 1;
+            tempObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(rightGID - 1));
+            if (tempObj->getID() == exID)
+                rsV->addObject(tempObj);
+            else
+                right = 1;
+        }
+        if ((exGID+7*(i+1)) < 50 && down == 0) {
+            downGID = exGID + 7*(i+1);
+            tempObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(downGID - 1));
+            if (tempObj->getID() == exID)
+                rsH->addObject(tempObj);
+            else
+                down = 1;
+        }
+        if ((exGID-7*(i+1)) > 0 && up == 0) {
+            upGID = exGID - 7*(i+1);
+            tempObj = dynamic_cast<TPObjectExtension*>(colorArray->objectAtIndex(upGID - 1));
+            if (tempObj->getID() == exID)
+                rsH->addObject(tempObj);
+            else
+                up = 1;
+        }
+    }
+    if (rsH->count() > 1 || rsV->count() > 1) {
+        CCObject *obj;
+        CCARRAY_FOREACH(rsH, obj) {
+            tempObj = dynamic_cast<TPObjectExtension*>(obj);
+            tempObj->setControlTrigger(false);
+        }
+        CCARRAY_FOREACH(rsV, obj) {
+            tempObj = dynamic_cast<TPObjectExtension*>(obj);
+            tempObj->setControlTrigger(false);
+        }
+        exObj->setControlTrigger(false);
+    }
+}

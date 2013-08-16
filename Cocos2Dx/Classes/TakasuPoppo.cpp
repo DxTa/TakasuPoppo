@@ -566,6 +566,7 @@ void TakasuPoppo::logicExecution() {
 //        CCLOG("SSSSSSSSS %d",ComboCounter);
     }
     this->unschedule(schedule_selector(TakasuPoppo::matchList));
+    this->unschedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
@@ -749,6 +750,7 @@ void TakasuPoppo::logicDelaySwitch(){
     CCLog("logic counter: %f", logicCounter);
     if (logicCounter > logicDelayTime) {
         this->schedule(schedule_selector(TakasuPoppo::matchList));
+        this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
         
         CCObject* obj;
         CCARRAY_FOREACH(colorArray, obj){
