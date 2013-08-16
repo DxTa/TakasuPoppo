@@ -90,7 +90,7 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     //===============================================================
     
     //======================== Interface ============================
-    CCSprite *background = CCSprite::create("poppo_background3.png");
+    CCSprite *background = CCSprite::create("poppo_background2.png");
     background->setPosition(ccp(winSize.width / 2,
                                 winSize.height / 2 + 33));
     this->addChild(background, -3, -1);
@@ -693,7 +693,11 @@ void TakasuPoppo::timeOver() {
 
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
-        TPUser::shareTPUser()->setUserScore(score);
+        
+        if (TPUser::shareTPUser()->getUserScore() < score) {
+            TPUser::shareTPUser()->setUserScore(score);
+         }
+        
         CCScene *mainScene = TPMainScreen::scene(true, score);
         CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
         CCDirector::sharedDirector()->replaceScene(transition);

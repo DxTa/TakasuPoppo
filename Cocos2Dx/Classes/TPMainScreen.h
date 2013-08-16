@@ -84,6 +84,7 @@ private:
     CCSprite *chargeBtnScr4;
     CCSprite *chargeLblScr4;
     
+    CCSprite *avatar;
     
     CCSprite *networkContainer;
     

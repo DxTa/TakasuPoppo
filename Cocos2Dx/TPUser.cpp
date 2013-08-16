@@ -86,6 +86,17 @@ void TPUser::setCrystal(int crystal)
     CCUserDefault::sharedUserDefault()->flush();
 }
 
+bool TPUser::getExistUser()
+{
+  return CCUserDefault::sharedUserDefault()->getBoolForKey("ExistUser", false);
+}
+
+void TPUser::setExistUser(bool existUser)
+{
+  CCUserDefault::sharedUserDefault()->setBoolForKey("ExistUser", existUser);
+  CCUserDefault::sharedUserDefault()->flush();
+}
+
 string TPUser::getServerIp()
 {
     return this->_serverIP;
