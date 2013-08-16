@@ -486,24 +486,21 @@
 		DEF5F5F317A9F77D0063C3BA /* Poppo5Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5EC17A9F77D0063C3BA /* Poppo5Mission3.png */; };
 		DEF5F5F417A9F77D0063C3BA /* Poppo6Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */; };
 		DEF5F5F517A9F77D0063C3BA /* Poppo7Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5EE17A9F77D0063C3BA /* Poppo7Mission3.png */; };
-		FB33939E17BE3C0000A12A5A /* TPEndGameScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB33939C17BE3C0000A12A5A /* TPEndGameScreen.cpp */; };
-		FB3393A217BE3C1600A12A5A /* GreenBox.png in Resources */ = {isa = PBXBuildFile; fileRef = FB33939F17BE3C1600A12A5A /* GreenBox.png */; };
-		FB3393A317BE3C1600A12A5A /* SubmitButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393A017BE3C1600A12A5A /* SubmitButton.png */; };
-		FB3393A417BE3C1600A12A5A /* SubmitButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393A117BE3C1600A12A5A /* SubmitButtonOnClicked.png */; };
-		FB3393A917BE3FEB00A12A5A /* GetPresentBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393A817BE3FEB00A12A5A /* GetPresentBG.png */; };
-		FB3393AC17BE40F800A12A5A /* SendButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393AA17BE40F800A12A5A /* SendButton.png */; };
-		FB3393AD17BE40F800A12A5A /* SendButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393AB17BE40F800A12A5A /* SendButtonOnClicked.png */; };
-		FB3393AF17BE426E00A12A5A /* WhiteBox.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393AE17BE426E00A12A5A /* WhiteBox.png */; };
-		FB3393B217BE462700A12A5A /* TPSocial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3393B017BE462600A12A5A /* TPSocial.cpp */; };
-		FB3393BD17BE49E300A12A5A /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393B417BE49E300A12A5A /* CloseButton.png */; };
-		FB3393BE17BE49E300A12A5A /* CloseButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393B517BE49E300A12A5A /* CloseButtonOnClicked.png */; };
-		FB3393BF17BE49E300A12A5A /* FbButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393B617BE49E300A12A5A /* FbButton.png */; };
-		FB3393C017BE49E300A12A5A /* FbButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393B717BE49E300A12A5A /* FbButtonOnClicked.png */; };
-		FB3393C117BE49E300A12A5A /* LineButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393B817BE49E300A12A5A /* LineButton.png */; };
-		FB3393C217BE49E300A12A5A /* LineButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393B917BE49E300A12A5A /* LineButtonOnClicked.png */; };
-		FB3393C317BE49E300A12A5A /* SocialBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393BA17BE49E300A12A5A /* SocialBG.png */; };
-		FB3393C417BE49E300A12A5A /* TweetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393BB17BE49E300A12A5A /* TweetButton.png */; };
-		FB3393C517BE49E300A12A5A /* TweetButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB3393BC17BE49E300A12A5A /* TweetButtonOnClicked.png */; };
+		FB50413817BE65AD00A8EE62 /* TPEndGameScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB50413617BE65AD00A8EE62 /* TPEndGameScreen.cpp */; };
+		FB50413B17BE65B600A8EE62 /* TPSocial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB50413917BE65B600A8EE62 /* TPSocial.cpp */; };
+		FB50414B17BE65C400A8EE62 /* GetPresentBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50413D17BE65C400A8EE62 /* GetPresentBG.png */; };
+		FB50414C17BE65C400A8EE62 /* SendButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50413E17BE65C400A8EE62 /* SendButton.png */; };
+		FB50414D17BE65C400A8EE62 /* SendButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50413F17BE65C400A8EE62 /* SendButtonOnClicked.png */; };
+		FB50414E17BE65C400A8EE62 /* WhiteBox.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414017BE65C400A8EE62 /* WhiteBox.png */; };
+		FB50414F17BE65C400A8EE62 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414217BE65C400A8EE62 /* CloseButton.png */; };
+		FB50415017BE65C400A8EE62 /* CloseButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414317BE65C400A8EE62 /* CloseButtonOnClicked.png */; };
+		FB50415117BE65C400A8EE62 /* FbButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414417BE65C400A8EE62 /* FbButton.png */; };
+		FB50415217BE65C400A8EE62 /* FbButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414517BE65C400A8EE62 /* FbButtonOnClicked.png */; };
+		FB50415317BE65C400A8EE62 /* LineButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414617BE65C400A8EE62 /* LineButton.png */; };
+		FB50415417BE65C400A8EE62 /* LineButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414717BE65C400A8EE62 /* LineButtonOnClicked.png */; };
+		FB50415517BE65C400A8EE62 /* SocialBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414817BE65C400A8EE62 /* SocialBG.png */; };
+		FB50415617BE65C400A8EE62 /* TweetButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414917BE65C400A8EE62 /* TweetButton.png */; };
+		FB50415717BE65C400A8EE62 /* TweetButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50414A17BE65C400A8EE62 /* TweetButtonOnClicked.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1316,26 +1313,23 @@
 		DEF5F5EC17A9F77D0063C3BA /* Poppo5Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo5Mission3.png; sourceTree = "<group>"; };
 		DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo6Mission3.png; sourceTree = "<group>"; };
 		DEF5F5EE17A9F77D0063C3BA /* Poppo7Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7Mission3.png; sourceTree = "<group>"; };
-		FB33939C17BE3C0000A12A5A /* TPEndGameScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPEndGameScreen.cpp; sourceTree = "<group>"; };
-		FB33939D17BE3C0000A12A5A /* TPEndGameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPEndGameScreen.h; sourceTree = "<group>"; };
-		FB33939F17BE3C1600A12A5A /* GreenBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenBox.png; sourceTree = "<group>"; };
-		FB3393A017BE3C1600A12A5A /* SubmitButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SubmitButton.png; sourceTree = "<group>"; };
-		FB3393A117BE3C1600A12A5A /* SubmitButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SubmitButtonOnClicked.png; sourceTree = "<group>"; };
-		FB3393A817BE3FEB00A12A5A /* GetPresentBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GetPresentBG.png; sourceTree = "<group>"; };
-		FB3393AA17BE40F800A12A5A /* SendButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendButton.png; sourceTree = "<group>"; };
-		FB3393AB17BE40F800A12A5A /* SendButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendButtonOnClicked.png; sourceTree = "<group>"; };
-		FB3393AE17BE426E00A12A5A /* WhiteBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBox.png; sourceTree = "<group>"; };
-		FB3393B017BE462600A12A5A /* TPSocial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TPSocial.cpp; path = Classes/TPSocial.cpp; sourceTree = "<group>"; };
-		FB3393B117BE462600A12A5A /* TPSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPSocial.h; path = Classes/TPSocial.h; sourceTree = "<group>"; };
-		FB3393B417BE49E300A12A5A /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
-		FB3393B517BE49E300A12A5A /* CloseButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButtonOnClicked.png; sourceTree = "<group>"; };
-		FB3393B617BE49E300A12A5A /* FbButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FbButton.png; sourceTree = "<group>"; };
-		FB3393B717BE49E300A12A5A /* FbButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FbButtonOnClicked.png; sourceTree = "<group>"; };
-		FB3393B817BE49E300A12A5A /* LineButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LineButton.png; sourceTree = "<group>"; };
-		FB3393B917BE49E300A12A5A /* LineButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LineButtonOnClicked.png; sourceTree = "<group>"; };
-		FB3393BA17BE49E300A12A5A /* SocialBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialBG.png; sourceTree = "<group>"; };
-		FB3393BB17BE49E300A12A5A /* TweetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TweetButton.png; sourceTree = "<group>"; };
-		FB3393BC17BE49E300A12A5A /* TweetButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TweetButtonOnClicked.png; sourceTree = "<group>"; };
+		FB50413617BE65AD00A8EE62 /* TPEndGameScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPEndGameScreen.cpp; sourceTree = "<group>"; };
+		FB50413717BE65AD00A8EE62 /* TPEndGameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPEndGameScreen.h; sourceTree = "<group>"; };
+		FB50413917BE65B600A8EE62 /* TPSocial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TPSocial.cpp; path = Classes/TPSocial.cpp; sourceTree = "<group>"; };
+		FB50413A17BE65B600A8EE62 /* TPSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPSocial.h; path = Classes/TPSocial.h; sourceTree = "<group>"; };
+		FB50413D17BE65C400A8EE62 /* GetPresentBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GetPresentBG.png; sourceTree = "<group>"; };
+		FB50413E17BE65C400A8EE62 /* SendButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendButton.png; sourceTree = "<group>"; };
+		FB50413F17BE65C400A8EE62 /* SendButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendButtonOnClicked.png; sourceTree = "<group>"; };
+		FB50414017BE65C400A8EE62 /* WhiteBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBox.png; sourceTree = "<group>"; };
+		FB50414217BE65C400A8EE62 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
+		FB50414317BE65C400A8EE62 /* CloseButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButtonOnClicked.png; sourceTree = "<group>"; };
+		FB50414417BE65C400A8EE62 /* FbButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FbButton.png; sourceTree = "<group>"; };
+		FB50414517BE65C400A8EE62 /* FbButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FbButtonOnClicked.png; sourceTree = "<group>"; };
+		FB50414617BE65C400A8EE62 /* LineButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LineButton.png; sourceTree = "<group>"; };
+		FB50414717BE65C400A8EE62 /* LineButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LineButtonOnClicked.png; sourceTree = "<group>"; };
+		FB50414817BE65C400A8EE62 /* SocialBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SocialBG.png; sourceTree = "<group>"; };
+		FB50414917BE65C400A8EE62 /* TweetButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TweetButton.png; sourceTree = "<group>"; };
+		FB50414A17BE65C400A8EE62 /* TweetButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TweetButtonOnClicked.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1742,8 +1736,6 @@
 		DC12FB771744D21400480D31 /* Cocos2Dx */ = {
 			isa = PBXGroup;
 			children = (
-				FB3393B317BE49E300A12A5A /* Social */,
-				FB3393A717BE3FEB00A12A5A /* GetPresent */,
 				DC12FB781744D21400480D31 /* Resources */,
 				DC12FB901744D21400480D31 /* ios */,
 				DC12FB991744D21400480D31 /* libs */,
@@ -1756,13 +1748,9 @@
 		DC12FB781744D21400480D31 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				FB33939F17BE3C1600A12A5A /* GreenBox.png */,
-				FB3393A017BE3C1600A12A5A /* SubmitButton.png */,
-				FB3393A117BE3C1600A12A5A /* SubmitButtonOnClicked.png */,
-=======
+				FB50413C17BE65C400A8EE62 /* GetPresent */,
+				FB50414117BE65C400A8EE62 /* Social */,
 				847F0EEC17BE2BC500DCA90A /* BGMs */,
->>>>>>> 8c6390cf5abedffc9e64b292f326b4a172258542
 				8485C94517BB1F3C001B939A /* Game */,
 				8485C94C17BB1F3C001B939A /* Items */,
 				8485C95917BB1F3C001B939A /* Setting */,
@@ -2849,8 +2837,8 @@
 				849A788B17A7AFF700782C50 /* TPClean.cpp */,
 				849A788C17A7AFF700782C50 /* TPDebug.cpp */,
 				DE0606E717ABB51800191B1B /* TPDefinition.h */,
-				FB33939C17BE3C0000A12A5A /* TPEndGameScreen.cpp */,
-				FB33939D17BE3C0000A12A5A /* TPEndGameScreen.h */,
+				FB50413617BE65AD00A8EE62 /* TPEndGameScreen.cpp */,
+				FB50413717BE65AD00A8EE62 /* TPEndGameScreen.h */,
 				849A78E817AA27C200782C50 /* TPItem.cpp */,
 				DE22A42817A7C40A00B2FBC7 /* TPItemObject.cpp */,
 				DE22A42917A7C40A00B2FBC7 /* TPItemObject.h */,
@@ -2861,10 +2849,10 @@
 				849A789117A7AFF700782C50 /* TPObjectExtension.cpp */,
 				849A789217A7AFF700782C50 /* TPObjectExtension.h */,
 				849A789317A7AFF700782C50 /* TPParticles.cpp */,
+				FB50413917BE65B600A8EE62 /* TPSocial.cpp */,
+				FB50413A17BE65B600A8EE62 /* TPSocial.h */,
 				849A789417A7AFF700782C50 /* TPSwiped.cpp */,
 				8491456817BCA6C000E41006 /* TPTopScreen.cpp */,
-				FB3393B017BE462600A12A5A /* TPSocial.cpp */,
-				FB3393B117BE462600A12A5A /* TPSocial.h */,
 				8491456917BCA6C000E41006 /* TPTopScreen.h */,
 				849A789517A7AFF700782C50 /* TPTouch.cpp */,
 				8491456517BC83EE00E41006 /* TPUser.cpp */,
@@ -2873,30 +2861,30 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		FB3393A717BE3FEB00A12A5A /* GetPresent */ = {
+		FB50413C17BE65C400A8EE62 /* GetPresent */ = {
 			isa = PBXGroup;
 			children = (
-				FB3393AE17BE426E00A12A5A /* WhiteBox.png */,
-				FB3393AA17BE40F800A12A5A /* SendButton.png */,
-				FB3393AB17BE40F800A12A5A /* SendButtonOnClicked.png */,
-				FB3393A817BE3FEB00A12A5A /* GetPresentBG.png */,
+				FB50413D17BE65C400A8EE62 /* GetPresentBG.png */,
+				FB50413E17BE65C400A8EE62 /* SendButton.png */,
+				FB50413F17BE65C400A8EE62 /* SendButtonOnClicked.png */,
+				FB50414017BE65C400A8EE62 /* WhiteBox.png */,
 			);
 			name = GetPresent;
 			path = Resources/GetPresent;
 			sourceTree = "<group>";
 		};
-		FB3393B317BE49E300A12A5A /* Social */ = {
+		FB50414117BE65C400A8EE62 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				FB3393B417BE49E300A12A5A /* CloseButton.png */,
-				FB3393B517BE49E300A12A5A /* CloseButtonOnClicked.png */,
-				FB3393B617BE49E300A12A5A /* FbButton.png */,
-				FB3393B717BE49E300A12A5A /* FbButtonOnClicked.png */,
-				FB3393B817BE49E300A12A5A /* LineButton.png */,
-				FB3393B917BE49E300A12A5A /* LineButtonOnClicked.png */,
-				FB3393BA17BE49E300A12A5A /* SocialBG.png */,
-				FB3393BB17BE49E300A12A5A /* TweetButton.png */,
-				FB3393BC17BE49E300A12A5A /* TweetButtonOnClicked.png */,
+				FB50414217BE65C400A8EE62 /* CloseButton.png */,
+				FB50414317BE65C400A8EE62 /* CloseButtonOnClicked.png */,
+				FB50414417BE65C400A8EE62 /* FbButton.png */,
+				FB50414517BE65C400A8EE62 /* FbButtonOnClicked.png */,
+				FB50414617BE65C400A8EE62 /* LineButton.png */,
+				FB50414717BE65C400A8EE62 /* LineButtonOnClicked.png */,
+				FB50414817BE65C400A8EE62 /* SocialBG.png */,
+				FB50414917BE65C400A8EE62 /* TweetButton.png */,
+				FB50414A17BE65C400A8EE62 /* TweetButtonOnClicked.png */,
 			);
 			name = Social;
 			path = Resources/Social;
@@ -3152,24 +3140,6 @@
 				847F0EE717BDC61700DCA90A /* TakasuScore.png in Resources */,
 				847F0EE917BDD1E600DCA90A /* BestScore.png in Resources */,
 				847F0EEB17BDD64700DCA90A /* poppoItemLabel.png in Resources */,
-<<<<<<< HEAD
-				FB3393A217BE3C1600A12A5A /* GreenBox.png in Resources */,
-				FB3393A317BE3C1600A12A5A /* SubmitButton.png in Resources */,
-				FB3393A417BE3C1600A12A5A /* SubmitButtonOnClicked.png in Resources */,
-				FB3393A917BE3FEB00A12A5A /* GetPresentBG.png in Resources */,
-				FB3393AC17BE40F800A12A5A /* SendButton.png in Resources */,
-				FB3393AD17BE40F800A12A5A /* SendButtonOnClicked.png in Resources */,
-				FB3393AF17BE426E00A12A5A /* WhiteBox.png in Resources */,
-				FB3393BD17BE49E300A12A5A /* CloseButton.png in Resources */,
-				FB3393BE17BE49E300A12A5A /* CloseButtonOnClicked.png in Resources */,
-				FB3393BF17BE49E300A12A5A /* FbButton.png in Resources */,
-				FB3393C017BE49E300A12A5A /* FbButtonOnClicked.png in Resources */,
-				FB3393C117BE49E300A12A5A /* LineButton.png in Resources */,
-				FB3393C217BE49E300A12A5A /* LineButtonOnClicked.png in Resources */,
-				FB3393C317BE49E300A12A5A /* SocialBG.png in Resources */,
-				FB3393C417BE49E300A12A5A /* TweetButton.png in Resources */,
-				FB3393C517BE49E300A12A5A /* TweetButtonOnClicked.png in Resources */,
-=======
 				847F0EEE17BE2BC500DCA90A /* PoppoMelody.mp3 in Resources */,
 				8491FD3F17BE3EFD0074F257 /* Poppo1C.png in Resources */,
 				8491FD4017BE3EFD0074F257 /* Poppo2C.png in Resources */,
@@ -3181,7 +3151,19 @@
 				8491FD4717BE41AF0074F257 /* poppo_ranking_line.png in Resources */,
 				8491FD4917BE59360074F257 /* poppo_avatar_container.png in Resources */,
 				8491FD4B17BE59470074F257 /* poppo_ranking_first.png in Resources */,
->>>>>>> 8c6390cf5abedffc9e64b292f326b4a172258542
+				FB50414B17BE65C400A8EE62 /* GetPresentBG.png in Resources */,
+				FB50414C17BE65C400A8EE62 /* SendButton.png in Resources */,
+				FB50414D17BE65C400A8EE62 /* SendButtonOnClicked.png in Resources */,
+				FB50414E17BE65C400A8EE62 /* WhiteBox.png in Resources */,
+				FB50414F17BE65C400A8EE62 /* CloseButton.png in Resources */,
+				FB50415017BE65C400A8EE62 /* CloseButtonOnClicked.png in Resources */,
+				FB50415117BE65C400A8EE62 /* FbButton.png in Resources */,
+				FB50415217BE65C400A8EE62 /* FbButtonOnClicked.png in Resources */,
+				FB50415317BE65C400A8EE62 /* LineButton.png in Resources */,
+				FB50415417BE65C400A8EE62 /* LineButtonOnClicked.png in Resources */,
+				FB50415517BE65C400A8EE62 /* SocialBG.png in Resources */,
+				FB50415617BE65C400A8EE62 /* TweetButton.png in Resources */,
+				FB50415717BE65C400A8EE62 /* TweetButtonOnClicked.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3450,8 +3432,8 @@
 				849A78E917AA27C200782C50 /* TPItem.cpp in Sources */,
 				8491456717BC83EE00E41006 /* TPUser.cpp in Sources */,
 				8491456A17BCA6C000E41006 /* TPTopScreen.cpp in Sources */,
-				FB33939E17BE3C0000A12A5A /* TPEndGameScreen.cpp in Sources */,
-				FB3393B217BE462700A12A5A /* TPSocial.cpp in Sources */,
+				FB50413817BE65AD00A8EE62 /* TPEndGameScreen.cpp in Sources */,
+				FB50413B17BE65B600A8EE62 /* TPSocial.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

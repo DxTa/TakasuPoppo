@@ -81,5 +81,7 @@ void TPSocial::Tweet() {
 }
 
 void TPSocial::Close() {
-    
+    CCScene *mainScene = TPMainScreen::scene(true, TPUser::shareTPUser()->getUserScore());
+    CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
+    CCDirector::sharedDirector()->replaceScene(transition);
 }

@@ -34,7 +34,7 @@ bool TPEndGameScreen::init()
     
     //Email
     CCLabelTTF *emailLabel = CCLabelTTF::create("メールアドレス", "BankGothic Md BT", 30);
-    emailLabel->setPosition(ccp(w/2 - w/5, h*3.5f/8));
+    emailLabel->setPosition(ccp(w/2 - w/5, h*3.8f/8));
     this->addChild(emailLabel);
     
     editBoxUserEmail = CCEditBox::create(editBoxSize,CCScale9Sprite::create("WhiteBox.png"));
@@ -50,7 +50,7 @@ bool TPEndGameScreen::init()
     
     // Email Fail Message
     
-    emailInvalidMsg = CCLabelTTF::create("Invalid Email !! Please try again !!", "BankGothic Md BT", 24);
+    emailInvalidMsg = CCLabelTTF::create(" Invalid Email !! Please try again !!", "BankGothic Md BT", 24);
     emailInvalidMsg->setAnchorPoint(CCPointZero);
     emailInvalidMsg->setPosition(ccp(editBoxUserEmail->getPosition().x,
                                      editBoxUserEmail->getPosition().y - 30));
@@ -60,7 +60,7 @@ bool TPEndGameScreen::init()
      
     // name
     CCLabelTTF *nameLabel = CCLabelTTF::create("ニックネーム","BankGothic Md BT", 30);
-    nameLabel->setPosition(ccp(w/2 - w/5 - 10, h*4.6f/8));
+    nameLabel->setPosition(ccp(w/2 - w/5 - 10, h*4.8/8));
     this->addChild(nameLabel);
     editBoxUserName = CCEditBox::create(editBoxSize,CCScale9Sprite::create("WhiteBox.png"));
     editBoxUserName->setAnchorPoint(CCPointZero);

@@ -20,7 +20,7 @@ TPUser* TPUser::shareTPUser()
 }
 
 string TPUser::getUserName(){
-    return CCUserDefault::sharedUserDefault()->getStringForKey("UserName");
+    return CCUserDefault::sharedUserDefault()->getStringForKey("UserName", "");
 }
 
 void TPUser::setUserName(string name){
@@ -88,7 +88,8 @@ void TPUser::setCrystal(int crystal)
 
 bool TPUser::getExistUser()
 {
-  return CCUserDefault::sharedUserDefault()->getBoolForKey("ExistUser", false);
+    string UserName = this->getUserName();
+    return (!(UserName == ""));
 }
 
 void TPUser::setExistUser(bool existUser)

@@ -12,6 +12,9 @@
 #include <iostream>
 
 #include "cocos2d.h"
+#include "TPMainScreen.h"
+#include "TPUser.h"
+
 
 using namespace  cocos2d;
 USING_NS_CC;
