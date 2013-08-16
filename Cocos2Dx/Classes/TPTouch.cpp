@@ -21,6 +21,8 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
         CCPoint point = TakasuPoppo::tileCoorForPosition(touchLoc);
         if (point.x >= 0 || point.x <= 6 ||
             point.y >= 0 || point.y <= 6) {
+            returnNormalSprite(mainSprite);
+            
             TPObjectExtension *exObject = TakasuPoppo::coorToExObj(TakasuPoppo::tileCoorForPosition(touchLoc));
             if (exObject != NULL && exObject->getSprite() != NULL && exObject->getID() != 7) {
                 swipeRecognized = false;
@@ -34,28 +36,22 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         TPBlockSet* blockSet = new TPBlockSet(exObject, NULL, NULL, NULL, NULL, NULL, NULL, "hyperBlockC", exObject->getCoordination().x, exObject->getCoordination().y);
                         if(TakasuPoppo::destroyCheck(exObject, NULL)) toDestroyArray->addObject(blockSet);
                         
-                        returnNormalSprite(mainSprite);
+                        deleteMainSprite();
                         move = false;
                         swape = false;
                         return;
                     }
                     else{
-                        returnNormalSprite(mainSprite);
                         mainSprite = exObject;
                         makeSpriteTouched(mainSprite);
                     }
-                }
-                else
-                    returnNormalSprite(mainSprite);
-                    
+                }                    
             }
-            else returnNormalSprite(mainSprite);
             //============================ move by double click ===============
             
             if(move && !touchPosValidation(mainPoint)){
                 
                 TPObjectExtension *mainEx = TakasuPoppo::coorToExObj(mainPoint);
-                //returnNormalSprite(mainSprite);
                 CCPoint movePoint;
                 movePoint.setPoint(point.x, point.y);
                 if(mainEx != NULL && mainEx->getControlTrigger())
@@ -135,7 +131,6 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                 move = true;
                 swape = true;
                 mainPoint.setPoint(point.x, point.y);
-                //returnNormalSprite(mainSprite);
             }
 //            //=================================================================
         }

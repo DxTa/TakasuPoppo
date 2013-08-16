@@ -126,7 +126,6 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
     
     if(!swpObj->getControlTrigger() || !exObj->getControlTrigger() || isObjectMoving(swpObj) || isObjectMoving(exObj))
     {
-        returnNormalSprite(exObj);
         return ;
     }
     
@@ -213,12 +212,8 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
                     makeBlockToBeHBC(exObj);
                 }
             }
-            else
-                returnNormalSprite(exObj);
         }
     }
-    else
-        returnNormalSprite(exObj);
     //this->setTouchEnabled(true);
     
 }
@@ -281,11 +276,6 @@ void TakasuPoppo::swapTilesBack(TPObjectExtension *exObj, TPObjectExtension *swp
                                                               NULL));
             
     }
-    else
-    {
-        returnNormalSprite(exObj);
-        returnNormalSprite(swpObj);
-    }
 }
 
 void TakasuPoppo::switchControlable(TPObjectExtension *exObj) {
@@ -297,7 +287,7 @@ void TakasuPoppo::switchControlable(TPObjectExtension *exObj) {
 
 void TakasuPoppo::setTrueControlable(CCNode *sender, void* data)
 {
-    deleteMainSprite();
+ //   deleteMainSprite();
         TPObjectExtension * exObj = (TPObjectExtension*)data;
         if(exObj != NULL)
         {
@@ -307,7 +297,6 @@ void TakasuPoppo::setTrueControlable(CCNode *sender, void* data)
 //////            {
 //////                makeBlockToBeHBC(exObj);
 //////            }
-         //   returnNormalSprite(exObj);
         }
 }
 void TakasuPoppo::setFalseControlable(CCNode *sender, void* data)

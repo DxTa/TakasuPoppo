@@ -336,7 +336,7 @@ void TakasuPoppo::update(float dt) {
             
             TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedRight(exd);
+            TakasuPoppo::swipedRight(mainSprite);
             swipeRight = false;
            // mainSprite = NULL;
             swipeLeft = false;
@@ -350,7 +350,7 @@ void TakasuPoppo::update(float dt) {
             
             TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedLeft(exd);
+            TakasuPoppo::swipedLeft(mainSprite);
             swipeRight = false;
             //mainSprite = NULL;
             swipeLeft = false;
@@ -364,7 +364,7 @@ void TakasuPoppo::update(float dt) {
             
             TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedUp(exd);
+            TakasuPoppo::swipedUp(mainSprite);
             swipeRight = false;
             //mainSprite = NULL;
             swipeLeft = false;
@@ -376,7 +376,7 @@ void TakasuPoppo::update(float dt) {
         if (swipeDown && swape && !runningAfter) {
             
             TPObjectExtension* exd = mainSprite;
-            TakasuPoppo::swipedDown(exd);
+            TakasuPoppo::swipedDown(mainSprite);
             move =false;
             swipeRight = false;
            // mainSprite = NULL;

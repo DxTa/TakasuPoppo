@@ -10,11 +10,11 @@
 #include "TakasuPoppo.h"
 #include "TPBlockSet.h"
 void TakasuPoppo::cleanBlocks() {    
-    CCObject *object;
+    
     createB = false;
     if (toDestroyArray->count() != 0) {
         
-        
+        CCObject *object;
         CCARRAY_FOREACH(toDestroyArray, object) {            
             bool hyperA = false;
             bool hyperB = false;
@@ -81,7 +81,6 @@ void TakasuPoppo::cleanBlocks() {
                 
                 if(checkSwipe(blockSet)->getBlockType() >= 20)
                 {
-                    hyperA = false;
                     if (checkSwipe(blockSet)->getBlockType() == 21) {
                         cleanA(checkSwipe(blockSet));
                     }
@@ -149,34 +148,31 @@ void TakasuPoppo::cleanBlocks() {
                 currentBlockSet = NULL;
             }
         }
-    }
-    // ===================== create    hyperB ===============
-
-    CCObject* ox;
-    CCARRAY_FOREACH(toDestroyArray, ox)
-    {
-        TPBlockSet *ex = dynamic_cast<TPBlockSet*>(ox);
-        if(ex->getEx1() != NULL && ex->getEx1()->getBlockType() != 1 && ex->getEx1()->getBlockType() != 2 && ex->getEx1()->getBlockType() != 3 && ex->getEx1()->getBlockType() != 6 && ex->getEx1()->getBlockType() != 7 && ex->getEx1()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx1());
-        if(ex->getEx2() != NULL && ex->getEx2()->getBlockType() != 1 && ex->getEx2()->getBlockType() != 2 && ex->getEx2()->getBlockType() != 3 && ex->getEx2()->getBlockType() != 6 && ex->getEx2()->getBlockType() != 7 && ex->getEx2()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx2());
-        if(ex->getEx3() != NULL && ex->getEx3()->getBlockType() != 1 && ex->getEx3()->getBlockType() != 2 && ex->getEx3()->getBlockType() != 3 && ex->getEx3()->getBlockType() != 6 && ex->getEx3()->getBlockType() != 7 && ex->getEx3()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx3());
-        if(ex->getEx4() != NULL && ex->getEx4()->getBlockType() != 1 && ex->getEx4()->getBlockType() != 2 && ex->getEx4()->getBlockType() != 3 && ex->getEx4()->getBlockType() != 6 && ex->getEx4()->getBlockType() != 7 && ex->getEx4()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx4());
-        if(ex->getEx5() != NULL && ex->getEx5()->getBlockType() != 1 && ex->getEx5()->getBlockType() != 2 && ex->getEx5()->getBlockType() != 3 && ex->getEx5()->getBlockType() != 6 && ex->getEx5()->getBlockType() != 7 && ex->getEx5()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx5());
         
-        if(ex->getEx6() != NULL && ex->getEx6()->getBlockType() != 1 && ex->getEx6()->getBlockType() != 2 && ex->getEx6()->getBlockType() != 3 && ex->getEx6()->getBlockType() != 6 && ex->getEx6()->getBlockType() != 7 && ex->getEx6()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx6());
-        if(ex->getEx7() != NULL && ex->getEx7()->getBlockType() != 1 && ex->getEx7()->getBlockType() != 2 && ex->getEx7()->getBlockType() != 3 && ex->getEx7()->getBlockType() != 6 && ex->getEx7()->getBlockType() != 7 && ex->getEx7()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx7());
         
-
+        CCObject* ox;
+        CCARRAY_FOREACH(toDestroyArray, ox)
+        {
+            TPBlockSet *ex = dynamic_cast<TPBlockSet*>(ox);
+            if(ex->getEx1() != NULL && ex->getEx1()->getBlockType() != 1 && ex->getEx1()->getBlockType() != 2 && ex->getEx1()->getBlockType() != 3 && ex->getEx1()->getBlockType() != 6 && ex->getEx1()->getBlockType() != 7 && ex->getEx1()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx1());
+            if(ex->getEx2() != NULL && ex->getEx2()->getBlockType() != 1 && ex->getEx2()->getBlockType() != 2 && ex->getEx2()->getBlockType() != 3 && ex->getEx2()->getBlockType() != 6 && ex->getEx2()->getBlockType() != 7 && ex->getEx2()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx2());
+            if(ex->getEx3() != NULL && ex->getEx3()->getBlockType() != 1 && ex->getEx3()->getBlockType() != 2 && ex->getEx3()->getBlockType() != 3 && ex->getEx3()->getBlockType() != 6 && ex->getEx3()->getBlockType() != 7 && ex->getEx3()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx3());
+            if(ex->getEx4() != NULL && ex->getEx4()->getBlockType() != 1 && ex->getEx4()->getBlockType() != 2 && ex->getEx4()->getBlockType() != 3 && ex->getEx4()->getBlockType() != 6 && ex->getEx4()->getBlockType() != 7 && ex->getEx4()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx4());
+            if(ex->getEx5() != NULL && ex->getEx5()->getBlockType() != 1 && ex->getEx5()->getBlockType() != 2 && ex->getEx5()->getBlockType() != 3 && ex->getEx5()->getBlockType() != 6 && ex->getEx5()->getBlockType() != 7 && ex->getEx5()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx5());
+            
+            if(ex->getEx6() != NULL && ex->getEx6()->getBlockType() != 1 && ex->getEx6()->getBlockType() != 2 && ex->getEx6()->getBlockType() != 3 && ex->getEx6()->getBlockType() != 6 && ex->getEx6()->getBlockType() != 7 && ex->getEx6()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx6());
+            if(ex->getEx7() != NULL && ex->getEx7()->getBlockType() != 1 && ex->getEx7()->getBlockType() != 2 && ex->getEx7()->getBlockType() != 3 && ex->getEx7()->getBlockType() != 6 && ex->getEx7()->getBlockType() != 7 && ex->getEx7()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx7());
+            
+            
+        }
     }
-    //=======================================================
-    
-
     toDestroyArray->removeAllObjects();
     
 }
@@ -207,7 +203,8 @@ void TakasuPoppo::afterClean(){
                                                                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable),(void*)exObj),
                                                                CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),
                                                                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj2),
-                                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj), NULL));
+                                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj),
+                                                               NULL));
                     break;
                 }
             }
