@@ -32,6 +32,8 @@ bool TPMainScreen::init(bool isGameOver, int score) {
         CCLog("Score: %i", gameScoreOfNow);
     }
     
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("", true);
+    
     //===================== New UI =========================
     heartCount = 1;
     itemShadeArray = new CCArray;
@@ -45,6 +47,27 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     rankingContainer->setPosition(ccp(winSize.width / 2,
                                       winSize.height / 2 + 50));
     this->addChild(rankingContainer, 101, 101);
+    
+    rankingBestScoreLabel = CCSprite::create("BestScore.png");
+    rankingBestScoreLabel->setPosition(ccp(rankingContainer->getContentSize().width / 4 - 40,
+                                           rankingContainer->getContentSize().height / 5 + 30));
+    rankingContainer->addChild(rankingBestScoreLabel, 103, 182);
+    
+    char playerName[100];
+    sprintf(playerName, "%s", "Player1");
+    rankingPlayerName = CCLabelTTF::create(playerName, "Berlin Sans FB", 30,
+                                           CCSizeMake(200, 50), kCCTextAlignmentLeft);
+    rankingPlayerName->setPosition(ccp(rankingContainer->getContentSize(). width / 2,
+                                       rankingContainer->getContentSize().height / 5));
+    rankingContainer->addChild(rankingPlayerName, 103, 183);
+    
+    char charBestScore[100];
+    sprintf(charBestScore,"%i",TPUser::shareTPUser()->getUserScore());
+    rankingPlayerBestScore = CCLabelTTF::create(charBestScore, "Berlin Sans FB", 60,
+                                                CCSizeMake(200, 50), kCCTextAlignmentLeft);
+    rankingPlayerBestScore->setPosition(ccp(rankingContainer->getContentSize(). width / 2,
+                                            rankingContainer->getContentSize().height / 5 - 30));
+    rankingContainer->addChild(rankingPlayerBestScore, 103, 184);
     
     heartContainer = CCSprite::create("poppo_hearts_container.png");
     heartContainer->setPosition(ccp(rankingContainer->getContentSize().width / 2,
@@ -1139,22 +1162,23 @@ CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int
     //
     avatar = CCSprite::create("Poppo7B.png");
     avatar->setTag(151);
-    avatar->setPosition(ccp(30, -150));
+    avatar->setPosition(ccp(70, -150));
     cell->addChild(avatar);
     Gamer *gamer = (Gamer*)listGamer->objectAtIndex(index);
     CCString *scoreGamer = CCString::createWithFormat("%d",gamer->getScore());
-    CCLabelTTF *scoreLabel = CCLabelTTF::create(scoreGamer->getCString(), "Helvetica", 35.0);
-    scoreLabel->setColor(ccYELLOW);
-    scoreLabel->setAnchorPoint(ccp(1, 0));
-    scoreLabel->setPosition(ccp(150,-180));
+    CCLabelTTF *scoreLabel = CCLabelTTF::create(scoreGamer->getCString(), "Helvetica",
+                                                50.0, CCSizeMake(300, 70), kCCTextAlignmentLeft);
+    
+    scoreLabel->setColor(ccWHITE);
+    scoreLabel->setPosition(ccp(290, -170));
     scoreLabel->setTag(151);
     cell->addChild(scoreLabel);
     
-    CCLabelTTF *nameLabel = CCLabelTTF::create(gamer->getName().c_str(), "Helvetica", 30.0);
-    nameLabel->setAnchorPoint(CCPointZero);
-    nameLabel->setColor(ccYELLOW);
-    nameLabel->setPosition(ccp(100, -150));
-    cell->addChild(nameLabel,151);
+    CCLabelTTF *nameLabel = CCLabelTTF::create(gamer->getName().c_str(), "Helvetica",
+                                               30.0, CCSizeMake(200, 50), kCCTextAlignmentLeft);
+    nameLabel->setColor(ccWHITE);
+    nameLabel->setPosition(ccp(240, -130));
+    cell->addChild(nameLabel, 151);
     return cell;
 }
 
