@@ -380,6 +380,7 @@ public:
     int fallDistance = 0; // after clean and generate block fall distance is the same.
     void setFallDistance(TPBlockSet* blockSet);
     void setFalseControlableBlockSet(CCNode *sender, void* data);
+    bool checkRefresh();
     
     //ITEM function
     bool lastScore();
@@ -410,6 +411,12 @@ public:
     bool checkHorMatch(CCPoint coor , int type);
     bool isObjectMoving(TPObjectExtension *obj);
     bool floatCompare(float x, float y, float epsilon);
+    
+    //change sprite when touch
+    void makeSpriteTouched(TPObjectExtension *exObj);
+    void returnNormalSprite(TPObjectExtension *exObj);
+    void makeSpriteTouched(CCNode* sender, void* data);
+    void returnNormalSprite(CCNode* sender, void* data);
 };
 
 #endif

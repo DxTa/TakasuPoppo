@@ -924,10 +924,10 @@ void TakasuPoppo::createSpecialBlock(TPObjectExtension *exObj, int blockType){
         string str = static_cast<ostringstream*>( &(ostringstream() << imageId) )->str();
         switch (blockType) {
             case HBA_BLOCK_TYPE:
-                str = "Poppo" + str + "HyperA.png";
+                str = "Poppo" + str + "B.png";
                 break;
             case HBB_BLOCK_TYPE:
-                str = "Poppo" + str + "HyperB.png";
+                str = "Poppo" + str + "C.png";
                 break;
             case MB1_BLOCK_TYPE:
                 str = "Poppo" + str + "Mission1.png";
