@@ -101,6 +101,7 @@ private:
     
     //SCORE
     CCLabelTTF *lbScore;
+    CCLabelBMFont *bmScore;
     int score = 0;
     float ComboScoreRequired = 1;
     
@@ -143,6 +144,9 @@ private:
     
     bool createB = false;
 
+    //Animation of burning old man
+    bool burningTakasuOn;
+    
 public:
     CCArray* currentBlockSet = NULL;            // keep track of the current block set
     
@@ -304,6 +308,8 @@ public:
     void spriteChange(CCNode *sender, void* data);
     
     void popAnimation(CCNode *sender, void* data);
+    
+    void burnOnTakasu();
 #pragma mark Debug
     void setupDebugButton();
     void switchGrid();
@@ -365,8 +371,8 @@ public:
     float logicDelayTime = LOGIC_DELAY;
     bool isMatchListDone = false;
     // set logic Delay time in a dynamic way
-    int acMaxDistance; // after clean max distance: measure by the numbers of moves, max is 6
-    int gbMaxDistance; // generate block max distance: max is 6
+    int fallDistance = 0; // after clean and generate block fall distance is the same.
+    void setFallDistance(TPBlockSet* blockSet);
     
     //ITEM function
     bool lastScore();
@@ -380,19 +386,12 @@ public:
     
     //moveto
     void setControl();
-    void afterCleanRunning(cocos2d::CCNode *sender, void *data);
-    void releaseAfterRunning(cocos2d::CCNode *sender, void *data);
     void setFalseControl();
     void setTrueControlable(CCNode *sender, void* data);
     void setFalseControlable(CCNode *sender, void* data);
     void deleteMainSprite();
     
-    void runningSwap(cocos2d::CCNode *sender, void *data);
     bool swapruning = false;
-    void notRunningSwap(cocos2d::CCNode *sender, void *data);
-    bool checkAllRunning();
-    void refreshMoving();
-    bool checkAfterCleanRunning();
     //remove sprite
     void removeSprite(CCNode* sender, void* data);
     bool checkUpdate();

@@ -22,6 +22,18 @@
 		8434C47D176EB5EE00C8E722 /* Candy7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8434C47A176EB5EE00C8E722 /* Candy7.png */; };
 		843B6F2517681F25008D8A4C /* Candy.png in Resources */ = {isa = PBXBuildFile; fileRef = 843B6F2417681F25008D8A4C /* Candy.png */; };
 		8467A87817BB937D0082F3E8 /* poppo_scoreClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A87717BB937D0082F3E8 /* poppo_scoreClose.png */; };
+		8467A88F17BCCFC60082F3E8 /* BottomCover.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A88917BCCFC60082F3E8 /* BottomCover.png */; };
+		8467A89017BCCFC60082F3E8 /* Go.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A88A17BCCFC60082F3E8 /* Go.png */; };
+		8467A89117BCCFC60082F3E8 /* LastBonus.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A88B17BCCFC60082F3E8 /* LastBonus.png */; };
+		8467A89217BCCFC60082F3E8 /* poppo_background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A88C17BCCFC60082F3E8 /* poppo_background2.png */; };
+		8467A89317BCCFC60082F3E8 /* Ready.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A88D17BCCFC60082F3E8 /* Ready.png */; };
+		8467A89417BCCFC60082F3E8 /* TimeUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 8467A88E17BCCFC60082F3E8 /* TimeUp.png */; };
+		8467A89717BCD7100082F3E8 /* burningTakasu.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8467A89517BCD7100082F3E8 /* burningTakasu.plist */; };
+		8467A89817BCD7100082F3E8 /* burningTakasu.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 8467A89617BCD7100082F3E8 /* burningTakasu.pvr.ccz */; };
+		847F0EE617BDC61700DCA90A /* TakasuScore.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EE417BDC61700DCA90A /* TakasuScore.fnt */; };
+		847F0EE717BDC61700DCA90A /* TakasuScore.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EE517BDC61700DCA90A /* TakasuScore.png */; };
+		847F0EE917BDD1E600DCA90A /* BestScore.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EE817BDD1E600DCA90A /* BestScore.png */; };
+		847F0EEB17BDD64700DCA90A /* poppoItemLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = 847F0EEA17BDD64700DCA90A /* poppoItemLabel.png */; };
 		8485C96117BB1F3C001B939A /* ComboBarIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94617BB1F3C001B939A /* ComboBarIn.png */; };
 		8485C96217BB1F3C001B939A /* ComboBarOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94717BB1F3C001B939A /* ComboBarOut.png */; };
 		8485C96317BB1F3C001B939A /* ComboGaugeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */; };
@@ -481,6 +493,18 @@
 		8434C47A176EB5EE00C8E722 /* Candy7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Candy7.png; sourceTree = "<group>"; };
 		843B6F2417681F25008D8A4C /* Candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Candy.png; sourceTree = "<group>"; };
 		8467A87717BB937D0082F3E8 /* poppo_scoreClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_scoreClose.png; sourceTree = "<group>"; };
+		8467A88917BCCFC60082F3E8 /* BottomCover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomCover.png; sourceTree = "<group>"; };
+		8467A88A17BCCFC60082F3E8 /* Go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Go.png; sourceTree = "<group>"; };
+		8467A88B17BCCFC60082F3E8 /* LastBonus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LastBonus.png; sourceTree = "<group>"; };
+		8467A88C17BCCFC60082F3E8 /* poppo_background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_background2.png; sourceTree = "<group>"; };
+		8467A88D17BCCFC60082F3E8 /* Ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ready.png; sourceTree = "<group>"; };
+		8467A88E17BCCFC60082F3E8 /* TimeUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TimeUp.png; sourceTree = "<group>"; };
+		8467A89517BCD7100082F3E8 /* burningTakasu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = burningTakasu.plist; sourceTree = "<group>"; };
+		8467A89617BCD7100082F3E8 /* burningTakasu.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; path = burningTakasu.pvr.ccz; sourceTree = "<group>"; };
+		847F0EE417BDC61700DCA90A /* TakasuScore.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TakasuScore.fnt; sourceTree = "<group>"; };
+		847F0EE517BDC61700DCA90A /* TakasuScore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TakasuScore.png; sourceTree = "<group>"; };
+		847F0EE817BDD1E600DCA90A /* BestScore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BestScore.png; sourceTree = "<group>"; };
+		847F0EEA17BDD64700DCA90A /* poppoItemLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppoItemLabel.png; sourceTree = "<group>"; };
 		8485C94617BB1F3C001B939A /* ComboBarIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarIn.png; sourceTree = "<group>"; };
 		8485C94717BB1F3C001B939A /* ComboBarOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboBarOut.png; sourceTree = "<group>"; };
 		8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ComboGaugeCircle.png; sourceTree = "<group>"; };
@@ -1285,6 +1309,13 @@
 		8485C94517BB1F3C001B939A /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				847F0EE817BDD1E600DCA90A /* BestScore.png */,
+				8467A88917BCCFC60082F3E8 /* BottomCover.png */,
+				8467A88A17BCCFC60082F3E8 /* Go.png */,
+				8467A88B17BCCFC60082F3E8 /* LastBonus.png */,
+				8467A88C17BCCFC60082F3E8 /* poppo_background2.png */,
+				8467A88D17BCCFC60082F3E8 /* Ready.png */,
+				8467A88E17BCCFC60082F3E8 /* TimeUp.png */,
 				8485C94617BB1F3C001B939A /* ComboBarIn.png */,
 				8485C94717BB1F3C001B939A /* ComboBarOut.png */,
 				8485C94817BB1F3C001B939A /* ComboGaugeCircle.png */,
@@ -1299,6 +1330,7 @@
 		8485C94C17BB1F3C001B939A /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				847F0EEA17BDD64700DCA90A /* poppoItemLabel.png */,
 				8485C94D17BB1F3C001B939A /* itemNotAvailable.png */,
 				8485C94E17BB1F3C001B939A /* ItemShade.png */,
 				8485C94F17BB1F3C001B939A /* poppoItem1.png */,
@@ -1421,6 +1453,8 @@
 		849A78C317A7B0CE00782C50 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				847F0EE417BDC61700DCA90A /* TakasuScore.fnt */,
+				847F0EE517BDC61700DCA90A /* TakasuScore.png */,
 				849A78C417A7B0CE00782C50 /* Berlin Sans FB Demi.TTF */,
 				849A78C517A7B0CE00782C50 /* Berlin Sans FB.TTF */,
 				849A78C617A7B0CE00782C50 /* BRLNSB.TTF */,
@@ -1507,6 +1541,8 @@
 		84AC3093179658AE0073C6D5 /* Pop */ = {
 			isa = PBXGroup;
 			children = (
+				8467A89517BCD7100082F3E8 /* burningTakasu.plist */,
+				8467A89617BCD7100082F3E8 /* burningTakasu.pvr.ccz */,
 				DEF5F5E817A9F77D0063C3BA /* Poppo1Mission3.png */,
 				DEF5F5E917A9F77D0063C3BA /* Poppo2Mission3.png */,
 				DEF5F5EA17A9F77D0063C3BA /* Poppo3Mission3.png */,
@@ -2983,6 +3019,18 @@
 				8485C97E17BB4249001B939A /* poppo_empty_container.png in Resources */,
 				8485C97F17BB4249001B939A /* poppo_hintFrame.png in Resources */,
 				8467A87817BB937D0082F3E8 /* poppo_scoreClose.png in Resources */,
+				8467A88F17BCCFC60082F3E8 /* BottomCover.png in Resources */,
+				8467A89017BCCFC60082F3E8 /* Go.png in Resources */,
+				8467A89117BCCFC60082F3E8 /* LastBonus.png in Resources */,
+				8467A89217BCCFC60082F3E8 /* poppo_background2.png in Resources */,
+				8467A89317BCCFC60082F3E8 /* Ready.png in Resources */,
+				8467A89417BCCFC60082F3E8 /* TimeUp.png in Resources */,
+				8467A89717BCD7100082F3E8 /* burningTakasu.plist in Resources */,
+				8467A89817BCD7100082F3E8 /* burningTakasu.pvr.ccz in Resources */,
+				847F0EE617BDC61700DCA90A /* TakasuScore.fnt in Resources */,
+				847F0EE717BDC61700DCA90A /* TakasuScore.png in Resources */,
+				847F0EE917BDD1E600DCA90A /* BestScore.png in Resources */,
+				847F0EEB17BDD64700DCA90A /* poppoItemLabel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3261,8 +3309,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3285,8 +3333,8 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PROVISIONING_PROFILE = "839123D0-D590-454D-88A6-D8572824C3D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
+				PROVISIONING_PROFILE = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3296,9 +3344,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -3319,9 +3367,9 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "839123D0-D590-454D-88A6-D8572824C3D9";
-				"PROVISIONING_PROFILE[sdk=*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
+				PROVISIONING_PROFILE = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
+				"PROVISIONING_PROFILE[sdk=*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3331,8 +3379,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3349,8 +3397,8 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "839123D0-D590-454D-88A6-D8572824C3D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
+				PROVISIONING_PROFILE = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3360,9 +3408,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hoa Le quang (K96RAB5RS7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Minh Nghiem (LE4D3QM9ST)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cocos2Dx/Prefix.pch;
@@ -3378,9 +3426,9 @@
 					"-lsqlite3",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "839123D0-D590-454D-88A6-D8572824C3D9";
-				"PROVISIONING_PROFILE[sdk=*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "839123D0-D590-454D-88A6-D8572824C3D9";
+				PROVISIONING_PROFILE = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
+				"PROVISIONING_PROFILE[sdk=*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0D4BB80-469A-4899-BCE1-90E1EB6F1E12";
 				USER_HEADER_SEARCH_PATHS = "\"Cocos2Dx/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

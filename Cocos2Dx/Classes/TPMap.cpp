@@ -13,7 +13,7 @@ void TakasuPoppo::addTileMap () {
     map = CCTMXTiledMap::create("90x90TileMap.tmx");
     this->addChild(map, -1, -1);
     layer = map->layerNamed("Layer");
-    layer->setPosition(0, 90);
+    layer->setPosition(4, 180);
     TakasuPoppo::createFixture();
     
     CCArray *pChildrenArray = map->getChildren();
@@ -53,8 +53,8 @@ void TakasuPoppo::createFixture() {
             sprintf(spriteName, "%s.png", tileName[randomTile]);
             
             CCSprite *randomTileSprite = CCSprite::create(spriteName);
-            CCPoint tilePosition = ccp(tileSprite->getPositionX() + tileSprite->getContentSize().width/2,
-                                       tileSprite->getPositionY() + 90 + tileSprite->getContentSize().height/2);
+            CCPoint tilePosition = ccp(tileSprite->getPositionX() + 4 +tileSprite->getContentSize().width/2,
+                                       tileSprite->getPositionY() + 180 + tileSprite->getContentSize().height/2);
             CCPoint tileCoordination = TakasuPoppo::tileCoorForPosition(tilePosition);
             randomTileSprite->setPosition(ccp(tilePosition.x, tilePosition.y + 10));
             CCObject *object = colorArray->objectAtIndex(m_gid - 1);
@@ -70,10 +70,13 @@ void TakasuPoppo::createFixture() {
 }
 
 CCPoint TakasuPoppo::tileCoorForPosition(CCPoint position) {
-    float x = position.x / map->getTileSize().width;
-    float y = ((winSize.height - (winSize.height - layer->getContentSize().height)) - position.y + 90) /
-    (map->getTileSize().height);
-    CCPoint transPos = ccp(floor(x), floor(y));
+    CCLog("pos %f %f", position.x, position.y);
+    float x = (position.x - 4) / 90;
+    int intX = (int)floor(x);
+    float y = 6 - (position.y - 180) / 90;
+    int intY = (int)ceil(y);
+    CCLog("posmap %d %d", intX, intY);
+    CCPoint transPos = CCPointMake(intX, intY);
     return transPos;
 }
 

@@ -11,7 +11,7 @@
 
 #define FONT_SIZE 30
 // Combo and timer system
-#define HBC_COMBO_MAXCOUNT 3
+#define HBC_COMBO_MAXCOUNT 8
 #define HBC_COMBO_MAXTIME 5
 
 #define FEVER_COMBO_REQUIRED 5
@@ -38,7 +38,7 @@
 
 #define HBC_SCALE_DELAY 0.2
 
-#define PLAY_TIME 60
+#define PLAY_TIME 10
 #define GAUGE_PERIOD 2 // after this period, if no more combo is created, minus gauge combo by 1
 // score system
 #define SCORE_THREE  200
@@ -56,7 +56,7 @@
 #define SPECIAL_ITEM_4_ID 4 // MISSION BLOCK 3
 #define SPECIAL_ITEM_5_ID 5
 
-
+#define SWIPE_DISTANCE 15 //In pixels
 // Block Type System
 #define NORMAL_BLOCK_TYPE 0
 #define HBA_BLOCK_TYPE 1

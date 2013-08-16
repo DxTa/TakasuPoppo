@@ -231,6 +231,9 @@ void TakasuPoppo::matchList() {
         CCARRAY_FOREACH(toDestroyArray, obj)
         {
             TPBlockSet* blockset = dynamic_cast<TPBlockSet*>(obj);
+            // check and set fallDistance here
+            setFallDistance(blockset);
+            
             if(blockset->getEx1() != NULL && checkCreateHyperB(blockset->getEx1()->getCoordination(), blockset->getEx1()->getID()))
             {
                 if (blockset->getEx1()->getBlockType() == 2 || blockset->getEx1()->getBlockType() == 12) {
@@ -242,6 +245,18 @@ void TakasuPoppo::matchList() {
                 if (blockset->getEx1()->getBlockType() == 0 || blockset->getEx1()->getBlockType() == 10) {
                     blockset->getEx1()->setBlockType(20);
                 }
+                if (blockset->getEx1()->getBlockType() == 6 || blockset->getEx1()->getBlockType() == 16) {
+                    blockset->getEx1()->setBlockType(26);
+                }
+                if (blockset->getEx1()->getBlockType() == 7 || blockset->getEx1()->getBlockType() == 17) {
+                    blockset->getEx1()->setBlockType(27);
+                }
+                if (blockset->getEx1()->getBlockType() == 8 || blockset->getEx1()->getBlockType() == 18) {
+                    blockset->getEx1()->setBlockType(28);
+                }
+
+
+
             }
             if(blockset->getEx2() != NULL && checkCreateHyperB(blockset->getEx2()->getCoordination(), blockset->getEx2()->getID()))
             {
@@ -253,6 +268,15 @@ void TakasuPoppo::matchList() {
                 }
                 if (blockset->getEx2()->getBlockType() == 0 || blockset->getEx2()->getBlockType() == 10) {
                     blockset->getEx2()->setBlockType(20);
+                }
+                if (blockset->getEx2()->getBlockType() == 6 || blockset->getEx2()->getBlockType() == 16) {
+                    blockset->getEx2()->setBlockType(26);
+                }
+                if (blockset->getEx2()->getBlockType() == 7 || blockset->getEx2()->getBlockType() == 17) {
+                    blockset->getEx2()->setBlockType(27);
+                }
+                if (blockset->getEx2()->getBlockType() == 8 || blockset->getEx2()->getBlockType() == 18) {
+                    blockset->getEx2()->setBlockType(28);
                 }
             }
             if(blockset->getEx3() != NULL && checkCreateHyperB(blockset->getEx3()->getCoordination(), blockset->getEx3()->getID()))
@@ -266,6 +290,15 @@ void TakasuPoppo::matchList() {
                 if (blockset->getEx3()->getBlockType() == 0 || blockset->getEx3()->getBlockType() == 10) {
                     blockset->getEx3()->setBlockType(20);
                 }
+                if (blockset->getEx3()->getBlockType() == 6 || blockset->getEx3()->getBlockType() == 16) {
+                    blockset->getEx3()->setBlockType(26);
+                }
+                if (blockset->getEx3()->getBlockType() == 7 || blockset->getEx3()->getBlockType() == 17) {
+                    blockset->getEx3()->setBlockType(27);
+                }
+                if (blockset->getEx3()->getBlockType() == 8 || blockset->getEx3()->getBlockType() == 18) {
+                    blockset->getEx3()->setBlockType(28);
+                }
             }
             if(blockset->getEx4() != NULL && checkCreateHyperB(blockset->getEx4()->getCoordination(), blockset->getEx4()->getID()))
             {
@@ -278,6 +311,18 @@ void TakasuPoppo::matchList() {
                 if (blockset->getEx4()->getBlockType() == 0 || blockset->getEx4()->getBlockType() == 10) {
                     blockset->getEx4()->setBlockType(20);
                 }
+                if (blockset->getEx4()->getBlockType() == 6 || blockset->getEx4()->getBlockType() == 16) {
+                    blockset->getEx4()->setBlockType(26);
+                }
+
+                if (blockset->getEx4()->getBlockType() == 7 || blockset->getEx4()->getBlockType() == 17) {
+                    blockset->getEx4()->setBlockType(27);
+                }
+
+                if (blockset->getEx4()->getBlockType() == 8 || blockset->getEx4()->getBlockType() == 18) {
+                    blockset->getEx4()->setBlockType(28);
+                }
+
             }
             if(blockset->getEx5() != NULL && checkCreateHyperB(blockset->getEx5()->getCoordination(), blockset->getEx5()->getID()))
             {
@@ -289,6 +334,15 @@ void TakasuPoppo::matchList() {
                 }
                 if (blockset->getEx5()->getBlockType() == 0 || blockset->getEx5()->getBlockType() == 10) {
                     blockset->getEx5()->setBlockType(20);
+                }
+                if (blockset->getEx5()->getBlockType() == 6 || blockset->getEx5()->getBlockType() == 16) {
+                    blockset->getEx5()->setBlockType(26);
+                }
+                if (blockset->getEx5()->getBlockType() == 7 || blockset->getEx5()->getBlockType() == 17) {
+                    blockset->getEx5()->setBlockType(27);
+                }
+                if (blockset->getEx5()->getBlockType() == 8 || blockset->getEx5()->getBlockType() == 18) {
+                    blockset->getEx5()->setBlockType(28);
                 }
             }
             if(blockset->getEx6() != NULL && checkCreateHyperB(blockset->getEx6()->getCoordination(), blockset->getEx6()->getID()))
@@ -302,6 +356,18 @@ void TakasuPoppo::matchList() {
                 if (blockset->getEx6()->getBlockType() == 0 || blockset->getEx6()->getBlockType() == 10) {
                     blockset->getEx6()->setBlockType(20);
                 }
+                if (blockset->getEx6()->getBlockType() == 6 || blockset->getEx6()->getBlockType() == 16) {
+                    blockset->getEx6()->setBlockType(26);
+                }
+
+                if (blockset->getEx6()->getBlockType() == 7 || blockset->getEx6()->getBlockType() == 17) {
+                    blockset->getEx6()->setBlockType(27);
+                }
+
+                if (blockset->getEx6()->getBlockType() == 8 || blockset->getEx6()->getBlockType() == 18) {
+                    blockset->getEx6()->setBlockType(28);
+                }
+
             }
             if(blockset->getEx7() != NULL && checkCreateHyperB(blockset->getEx7()->getCoordination(), blockset->getEx7()->getID()))
             {
@@ -313,6 +379,15 @@ void TakasuPoppo::matchList() {
                 }
                 if (blockset->getEx7()->getBlockType() == 0 || blockset->getEx7()->getBlockType() == 10) {
                     blockset->getEx7()->setBlockType(20);
+                }
+                if (blockset->getEx7()->getBlockType() == 6 || blockset->getEx7()->getBlockType() == 16) {
+                    blockset->getEx7()->setBlockType(26);
+                }
+                if (blockset->getEx7()->getBlockType() == 7 || blockset->getEx7()->getBlockType() == 17) {
+                    blockset->getEx7()->setBlockType(27);
+                }
+                if (blockset->getEx7()->getBlockType() == 8 || blockset->getEx7()->getBlockType() == 18) {
+                    blockset->getEx7()->setBlockType(28);
                 }
             }
             
@@ -814,11 +889,22 @@ void TakasuPoppo::randomBlockC()
     CCObject* obj = new CCObject;
     CCARRAY_FOREACH(colorArray, obj){
         TPObjectExtension* exObj = dynamic_cast<TPObjectExtension* >(obj);
-        if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % (int)gameTimer) == 0 && exObj->getSprite() != NULL) {
-            makeBlockToBeHBC(exObj);
-            exObj->setControlTrigger(false);
-            hyperBlockC = false;
-            break;
+        if ((int)gameTimer > 0) {
+            if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && (rand() % (int)gameTimer) == 0 && exObj->getSprite() != NULL) {
+                makeBlockToBeHBC(exObj);
+                exObj->setControlTrigger(false);
+                hyperBlockC = false;
+                break;
+            }
+
+        } else {
+            if (exObj->getBlockType() == NORMAL_BLOCK_TYPE && exObj->getSprite() != NULL) {
+                makeBlockToBeHBC(exObj);
+                exObj->setControlTrigger(false);
+                hyperBlockC = false;
+                break;
+            }
+
         }
     }
 
@@ -901,8 +987,8 @@ void TakasuPoppo::generateBlocksAfterCleanMB1() {
             sprintf(spriteName, "%s.png", tileName[randomTile]);
             
             CCSprite *randomTileSprite = CCSprite::create(spriteName);
-            CCPoint tilePosition = ccp(tileSprite->getPositionX() + tileSprite->getContentSize().width/2,
-                                       tileSprite->getPositionY() + 90 + tileSprite->getContentSize().height/2);
+            CCPoint tilePosition = ccp(tileSprite->getPositionX() + 4 + tileSprite->getContentSize().width/2,
+                                       tileSprite->getPositionY() + 180 + tileSprite->getContentSize().height/2);
             CCPoint tileCoordination = TakasuPoppo::tileCoorForPosition(tilePosition);
             randomTileSprite->setPosition(ccp(tilePosition.x, tilePosition.y + 10));
             CCObject *object = colorArray->objectAtIndex(m_gid - 1);
@@ -914,5 +1000,44 @@ void TakasuPoppo::generateBlocksAfterCleanMB1() {
     }
     
     isCleanMB1 = false;
+}
+
+void TakasuPoppo::setFallDistance(TPBlockSet *blockSet){
+    fallDistance = 0;
+    
+    // if blockSet is Vertical
+    if ( strstr(blockSet->getType().c_str(), "Ver") != NULL) {
+        if(isInFeverTime) fallDistance += 5;
+        else fallDistance += 3;
+    }
+    
+    // if blockSet is Horizonal
+    if ( strstr(blockSet->getType().c_str(), "Hor")  != NULL ) {
+        if(isInFeverTime) fallDistance += 3;
+        else fallDistance += 1;
+    }
+    
+    if (blockSet->getType() == "hyperBlockC") {
+        fallDistance = 6;
+    }
+
+    CCObject* obj = NULL;
+    CCArray* blockArray = blockSet->getBlocksArray();
+    CCARRAY_FOREACH(blockArray, obj){
+        
+    TPObjectExtension *exObj = dynamic_cast<TPObjectExtension *>(obj);
+        if (exObj->getBlockType() == HBA_BLOCK_TYPE) {
+            fallDistance += 3;
+        }
+    
+        if (exObj->getBlockType() == HBB_BLOCK_TYPE) {
+            fallDistance = 6;
+        }
+    }
+    
+    if (fallDistance >= 6) {
+        fallDistance = 6;
+    }
+
 }
 

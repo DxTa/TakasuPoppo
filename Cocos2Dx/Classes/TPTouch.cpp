@@ -57,6 +57,11 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         movedSprite = NULL;
                         swapedSprite = NULL;
                         move = false;
+                        spriteContained = false;
+                        swipeLeft = false;
+                        swipeRight = false;
+                        swipeUp = false;
+                        swipeDown = false;
                         swipedLeft(mainEx);
                         swape = false;
                         return;
@@ -67,6 +72,12 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         movedSprite = NULL;
                         swapedSprite = NULL;
                         move = false;
+                        spriteContained = false;
+                        swipeLeft = false;
+                        swipeRight = false;
+                        swipeUp = false;
+                        swipeDown = false;
+
                         swipedRight(mainEx);
                         swape = false;
                         return;
@@ -77,6 +88,13 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         movedSprite = NULL;
                         swapedSprite = NULL;
                         move = false;
+                        spriteContained = false;
+                        swipeLeft = false;
+                        swipeRight = false;
+                        swipeUp = false;
+                        swipeDown = false;
+
+
                         swipedUp(mainEx);
                         swape = false;
                         return;
@@ -87,6 +105,13 @@ void TakasuPoppo::ccTouchesBegan(CCSet *touches, CCEvent *event) {
                         movedSprite = NULL;
                         swapedSprite = NULL;
                         move = false;
+                        spriteContained = false;
+                        swipeLeft = false;
+                        swipeRight = false;
+                        swipeUp = false;
+                        swipeDown = false;
+
+
                         swipedDown(mainEx);
                         swape = false;
                         return;
@@ -139,19 +164,19 @@ void TakasuPoppo::ccTouchesMoved (CCSet *touches, CCEvent *event) {
             CCRect swipeUpRect = CCRectMake(startSwipePoint.x, startSwipePoint.y + (40), 20, 80);
             CCRect swipeDownRect = CCRectMake(startSwipePoint.x, startSwipePoint.y - (40), 20, 80);
             
-            if ((movingSwipePoint.x - startSwipePoint.x > 8) && touchRect.intersectsRect(swipeRightRect)) {
+            if ((movingSwipePoint.x - startSwipePoint.x > SWIPE_DISTANCE) && touchRect.intersectsRect(swipeRightRect)) {
                 swipeRecognized = true;
                 swipeRight = true;
             }
-            else if ((startSwipePoint.x - movingSwipePoint.x > 8) && touchRect.intersectsRect(swipeLeftRect)) {
+            else if ((startSwipePoint.x - movingSwipePoint.x > SWIPE_DISTANCE) && touchRect.intersectsRect(swipeLeftRect)) {
                 swipeRecognized = true;
                 swipeLeft = true;
             }
-            else if ((movingSwipePoint.y - startSwipePoint.y > 8) && touchRect.intersectsRect(swipeUpRect)) {
+            else if ((movingSwipePoint.y - startSwipePoint.y > SWIPE_DISTANCE) && touchRect.intersectsRect(swipeUpRect)) {
                 swipeRecognized = true;
                 swipeUp = true;
             }
-            else if ((startSwipePoint.y - movingSwipePoint.y > 8) && touchRect.intersectsRect(swipeDownRect)) {
+            else if ((startSwipePoint.y - movingSwipePoint.y > SWIPE_DISTANCE) && touchRect.intersectsRect(swipeDownRect)) {
                 swipeRecognized = true;
                 swipeDown = true;
             }
@@ -177,10 +202,10 @@ void TakasuPoppo::ccTouchesEnded(CCSet *touches, CCEvent *event) {
 }
 
 bool TakasuPoppo::touchPosValidation(CCPoint touchLoc) {
-    if (touchLoc.x < 0 ||
-        touchLoc.y < 90 ||
-        touchLoc.x >= map->getContentSize().width ||
-        touchLoc.y >= map->getContentSize().height + 90)
+    if (touchLoc.x < 4 ||
+        touchLoc.y < 180||
+        touchLoc.x >= map->getContentSize().width + 4 ||
+        touchLoc.y >= map->getContentSize().height + 180)
         return false;
     else return true;
 }

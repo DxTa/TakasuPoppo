@@ -187,6 +187,35 @@ void TakasuPoppo::popAnimation(CCNode* sender, void* data) {
                                             NULL));
 }
 
+void TakasuPoppo::burnOnTakasu() {
+    CCSprite *burningTakasu = CCSprite::create();
+    burningTakasu->setPosition(ccp(winSize.width / 2, 100));
+    if (burningTakasuOn) {
+        CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+        cache->addSpriteFramesWithFile("burningTakasu.plist");
+        CCArray* animFrames = new CCArray;
+        animFrames->autorelease();
+        char str[100] = {0};
+        for(int i = 0; i < 3; i++) {
+            sprintf(str, "frame_00%d.gif", i);
+            CCSpriteFrame* frame = cache->spriteFrameByName( str );
+            frame->setOriginalSizeInPixels(CCSizeMake(300, 300));
+            animFrames->addObject(frame);
+        }
+        CCAnimation* animation = CCAnimation::createWithSpriteFrames(animFrames, 0.1);
+        CCAction *animateAction = CCAnimate::create(animation);
+        CCAction *animateForever = CCRepeatForever::create((CCSequence*)animateAction);
+        
+        this->addChild(burningTakasu, 16, 888);
+        burningTakasu->runAction(animateForever);
+    }
+    if (!burningTakasuOn) {
+        if (this->getChildByTag(888)) {
+            this->removeChildByTag(888);
+        }
+    }
+}
+
 //void TakasuPoppo::spriteChange(CCNode *sender, void* data) {
 //    TPObjectExtension *exObj = (TPObjectExtension*)data;
 //    if (exObj->getID() == 0) {

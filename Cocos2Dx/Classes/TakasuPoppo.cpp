@@ -75,44 +75,45 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     //===============================================================
     
     //==========================SCORE ===============================
-    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("SCORE", "Arial", FONT_SIZE);
-    lbScoreTitle->setZOrder(15);
-    lbScoreTitle->setColor(ccc3(225, 225, 225));
-    lbScoreTitle->setPosition(ccp(80, 780));
-    this->addChild(lbScoreTitle);
+//    CCLabelTTF* lbScoreTitle = CCLabelTTF::create("SCORE", "Arial", FONT_SIZE);
+//    lbScoreTitle->setZOrder(15);
+//    lbScoreTitle->setColor(ccc3(225, 225, 225));
+//    lbScoreTitle->setPosition(ccp(80, 920));
+//    this->addChild(lbScoreTitle);
     
     
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-    lbScore = CCLabelTTF::create(str.c_str(), "Arial", FONT_SIZE);
-    lbScore->setZOrder(15);
-    lbScore->setColor(ccc3(225, 225, 225));
-    lbScore->setPosition(ccp(180, 780));
-    this->addChild(lbScore);
+    bmScore = CCLabelBMFont::create(str.c_str(), "TakasuScore.fnt", 30, kCCTextAlignmentLeft);
+    bmScore->setZOrder(15);
+    bmScore->setPosition(ccp(180, 920));
+    this->addChild(bmScore);
     //===============================================================
     
     //======================== Interface ============================
-    CCSprite *background = CCSprite::create("poppo_background.png");
+    CCSprite *background = CCSprite::create("poppo_background3.png");
     background->setPosition(ccp(winSize.width / 2,
-                                winSize.height / 2));
+                                winSize.height / 2 + 33));
     this->addChild(background, -3, -1);
     
     CCSprite *upperCover = CCSprite::create("UpperCover.png");
     upperCover->setPosition(ccp(winSize.width / 2, winSize.height - 40));
-    this->addChild(upperCover, -2, -4);
+    this->addChild(upperCover, 10, -4);
     
     CCSprite *ideGauge = CCSprite::create("ComboGaugeCircle.png");
-    ideGauge->setPosition(ccp(400, 780));
-    this->addChild(ideGauge, 6, -2);
+    ideGauge->setPosition(ccp(330, 920));
+    this->addChild(ideGauge, 13, -2);
     
     CCSprite *comboGauge = CCSprite::create("ComboBarOut.png");
-    comboGauge->setPosition(ccp(510, 780));
-    this->addChild(comboGauge, -2, -3);
+    comboGauge->setPosition(ccp(440, 920));
+    this->addChild(comboGauge, 11, -3);
     
     CCSprite *timerBar = CCSprite::create("TimeBarOut.png");
-    timerBar->setPosition(ccp(winSize.width / 2 - 2, 46));
+    timerBar->setPosition(ccp(winSize.width / 2 - 2, 136));
     this->addChild(timerBar, -2, -3);
     
-    
+    CCSprite *bottomCover = CCSprite::create("BottomCover.png");
+    bottomCover->setPosition(ccp(winSize.width / 2, 40));
+    this->addChild(bottomCover, -2);
     
     //===============================================================
     
@@ -177,9 +178,9 @@ void TakasuPoppo::startGame() {
     hintCounter = 5;
     executionTime -= deltaTime;
     
-    CCSprite *counter3 = CCSprite::create("Counter3.png");
+    CCSprite *counter3 = CCSprite::create("Ready.png");
     CCSprite *counter2 = CCSprite::create("Counter2.png");
-    CCSprite *counter1 = CCSprite::create("Counter1.png");
+    CCSprite *counter1 = CCSprite::create("Go.png");
     
     counter3->setPosition(ccp(winSize.width / 2, winSize.height / 2));
     counter2->setPosition(ccp(winSize.width / 2, winSize.height / 2));
@@ -197,11 +198,9 @@ void TakasuPoppo::startGame() {
         if (counterExist3) this->removeChildByTag(403, true);
         counterExist3 = false;
         
-        if (!counterExist2) this->addChild(counter2, 5);
         counterExist2 = true;
     }
     if (executionTime < 1) {
-        if (counterExist2) this->removeChildByTag(402, true);
         counterExist2 = false;
         
         if (!counterExist1) this->addChild(counter1, 5);
@@ -389,9 +388,18 @@ void TakasuPoppo::update(float dt) {
     if (isInFeverTime == true) {
         feverTimeLimit -= dt;
         
+        if (!this->getChildByTag(888)) {
+            burningTakasuOn = true;
+            TakasuPoppo::burnOnTakasu();
+        }
+        
         if (feverTimeLimit < 0) {
             isInFeverTime = false;
             feverTimeLimit = 0;
+            if (this->getChildByTag(888)) {
+                burningTakasuOn = false;
+                TakasuPoppo::burnOnTakasu();
+            }
         }
         
     }
@@ -400,7 +408,7 @@ void TakasuPoppo::update(float dt) {
     
     //========================SCORE UPDATE ===========================
     string str = static_cast<ostringstream*>( &(ostringstream() << score) )->str();
-    lbScore->setString(str.c_str());
+    bmScore->setString(str.c_str());
     //================================================================
     
     
@@ -529,8 +537,7 @@ void TakasuPoppo::logicExecution() {
                                        CCDelayTime::create(setCleanDelay()),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setFalseControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::afterClean)),
-                                       CCCallFunc::create(this, callfunc_selector(TakasuPoppo::refreshMoving)),
-                                       CCDelayTime::create(movingSpeed * 6 + SWAP_TIME*2),
+                                       CCDelayTime::create(movingSpeed * fallDistance + SWAP_TIME*2),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
@@ -551,7 +558,7 @@ void TakasuPoppo::timeSetup() {
     timerBar->setType(kCCProgressTimerTypeBar);
     timerBar->setAnchorPoint(ccp(0, 0));
     
-    timerBar->setPosition(30, 22);
+    timerBar->setPosition(30, 112);
     timerBar->setMidpoint(ccp(0, 0));
     timerBar->setBarChangeRate(ccp(1, 0));
     
@@ -565,7 +572,7 @@ void TakasuPoppo::timeSetup() {
     comboBar->setType(kCCProgressTimerTypeBar);
     comboBar->setAnchorPoint(ccp(0, 0));
     
-    comboBar->setPosition(ccp(408, 760));
+    comboBar->setPosition(ccp(338, 900)); //-70 140
     comboBar->setMidpoint(ccp(0, 0));
     comboBar->setBarChangeRate(ccp(1, 0));
     
@@ -573,7 +580,7 @@ void TakasuPoppo::timeSetup() {
     
     gaugeComboCounter = 0;
     
-    this->addChild(comboBar, 5);
+    this->addChild(comboBar, 12);
 }
 
 void TakasuPoppo::timeCounter() {
@@ -648,7 +655,6 @@ void TakasuPoppo::timeOver() {
         CCLOG("SCORE * %d",score);
         TPUser::shareTPUser()->setUserScore(score);
         CCScene *mainScene = TPMainScreen::scene(true, score);
-        CCDirector::sharedDirector()->setDepthTest(true);
         CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
         CCDirector::sharedDirector()->replaceScene(transition);
         CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
