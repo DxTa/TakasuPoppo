@@ -194,6 +194,7 @@ void TakasuPoppo::afterClean(){
                     exObj2->getCoordination().y < exObj->getCoordination().y &&
                     exObj2->getID() != 7 && exObj2->getSprite() && exObj2->getSprite() != NULL) {
                     int blocksAway = exObj->getCoordination().y - exObj2->getCoordination().y;
+                    CCLog("BlocksAway: %d", blocksAway);
                     CCSprite *toMoveSprite =  exObj2->getSprite();
 
                     TakasuPoppo::swapColorID(exObj, exObj2);
