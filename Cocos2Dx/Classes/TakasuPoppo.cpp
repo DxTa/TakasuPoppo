@@ -9,6 +9,7 @@
 #include "CCGestureRecognizer.h"
 #include "TPMainScreen.h"
 #include "TPUser.h"
+#include "TPSocialScreen.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -177,6 +178,8 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
 void TakasuPoppo::startGame() {
     hintCounter = 5;
     executionTime -= deltaTime;
+    this->setTouchEnabled(false);
+    
     
     CCSprite *counter3 = CCSprite::create("Ready.png");
     CCSprite *counter2 = CCSprite::create("Counter2.png");
@@ -243,14 +246,15 @@ void TakasuPoppo::endGame() {
     if (endTimeCounter < 3) {
         if (timeOverOn) this->removeChildByTag(1406, true);
         timeOverOn = false;
-    }
-    if (endTimeCounter < 2) {
         if (!takasuBonusOn) this->addChild(counter1, 5);
         takasuBonusOn = true;
     }
-    if (endTimeCounter < 1) {
+    if (endTimeCounter < 2) {
         if (takasuBonusOn) this->removeChildByTag(1404, true);
         takasuBonusOn = false;
+    }
+    if (endTimeCounter < 1) {
+        
     }
     if (endTimeCounter <= 0) {
         TakasuPoppo::timeOver();
@@ -334,9 +338,9 @@ void TakasuPoppo::update(float dt) {
     if (controlable) {
         if (swipeRight && swape && !runningAfter) {
             
-            TPObjectExtension* exd = mainSprite;
+            //TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedRight(exd);
+            TakasuPoppo::swipedRight(mainSprite);
             swipeRight = false;
            // mainSprite = NULL;
             swipeLeft = false;
@@ -348,9 +352,9 @@ void TakasuPoppo::update(float dt) {
         }
         if (swipeLeft && swape && !runningAfter) {
             
-            TPObjectExtension* exd = mainSprite;
+            //TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedLeft(exd);
+            TakasuPoppo::swipedLeft(mainSprite);
             swipeRight = false;
             //mainSprite = NULL;
             swipeLeft = false;
@@ -362,9 +366,9 @@ void TakasuPoppo::update(float dt) {
         }
         if (swipeUp && swape && !runningAfter) {
             
-            TPObjectExtension* exd = mainSprite;
+            //TPObjectExtension* exd = mainSprite;
             move =false;
-            TakasuPoppo::swipedUp(exd);
+            TakasuPoppo::swipedUp(mainSprite);
             swipeRight = false;
             //mainSprite = NULL;
             swipeLeft = false;
@@ -375,8 +379,8 @@ void TakasuPoppo::update(float dt) {
         }
         if (swipeDown && swape && !runningAfter) {
             
-            TPObjectExtension* exd = mainSprite;
-            TakasuPoppo::swipedDown(exd);
+            //TPObjectExtension* exd = mainSprite;
+            TakasuPoppo::swipedDown(mainSprite);
             move =false;
             swipeRight = false;
            // mainSprite = NULL;
@@ -566,6 +570,7 @@ void TakasuPoppo::logicExecution() {
 //        CCLOG("SSSSSSSSS %d",ComboCounter);
     }
     this->unschedule(schedule_selector(TakasuPoppo::matchList));
+    this->unschedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
     inCleaning = true;
     this->runAction(CCSequence::create(
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::cleanBlocks)),
@@ -694,16 +699,48 @@ void TakasuPoppo::timeOver() {
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
         
-        if (TPUser::shareTPUser()->getUserScore() < score) {
+        if (TPUser::shareTPUser()->ExistUser()==false) {
             TPUser::shareTPUser()->setUserScore(score);
-         }
+            CCScene *registerScene  = TPRegisterScreen::scene();
+            CCTransitionScene* transition = CCTransitionSlideInT::create(1, registerScene);
+            CCDirector::sharedDirector()->replaceScene(transition);
+            
+        }
+        else if ((TPUser::shareTPUser()->ExistUser()==true)&&(TPUser::shareTPUser()->getUserScore() < score))
+        {
+            if (score > TPUser::shareTPUser()->getScoreLowestTopRanking()) {
+               
+                string nameUser = TPUser::shareTPUser()->getUserName();
+                TakasuPoppo::removeSpace((char*)nameUser.c_str());
+                
+                char strScore[100] = {0};
+                sprintf(strScore, "%i", score);
+                string emailUser  = TPUser::shareTPUser()->getUserEmail();
+                string serverIP = TPUser::shareTPUser()->getServerIp();
+                
+                CCHttpRequest * request = new CCHttpRequest();
+                string url    = serverIP + ":3000/users?name="+nameUser+"&point="+strScore+"&email="+emailUser;
+                request->setUrl(url.c_str());
+                request->setRequestType(CCHttpRequest::kHttpPost);
+                CCHttpClient::getInstance()->send(request);
+                request->release();
+            }
+            TPUser::shareTPUser()->setUserScore(score);
+            CCScene *socialScene = TPSocialScreen::scene();
+            CCTransitionScene* transition = CCTransitionSlideInT::create(1, socialScene);
+            CCDirector::sharedDirector()->replaceScene(transition);
+          
+        }
+        else{
+            
+            CCScene *mainScene = TPMainScreen::scene(true, score);
+            CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
+            CCDirector::sharedDirector()->replaceScene(transition);
+            CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
         
-        CCScene *mainScene = TPMainScreen::scene(true, score);
-        CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
-        CCDirector::sharedDirector()->replaceScene(transition);
-        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+        }
 
-        //this->unscheduleUpdate();
+//        //this->unscheduleUpdate();
     }
 
     
@@ -749,11 +786,12 @@ void TakasuPoppo::logicDelaySwitch(){
     CCLog("logic counter: %f", logicCounter);
     if (logicCounter > logicDelayTime) {
         this->schedule(schedule_selector(TakasuPoppo::matchList));
+        this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
         
         CCObject* obj;
         CCARRAY_FOREACH(colorArray, obj){
             TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
-            if (exObj->getID() != 7 && exObj->getSprite() != NULL && (exObj->getPosition().x == exObj->getSprite()->getPosition().x)) {
+            if (exObj->getID() != 7 && exObj->getSprite() != NULL && (exObj->getPosition().x == exObj->getSprite()->getPositionX())) {
                 exObj->setControlTrigger(true);
             }
             
@@ -768,8 +806,34 @@ void TakasuPoppo::logicDelaySwitch(){
 
 void TakasuPoppo::refreshWhenNoCombo(){
     hintCount = TakasuPoppo::lookForMatches();
-    if (hintCount == 0) {
+    if (hintCount == 0 && toDestroyArray->count() == 0 && checkRefresh()) {
         this->runAction(CCSequence::create(CCCallFunc::create(this, callfunc_selector(TakasuPoppo::destroyAllBlocks)),
                                            CCCallFunc::create(this, callfunc_selector(TakasuPoppo::createFixture)),NULL));
+    }
+}
+
+bool TakasuPoppo::checkRefresh()
+{
+    CCObject *object;
+    CCARRAY_FOREACH_REVERSE(colorArray, object) {
+        TPObjectExtension *exObj = dynamic_cast<TPObjectExtension*>(object);
+        if (exObj->getID() == 7) {
+            return false;
+        }
+    }
+    return true;
+    
+}
+
+void TakasuPoppo::removeSpace(char *str) {
+    int len = 0;
+    int i = 0;
+    len=strlen(str);
+    for(i=0;i<len;i++)
+    {
+        if(str[i] == ' ')
+        {
+            str[i] = '_';
+        }
     }
 }

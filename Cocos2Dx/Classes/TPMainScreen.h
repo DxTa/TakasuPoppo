@@ -41,6 +41,13 @@ private:
     //===================== New UI =========================
     CCSprite *newBackground;
     CCSprite *rankingContainer;
+    
+    CCSprite *rankingBestContainer;
+    CCSprite *rankingBestScoreLabel;
+    CCSprite *rankingLine;
+    CCLabelTTF *rankingPlayerName;
+    CCLabelTTF *rankingPlayerBestScore;
+    
     CCSprite *heartContainer;
     CCSprite *heartTP1;
     CCSprite *heartTP2;

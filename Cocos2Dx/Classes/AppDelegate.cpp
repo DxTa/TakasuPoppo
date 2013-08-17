@@ -40,7 +40,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     // create a scene. it's an autorelease object
     CCScene *pScene = TPTopScreen::scene();
-    
+
     // run
     pDirector->runWithScene(pScene);
     

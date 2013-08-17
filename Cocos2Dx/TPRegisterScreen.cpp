@@ -6,34 +6,41 @@
 //
 //
 
-#include "TPEndGameScreen.h"
+#include "TPRegisterScreen.h"
 #include "CCString.h"
-#include "TPMainScreen.h"
 
-CCScene* TPEndGameScreen::scene() {
+CCScene* TPRegisterScreen::scene() {
     CCScene *scene = CCScene::create();
-    TPEndGameScreen *layer = TPEndGameScreen::create();
+    TPRegisterScreen *layer = TPRegisterScreen::create();
     scene->addChild(layer);
     return scene;
 }
 
-bool TPEndGameScreen::init()
+bool TPRegisterScreen::init()
 {
-    CCSize editBoxSize = CCSizeMake(winSize.width - 100, 60);
     
-    CCLabelTTF *congrats = CCLabelTTF::create("BEST SCORE !!","BankGothic Md BT" , 60);
-    congrats->setPosition(ccp(winSize.width /2, winSize.height * 6/8));
-    this->addChild(congrats);
+    w = winSize.width;
+    h = winSize.height;
+    CCSize editBoxSize = CCSizeMake((w - 250), 50);
+    
+    CCSprite *background = CCSprite::create("GetPresentBG.png");
+    background->setPosition(ccp(w/2, h/2));
+    this->addChild(background);
+
+//    CCLabelTTF *congrats = CCLabelTTF::create("BEST SCORE !!","BankGothic Md BT" , 60);
+//    congrats->setPosition(ccp(winSize.width /2, winSize.height * 6/8));
+//    this->addChild(congrats);
     
     //Email
-    CCLabelTTF *emailLabel = CCLabelTTF::create("Please enter your Email", "BankGothic Md BT", 40);
-    emailLabel->setPosition(ccp(winSize.width/2, winSize.height*5/8));
+    CCLabelTTF *emailLabel = CCLabelTTF::create("メールアドレス", "BankGothic Md BT", 30);
+    emailLabel->setPosition(ccp(w/2 - w/5, h*3.8f/8));
     this->addChild(emailLabel);
     
-    editBoxUserEmail = CCEditBox::create(editBoxSize,CCScale9Sprite::create("GreenBox.png"));
-    editBoxUserEmail->setPosition(ccp(winSize.width/2, 495));
+    editBoxUserEmail = CCEditBox::create(editBoxSize,CCScale9Sprite::create("WhiteBox.png"));
+    editBoxUserEmail->setAnchorPoint(CCPointZero);
+    editBoxUserEmail->setPosition(ccp(emailLabel->getPosition().x - emailLabel->getContentSize().width/2, emailLabel->getPositionY() - 80));
     editBoxUserEmail->setFontSize(40);
-    editBoxUserEmail->setFontColor(ccWHITE);
+    editBoxUserEmail->setFontColor(ccBLUE);
     editBoxUserEmail->setMaxLength(55);
     editBoxUserEmail->setReturnType(kKeyboardReturnTypeDone);
     editBoxUserEmail->setInputMode(kEditBoxInputModeEmailAddr);
@@ -42,36 +49,40 @@ bool TPEndGameScreen::init()
     
     // Email Fail Message
     
-    emailInvalidMsg = CCLabelTTF::create("Invalid Email !! Please try again !!", "BankGothic Md BT", 24);
+    emailInvalidMsg = CCLabelTTF::create(" Invalid Email !! Please try again !!", "BankGothic Md BT", 24);
+    emailInvalidMsg->setAnchorPoint(CCPointZero);
     emailInvalidMsg->setPosition(ccp(editBoxUserEmail->getPosition().x,
-                                     editBoxUserEmail->getPosition().y - 50));
+                                     editBoxUserEmail->getPosition().y - 30));
     emailInvalidMsg->setColor(ccRED);
     emailInvalidMsg->setVisible(false);
     this->addChild(emailInvalidMsg);
      
     // name
-    CCLabelTTF *nameLabel = CCLabelTTF::create("Please enter your name","BankGothic Md BT", 40);
-    nameLabel->setPosition(ccp(winSize.width/2, winSize.height*3/8));
+    CCLabelTTF *nameLabel = CCLabelTTF::create("ニックネーム","BankGothic Md BT", 30);
+    nameLabel->setPosition(ccp(w/2 - w/5 - 10, h*4.8/8));
     this->addChild(nameLabel);
-    editBoxUserName = CCEditBox::create(editBoxSize,CCScale9Sprite::create("GreenBox.png"));
-    editBoxUserName->setPosition(ccp(winSize.width/2, nameLabel->getPositionY() - 60));
+    editBoxUserName = CCEditBox::create(editBoxSize,CCScale9Sprite::create("WhiteBox.png"));
+    editBoxUserName->setAnchorPoint(CCPointZero);
+    editBoxUserName->setPosition(ccp(nameLabel->getPosition().x - nameLabel->getContentSize().width/2, nameLabel->getPositionY() - 75));
     editBoxUserName->setFontSize(40);
     editBoxUserName->setPlaceholderFontColor(ccWHITE);
     editBoxUserName->setMaxLength(15);
+    editBoxUserName->setFontColor(ccBLUE);
     editBoxUserName->setReturnType(kKeyboardReturnTypeDone);
     editBoxUserName->setInputMode(kEditBoxInputModeAny);
     editBoxUserName->setDelegate(this);
     this->addChild(editBoxUserName);
     
     nameInvalidMsg = CCLabelTTF::create("Invalid your name !! Please try again !", "BankGothic Md BT", 24);
-    nameInvalidMsg->setPosition(ccp(editBoxUserName->getPosition().x, editBoxUserName->getPosition().y-50));
+    nameInvalidMsg->setAnchorPoint(CCPointZero);
+    nameInvalidMsg->setPosition(ccp(editBoxUserName->getPosition().x, editBoxUserName->getPosition().y-30));
     nameInvalidMsg->setColor(ccRED);
     nameInvalidMsg->setVisible(false);
     this->addChild(nameInvalidMsg);
     
-    CCMenuItemImage *sendMenuItem = CCMenuItemImage::create("SubmitButton.png",
-                                                            "SubmitButtonOnClicked.png",
-                                                            this, menu_selector(TPEndGameScreen::menuSendEmail));
+    CCMenuItemImage *sendMenuItem = CCMenuItemImage::create("SendButton.png",
+                                                            "SendButtonOnClicked.png",
+                                                            this, menu_selector(TPRegisterScreen::SendData));
     sendMenuItem->setPosition(ccp(winSize.width/2, 100));
     Menu = CCMenu::create(sendMenuItem, NULL);
     Menu->setPosition(CCPointZero);
@@ -80,24 +91,24 @@ bool TPEndGameScreen::init()
     return true;
 }
 
-void TPEndGameScreen::editBoxEditingDidBegin(CCEditBox* editBox)
+void TPRegisterScreen::editBoxEditingDidBegin(CCEditBox* editBox)
 {
 }
 
-void TPEndGameScreen:: editBoxEditingDidEnd(CCEditBox* editBox)
+void TPRegisterScreen:: editBoxEditingDidEnd(CCEditBox* editBox)
 {
 }
 
-void TPEndGameScreen:: editBoxTextChanged(CCEditBox* editBox,const string& text)
+void TPRegisterScreen:: editBoxTextChanged(CCEditBox* editBox,const string& text)
 {
 }
 
-void TPEndGameScreen:: editBoxReturn(CCEditBox* editBox)
+void TPRegisterScreen:: editBoxReturn(CCEditBox* editBox)
 {
     
 }
 
-void TPEndGameScreen:: menuSendEmail(CCObject *pSender)
+void TPRegisterScreen:: SendData(CCObject *pSender)
 {
     
     int emailValid = false;
@@ -107,7 +118,7 @@ void TPEndGameScreen:: menuSendEmail(CCObject *pSender)
     CCFiniteTimeAction *hideAction = CCFadeOut::create(2.0f);
     
     string email = editBoxUserEmail->getText();
-    if (!TPEndGameScreen::isValidEmail(email)) {
+    if (!TPRegisterScreen::isValidEmail(email)) {
         
         emailInvalidMsg->setVisible(true);
         emailInvalidMsg->runAction(CCSequence::create(showAction,hideAction,NULL));
@@ -129,23 +140,22 @@ void TPEndGameScreen:: menuSendEmail(CCObject *pSender)
     if (nameValid == true && emailValid == true) {
         
         char *strName = (char *)editBoxUserName->getText();
-        TPEndGameScreen::standardSizeName(strName);
+        TPRegisterScreen::standardSizeName(strName);
         
         TPUser::shareTPUser()->setUserName(strName);
         TPUser::shareTPUser()->setUserEmail(editBoxUserEmail->getText());
-        TPUser::shareTPUser()->setUserReward(0);
         
         CCHttpRequest * request = new CCHttpRequest();
         
         string nameUser = TPUser::shareTPUser()->getUserName();
-        TPEndGameScreen::removeSpace((char*)nameUser.c_str());
+        TPRegisterScreen::removeSpace((char*)nameUser.c_str());
         int scoreUser = TPUser::shareTPUser()->getUserScore();
-        //        CCLOG(" Diem %i",scoreUser);
+
         char strScore[100] = {0};
         sprintf(strScore, "%i", scoreUser);
         string emailUser  = TPUser::shareTPUser()->getUserEmail();
         string serverIP = TPUser::shareTPUser()->getServerIp();
-        //    int rewardUser    = TPUser::shareTPUser()->getUserReward();
+
         string url    = serverIP + ":3000/users?name="+nameUser+"&point="+strScore+"&email="+emailUser;
         request->setUrl(url.c_str());
         request->setRequestType(CCHttpRequest::kHttpPost);
@@ -154,15 +164,13 @@ void TPEndGameScreen:: menuSendEmail(CCObject *pSender)
         
         //Return TPMainScreen affter to sent data to Server
         
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, TPMainScreen::scene()));
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f,TPSocialScreen::scene()));
         
     }
 }
-void TPEndGameScreen::menuBack(cocos2d::CCObject *pSender) {
-    //    CCDirector::sharedDirector()->replaceScene(RankingScene::scene());
-}
 
-void TPEndGameScreen::convertName(char *str) {
+
+void TPRegisterScreen::convertName(char *str) {
     int len = 0;
     int i = 0;
     len=strlen(str);
@@ -175,21 +183,21 @@ void TPEndGameScreen::convertName(char *str) {
     }
 }
 
-void TPEndGameScreen::insertChar(char *str,int index)
+void TPRegisterScreen::insertChar(char *str,int index)
 {
     for(int i=strlen(str)+1;i>index&&i>0;i--) str[i]=str[i-1];
     str[index]=' ';
 }
 
-void TPEndGameScreen:: standardSizeName(char *str)
+void TPRegisterScreen:: standardSizeName(char *str)
 {
     int i,j=0;
     for(i=0;i<strlen(str);i++)
     {
-        if (j==0&&strchr(",.\!;:?",str[i])) continue;
-        else if (i&&j&&strchr(",.\!;:?",str[i-1])&&str[i]!=' ') insertChar(str,i);
+        if (j==0&&strchr(",.\\!;:?",str[i])) continue;
+        else if (i&&j&&strchr(",.\\!;:?",str[i-1])&&str[i]!=' ') insertChar(str,i);
         
-        if (j&&strchr(",.\!;:?",str[i])&&str[j-1]==' ')  str[j-1]=str[i],str[j]=' ';
+        if (j&&strchr(",.\\!;:?",str[i])&&str[j-1]==' ')  str[j-1]=str[i],str[j]=' ';
         else if ((j==0&&str[i]!=' ')||(j&&str[j-1]==' '&&str[i]!=' ')) str[j++]=toupper(str[i]);
         else if ((j&&str[i]!=' ')||(j&&str[i-1]!=' '&&str[i]==' ')) str[j++]=str[i];
     }
@@ -197,7 +205,7 @@ void TPEndGameScreen:: standardSizeName(char *str)
 }
 
 // Change a space in a string by "_" char
-void TPEndGameScreen:: removeSpace(char *str) {
+void TPRegisterScreen:: removeSpace(char *str) {
     int len = 0;
     int i = 0;
     len=strlen(str);
@@ -211,7 +219,7 @@ void TPEndGameScreen:: removeSpace(char *str) {
 }
 
 
-bool TPEndGameScreen::isValidEmail(string email){
+bool TPRegisterScreen::isValidEmail(string email){
     int length = email.length();
     if (length >= 9 && ((email[0] > 64 && email[0] < 91) ||
                         (email[0] > 96 && email[0] < 123)) && email[length - 1] != '.') {

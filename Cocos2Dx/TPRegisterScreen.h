@@ -15,15 +15,17 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "TPUser.h"
+#include "TPSocialScreen.h"
 
 using namespace cocos2d;
 using namespace std;
 using namespace cocos2d::extension;
 USING_NS_CC;
 
-class TPEndGameScreen:public CCLayer, extension::CCEditBoxDelegate {
+class TPRegisterScreen:public CCLayer, extension::CCEditBoxDelegate {
     private :
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    float w, h;
     CCLabelTTF *emailInvalidMsg;
     CCLabelTTF *nameInvalidMsg;
     CCEditBox *editBoxUserEmail;
@@ -41,9 +43,8 @@ public:
     virtual void editBoxTextChanged(CCEditBox* editBox,const string& text);
     virtual void editBoxReturn(CCEditBox* editBox);
     
-    void menuSendEmail(CCObject *pSender);
-    void menuBack(CCObject *pSender);
-    
+    void SendData(CCObject *pSender);
+       
     bool isValidEmail(string str);
     
     void convertName(char *str);
@@ -51,7 +52,7 @@ public:
     void standardSizeName(char *str);
     void removeSpace(char *str);
     
-    CREATE_FUNC(TPEndGameScreen);
+    CREATE_FUNC(TPRegisterScreen);
 };
 
 #endif

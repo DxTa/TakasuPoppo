@@ -29,11 +29,12 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     if (isGameOver) {
         gameOverIsOn = isGameOver;
         gameScoreOfNow = score;
-        CCLog("Score: %i", gameScoreOfNow);
     }
     
+//    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
+    
     //===================== New UI =========================
-    heartCount = 1;
+    heartCount = TPUser::shareTPUser()->getUserHeart();
     itemShadeArray = new CCArray;
     
     newBackground = CCSprite::create("poppo_background.png");
@@ -45,6 +46,37 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     rankingContainer->setPosition(ccp(winSize.width / 2,
                                       winSize.height / 2 + 50));
     this->addChild(rankingContainer, 101, 101);
+    
+    rankingBestContainer = CCSprite::create("poppo_empty_container.png");
+    rankingBestContainer->setPosition(ccp(winSize.width / 2,
+                                          winSize.height / 2 + 50));
+    this->addChild(rankingBestContainer, 102, 186);
+    
+    rankingLine = CCSprite::create("poppo_ranking_line.png");
+    rankingLine->setPosition(ccp(rankingBestContainer->getContentSize().width / 2,
+                                 rankingBestContainer->getContentSize().height / 2 - 100));
+    rankingBestContainer->addChild(rankingLine, 103, 185);
+    
+    rankingBestScoreLabel = CCSprite::create("BestScore.png");
+    rankingBestScoreLabel->setPosition(ccp(rankingBestContainer->getContentSize().width / 4 - 40,
+                                           rankingBestContainer->getContentSize().height / 5 + 30));
+    rankingBestContainer->addChild(rankingBestScoreLabel, 103, 182);
+    
+    char playerName[100];
+    sprintf(playerName, "%s", TPUser::shareTPUser()->getUserName().c_str());
+    rankingPlayerName = CCLabelTTF::create(playerName, "Berlin Sans FB", 30,
+                                           CCSizeMake(200, 50), kCCTextAlignmentLeft);
+    rankingPlayerName->setPosition(ccp(rankingBestContainer->getContentSize(). width / 2,
+                                       rankingBestContainer->getContentSize().height / 5));
+    rankingBestContainer->addChild(rankingPlayerName, 103, 183);
+    
+    char charBestScore[100];
+    sprintf(charBestScore,"%i",TPUser::shareTPUser()->getUserScore());
+    rankingPlayerBestScore = CCLabelTTF::create(charBestScore, "Berlin Sans FB", 60,
+                                                CCSizeMake(200, 50), kCCTextAlignmentLeft);
+    rankingPlayerBestScore->setPosition(ccp(rankingContainer->getContentSize(). width / 2,
+                                            rankingContainer->getContentSize().height / 5 - 30));
+    rankingBestContainer->addChild(rankingPlayerBestScore, 103, 184);
     
     heartContainer = CCSprite::create("poppo_hearts_container.png");
     heartContainer->setPosition(ccp(rankingContainer->getContentSize().width / 2,
@@ -107,10 +139,8 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                               rubyContainer->getContentSize().height - 40));
     rubyContainer->addChild(rubyPlus, 103, 111);
     
-    rubyCount = 999999;
-    if (!TPUser::shareTPUser()->getExistUser()) {
-        TPUser::shareTPUser()->setCrystal(rubyCount);
-     }
+    rubyCount = TPUser::shareTPUser()->getCrystal();
+    
     sprintf(rubyCountChar, "%i", TPUser::shareTPUser()->getCrystal());
     rubyCountLabel = CCLabelTTF::create(rubyCountChar, "Berlin Sans FB", 34);
     rubyCountLabel->setColor(ccc3(255, 255, 255));
@@ -505,6 +535,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     
     if (gameOverIsOn) {
         networkContainer->setVisible(false);
+        rankingBestContainer->setVisible(false);
         playBtn->setVisible(false);
         
         scoreContainer = CCSprite::create("poppo_empty_container.png");
@@ -569,7 +600,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         }
         
         CCRect chargeBtnRect = TPMainScreen::boundingBoxWorldSpace(heartContainer, heartPlus);
-        if (chargeBtnRect.containsPoint(touchLoc)) {
+        if (chargeBtnRect.containsPoint(touchLoc) && heartCount < 5) {
             chargeOn = true;
             TPMainScreen::setCharge();
         }
@@ -578,6 +609,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         if (startRect.containsPoint(touchLoc) && !itemOn && !settingOn && !chargeOn && !tutorialOn && !gameOverIsOn) {
             itemOn = true;
             TPMainScreen::setItem();
+            rankingBestContainer->setVisible(false);
             networkContainer->setVisible(false);
             return;
         }
@@ -590,7 +622,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             
             playBtn->setVisible(true);
             networkContainer->setVisible(true);
-            
+            rankingBestContainer->setVisible(true);
             gameOverIsOn = false;
             return;
         }
@@ -665,6 +697,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             charge4On = true;
             charge3On = false;
             TPMainScreen::setCharge();
+            return;
         }
         
         CCRect chargeCcl2Rect = TPMainScreen::boundingBoxWorldSpace(chargeWin3, chargeCclBtn3);
@@ -686,6 +719,11 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             heartCount = 5;
             TPUser::shareTPUser()->setUserHeart(heartCount);
             TPMainScreen::setupHearts();
+            
+            heartChargeCount = 5 - heartCount;
+            sprintf(heartViewChar, "%i", heartChargeCount);
+            heartChargedLabel->setString(heartViewChar);
+            return;
         }
         
         CCRect chargeCcl2Rect = TPMainScreen::boundingBoxWorldSpace(chargeWin3, chargeCclBtn3);
@@ -693,6 +731,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             chargeBack = true;
             charge4On = false;
             TPMainScreen::setCharge();
+            return;
         }
     }
     
@@ -716,8 +755,30 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     //=============== Item Controls =================
     if (itemOn) {
         CCRect startRect = playBtn->boundingBox();
-        if (startRect.containsPoint(touchLoc) && itemOn && !settingOn && !tutorialOn && !chargeOn) {
+        CCLog("hear count %i", heartCount);
+        if (startRect.containsPoint(touchLoc) && itemOn && !settingOn && !tutorialOn && !chargeOn && heartCount > 0) {
             TPItemObject* itemObject = new TPItemObject(item1On, item2On, item3On, specialItemID);
+//            if (item1On) {
+//                rubyCount = TPUser::shareTPUser()->getCrystal();
+//                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
+//                TPMainScreen::setCrystal(2);
+//            }
+//            if (item2On) {
+//                rubyCount = TPUser::shareTPUser()->getCrystal();
+//                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
+//                TPMainScreen::setCrystal(2);
+//            }
+//            if (item3On) {
+//                rubyCount = TPUser::shareTPUser()->getCrystal();
+//                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
+//                TPMainScreen::setCrystal(2);
+//            }
+//            if (specialItemID != 0) {
+//                rubyCount = TPUser::shareTPUser()->getCrystal();
+//                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
+//                TPMainScreen::setCrystal(2);
+//            }
+            
             TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() -1);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
             CCTransitionScene* transition = CCTransitionSlideInT::create(1, gameScene);
@@ -1014,6 +1075,7 @@ void TPMainScreen::setCharge() {
 void TPMainScreen::setupHearts() {
     heartCount = TPUser::shareTPUser()->getUserHeart();
     heartChargeCount = 5 - heartCount;
+    
     //Set texture only works if the sprite is created with some texture already
     if (heartCount == 5) {
         heartTP1->setTexture(CCTextureCache::sharedTextureCache()->addImage("poppo_heart.png"));
@@ -1112,11 +1174,17 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
        
     }
     free(data1);
-    tableView = CCTableView::create(this, CCSizeMake(566,577));
+
+    if (listGamer->count() >0) {
+        Gamer *gamer = (Gamer*)listGamer->objectAtIndex(listGamer->count() -1);
+        TPUser::shareTPUser()->setScoreLowestTopRanking(gamer->getScore());
+        
+    }
+    tableView = CCTableView::create(this, CCSizeMake(566, 310));
     tableView->setDirection(kCCScrollViewDirectionVertical);
-    tableView->setAnchorPoint(ccp(0, 0));
-    tableView->setPosition(ccp(networkContainer->getContentSize().width / 2 - 200,
-                               networkContainer->getContentSize().height / 2 - 200));
+    tableView->setPosition(ccp(networkContainer->getContentSize().width / 2 - 260,
+                               networkContainer->getContentSize().height / 2 - 80));
+    tableView->setContentSize(CCSizeMake(566, 100));
     tableView->setDelegate(this);
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
     networkContainer->addChild(tableView, 102, 151);
@@ -1129,32 +1197,42 @@ void TPMainScreen::tableCellTouched(CCTableView* table, CCTableViewCell* cell) {
 }
 
 CCSize TPMainScreen::tableCellSizeForIndex(CCTableView *table, unsigned int index) {
-    return CCSizeMake(560, 95);
+    return CCSizeMake(560, 100);
 }
 
 CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int index) {
     CCTableViewCell *cell = table->dequeueCell();
     cell = new CCTableViewCell();
     cell->autorelease();
-    //
-    avatar = CCSprite::create("Poppo7B.png");
+    
+    CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
+    numberCircle->setPosition(ccp(30, 30));
+    cell->addChild(numberCircle);
+    
+    avatar = CCSprite::create("poppo_avatar_container.png");
     avatar->setTag(151);
-    avatar->setPosition(ccp(30, -150));
+    avatar->setPosition(ccp(120, 30));
     cell->addChild(avatar);
     Gamer *gamer = (Gamer*)listGamer->objectAtIndex(index);
     CCString *scoreGamer = CCString::createWithFormat("%d",gamer->getScore());
-    CCLabelTTF *scoreLabel = CCLabelTTF::create(scoreGamer->getCString(), "Helvetica", 35.0);
-    scoreLabel->setColor(ccYELLOW);
-    scoreLabel->setAnchorPoint(ccp(1, 0));
-    scoreLabel->setPosition(ccp(150,-180));
+    
+    
+    CCLabelTTF *scoreLabel = CCLabelTTF::create(scoreGamer->getCString(), "Berlin Sans FB",
+                                                40.0, CCSizeMake(300, 50), kCCTextAlignmentLeft);
+    scoreLabel->setColor(ccWHITE);
+    scoreLabel->setPosition(ccp(360, 10));
     scoreLabel->setTag(151);
     cell->addChild(scoreLabel);
     
-    CCLabelTTF *nameLabel = CCLabelTTF::create(gamer->getName().c_str(), "Helvetica", 30.0);
-    nameLabel->setAnchorPoint(CCPointZero);
-    nameLabel->setColor(ccYELLOW);
-    nameLabel->setPosition(ccp(100, -150));
-    cell->addChild(nameLabel,151);
+    CCLabelTTF *nameLabel = CCLabelTTF::create(gamer->getName().c_str(), "Berlin Sans FB",
+                                               30.0, CCSizeMake(300, 50), kCCTextAlignmentLeft);
+    nameLabel->setColor(ccWHITE);
+    nameLabel->setPosition(ccp(360, 30));
+    cell->addChild(nameLabel, 151);
+    
+    CCSprite *seperator = CCSprite::create("poppo_ranking_line.png");
+    seperator->setPosition(ccp(260 , - 20 ));
+    cell->addChild(seperator);
     return cell;
 }
 

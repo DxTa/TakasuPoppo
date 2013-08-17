@@ -10,11 +10,11 @@
 #include "TakasuPoppo.h"
 #include "TPBlockSet.h"
 void TakasuPoppo::cleanBlocks() {    
-    CCObject *object;
+    
     createB = false;
     if (toDestroyArray->count() != 0) {
         
-        
+        CCObject *object;
         CCARRAY_FOREACH(toDestroyArray, object) {            
             bool hyperA = false;
             bool hyperB = false;
@@ -47,31 +47,49 @@ void TakasuPoppo::cleanBlocks() {
                 
                 if (isValidEx(blockSet->getEx1())){
                     TakasuPoppo::cleanOneBlock(blockSet->getEx1());
+                    if(hyperA || hyperB)
+                        generationEffect(blockSet->getEx1()->getPosition(), checkSwipe(blockSet)->getPosition());
                 }
                 
                 if (isValidEx(blockSet->getEx2())){
                     if((!hyperA && !hyperB) || checkSwipe(blockSet)->getBlockType() >= MOVED_NORMAL_BLOCK_TYPE)
+                    {
+                        
                         TakasuPoppo::cleanOneBlock(blockSet->getEx2());
+                        if(hyperA || hyperB)
+                            generationEffect(blockSet->getEx2()->getPosition(), checkSwipe(blockSet)->getPosition());
+                    }
                 }
                 
                 if (isValidEx(blockSet->getEx3())) {
                     TakasuPoppo::cleanOneBlock(blockSet->getEx3());
+                    if(hyperA || hyperB)
+                        generationEffect(blockSet->getEx3()->getPosition(), checkSwipe(blockSet)->getPosition());
                 }
                 
                 if (isValidEx(blockSet->getEx4())) {
                     TakasuPoppo::cleanOneBlock(blockSet->getEx4());
+                    if(hyperA || hyperB)
+                        generationEffect(blockSet->getEx4()->getPosition(), checkSwipe(blockSet)->getPosition());
                 }
                 if (isValidEx(blockSet->getEx5())) {
                     TakasuPoppo::cleanOneBlock(blockSet->getEx5());
+                    if(hyperA || hyperB)
+                        generationEffect(blockSet->getEx5()->getPosition(), checkSwipe(blockSet)->getPosition());
                 }
                 
                 if (isValidEx(blockSet->getEx6())) {
                     TakasuPoppo::cleanOneBlock(blockSet->getEx6());
+                    if(hyperA || hyperB)
+                        generationEffect(blockSet->getEx6()->getPosition(), checkSwipe(blockSet)->getPosition());
                     
                 }
                 
                 if (isValidEx(blockSet->getEx7())) {
-                    TakasuPoppo::cleanOneBlock(blockSet->getEx5());
+                    TakasuPoppo::cleanOneBlock(blockSet->getEx7());
+                    if(hyperA || hyperB)
+                        generationEffect(blockSet->getEx7()->getPosition(), checkSwipe(blockSet)->getPosition());
+                    
                 }
                 
                 if(checkSwipe(blockSet)->getBlockType() == 13)
@@ -81,7 +99,6 @@ void TakasuPoppo::cleanBlocks() {
                 
                 if(checkSwipe(blockSet)->getBlockType() >= 20)
                 {
-                    hyperA = false;
                     if (checkSwipe(blockSet)->getBlockType() == 21) {
                         cleanA(checkSwipe(blockSet));
                     }
@@ -149,34 +166,31 @@ void TakasuPoppo::cleanBlocks() {
                 currentBlockSet = NULL;
             }
         }
-    }
-    // ===================== create    hyperB ===============
-
-    CCObject* ox;
-    CCARRAY_FOREACH(toDestroyArray, ox)
-    {
-        TPBlockSet *ex = dynamic_cast<TPBlockSet*>(ox);
-        if(ex->getEx1() != NULL && ex->getEx1()->getBlockType() != 1 && ex->getEx1()->getBlockType() != 2 && ex->getEx1()->getBlockType() != 3 && ex->getEx1()->getBlockType() != 6 && ex->getEx1()->getBlockType() != 7 && ex->getEx1()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx1());
-        if(ex->getEx2() != NULL && ex->getEx2()->getBlockType() != 1 && ex->getEx2()->getBlockType() != 2 && ex->getEx2()->getBlockType() != 3 && ex->getEx2()->getBlockType() != 6 && ex->getEx2()->getBlockType() != 7 && ex->getEx2()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx2());
-        if(ex->getEx3() != NULL && ex->getEx3()->getBlockType() != 1 && ex->getEx3()->getBlockType() != 2 && ex->getEx3()->getBlockType() != 3 && ex->getEx3()->getBlockType() != 6 && ex->getEx3()->getBlockType() != 7 && ex->getEx3()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx3());
-        if(ex->getEx4() != NULL && ex->getEx4()->getBlockType() != 1 && ex->getEx4()->getBlockType() != 2 && ex->getEx4()->getBlockType() != 3 && ex->getEx4()->getBlockType() != 6 && ex->getEx4()->getBlockType() != 7 && ex->getEx4()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx4());
-        if(ex->getEx5() != NULL && ex->getEx5()->getBlockType() != 1 && ex->getEx5()->getBlockType() != 2 && ex->getEx5()->getBlockType() != 3 && ex->getEx5()->getBlockType() != 6 && ex->getEx5()->getBlockType() != 7 && ex->getEx5()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx5());
         
-        if(ex->getEx6() != NULL && ex->getEx6()->getBlockType() != 1 && ex->getEx6()->getBlockType() != 2 && ex->getEx6()->getBlockType() != 3 && ex->getEx6()->getBlockType() != 6 && ex->getEx6()->getBlockType() != 7 && ex->getEx6()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx6());
-        if(ex->getEx7() != NULL && ex->getEx7()->getBlockType() != 1 && ex->getEx7()->getBlockType() != 2 && ex->getEx7()->getBlockType() != 3 && ex->getEx7()->getBlockType() != 6 && ex->getEx7()->getBlockType() != 7 && ex->getEx7()->getBlockType() != 8)
-            cleanOneBlock(ex->getEx7());
         
-
+        CCObject* ox;
+        CCARRAY_FOREACH(toDestroyArray, ox)
+        {
+            TPBlockSet *ex = dynamic_cast<TPBlockSet*>(ox);
+            if(ex->getEx1() != NULL && ex->getEx1()->getBlockType() != 1 && ex->getEx1()->getBlockType() != 2 && ex->getEx1()->getBlockType() != 3 && ex->getEx1()->getBlockType() != 6 && ex->getEx1()->getBlockType() != 7 && ex->getEx1()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx1());
+            if(ex->getEx2() != NULL && ex->getEx2()->getBlockType() != 1 && ex->getEx2()->getBlockType() != 2 && ex->getEx2()->getBlockType() != 3 && ex->getEx2()->getBlockType() != 6 && ex->getEx2()->getBlockType() != 7 && ex->getEx2()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx2());
+            if(ex->getEx3() != NULL && ex->getEx3()->getBlockType() != 1 && ex->getEx3()->getBlockType() != 2 && ex->getEx3()->getBlockType() != 3 && ex->getEx3()->getBlockType() != 6 && ex->getEx3()->getBlockType() != 7 && ex->getEx3()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx3());
+            if(ex->getEx4() != NULL && ex->getEx4()->getBlockType() != 1 && ex->getEx4()->getBlockType() != 2 && ex->getEx4()->getBlockType() != 3 && ex->getEx4()->getBlockType() != 6 && ex->getEx4()->getBlockType() != 7 && ex->getEx4()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx4());
+            if(ex->getEx5() != NULL && ex->getEx5()->getBlockType() != 1 && ex->getEx5()->getBlockType() != 2 && ex->getEx5()->getBlockType() != 3 && ex->getEx5()->getBlockType() != 6 && ex->getEx5()->getBlockType() != 7 && ex->getEx5()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx5());
+            
+            if(ex->getEx6() != NULL && ex->getEx6()->getBlockType() != 1 && ex->getEx6()->getBlockType() != 2 && ex->getEx6()->getBlockType() != 3 && ex->getEx6()->getBlockType() != 6 && ex->getEx6()->getBlockType() != 7 && ex->getEx6()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx6());
+            if(ex->getEx7() != NULL && ex->getEx7()->getBlockType() != 1 && ex->getEx7()->getBlockType() != 2 && ex->getEx7()->getBlockType() != 3 && ex->getEx7()->getBlockType() != 6 && ex->getEx7()->getBlockType() != 7 && ex->getEx7()->getBlockType() != 8)
+                cleanOneBlock(ex->getEx7());
+        }
+        toDestroyArray->removeAllObjects();
+        
     }
-    //=======================================================
-    
-
     toDestroyArray->removeAllObjects();
     
 }
@@ -207,7 +221,8 @@ void TakasuPoppo::afterClean(){
                                                                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlable),(void*)exObj),
                                                                CCMoveBy::create(movingSpeed * blocksAway, ccp(0, - 90 * blocksAway)),
                                                                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj2),
-                                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj), NULL));
+                                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setTrueControlable),(void*)exObj),
+                                                               NULL));
                     break;
                 }
             }
@@ -232,8 +247,8 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
         exSprite->stopActionByTag(1210);
         CCPoint *spritePosition = new CCPoint(exObj->getPosition());
         exSprite->runAction(CCSequence::create(
-                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID), (void*)exObj),
                 CCDelayTime::create(CLEAN_DELAY),
+                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID), (void*)exObj),
                 CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation), (void*)spritePosition),
 //                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::removeSprite), (void*)exSprite),
                                                CCRemoveSelf::create(true),
@@ -403,9 +418,9 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
             break;
         case MB1_BLOCK_TYPE:
             if (gameTimer >= 0) {
-                isCleanMB1 = true;
                 if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                     TakasuPoppo::cleanSprite(exobj);
+                isCleanMB1 = true;
             }
             else TakasuPoppo::cleanSprite(exobj);
             
@@ -427,6 +442,35 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanSprite(exobj);
             break;
+            
+        case (MB1_BLOCK_TYPE + 10):
+            if (gameTimer >= 0) {
+                if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                    TakasuPoppo::cleanSprite(exobj);
+                isCleanMB1 = true;
+            }
+            else TakasuPoppo::cleanSprite(exobj);
+            
+            break;
+        case (MB2_BLOCK_TYPE + 10):
+            if (gameTimer >= 0) {
+                if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                    TakasuPoppo::cleanSprite(exobj);
+                isCleanMB2 = true;
+                isExistMB2 = false;
+                
+            } else {
+                TakasuPoppo::cleanSprite(exobj);
+            }
+            
+            break;
+        case (MB3_BLOCK_TYPE + 10):
+            isCleanMB3 = true;
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
+            break;
+
+            
         case MOVED_HBA_BLOCK_TYPE:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockA(exobj);
@@ -838,6 +882,33 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanSprite(exobj);
             break;
+        case (MB1_BLOCK_TYPE + 10):
+            if (gameTimer >= 0) {
+                isCleanMB1 = true;
+                if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                    TakasuPoppo::cleanSprite(exobj);
+            }
+            else TakasuPoppo::cleanSprite(exobj);
+            
+            break;
+        case (MB2_BLOCK_TYPE + 10):
+            if (gameTimer >= 0) {
+                if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                    TakasuPoppo::cleanSprite(exobj);
+                isCleanMB2 = true;
+                isExistMB2 = false;
+                
+            } else {
+                TakasuPoppo::cleanSprite(exobj);
+            }
+            
+            break;
+        case (MB3_BLOCK_TYPE + 10):
+            isCleanMB3 = true;
+            if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
+                TakasuPoppo::cleanSprite(exobj);
+            break;
+            
         case MOVED_HBA_BLOCK_TYPE:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockA(exobj);
@@ -940,6 +1011,7 @@ void TakasuPoppo::setControl()
 
 void TakasuPoppo::deleteMainSprite()
 {
+   // returnNormalSprite(mainSprite);
     mainSprite = NULL;
 }
 
