@@ -9,8 +9,7 @@
 #include "CCGestureRecognizer.h"
 #include "TPMainScreen.h"
 #include "TPUser.h"
-#include "TPSocial.h"
-
+#include "TPSocialScreen.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -700,26 +699,48 @@ void TakasuPoppo::timeOver() {
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
         
-        if (TPUser::shareTPUser()->getExistUser()) {
-//            if (TPUser::shareTPUser()->getUserScore() < score) {
-                CCScene *socialScene = TPSocial::scene();
-                CCTransitionScene* transition = CCTransitionSlideInT::create(1, socialScene);
-                CCDirector::sharedDirector()->replaceScene(transition);
-                TPUser::shareTPUser()->setUserScore(score);
-//             }
-        } else {
-            CCScene *registerScene  = TPEndGameScreen::scene();
+        if (TPUser::shareTPUser()->ExistUser()==false) {
+            TPUser::shareTPUser()->setUserScore(score);
+            CCScene *registerScene  = TPRegisterScreen::scene();
             CCTransitionScene* transition = CCTransitionSlideInT::create(1, registerScene);
             CCDirector::sharedDirector()->replaceScene(transition);
-            TPUser::shareTPUser()->setUserScore(score);
+            
         }
+        else if ((TPUser::shareTPUser()->ExistUser()==true)&&(TPUser::shareTPUser()->getUserScore() < score))
+        {
+            if (score > TPUser::shareTPUser()->getScoreLowestTopRanking()) {
+               
+                string nameUser = TPUser::shareTPUser()->getUserName();
+                TakasuPoppo::removeSpace((char*)nameUser.c_str());
+                
+                char strScore[100] = {0};
+                sprintf(strScore, "%i", score);
+                string emailUser  = TPUser::shareTPUser()->getUserEmail();
+                string serverIP = TPUser::shareTPUser()->getServerIp();
+                
+                CCHttpRequest * request = new CCHttpRequest();
+                string url    = serverIP + ":3000/users?name="+nameUser+"&point="+strScore+"&email="+emailUser;
+                request->setUrl(url.c_str());
+                request->setRequestType(CCHttpRequest::kHttpPost);
+                CCHttpClient::getInstance()->send(request);
+                request->release();
+            }
+            TPUser::shareTPUser()->setUserScore(score);
+            CCScene *socialScene = TPSocialScreen::scene();
+            CCTransitionScene* transition = CCTransitionSlideInT::create(1, socialScene);
+            CCDirector::sharedDirector()->replaceScene(transition);
+          
+        }
+        else{
+            
+            CCScene *mainScene = TPMainScreen::scene(true, score);
+            CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
+            CCDirector::sharedDirector()->replaceScene(transition);
+            CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
         
-//        CCScene *mainScene = TPMainScreen::scene(true, score);
-//        CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
-//        CCDirector::sharedDirector()->replaceScene(transition);
-//        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+        }
 
-        //this->unscheduleUpdate();
+//        //this->unscheduleUpdate();
     }
 
     
@@ -801,4 +822,17 @@ bool TakasuPoppo::checkRefresh()
     }
     return true;
     
+}
+
+void TakasuPoppo::removeSpace(char *str) {
+    int len = 0;
+    int i = 0;
+    len=strlen(str);
+    for(i=0;i<len;i++)
+    {
+        if(str[i] == ' ')
+        {
+            str[i] = '_';
+        }
+    }
 }

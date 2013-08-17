@@ -29,10 +29,6 @@ bool TPTopScreen::init(){
     this->addChild(_topScreen);
     this->setTouchEnabled(true);
     
-    if (!TPUser::shareTPUser()->getExistUser()) {
-         TPUser::shareTPUser()->setUserHeart(1);
-     }
-    
     return true;
 }
 
@@ -40,7 +36,6 @@ void TPTopScreen::ccTouchesBegan(CCSet *pTouches, CCEvent *event)
 {    CCTouch *touch = (CCTouch *)pTouches->anyObject();
     if (touch) {
         CCDirector::sharedDirector()->replaceScene(TPMainScreen::scene(false, 0));
-        TPUser::shareTPUser()->setExistUser(true);
         }
 }
 

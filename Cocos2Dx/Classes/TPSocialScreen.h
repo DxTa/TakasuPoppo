@@ -19,7 +19,7 @@
 using namespace  cocos2d;
 USING_NS_CC;
 
-class TPSocial :public CCLayer {
+class TPSocialScreen :public CCLayer {
 private:
     CCSize _screenSize;
     float w, h;
@@ -34,7 +34,7 @@ public:
     
     void Close();
     
-    CREATE_FUNC(TPSocial);
+    CREATE_FUNC(TPSocialScreen);
 };
 
 

@@ -13,7 +13,7 @@
 #include "CCSwipeGestureRecognizer.h"
 #include "TPItemObject.h"
 #include "TPDefinition.h"
-#include "TPEndGameScreen.h"
+#include "TPRegisterScreen.h"
 
 
 USING_NS_CC;
@@ -421,6 +421,9 @@ public:
     void returnNormalSprite(TPObjectExtension *exObj);
     void makeSpriteTouched(CCNode* sender, void* data);
     void returnNormalSprite(CCNode* sender, void* data);
+    
+    //removeSpace
+    void removeSpace(char *str);
 };
 
 #endif
