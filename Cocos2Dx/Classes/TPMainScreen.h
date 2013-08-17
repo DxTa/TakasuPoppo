@@ -115,6 +115,15 @@ private:
     CCArray *itemShadeArray;
     
     CCSprite *itemLabel;
+    CCSprite *itemLabel1;
+    CCSprite *itemLabel2;
+    CCSprite *itemLabel3;
+    CCSprite *itemLabel4;
+    CCSprite *itemLabel5;
+    CCSprite *itemLabel6;
+    CCSprite *itemLabel7;
+    CCSprite *itemLabel8;
+    CCSprite *itemLabel9;
     
     CCSprite *scoreContainer;
     CCSprite *scoreClose;

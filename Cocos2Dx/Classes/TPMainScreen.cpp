@@ -85,52 +85,52 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     
     heartContainer = CCSprite::create("poppo_hearts_container.png");
     heartContainer->setPosition(ccp(rankingContainer->getContentSize().width / 2,
-                                    rankingContainer->getContentSize().height - 50));
-    rankingContainer->addChild(heartContainer, 102, 102);
+                                    rankingContainer->getContentSize().height - 30));
+    rankingContainer->addChild(heartContainer, 103, 102);
     
     heartBox = CCSprite::create("poppo_heart_textbox.png");
     heartBox->setPosition(ccp(heartContainer->getContentSize().width - 250,
                               heartContainer->getContentSize().height - 50));
-    heartContainer->addChild(heartBox, 103, 103);
+    heartContainer->addChild(heartBox, 104, 103);
     
     heartTP1 = CCSprite::create("poppo_heart_empty.png");
     heartTP1->setPosition(ccp(heartContainer->getContentSize().width - 585,
                               heartContainer->getContentSize().height - 50));
-    heartContainer->addChild(heartTP1, 103, 104);
+    heartContainer->addChild(heartTP1, 104, 104);
     
     heartTP2 = CCSprite::create("poppo_heart_empty.png");
     heartTP2->setPosition(ccp(heartContainer->getContentSize().width - 535,
                               heartContainer->getContentSize().height - 50));
-    heartContainer->addChild(heartTP2, 103, 105);
+    heartContainer->addChild(heartTP2, 104, 105);
     
     heartTP3 = CCSprite::create("poppo_heart_empty.png");
     heartTP3->setPosition(ccp(heartContainer->getContentSize().width - 485,
                               heartContainer->getContentSize().height - 50));
-    heartContainer->addChild(heartTP3, 103, 105);
+    heartContainer->addChild(heartTP3, 104, 105);
     
     heartTP4 = CCSprite::create("poppo_heart_empty.png");
     heartTP4->setPosition(ccp(heartContainer->getContentSize().width - 435,
                               heartContainer->getContentSize().height - 50));
-    heartContainer->addChild(heartTP4, 103, 105);
+    heartContainer->addChild(heartTP4, 104, 105);
     
     heartTP5 = CCSprite::create("poppo_heart_empty.png");
     heartTP5->setPosition(ccp(heartContainer->getContentSize().width - 385,
                               heartContainer->getContentSize().height - 50));
-    heartContainer->addChild(heartTP5, 103, 105);
+    heartContainer->addChild(heartTP5, 104, 105);
     
     TPMainScreen::setupHearts();
     
     heartPlus = CCSprite::create("poppo_heart_plus.png");
     heartPlus->setPosition(ccp(heartContainer->getContentSize().width - 160,
                                heartContainer->getContentSize().height - 45));
-    heartContainer->addChild(heartPlus, 103, 109);
+    heartContainer->addChild(heartPlus, 104, 109);
     
     heartChargeCount = 5 - heartCount;
     sprintf(heartViewChar, "%i", heartChargeCount);
     heartChargedLabel = CCLabelTTF::create(heartViewChar, "", 40);
     heartChargedLabel->setPosition(ccp(heartContainer->getContentSize().width - 200,
                                        heartContainer->getContentSize().height - 50));
-    heartContainer->addChild(heartChargedLabel, 104, 144);
+    heartContainer->addChild(heartChargedLabel, 105, 144);
     
     //===================== New Rubies =========================
     
@@ -398,132 +398,177 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     
     //===================== NewItem =========================
     
-    itemContainer = CCSprite::create("poppoItemContainer.png");
+    itemContainer = CCSprite::create("poppo_empty_container.png");
     itemContainer->setPosition(ccp(rankingContainer->getContentSize().width / 2,
                                     rankingContainer->getContentSize().height - 50));
-    this->addChild(itemContainer, 101, 155);
+    this->addChild(itemContainer, 102, 155);
     
     item1 = CCSprite::create("poppoItem1.png");
-    item1->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
-                           itemContainer->getContentSize().height / 2 + 130));
+    item1->setPosition(ccp(140,
+                           itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item1, 102, 156);
     
+    itemLabel1 = CCSprite::create("poppoItem1Lbl.png");
+    itemLabel1->setPosition(ccp(140,
+                                itemContainer->getContentSize().height / 2 + 95));
+    itemContainer->addChild(itemLabel1);
+    
     item2 = CCSprite::create("poppoItem2.png");
-    item2->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
-                           itemContainer->getContentSize().height / 2 + 130));
+    item2->setPosition(ccp(320,
+                           itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item2, 102, 157);
     
+    itemLabel2 = CCSprite::create("poppoItem2lbl.png");
+    itemLabel2->setPosition(ccp(320,
+                                itemContainer->getContentSize().height / 2 + 95));
+    itemContainer->addChild(itemLabel2);
+    
     item3 = CCSprite::create("poppoItem3.png");
-    item3->setPosition(ccp(itemContainer->getContentSize().width / 2 + 100,
-                           itemContainer->getContentSize().height / 2 + 130));
+    item3->setPosition(ccp(500,
+                           itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item3, 102, 158);
     
+    itemLabel3 = CCSprite::create("poppoItem3Lbl.png");
+    itemLabel3->setPosition(ccp(500,
+                                itemContainer->getContentSize().height / 2 + 95));
+    itemContainer->addChild(itemLabel3);
+    
     item4 = CCSprite::create("poppoItem4.png");
-    item4->setPosition(ccp(itemContainer->getContentSize().width / 2 + 225,
-                           itemContainer->getContentSize().height / 2 + 130));
+    item4->setPosition(ccp(140,
+                           itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item4, 102, 159);
     
+    itemLabel4 = CCSprite::create("poppoItem4lbl.png");
+    itemLabel4->setPosition(ccp(140,
+                                itemContainer->getContentSize().height / 2 - 55 - 40));
+    itemContainer->addChild(itemLabel4);
+    
     item5 = CCSprite::create("poppoItem5.png");
-    item5->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
-                           itemContainer->getContentSize().height / 2 + 10));
+    item5->setPosition(ccp(320,
+                           itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item5, 102, 160);
     
+    itemLabel5 = CCSprite::create("poppoItem5Lbl.png");
+    itemLabel5->setPosition(ccp(320,
+                                itemContainer->getContentSize().height / 2 - 55 - 30));
+    itemContainer->addChild(itemLabel5);
+    
     item6 = CCSprite::create("poppoItem6.png");
-    item6->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
-                           itemContainer->getContentSize().height / 2 + 10));
+    item6->setPosition(ccp(500,
+                           itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item6, 102, 161);
     
+    itemLabel6 = CCSprite::create("poppoItem6Lbl.png");
+    itemLabel6->setPosition(ccp(500,
+                                itemContainer->getContentSize().height / 2 - 55 - 30));
+    itemContainer->addChild(itemLabel6);
+    
     item7 = CCSprite::create("poppoItem7.png");
-    item7->setPosition(ccp(itemContainer->getContentSize().width / 2 + 100,
-                           itemContainer->getContentSize().height / 2 + 10));
+    item7->setPosition(ccp(140,
+                           itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item7, 102, 162);
     
+    itemLabel7 = CCSprite::create("poppoItem7Lbl.png");
+    itemLabel7->setPosition(ccp(140,
+                                itemContainer->getContentSize().height / 2 - 215 - 30));
+    itemContainer->addChild(itemLabel7);
+    
     item8 = CCSprite::create("poppoItem8.png");
-    item8->setPosition(ccp(itemContainer->getContentSize().width / 2 + 225,
-                           itemContainer->getContentSize().height / 2 + 10));
+    item8->setPosition(ccp(320,
+                           itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item8, 102, 163);
     
+    itemLabel8 = CCSprite::create("poppoItem8lbl.png");
+    itemLabel8->setPosition(ccp(320,
+                                itemContainer->getContentSize().height / 2 - 215 - 30));
+    itemContainer->addChild(itemLabel8);
+    
     item9 = CCSprite::create("itemNotAvailable.png");
-    item9->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
-                           itemContainer->getContentSize().height / 2 - 110));
+    item9->setPosition(ccp(500,
+                           itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item9, 102, 164);
     
-    item10 = CCSprite::create("itemNotAvailable.png");
-    item10->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
-                            itemContainer->getContentSize().height / 2 - 110));
-    itemContainer->addChild(item10, 102, 165);
+    itemLabel9 = CCSprite::create("itemNotAvailableLbl.png");
+    itemLabel9->setPosition(ccp(500,
+                                itemContainer->getContentSize().height / 2 - 215 - 30));
+    itemContainer->addChild(itemLabel9);
     
-    itemLabel = CCSprite::create("poppoItemLabel.png");
-    itemLabel->setPosition(ccp(itemContainer->getContentSize().width / 2 + 160,
-                    itemContainer->getContentSize().height / 2 - 110));
+//    item10 = CCSprite::create("itemNotAvailable.png");
+//    item10->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+//                            itemContainer->getContentSize().height / 2 - 110));
+//    itemContainer->addChild(item10, 102, 165);
+    
+    itemLabel = CCSprite::create("poppoItemOne.png");
+    itemLabel->setPosition(ccp(itemContainer->getContentSize().width / 2 + 30,
+                    itemContainer->getContentSize().height / 2 + 45));
     itemContainer->addChild(itemLabel, 102);
     
     item1Shade = CCSprite::create("ItemShade.png");
-    item1Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
-                           itemContainer->getContentSize().height / 2 + 130));
+    item1Shade->setPosition(ccp(140,
+                                itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item1Shade, 103, 166);
     item1Shade->setVisible(false);
 
     item2Shade = CCSprite::create("ItemShade.png");
-    item2Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
-                           itemContainer->getContentSize().height / 2 + 130));
+    item2Shade->setPosition(ccp(320,
+                                itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item2Shade, 103, 167);
     item2Shade->setVisible(false);
     
     item3Shade = CCSprite::create("ItemShade.png");
-    item3Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 + 100,
-                           itemContainer->getContentSize().height / 2 + 130));
+    item3Shade->setPosition(ccp(500,
+                                itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item3Shade, 103, 168);
     item3Shade->setVisible(false);
     
     item4Shade = CCSprite::create("ItemShade.png");
-    item4Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 + 225,
-                           itemContainer->getContentSize().height / 2 + 130));
+    item4Shade->setPosition(ccp(140,
+                                itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item4Shade, 103, 169);
     item4Shade->setVisible(false);
     itemShadeArray->addObject(item4Shade);
     
     item5Shade = CCSprite::create("ItemShade.png");
-    item5Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
-                           itemContainer->getContentSize().height / 2 + 10));
+    item5Shade->setPosition(ccp(320,
+                                itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item5Shade, 103, 170);
     item5Shade->setVisible(false);
     itemShadeArray->addObject(item5Shade);
     
     item6Shade = CCSprite::create("ItemShade.png");
-    item6Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
-                           itemContainer->getContentSize().height / 2 + 10));
+    item6Shade->setPosition(ccp(500,
+                                itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item6Shade, 103, 171);
     item6Shade->setVisible(false);
     itemShadeArray->addObject(item6Shade);
     
     item7Shade = CCSprite::create("ItemShade.png");
-    item7Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 + 100,
-                           itemContainer->getContentSize().height / 2 + 10));
+    item7Shade->setPosition(ccp(140,
+                                itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item7Shade, 103, 172);
     item7Shade->setVisible(false);
     itemShadeArray->addObject(item7Shade);
     
     item8Shade = CCSprite::create("ItemShade.png");
-    item8Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 + 225,
-                           itemContainer->getContentSize().height / 2 + 10));
+    item8Shade->setPosition(ccp(320,
+                                itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item8Shade, 103, 173);
     item8Shade->setVisible(false);
     itemShadeArray->addObject(item8Shade);
     
     item9Shade = CCSprite::create("itemNotAvailable.png");
-    item9Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 150,
-                           itemContainer->getContentSize().height / 2 - 110));
+    item9Shade->setPosition(ccp(500,
+                                itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item9Shade, 103, 174);
     item9Shade->setVisible(false);
     itemShadeArray->addObject(item9Shade);
     
-    item10Shade = CCSprite::create("itemNotAvailable.png");
-    item10Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
-                            itemContainer->getContentSize().height / 2 - 110));
-    itemContainer->addChild(item10Shade, 103, 175);
-    item10Shade->setVisible(false);
-    itemShadeArray->addObject(item10Shade);
+//    item10Shade = CCSprite::create("itemNotAvailable.png");
+//    item10Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+//                            itemContainer->getContentSize().height / 2 - 110));
+//    itemContainer->addChild(item10Shade, 103, 175);
+//    item10Shade->setVisible(false);
+//    itemShadeArray->addObject(item10Shade);
     
     itemContainer->setVisible(false);
     
@@ -590,23 +635,25 @@ bool TPMainScreen::init(bool isGameOver, int score) {
 }
 
 void TPMainScreen::welcomeMessage() {
-    welcomeMessageOn = true;
-    darkenBg->setZOrder(109);
-    darkenBg->setVisible(true);
-    
-    welcomeContainer = CCSprite::create("poppo_tut_win.png");
-    welcomeContainer->setPosition(ccp(winSize.width / 2, winSize.height / 2));
-    this->addChild(welcomeContainer, 110);
-    
-    welcomeCclButton = CCSprite::create("poppo_charge_ccl.png");
-    welcomeCclButton->setPosition(ccp(welcomeContainer->getContentSize().width - 10,
-                                      welcomeContainer->getContentSize().height - 30));
-    welcomeContainer->addChild(welcomeCclButton, 111);
-    
-    welcomeContent = CCSprite::create("poppo_welcomeContent.png");
-    welcomeContent->setPosition(ccp(welcomeContainer->getContentSize().width / 2,
-                                    welcomeContainer->getContentSize().height / 2));
-    welcomeContainer->addChild(welcomeContent, 111);
+    if (!gameOverIsOn) {
+        welcomeMessageOn = true;
+        darkenBg->setZOrder(109);
+        darkenBg->setVisible(true);
+        
+        welcomeContainer = CCSprite::create("poppo_tut_win.png");
+        welcomeContainer->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+        this->addChild(welcomeContainer, 110);
+        
+        welcomeCclButton = CCSprite::create("poppo_charge_ccl.png");
+        welcomeCclButton->setPosition(ccp(welcomeContainer->getContentSize().width - 10,
+                                          welcomeContainer->getContentSize().height - 30));
+        welcomeContainer->addChild(welcomeCclButton, 111);
+        
+        welcomeContent = CCSprite::create("poppo_welcomeContent.png");
+        welcomeContent->setPosition(ccp(welcomeContainer->getContentSize().width / 2,
+                                        welcomeContainer->getContentSize().height / 2));
+        welcomeContainer->addChild(welcomeContent, 111);
+    }
 }
 
 void TPMainScreen::firstTimeSetup() {
@@ -627,13 +674,13 @@ bool TPMainScreen::ccTouchBegan(CCTouch *touch, CCEvent *event) {
 }
 
 void TPMainScreen::ccTouchMoved(CCTouch *touch, CCEvent *event) {
-    if (bgmSlider->isTouchInside(touch)) {
+    if (bgmSlider->isTouchInside(touch) && settingOn) {
         float valueToPercent = (bgmSlider->locationFromTouch(touch).x / 362) * 100;
         bgmSlider->setValue(valueToPercent);
         TPUser::shareTPUser()->setBMG(valueToPercent);
         CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(valueToPercent);
     }
-    if (sfxSlider->isTouchInside(touch)) {
+    if (sfxSlider->isTouchInside(touch) && settingOn) {
         float valueToPercent = (sfxSlider->locationFromTouch(touch).x / 362) * 100;
         sfxSlider->setValue(valueToPercent);
         TPUser::shareTPUser()->setVolume(valueToPercent);
@@ -668,6 +715,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         
         CCRect startRect = playBtn->boundingBox();
         if (startRect.containsPoint(touchLoc) && !itemOn && !settingOn && !chargeOn && !tutorialOn && !gameOverIsOn) {
+            rankingContainer->setTexture(CCTextureCache::sharedTextureCache()->addImage("poppoItemContainer.png"));
             itemOn = true;
             TPMainScreen::setItem();
             rankingBestContainer->setVisible(false);
@@ -1197,7 +1245,6 @@ void TPMainScreen::setCrystal(int decreasingAmount) {
 //============== Recieve data from Server and put into listGamer Array ================
 void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
     CCHttpResponse *response = (CCHttpResponse*)data;
-    
     if (!response) {
         return;
     }
