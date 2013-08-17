@@ -265,16 +265,22 @@ void TakasuPoppo::endGame() {
 
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
-    if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
-    {
-        TakasuPoppo::fixedUpdate(0.013);
-        //this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
-    }else
-    {
-        //this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
-        //setControl();
-        //releaseAfterRunning();
+    
+    if (executingLogic == false && toDestroyArray->count() > 0 && !inTheMove) {
+        executingLogic = true;
+        this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
     }
+
+//    if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
+//    {
+//        TakasuPoppo::fixedUpdate(0.013);
+//        //this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
+//    }else
+//    {
+//        //this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+//        //setControl();
+//        //releaseAfterRunning();
+//    }
     
 
     //================== Combo related updates ======================
@@ -518,12 +524,7 @@ void TakasuPoppo::fixedUpdate(float time){
     //TakasuPoppo::matchList();
     if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/) {
         //count = 0;
-        if (executingLogic == false) {
-            executingLogic = true;
-            this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
-            //TakasuPoppo::logicExecution();
-        }
-
+        
         //TakasuPoppo::logicExecution();
     }
 }
