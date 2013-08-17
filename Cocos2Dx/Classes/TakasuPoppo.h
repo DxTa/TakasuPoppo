@@ -318,6 +318,8 @@ public:
     void popAnimation(CCNode *sender, void* data);
     
     void burnOnTakasu();
+    
+    void generationEffect(CCPoint startPoint, CCPoint destination);
 #pragma mark Debug
     void setupDebugButton();
     void switchGrid();
