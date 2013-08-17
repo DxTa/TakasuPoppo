@@ -184,6 +184,7 @@ public:
     void setItem();
     void setSpecialItemShade(CCSprite *selectedItemShade);
     void setCrystal(int decreasingAmount);
+    void scheduleUpdateHeart(float time);
     
     CCRect boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite);
     

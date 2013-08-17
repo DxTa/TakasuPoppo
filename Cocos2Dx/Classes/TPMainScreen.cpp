@@ -580,7 +580,13 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                                     - 500));
         scoreContainer->addChild(scoreClose, 103, 179);
     }
+
+    
     TPMainScreen::firstTimeSetup();
+
+    
+    this->schedule(schedule_selector(TPMainScreen::scheduleUpdateHeart), 1);
+
     return true;
 }
 
@@ -805,6 +811,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
 //                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
 //                TPMainScreen::setCrystal(2);
 //            }
+            TPUser::shareTPUser()->setStartedTime(TPMainScreen::getTime());
             
             TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() -1);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
@@ -1158,6 +1165,20 @@ void TPMainScreen::setCrystal(int decreasingAmount) {
     heartChargeCount = 5 - heartCount;
     sprintf(heartViewChar, "%i", heartChargeCount);
     heartChargedLabel->setString(heartViewChar);
+}
+
+//============== Schedule update heart by Time ================
+
+void TPMainScreen:: scheduleUpdateHeart(float time)
+{
+    long currentTime = TPMainScreen::getTime();
+    long startedTime = TPUser::shareTPUser()->getStartedTime();
+    if ((currentTime - startedTime) >= 480000) {
+          if (TPUser::shareTPUser()->getUserHeart() < 5) {
+              TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() +1);
+
+          }
+    }
 }
 
 //============== Recieve data from Server and put into listGamer Array ================
