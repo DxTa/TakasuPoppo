@@ -179,6 +179,8 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
 void TakasuPoppo::startGame() {
     hintCounter = 5;
     executionTime -= deltaTime;
+    this->setTouchEnabled(false);
+    
     
     CCSprite *counter3 = CCSprite::create("Ready.png");
     CCSprite *counter2 = CCSprite::create("Counter2.png");
@@ -245,14 +247,15 @@ void TakasuPoppo::endGame() {
     if (endTimeCounter < 3) {
         if (timeOverOn) this->removeChildByTag(1406, true);
         timeOverOn = false;
-    }
-    if (endTimeCounter < 2) {
         if (!takasuBonusOn) this->addChild(counter1, 5);
         takasuBonusOn = true;
     }
-    if (endTimeCounter < 1) {
+    if (endTimeCounter < 2) {
         if (takasuBonusOn) this->removeChildByTag(1404, true);
         takasuBonusOn = false;
+    }
+    if (endTimeCounter < 1) {
+        
     }
     if (endTimeCounter <= 0) {
         TakasuPoppo::timeOver();

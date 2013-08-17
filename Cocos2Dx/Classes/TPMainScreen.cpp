@@ -29,7 +29,6 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     if (isGameOver) {
         gameOverIsOn = isGameOver;
         gameScoreOfNow = score;
-        CCLog("Score: %i", gameScoreOfNow);
     }
     
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
@@ -122,7 +121,6 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     heartContainer->addChild(heartPlus, 103, 109);
     
     heartChargeCount = 5 - heartCount;
-    CCLog("Heart count %i", heartChargeCount);
     sprintf(heartViewChar, "%i", heartChargeCount);
     heartChargedLabel = CCLabelTTF::create(heartViewChar, "", 40);
     heartChargedLabel->setPosition(ccp(heartContainer->getContentSize().width - 200,
@@ -701,6 +699,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             charge4On = true;
             charge3On = false;
             TPMainScreen::setCharge();
+            return;
         }
         
         CCRect chargeCcl2Rect = TPMainScreen::boundingBoxWorldSpace(chargeWin3, chargeCclBtn3);
@@ -726,6 +725,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             heartChargeCount = 5 - heartCount;
             sprintf(heartViewChar, "%i", heartChargeCount);
             heartChargedLabel->setString(heartViewChar);
+            return;
         }
         
         CCRect chargeCcl2Rect = TPMainScreen::boundingBoxWorldSpace(chargeWin3, chargeCclBtn3);
@@ -733,6 +733,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             chargeBack = true;
             charge4On = false;
             TPMainScreen::setCharge();
+            return;
         }
     }
     
@@ -756,8 +757,30 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     //=============== Item Controls =================
     if (itemOn) {
         CCRect startRect = playBtn->boundingBox();
-        if (startRect.containsPoint(touchLoc) && itemOn && !settingOn && !tutorialOn && !chargeOn) {
+        CCLog("hear count %i", heartCount);
+        if (startRect.containsPoint(touchLoc) && itemOn && !settingOn && !tutorialOn && !chargeOn && heartCount > 0) {
             TPItemObject* itemObject = new TPItemObject(item1On, item2On, item3On, specialItemID);
+//            if (item1On) {
+//                rubyCount = TPUser::shareTPUser()->getCrystal();
+//                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
+//                TPMainScreen::setCrystal(2);
+//            }
+//            if (item2On) {
+//                rubyCount = TPUser::shareTPUser()->getCrystal();
+//                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
+//                TPMainScreen::setCrystal(2);
+//            }
+//            if (item3On) {
+//                rubyCount = TPUser::shareTPUser()->getCrystal();
+//                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
+//                TPMainScreen::setCrystal(2);
+//            }
+//            if (specialItemID != 0) {
+//                rubyCount = TPUser::shareTPUser()->getCrystal();
+//                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
+//                TPMainScreen::setCrystal(2);
+//            }
+            
             TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() -1);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
             CCTransitionScene* transition = CCTransitionSlideInT::create(1, gameScene);

@@ -197,10 +197,10 @@ void TPEndGameScreen:: standardSizeName(char *str)
     int i,j=0;
     for(i=0;i<strlen(str);i++)
     {
-        if (j==0&&strchr(",.\!;:?",str[i])) continue;
-        else if (i&&j&&strchr(",.\!;:?",str[i-1])&&str[i]!=' ') insertChar(str,i);
+        if (j==0&&strchr(",.\\!;:?",str[i])) continue;
+        else if (i&&j&&strchr(",.\\!;:?",str[i-1])&&str[i]!=' ') insertChar(str,i);
         
-        if (j&&strchr(",.\!;:?",str[i])&&str[j-1]==' ')  str[j-1]=str[i],str[j]=' ';
+        if (j&&strchr(",.\\!;:?",str[i])&&str[j-1]==' ')  str[j-1]=str[i],str[j]=' ';
         else if ((j==0&&str[i]!=' ')||(j&&str[j-1]==' '&&str[i]!=' ')) str[j++]=toupper(str[i]);
         else if ((j&&str[i]!=' ')||(j&&str[i-1]!=' '&&str[i]==' ')) str[j++]=str[i];
     }
