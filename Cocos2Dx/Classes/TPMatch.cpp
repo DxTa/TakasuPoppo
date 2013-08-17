@@ -228,6 +228,7 @@ void TakasuPoppo::matchList() {
     CCObject *obj;
     if(toDestroyArray->count() != 0)
     {
+        fallDistance = 0;
         CCARRAY_FOREACH(toDestroyArray, obj)
         {
             TPBlockSet* blockset = dynamic_cast<TPBlockSet*>(obj);
@@ -1005,7 +1006,7 @@ void TakasuPoppo::generateBlocksAfterCleanMB1() {
 }
 
 void TakasuPoppo::setFallDistance(TPBlockSet *blockSet){
-    fallDistance = 0;
+    
     
     // if blockSet is Vertical
     if ( strstr(blockSet->getType().c_str(), "Ver") != NULL) {
