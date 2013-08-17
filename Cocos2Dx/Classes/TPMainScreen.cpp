@@ -31,7 +31,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
         gameScoreOfNow = score;
     }
     
-    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
+//    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
     
     //===================== New UI =========================
     heartCount = TPUser::shareTPUser()->getUserHeart();
@@ -1176,11 +1176,11 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
        
     }
     free(data1);
-    tableView = CCTableView::create(this, CCSizeMake(566,577));
+    tableView = CCTableView::create(this, CCSizeMake(566, 310));
     tableView->setDirection(kCCScrollViewDirectionVertical);
-    tableView->setAnchorPoint(ccp(0, 0));
     tableView->setPosition(ccp(networkContainer->getContentSize().width / 2 - 260,
-                               networkContainer->getContentSize().height / 2 - 200));
+                               networkContainer->getContentSize().height / 2 - 80));
+    tableView->setContentSize(CCSizeMake(566, 100));
     tableView->setDelegate(this);
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
     networkContainer->addChild(tableView, 102, 151);
@@ -1193,7 +1193,7 @@ void TPMainScreen::tableCellTouched(CCTableView* table, CCTableViewCell* cell) {
 }
 
 CCSize TPMainScreen::tableCellSizeForIndex(CCTableView *table, unsigned int index) {
-    return CCSizeMake(560, 95);
+    return CCSizeMake(560, 100);
 }
 
 CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int index) {
@@ -1202,32 +1202,32 @@ CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int
     cell->autorelease();
     
     CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
-    numberCircle->setPosition(ccp(30, -130));
+    numberCircle->setPosition(ccp(30, 30));
     cell->addChild(numberCircle);
     
     avatar = CCSprite::create("poppo_avatar_container.png");
     avatar->setTag(151);
-    avatar->setPosition(ccp(0, -0));
+    avatar->setPosition(ccp(120, 30));
     cell->addChild(avatar);
     Gamer *gamer = (Gamer*)listGamer->objectAtIndex(index);
     CCString *scoreGamer = CCString::createWithFormat("%d",gamer->getScore());
     
     
     CCLabelTTF *scoreLabel = CCLabelTTF::create(scoreGamer->getCString(), "Berlin Sans FB",
-                                                40.0, CCSizeMake(300, 70), kCCTextAlignmentLeft);
+                                                40.0, CCSizeMake(300, 50), kCCTextAlignmentLeft);
     scoreLabel->setColor(ccWHITE);
-    scoreLabel->setPosition(ccp(340, -160));
+    scoreLabel->setPosition(ccp(360, 10));
     scoreLabel->setTag(151);
     cell->addChild(scoreLabel);
     
     CCLabelTTF *nameLabel = CCLabelTTF::create(gamer->getName().c_str(), "Berlin Sans FB",
-                                               30.0, CCSizeMake(200, 50), kCCTextAlignmentLeft);
+                                               30.0, CCSizeMake(300, 50), kCCTextAlignmentLeft);
     nameLabel->setColor(ccWHITE);
-    nameLabel->setPosition(ccp(280, -120));
+    nameLabel->setPosition(ccp(360, 30));
     cell->addChild(nameLabel, 151);
     
     CCSprite *seperator = CCSprite::create("poppo_ranking_line.png");
-    seperator->setPosition(ccp(0 , - 200));
+    seperator->setPosition(ccp(260 , - 20 ));
     cell->addChild(seperator);
     return cell;
 }
