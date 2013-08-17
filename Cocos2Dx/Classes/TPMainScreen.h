@@ -42,6 +42,10 @@ private:
     CCSprite *newBackground;
     CCSprite *rankingContainer;
     
+    CCSprite *welcomeContainer;
+    CCSprite *welcomeCclButton;
+    CCSprite *welcomeContent;
+    
     CCSprite *rankingBestContainer;
     CCSprite *rankingBestScoreLabel;
     CCSprite *rankingLine;
@@ -148,6 +152,8 @@ private:
     char rubyCountChar[50];
     CCLabelTTF *rubyCountLabel;
     
+    bool welcomeMessageOn;
+    
     bool tutorialOn;
     bool chargeOn;
     bool charge2On;
@@ -172,6 +178,7 @@ public:
     virtual void ccTouchMoved(CCTouch *touch, CCEvent *event);
     virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
     
+    void welcomeMessage();
     void firstTimeSetup();
     
     void update(float dt);

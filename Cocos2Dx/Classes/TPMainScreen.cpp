@@ -31,6 +31,8 @@ bool TPMainScreen::init(bool isGameOver, int score) {
         gameScoreOfNow = score;
     }
     
+    
+    
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
     if (!TPUser::shareTPUser()->ExistUser())
         CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(100);
@@ -396,7 +398,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     
     //===================== NewItem =========================
     
-    itemContainer = CCSprite::create("poppo_empty_container.png");
+    itemContainer = CCSprite::create("poppoItemContainer.png");
     itemContainer->setPosition(ccp(rankingContainer->getContentSize().width / 2,
                                     rankingContainer->getContentSize().height - 50));
     this->addChild(itemContainer, 101, 155);
@@ -580,8 +582,31 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                                     - 500));
         scoreContainer->addChild(scoreClose, 103, 179);
     }
+    
     TPMainScreen::firstTimeSetup();
+    TPMainScreen::welcomeMessage();
+    
     return true;
+}
+
+void TPMainScreen::welcomeMessage() {
+    welcomeMessageOn = true;
+    darkenBg->setZOrder(109);
+    darkenBg->setVisible(true);
+    
+    welcomeContainer = CCSprite::create("poppo_tut_win.png");
+    welcomeContainer->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    this->addChild(welcomeContainer, 110);
+    
+    welcomeCclButton = CCSprite::create("poppo_charge_ccl.png");
+    welcomeCclButton->setPosition(ccp(welcomeContainer->getContentSize().width - 10,
+                                      welcomeContainer->getContentSize().height - 30));
+    welcomeContainer->addChild(welcomeCclButton, 111);
+    
+    welcomeContent = CCSprite::create("poppo_welcomeContent.png");
+    welcomeContent->setPosition(ccp(welcomeContainer->getContentSize().width / 2,
+                                    welcomeContainer->getContentSize().height / 2));
+    welcomeContainer->addChild(welcomeContent, 111);
 }
 
 void TPMainScreen::firstTimeSetup() {
@@ -619,7 +644,16 @@ void TPMainScreen::ccTouchMoved(CCTouch *touch, CCEvent *event) {
 void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     CCPoint touchLoc = this->getParent()->convertTouchToNodeSpace(touch);
     
-    if (!tutorialOn && !chargeOn && !settingOn) {
+    if (welcomeMessageOn) {
+        CCRect welcomeCclRect = TPMainScreen::boundingBoxWorldSpace(welcomeContainer, welcomeCclButton);
+        if (welcomeCclRect.containsPoint(touchLoc)) {
+            welcomeMessageOn = false;
+            welcomeContainer->setVisible(false);
+            darkenBg->setVisible(false);
+        }
+    }
+    
+    if (!tutorialOn && !chargeOn && !settingOn && !welcomeMessageOn) {
         CCRect settingBtnRect = settingBtn->boundingBox();
         if (settingBtnRect.containsPoint(touchLoc)) {
             settingOn = true;
@@ -627,7 +661,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
         }
         
         CCRect chargeBtnRect = TPMainScreen::boundingBoxWorldSpace(heartContainer, heartPlus);
-        if (chargeBtnRect.containsPoint(touchLoc) && heartCount < 5) {
+        if (chargeBtnRect.containsPoint(touchLoc) && heartCount < 5 && !welcomeMessageOn) {
             chargeOn = true;
             TPMainScreen::setCharge();
         }
