@@ -31,8 +31,11 @@ bool TPMainScreen::init(bool isGameOver, int score) {
         gameScoreOfNow = score;
     }
     
-//    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
-    
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
+    if (!TPUser::shareTPUser()->ExistUser())
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(100);
+    if ( TPUser::shareTPUser()->ExistUser())
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(TPUser::shareTPUser()->getBMG());
     //===================== New UI =========================
     heartCount = TPUser::shareTPUser()->getUserHeart();
     itemShadeArray = new CCArray;
@@ -359,7 +362,10 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     bgmSlider->setEnabled(true);
     bgmSlider->setMinimumValue(0);
     bgmSlider->setMaximumValue(100);
-    bgmSlider->setValue(40);
+    
+    if (TPUser::shareTPUser()->ExistUser()) bgmSlider->setValue(TPUser::shareTPUser()->getBMG());
+    if (!TPUser::shareTPUser()->ExistUser())bgmSlider->setValue(100);
+    
     settingContainer->addChild(bgmSlider, 133, 146);
     
     sfxSlider = CCControlSlider::create("SliderBody.png", "Slider2Progress.png", "Slider1Mark.png");
@@ -368,7 +374,10 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     sfxSlider->setEnabled(true);
     sfxSlider->setMinimumValue(0);
     sfxSlider->setMaximumValue(100);
-    sfxSlider->setValue(60);
+    
+    if (TPUser::shareTPUser()->ExistUser()) sfxSlider->setValue(TPUser::shareTPUser()->getVolume());
+    if (!TPUser::shareTPUser()->ExistUser()) sfxSlider->setValue(100);
+    
     settingContainer->addChild(sfxSlider, 133, 147);
     
     
@@ -571,8 +580,20 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                                     - 500));
         scoreContainer->addChild(scoreClose, 103, 179);
     }
+
     
+    TPMainScreen::firstTimeSetup();
+
+    
+    this->schedule(schedule_selector(TPMainScreen::scheduleUpdateHeart), 1);
+
     return true;
+}
+
+void TPMainScreen::firstTimeSetup() {
+    if (!TPUser::shareTPUser()->ExistUser()) {
+
+    }
 }
 
 void TPMainScreen::update(float dt) {
@@ -582,11 +603,23 @@ void TPMainScreen::update(float dt) {
 #pragma mark Touches
 
 bool TPMainScreen::ccTouchBegan(CCTouch *touch, CCEvent *event) {
-    if (bgmSlider->isTouchInside(touch)) {
-        
-    }
     
     return true;
+}
+
+void TPMainScreen::ccTouchMoved(CCTouch *touch, CCEvent *event) {
+    if (bgmSlider->isTouchInside(touch)) {
+        float valueToPercent = (bgmSlider->locationFromTouch(touch).x / 362) * 100;
+        bgmSlider->setValue(valueToPercent);
+        TPUser::shareTPUser()->setBMG(valueToPercent);
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(valueToPercent);
+    }
+    if (sfxSlider->isTouchInside(touch)) {
+        float valueToPercent = (sfxSlider->locationFromTouch(touch).x / 362) * 100;
+        sfxSlider->setValue(valueToPercent);
+        TPUser::shareTPUser()->setVolume(valueToPercent);
+        CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(valueToPercent);
+    }
 }
 
 void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
@@ -778,6 +811,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
 //                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
 //                TPMainScreen::setCrystal(2);
 //            }
+            TPUser::shareTPUser()->setStartedTime(TPMainScreen::getTime());
             
             TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() -1);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
@@ -1131,6 +1165,20 @@ void TPMainScreen::setCrystal(int decreasingAmount) {
     heartChargeCount = 5 - heartCount;
     sprintf(heartViewChar, "%i", heartChargeCount);
     heartChargedLabel->setString(heartViewChar);
+}
+
+//============== Schedule update heart by Time ================
+
+void TPMainScreen:: scheduleUpdateHeart(float time)
+{
+    long currentTime = TPMainScreen::getTime();
+    long startedTime = TPUser::shareTPUser()->getStartedTime();
+    if ((currentTime - startedTime) >= 480000) {
+          if (TPUser::shareTPUser()->getUserHeart() < 5) {
+              TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() +1);
+
+          }
+    }
 }
 
 //============== Recieve data from Server and put into listGamer Array ================

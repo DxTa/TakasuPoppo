@@ -43,8 +43,8 @@ public:
     int getUserHeart();
     void setUserHeart(int heart);
     
-    int getLastTime();
-    void setLastTime(int time);
+    long getStartedTime();
+    void setStartedTime(long time);
     
     int getCrystal();
     void setCrystal(int crystal);

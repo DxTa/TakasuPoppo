@@ -320,6 +320,7 @@ public:
     void burnOnTakasu();
     
     void generationEffect(CCPoint startPoint, CCPoint destination);
+    void exPopBlast(CCPoint position);
 #pragma mark Debug
     void setupDebugButton();
     void switchGrid();

@@ -265,16 +265,22 @@ void TakasuPoppo::endGame() {
 
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
-    if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
-    {
-        TakasuPoppo::fixedUpdate(0.013);
-        //this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
-    }else
-    {
-        //this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
-        //setControl();
-        //releaseAfterRunning();
+    
+    if (executingLogic == false && toDestroyArray->count() > 0 && !inTheMove) {
+        executingLogic = true;
+        this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
     }
+
+//    if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/)
+//    {
+//        TakasuPoppo::fixedUpdate(0.013);
+//        //this->scheduleOnce(schedule_selector(TakasuPoppo::fixedUpdate), 0);
+//    }else
+//    {
+//        //this->unschedule(schedule_selector(TakasuPoppo::fixedUpdate));
+//        //setControl();
+//        //releaseAfterRunning();
+//    }
     
 
     //================== Combo related updates ======================
@@ -518,12 +524,7 @@ void TakasuPoppo::fixedUpdate(float time){
     //TakasuPoppo::matchList();
     if (toDestroyArray->count() > 0 && !inTheMove /*&& !inTheFall*/) {
         //count = 0;
-        if (executingLogic == false) {
-            executingLogic = true;
-            this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
-            //TakasuPoppo::logicExecution();
-        }
-
+        
         //TakasuPoppo::logicExecution();
     }
 }
@@ -581,7 +582,7 @@ void TakasuPoppo::logicExecution() {
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
-    CCLog("Logic Delay Time: %f", logicDelayTime);
+//    CCLog("Logic Delay Time: %f", logicDelayTime);
     logicCounter = 0;
     this->schedule(schedule_selector(TakasuPoppo::logicDelaySwitch), 0);
     
@@ -785,9 +786,7 @@ void TakasuPoppo::logicDelaySwitch(){
     logicCounter += deltaTime;
     CCLog("logic counter: %f", logicCounter);
     if (logicCounter > logicDelayTime) {
-        this->schedule(schedule_selector(TakasuPoppo::matchList));
-        this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
-        
+                
         CCObject* obj;
         CCARRAY_FOREACH(colorArray, obj){
             TPObjectExtension* exObj = dynamic_cast<TPObjectExtension*>(obj);
@@ -796,12 +795,13 @@ void TakasuPoppo::logicDelaySwitch(){
             }
             
         }
+        this->schedule(schedule_selector(TakasuPoppo::matchList));
+        this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
+
         controlable = true;
         executingLogic = false;
         this->unschedule(schedule_selector(TakasuPoppo::logicDelaySwitch));
     }
-
-    
 }
 
 void TakasuPoppo::refreshWhenNoCombo(){

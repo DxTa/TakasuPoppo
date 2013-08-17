@@ -169,7 +169,10 @@ private:
 public:
     ~TPMainScreen();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+    virtual void ccTouchMoved(CCTouch *touch, CCEvent *event);
     virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
+    
+    void firstTimeSetup();
     
     void update(float dt);
     void menuCloseCallback(CCObject *pSender);
@@ -181,6 +184,7 @@ public:
     void setItem();
     void setSpecialItemShade(CCSprite *selectedItemShade);
     void setCrystal(int decreasingAmount);
+    void scheduleUpdateHeart(float time);
     
     CCRect boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite);
     

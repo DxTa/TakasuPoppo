@@ -57,7 +57,7 @@ void TPUser::setUserReward(int reward){
 }
 
 int TPUser::getUserHeart(){
-    return CCUserDefault::sharedUserDefault()->getIntegerForKey("UserHeart", 5);
+    return CCUserDefault::sharedUserDefault()->getIntegerForKey("UserHeart", 2);
 }
 
 void TPUser::setUserHeart(int heart)
@@ -66,11 +66,11 @@ void TPUser::setUserHeart(int heart)
     CCUserDefault::sharedUserDefault()->flush();
 }
 
-int TPUser::getLastTime(){
-    return CCUserDefault::sharedUserDefault()->getIntegerForKey("UserLastTime");
+long TPUser::getStartedTime(){
+    return CCUserDefault::sharedUserDefault()->getIntegerForKey("StartedTime");
 }
 
-void TPUser::setLastTime(int time)
+void TPUser::setStartedTime(long time)
 {
     CCUserDefault::sharedUserDefault()->setIntegerForKey("UserLastTime", time);
     CCUserDefault::sharedUserDefault()->flush();
