@@ -49,9 +49,18 @@ public:
     int getCrystal();
     void setCrystal(int crystal);
     
-    bool getExistUser();
-    void setExistUser(bool existUser);
+    bool ExistUser();
+//    void setExistUser(bool existUser);
     
+    float getBMG();
+    void setBMG(float bmg);
+
+    float getVolume();
+    void setVolume(float volume);
+
+    int getScoreLowestTopRanking();
+    void setScoreLowestTopRanking(int scoreLowest);
+
 };
 
 #endif

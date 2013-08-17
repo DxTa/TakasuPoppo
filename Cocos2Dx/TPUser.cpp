@@ -57,7 +57,7 @@ void TPUser::setUserReward(int reward){
 }
 
 int TPUser::getUserHeart(){
-    return CCUserDefault::sharedUserDefault()->getIntegerForKey("UserHeart");
+    return CCUserDefault::sharedUserDefault()->getIntegerForKey("UserHeart", 5);
 }
 
 void TPUser::setUserHeart(int heart)
@@ -77,7 +77,7 @@ void TPUser::setLastTime(int time)
 }
 
 int TPUser::getCrystal(){
-    return CCUserDefault::sharedUserDefault()->getIntegerForKey("UserCrystal");
+    return CCUserDefault::sharedUserDefault()->getIntegerForKey("UserCrystal",999999);
 }
 
 void TPUser::setCrystal(int crystal)
@@ -86,16 +86,51 @@ void TPUser::setCrystal(int crystal)
     CCUserDefault::sharedUserDefault()->flush();
 }
 
-bool TPUser::getExistUser()
+bool TPUser::ExistUser()
 {
     string UserName = this->getUserName();
     return (!(UserName == ""));
 }
 
-void TPUser::setExistUser(bool existUser)
+//void TPUser::setExistUser(bool existUser)
+//{
+//  CCUserDefault::sharedUserDefault()->setBoolForKey("ExistUser", existUser);
+//  CCUserDefault::sharedUserDefault()->flush();
+//}
+
+float TPUser::getBMG()
 {
-  CCUserDefault::sharedUserDefault()->setBoolForKey("ExistUser", existUser);
-  CCUserDefault::sharedUserDefault()->flush();
+    return CCUserDefault::sharedUserDefault()->getFloatForKey("BMG");
+
+}
+
+void TPUser::setBMG(float bmg)
+{
+    CCUserDefault::sharedUserDefault()->setFloatForKey("BMG", bmg);
+    CCUserDefault::sharedUserDefault()->flush();
+
+}
+
+float TPUser::getVolume()
+{
+    return CCUserDefault::sharedUserDefault()->getFloatForKey("Volume");
+}
+
+void TPUser::setVolume(float volume)
+{
+    CCUserDefault::sharedUserDefault()->setFloatForKey("Volume", volume);
+    CCUserDefault::sharedUserDefault()->flush();
+}
+
+int TPUser::getScoreLowestTopRanking()
+{
+    return CCUserDefault::sharedUserDefault()->getIntegerForKey("LowestTopRanking",0);
+}
+
+void TPUser::setScoreLowestTopRanking(int scoreLowest)
+{
+    CCUserDefault::sharedUserDefault()->setIntegerForKey("LowestTopRanking", scoreLowest);
+    CCUserDefault::sharedUserDefault()->flush();
 }
 
 string TPUser::getServerIp()

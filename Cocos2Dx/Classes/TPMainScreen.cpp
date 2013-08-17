@@ -63,7 +63,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     rankingBestContainer->addChild(rankingBestScoreLabel, 103, 182);
     
     char playerName[100];
-    sprintf(playerName, "%s", "Player1");
+    sprintf(playerName, "%s", TPUser::shareTPUser()->getUserName().c_str());
     rankingPlayerName = CCLabelTTF::create(playerName, "Berlin Sans FB", 30,
                                            CCSizeMake(200, 50), kCCTextAlignmentLeft);
     rankingPlayerName->setPosition(ccp(rankingBestContainer->getContentSize(). width / 2,
@@ -139,10 +139,8 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                               rubyContainer->getContentSize().height - 40));
     rubyContainer->addChild(rubyPlus, 103, 111);
     
-    rubyCount = 999999;
-    if (!TPUser::shareTPUser()->getExistUser()) {
-        TPUser::shareTPUser()->setCrystal(rubyCount);
-     }
+    rubyCount = TPUser::shareTPUser()->getCrystal();
+    
     sprintf(rubyCountChar, "%i", TPUser::shareTPUser()->getCrystal());
     rubyCountLabel = CCLabelTTF::create(rubyCountChar, "Berlin Sans FB", 34);
     rubyCountLabel->setColor(ccc3(255, 255, 255));
@@ -1176,6 +1174,12 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
        
     }
     free(data1);
+
+    if (listGamer->count() >0) {
+        Gamer *gamer = (Gamer*)listGamer->objectAtIndex(listGamer->count() -1);
+        TPUser::shareTPUser()->setScoreLowestTopRanking(gamer->getScore());
+        
+    }
     tableView = CCTableView::create(this, CCSizeMake(566, 310));
     tableView->setDirection(kCCScrollViewDirectionVertical);
     tableView->setPosition(ccp(networkContainer->getContentSize().width / 2 - 260,

@@ -487,8 +487,8 @@
 		DEF5F5F317A9F77D0063C3BA /* Poppo5Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5EC17A9F77D0063C3BA /* Poppo5Mission3.png */; };
 		DEF5F5F417A9F77D0063C3BA /* Poppo6Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */; };
 		DEF5F5F517A9F77D0063C3BA /* Poppo7Mission3.png in Resources */ = {isa = PBXBuildFile; fileRef = DEF5F5EE17A9F77D0063C3BA /* Poppo7Mission3.png */; };
-		FB50413817BE65AD00A8EE62 /* TPEndGameScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB50413617BE65AD00A8EE62 /* TPEndGameScreen.cpp */; };
-		FB50413B17BE65B600A8EE62 /* TPSocial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB50413917BE65B600A8EE62 /* TPSocial.cpp */; };
+		FB50413817BE65AD00A8EE62 /* TPRegisterScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB50413617BE65AD00A8EE62 /* TPRegisterScreen.cpp */; };
+		FB50413B17BE65B600A8EE62 /* TPSocialScreen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB50413917BE65B600A8EE62 /* TPSocialScreen.cpp */; };
 		FB50414B17BE65C400A8EE62 /* GetPresentBG.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50413D17BE65C400A8EE62 /* GetPresentBG.png */; };
 		FB50414C17BE65C400A8EE62 /* SendButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50413E17BE65C400A8EE62 /* SendButton.png */; };
 		FB50414D17BE65C400A8EE62 /* SendButtonOnClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = FB50413F17BE65C400A8EE62 /* SendButtonOnClicked.png */; };
@@ -1315,10 +1315,10 @@
 		DEF5F5EC17A9F77D0063C3BA /* Poppo5Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo5Mission3.png; sourceTree = "<group>"; };
 		DEF5F5ED17A9F77D0063C3BA /* Poppo6Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo6Mission3.png; sourceTree = "<group>"; };
 		DEF5F5EE17A9F77D0063C3BA /* Poppo7Mission3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poppo7Mission3.png; sourceTree = "<group>"; };
-		FB50413617BE65AD00A8EE62 /* TPEndGameScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPEndGameScreen.cpp; sourceTree = "<group>"; };
-		FB50413717BE65AD00A8EE62 /* TPEndGameScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPEndGameScreen.h; sourceTree = "<group>"; };
-		FB50413917BE65B600A8EE62 /* TPSocial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TPSocial.cpp; path = Classes/TPSocial.cpp; sourceTree = "<group>"; };
-		FB50413A17BE65B600A8EE62 /* TPSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPSocial.h; path = Classes/TPSocial.h; sourceTree = "<group>"; };
+		FB50413617BE65AD00A8EE62 /* TPRegisterScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TPRegisterScreen.cpp; sourceTree = "<group>"; };
+		FB50413717BE65AD00A8EE62 /* TPRegisterScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPRegisterScreen.h; sourceTree = "<group>"; };
+		FB50413917BE65B600A8EE62 /* TPSocialScreen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TPSocialScreen.cpp; path = Classes/TPSocialScreen.cpp; sourceTree = "<group>"; };
+		FB50413A17BE65B600A8EE62 /* TPSocialScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPSocialScreen.h; path = Classes/TPSocialScreen.h; sourceTree = "<group>"; };
 		FB50413D17BE65C400A8EE62 /* GetPresentBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GetPresentBG.png; sourceTree = "<group>"; };
 		FB50413E17BE65C400A8EE62 /* SendButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendButton.png; sourceTree = "<group>"; };
 		FB50413F17BE65C400A8EE62 /* SendButtonOnClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendButtonOnClicked.png; sourceTree = "<group>"; };
@@ -2840,8 +2840,8 @@
 				849A788B17A7AFF700782C50 /* TPClean.cpp */,
 				849A788C17A7AFF700782C50 /* TPDebug.cpp */,
 				DE0606E717ABB51800191B1B /* TPDefinition.h */,
-				FB50413617BE65AD00A8EE62 /* TPEndGameScreen.cpp */,
-				FB50413717BE65AD00A8EE62 /* TPEndGameScreen.h */,
+				FB50413617BE65AD00A8EE62 /* TPRegisterScreen.cpp */,
+				FB50413717BE65AD00A8EE62 /* TPRegisterScreen.h */,
 				849A78E817AA27C200782C50 /* TPItem.cpp */,
 				DE22A42817A7C40A00B2FBC7 /* TPItemObject.cpp */,
 				DE22A42917A7C40A00B2FBC7 /* TPItemObject.h */,
@@ -2852,8 +2852,8 @@
 				849A789117A7AFF700782C50 /* TPObjectExtension.cpp */,
 				849A789217A7AFF700782C50 /* TPObjectExtension.h */,
 				849A789317A7AFF700782C50 /* TPParticles.cpp */,
-				FB50413917BE65B600A8EE62 /* TPSocial.cpp */,
-				FB50413A17BE65B600A8EE62 /* TPSocial.h */,
+				FB50413917BE65B600A8EE62 /* TPSocialScreen.cpp */,
+				FB50413A17BE65B600A8EE62 /* TPSocialScreen.h */,
 				849A789417A7AFF700782C50 /* TPSwiped.cpp */,
 				8491456817BCA6C000E41006 /* TPTopScreen.cpp */,
 				8491456917BCA6C000E41006 /* TPTopScreen.h */,
@@ -3436,8 +3436,8 @@
 				849A78E917AA27C200782C50 /* TPItem.cpp in Sources */,
 				8491456717BC83EE00E41006 /* TPUser.cpp in Sources */,
 				8491456A17BCA6C000E41006 /* TPTopScreen.cpp in Sources */,
-				FB50413817BE65AD00A8EE62 /* TPEndGameScreen.cpp in Sources */,
-				FB50413B17BE65B600A8EE62 /* TPSocial.cpp in Sources */,
+				FB50413817BE65AD00A8EE62 /* TPRegisterScreen.cpp in Sources */,
+				FB50413B17BE65B600A8EE62 /* TPSocialScreen.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
