@@ -151,7 +151,7 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
             TakasuPoppo::checkPosition(swpObj, exObj);
             this->runAction(CCSequence::create(CCDelayTime::create(SWAP_TIME+0.02),
                                                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlableBlockSet), (void*)swpObj),
-                                            CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlableBlockSet), (void*)exObj),
+                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlableBlockSet), (void*)exObj),
                                                NULL));
             moveCounter = 0;
             this->schedule(schedule_selector(TakasuPoppo::movingBoolSwitch), SWAP_TIME);

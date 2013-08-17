@@ -316,7 +316,15 @@ void TakasuPoppo::returnNormalSprite(CCNode* sender, void* data)
     }
 }
 
-
+void TakasuPoppo::generationEffect(CCPoint startPoint, CCPoint destination) {
+    CCSprite *generationBall = CCSprite::create("poppo_sprite_generation.png");
+    generationBall->setPosition(startPoint);
+    generationBall->runAction(CCSequence::create(CCMoveTo::create(MOVE_DELAY, destination),
+                              CCFadeOut::create(MOVE_DELAY / 2),
+                              CCDelayTime::create(MOVE_DELAY),
+                              CCRemoveSelf::create(),
+                              NULL));
+}
 
 //void TakasuPoppo::spriteChange(CCNode *sender, void* data) {
 //    TPObjectExtension *exObj = (TPObjectExtension*)data;

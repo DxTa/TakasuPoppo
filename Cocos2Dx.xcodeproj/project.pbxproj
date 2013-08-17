@@ -190,6 +190,7 @@
 		84AC30CD1796A52E0073C6D5 /* CCSwipeGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AC30C51796A52E0073C6D5 /* CCSwipeGestureRecognizer.cpp */; };
 		84AC30CE1796A52E0073C6D5 /* CCTapGestureRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84AC30C71796A52E0073C6D5 /* CCTapGestureRecognizer.cpp */; };
 		84AE2645178281F800FBD93C /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 84AE2644178281F800FBD93C /* Star.png */; };
+		84BB932E17BF31F800CBD352 /* poppo_sprite_generation.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BB932D17BF31F800CBD352 /* poppo_sprite_generation.png */; };
 		84DA2876176702B200E179E7 /* BigTile.png in Resources */ = {isa = PBXBuildFile; fileRef = 84DA2875176702B200E179E7 /* BigTile.png */; };
 		CEFBBE2B177D3ECB0000F235 /* IOFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEFBBE29177D3ECA0000F235 /* IOFile.cpp */; };
 		DC12FB681744D21300480D31 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC12FB671744D21300480D31 /* QuartzCore.framework */; };
@@ -707,6 +708,7 @@
 		84AC30C71796A52E0073C6D5 /* CCTapGestureRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTapGestureRecognizer.cpp; sourceTree = "<group>"; };
 		84AC30C81796A52E0073C6D5 /* CCTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTapGestureRecognizer.h; sourceTree = "<group>"; };
 		84AE2644178281F800FBD93C /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
+		84BB932D17BF31F800CBD352 /* poppo_sprite_generation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poppo_sprite_generation.png; sourceTree = "<group>"; };
 		84DA2875176702B200E179E7 /* BigTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BigTile.png; sourceTree = "<group>"; };
 		CEFBBE29177D3ECA0000F235 /* IOFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IOFile.cpp; sourceTree = "<group>"; };
 		CEFBBE2A177D3ECB0000F235 /* IOFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOFile.h; sourceTree = "<group>"; };
@@ -1372,6 +1374,7 @@
 		8485C94517BB1F3C001B939A /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				84BB932D17BF31F800CBD352 /* poppo_sprite_generation.png */,
 				8491FD4A17BE59470074F257 /* poppo_ranking_first.png */,
 				8491FD4817BE59360074F257 /* poppo_avatar_container.png */,
 				8491FD4617BE41AF0074F257 /* poppo_ranking_line.png */,
@@ -3164,6 +3167,7 @@
 				FB50415517BE65C400A8EE62 /* SocialBG.png in Resources */,
 				FB50415617BE65C400A8EE62 /* TweetButton.png in Resources */,
 				FB50415717BE65C400A8EE62 /* TweetButtonOnClicked.png in Resources */,
+				84BB932E17BF31F800CBD352 /* poppo_sprite_generation.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
