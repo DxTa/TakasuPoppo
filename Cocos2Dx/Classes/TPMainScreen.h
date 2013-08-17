@@ -169,7 +169,10 @@ private:
 public:
     ~TPMainScreen();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
+    virtual void ccTouchMoved(CCTouch *touch, CCEvent *event);
     virtual void ccTouchEnded(CCTouch *touch, CCEvent *event);
+    
+    void firstTimeSetup();
     
     void update(float dt);
     void menuCloseCallback(CCObject *pSender);

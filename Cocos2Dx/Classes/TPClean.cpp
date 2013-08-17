@@ -411,6 +411,7 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
         case HBB_BLOCK_TYPE:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockB(exobj);
+            TakasuPoppo::exPopBlast(exobj->getPosition());
             break;
             
         case HBC_BLOCK_TYPE:
@@ -478,6 +479,7 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
         case MOVED_HBB_BLOCK_TYPE:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockB(exobj);
+            TakasuPoppo::exPopBlast(exobj->getPosition());
             break;
         case NORMAL_BLOCK_TYPE:
             if (isInFeverTime == true) {
@@ -511,6 +513,7 @@ void TakasuPoppo::cleanOneBlock(TPObjectExtension* exobj){
         case (MOVED_HBB_BLOCK_TYPE + 10):
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockB(exobj);
+            TakasuPoppo::exPopBlast(exobj->getPosition());
             break;
 
             
@@ -649,6 +652,8 @@ void TakasuPoppo::cleanB(TPObjectExtension* exObj) {
         if (i!=x && block2->getSprite() != NULL && block2->getID() != 7 && block2->getBlockType() < MOVED_NORMAL_BLOCK_TYPE) TakasuPoppo::cleanOneBlock(block2);
         
     }
+    
+    TakasuPoppo::exPopBlast(exObj->getPosition());
 
 }
 
@@ -850,6 +855,7 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
         case HBB_BLOCK_TYPE:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockB(exobj);
+            TakasuPoppo::exPopBlast(exobj->getPosition());
             break;
             
         case HBC_BLOCK_TYPE:
@@ -917,6 +923,7 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
         case MOVED_HBB_BLOCK_TYPE:
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockB(exobj);
+            TakasuPoppo::exPopBlast(exobj->getPosition());
             break;
         case NORMAL_BLOCK_TYPE:
             if (isInFeverTime == true) {
@@ -950,6 +957,7 @@ void TakasuPoppo::cleanOneBlock(cocos2d::CCNode *sender, void *data){
         case (MOVED_HBB_BLOCK_TYPE + 10):
             if (exobj != NULL && exobj->getSprite() != NULL && exobj->getID() != 7)
                 TakasuPoppo::cleanHyperBlockB(exobj);
+            TakasuPoppo::exPopBlast(exobj->getPosition());
             break;
             
             
