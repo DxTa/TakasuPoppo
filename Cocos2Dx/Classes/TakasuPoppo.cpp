@@ -577,7 +577,7 @@ void TakasuPoppo::logicExecution() {
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::setControl)),
                                        CCCallFunc::create(this, callfunc_selector(TakasuPoppo::scheduleGenerate))
                                        ,NULL));
-    CCLog("Logic Delay Time: %f", logicDelayTime);
+//    CCLog("Logic Delay Time: %f", logicDelayTime);
     logicCounter = 0;
     this->schedule(schedule_selector(TakasuPoppo::logicDelaySwitch), 0);
     
@@ -747,7 +747,7 @@ bool TakasuPoppo::checkUpdate()
 void TakasuPoppo::logicDelaySwitch(){
 //    this->unschedule(schedule_selector(TakasuPoppo::matchList));
     logicCounter += deltaTime;
-    CCLog("logic counter: %f", logicCounter);
+//    CCLog("logic counter: %f", logicCounter);
     if (logicCounter > logicDelayTime) {
         this->schedule(schedule_selector(TakasuPoppo::matchList));
         this->schedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));

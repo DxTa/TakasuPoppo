@@ -70,12 +70,12 @@ void TakasuPoppo::createFixture() {
 }
 
 CCPoint TakasuPoppo::tileCoorForPosition(CCPoint position) {
-    CCLog("pos %f %f", position.x, position.y);
+//    CCLog("pos %f %f", position.x, position.y);
     float x = (position.x - 4) / 90;
     int intX = (int)floor(x);
     float y = 6 - (position.y - 180) / 90;
     int intY = (int)ceil(y);
-    CCLog("posmap %d %d", intX, intY);
+//    CCLog("posmap %d %d", intX, intY);
     CCPoint transPos = CCPointMake(intX, intY);
     return transPos;
 }
