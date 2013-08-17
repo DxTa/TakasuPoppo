@@ -13,6 +13,8 @@
 #include "CCSwipeGestureRecognizer.h"
 #include "TPItemObject.h"
 #include "TPDefinition.h"
+#include "TPEndGameScreen.h"
+
 
 USING_NS_CC;
 class TakasuPoppo : public cocos2d::CCLayer {

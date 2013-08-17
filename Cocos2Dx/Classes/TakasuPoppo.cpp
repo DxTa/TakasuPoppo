@@ -9,6 +9,8 @@
 #include "CCGestureRecognizer.h"
 #include "TPMainScreen.h"
 #include "TPUser.h"
+#include "TPSocial.h"
+
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -695,14 +697,24 @@ void TakasuPoppo::timeOver() {
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
         
-        if (TPUser::shareTPUser()->getUserScore() < score) {
+        if (TPUser::shareTPUser()->getExistUser()) {
+//            if (TPUser::shareTPUser()->getUserScore() < score) {
+                CCScene *socialScene = TPSocial::scene();
+                CCTransitionScene* transition = CCTransitionSlideInT::create(1, socialScene);
+                CCDirector::sharedDirector()->replaceScene(transition);
+                TPUser::shareTPUser()->setUserScore(score);
+//             }
+        } else {
+            CCScene *registerScene  = TPEndGameScreen::scene();
+            CCTransitionScene* transition = CCTransitionSlideInT::create(1, registerScene);
+            CCDirector::sharedDirector()->replaceScene(transition);
             TPUser::shareTPUser()->setUserScore(score);
-         }
+        }
         
-        CCScene *mainScene = TPMainScreen::scene(true, score);
-        CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
-        CCDirector::sharedDirector()->replaceScene(transition);
-        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+//        CCScene *mainScene = TPMainScreen::scene(true, score);
+//        CCTransitionScene* transition = CCTransitionSlideInT::create(1, mainScene);
+//        CCDirector::sharedDirector()->replaceScene(transition);
+//        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 
         //this->unscheduleUpdate();
     }

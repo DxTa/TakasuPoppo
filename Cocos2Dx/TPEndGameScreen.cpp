@@ -19,19 +19,27 @@ CCScene* TPEndGameScreen::scene() {
 
 bool TPEndGameScreen::init()
 {
-    CCSize editBoxSize = CCSizeMake(winSize.width - 100, 60);
     
-    CCLabelTTF *congrats = CCLabelTTF::create("BEST SCORE !!","BankGothic Md BT" , 60);
-    congrats->setPosition(ccp(winSize.width /2, winSize.height * 6/8));
-    this->addChild(congrats);
+    w = winSize.width;
+    h = winSize.height;
+    CCSize editBoxSize = CCSizeMake((w - 250), 50);
+    
+    CCSprite *background = CCSprite::create("GetPresentBG.png");
+    background->setPosition(ccp(w/2, h/2));
+    this->addChild(background);
+
+//    CCLabelTTF *congrats = CCLabelTTF::create("BEST SCORE !!","BankGothic Md BT" , 60);
+//    congrats->setPosition(ccp(winSize.width /2, winSize.height * 6/8));
+//    this->addChild(congrats);
     
     //Email
-    CCLabelTTF *emailLabel = CCLabelTTF::create("Please enter your Email", "BankGothic Md BT", 40);
-    emailLabel->setPosition(ccp(winSize.width/2, winSize.height*5/8));
+    CCLabelTTF *emailLabel = CCLabelTTF::create("メールアドレス", "BankGothic Md BT", 30);
+    emailLabel->setPosition(ccp(w/2 - w/5, h*3.8f/8));
     this->addChild(emailLabel);
     
-    editBoxUserEmail = CCEditBox::create(editBoxSize,CCScale9Sprite::create("GreenBox.png"));
-    editBoxUserEmail->setPosition(ccp(winSize.width/2, 495));
+    editBoxUserEmail = CCEditBox::create(editBoxSize,CCScale9Sprite::create("WhiteBox.png"));
+    editBoxUserEmail->setAnchorPoint(CCPointZero);
+    editBoxUserEmail->setPosition(ccp(emailLabel->getPosition().x - emailLabel->getContentSize().width/2, emailLabel->getPositionY() - 80));
     editBoxUserEmail->setFontSize(40);
     editBoxUserEmail->setFontColor(ccWHITE);
     editBoxUserEmail->setMaxLength(55);
@@ -42,19 +50,21 @@ bool TPEndGameScreen::init()
     
     // Email Fail Message
     
-    emailInvalidMsg = CCLabelTTF::create("Invalid Email !! Please try again !!", "BankGothic Md BT", 24);
+    emailInvalidMsg = CCLabelTTF::create(" Invalid Email !! Please try again !!", "BankGothic Md BT", 24);
+    emailInvalidMsg->setAnchorPoint(CCPointZero);
     emailInvalidMsg->setPosition(ccp(editBoxUserEmail->getPosition().x,
-                                     editBoxUserEmail->getPosition().y - 50));
+                                     editBoxUserEmail->getPosition().y - 30));
     emailInvalidMsg->setColor(ccRED);
     emailInvalidMsg->setVisible(false);
     this->addChild(emailInvalidMsg);
      
     // name
-    CCLabelTTF *nameLabel = CCLabelTTF::create("Please enter your name","BankGothic Md BT", 40);
-    nameLabel->setPosition(ccp(winSize.width/2, winSize.height*3/8));
+    CCLabelTTF *nameLabel = CCLabelTTF::create("ニックネーム","BankGothic Md BT", 30);
+    nameLabel->setPosition(ccp(w/2 - w/5 - 10, h*4.8/8));
     this->addChild(nameLabel);
-    editBoxUserName = CCEditBox::create(editBoxSize,CCScale9Sprite::create("GreenBox.png"));
-    editBoxUserName->setPosition(ccp(winSize.width/2, nameLabel->getPositionY() - 60));
+    editBoxUserName = CCEditBox::create(editBoxSize,CCScale9Sprite::create("WhiteBox.png"));
+    editBoxUserName->setAnchorPoint(CCPointZero);
+    editBoxUserName->setPosition(ccp(nameLabel->getPosition().x - nameLabel->getContentSize().width/2, nameLabel->getPositionY() - 75));
     editBoxUserName->setFontSize(40);
     editBoxUserName->setPlaceholderFontColor(ccWHITE);
     editBoxUserName->setMaxLength(15);
@@ -64,13 +74,14 @@ bool TPEndGameScreen::init()
     this->addChild(editBoxUserName);
     
     nameInvalidMsg = CCLabelTTF::create("Invalid your name !! Please try again !", "BankGothic Md BT", 24);
-    nameInvalidMsg->setPosition(ccp(editBoxUserName->getPosition().x, editBoxUserName->getPosition().y-50));
+    nameInvalidMsg->setAnchorPoint(CCPointZero);
+    nameInvalidMsg->setPosition(ccp(editBoxUserName->getPosition().x, editBoxUserName->getPosition().y-30));
     nameInvalidMsg->setColor(ccRED);
     nameInvalidMsg->setVisible(false);
     this->addChild(nameInvalidMsg);
     
-    CCMenuItemImage *sendMenuItem = CCMenuItemImage::create("SubmitButton.png",
-                                                            "SubmitButtonOnClicked.png",
+    CCMenuItemImage *sendMenuItem = CCMenuItemImage::create("SendButton.png",
+                                                            "SendButtonOnClicked.png",
                                                             this, menu_selector(TPEndGameScreen::menuSendEmail));
     sendMenuItem->setPosition(ccp(winSize.width/2, 100));
     Menu = CCMenu::create(sendMenuItem, NULL);
@@ -154,7 +165,7 @@ void TPEndGameScreen:: menuSendEmail(CCObject *pSender)
         
         //Return TPMainScreen affter to sent data to Server
         
-        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, TPMainScreen::scene()));
+        CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, TPMainScreen::scene(false, TPUser::shareTPUser()->getUserScore())));
         
     }
 }

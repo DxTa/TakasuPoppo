@@ -24,6 +24,7 @@ USING_NS_CC;
 class TPEndGameScreen:public CCLayer, extension::CCEditBoxDelegate {
     private :
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    float w, h;
     CCLabelTTF *emailInvalidMsg;
     CCLabelTTF *nameInvalidMsg;
     CCEditBox *editBoxUserEmail;
