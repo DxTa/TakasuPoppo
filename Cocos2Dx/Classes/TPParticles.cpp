@@ -328,6 +328,29 @@ void TakasuPoppo::generationEffect(CCPoint startPoint, CCPoint destination) {
                               NULL));
 }
 
+void TakasuPoppo::exPopBlast(CCPoint position) {
+    CCSprite *exBlast = CCSprite::create();
+    exBlast->setPosition(position);
+    
+    CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    cache->addSpriteFramesWithFile("exPop.plist");
+    CCArray* animFrames = new CCArray;
+    animFrames->autorelease();
+    char str[100] = {0};
+    for(int i = 0; i < 9; i++) {
+        sprintf(str, "exPop%d.png", i);
+        CCSpriteFrame* frame = cache->spriteFrameByName( str );
+        frame->setOriginalSizeInPixels(CCSizeMake(300, 300));
+        animFrames->addObject(frame);
+    }
+    CCAnimation* animation = CCAnimation::createWithSpriteFrames(animFrames, 0.1);
+    CCAnimate *animate = CCAnimate::create(animation);
+    
+    this->addChild(exBlast, 16, 1111);
+    exBlast->runAction(animate);
+}
+
+
 //void TakasuPoppo::spriteChange(CCNode *sender, void* data) {
 //    TPObjectExtension *exObj = (TPObjectExtension*)data;
 //    if (exObj->getID() == 0) {
