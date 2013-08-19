@@ -8,7 +8,7 @@
 #ifndef __TaKaSuPoppo__TPUser__
 #define __TaKaSuPoppo__TPUser__
 
-#define IP_SERVER "192.168.1.189"
+#define IP_SERVER "133.242.203.251"
 
 #include "cocos2d.h"
 

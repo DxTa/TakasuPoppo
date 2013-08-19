@@ -575,7 +575,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     //===================== Request =========================
     CCHttpRequest *request = new CCHttpRequest();
     string serverIP = TPUser::shareTPUser()->getServerIp();
-    request->setUrl((serverIP+":3000/users.json").c_str());
+    request->setUrl((serverIP+"/users.json").c_str());
     request->setRequestType(CCHttpRequest::kHttpGet);
     request->setResponseCallback(this, httpresponse_selector(TPMainScreen::onHttpRequestCompleted));
     CCHttpClient::getInstance()->send(request);

@@ -156,7 +156,7 @@ void TPRegisterScreen:: SendData(CCObject *pSender)
         string emailUser  = TPUser::shareTPUser()->getUserEmail();
         string serverIP = TPUser::shareTPUser()->getServerIp();
 
-        string url    = serverIP + ":3000/users?name="+nameUser+"&point="+strScore+"&email="+emailUser;
+        string url    = serverIP + "/users?name="+nameUser+"&point="+strScore+"&email="+emailUser;
         request->setUrl(url.c_str());
         request->setRequestType(CCHttpRequest::kHttpPost);
         CCHttpClient::getInstance()->send(request);
