@@ -129,6 +129,13 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
         return ;
     }
     
+    if (TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true ||
+        TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true)
+    {
+        return;
+    }
+    
+    
     if (exObj != NULL &&
         exObj->getControlTrigger() != false &&
         swpObj != NULL &&
@@ -148,6 +155,27 @@ void TakasuPoppo::swapTilesCheck(TPObjectExtension *exObj, int swpGid) {
 
         if (TakasuPoppo::matchAble(swpObj->getCoordination(), swpObj->getID()) == true ||
             TakasuPoppo::matchAble(exObj->getCoordination(), exObj->getID()) == true) {
+            //============= moveback when position of moving havd a blockset================
+            
+            if (executingLogic && (checkCreatedBlockSet(swpObj->getCoordination(), swpObj->getID()) || checkCreatedBlockSet(exObj->getCoordination(), exObj->getID())))
+            {
+                TakasuPoppo::swapColorID(exObj, swpObj);
+                if(exObj->getSprite() != NULL && swpObj->getSprite() != NULL)
+                {
+                    TakasuPoppo::swapTilesBack(swpObj, exObj);
+                    if(swpObj->getBlockType() == HBC_BLOCK_TYPE)
+                    {
+                        makeBlockToBeHBC(swpObj);
+                    }
+                    if(exObj->getBlockType() == HBC_BLOCK_TYPE)
+                    {
+                        makeBlockToBeHBC(exObj);
+                    }
+                }
+                return;
+            }
+            //==========================================================================
+            
             TakasuPoppo::checkPosition(swpObj, exObj);
             this->runAction(CCSequence::create(CCDelayTime::create(SWAP_TIME+0.02),
                                                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::setFalseControlableBlockSet), (void*)swpObj),

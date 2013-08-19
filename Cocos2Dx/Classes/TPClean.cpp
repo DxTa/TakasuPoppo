@@ -32,6 +32,7 @@ void TakasuPoppo::cleanBlocks() {
                 if(blockSet->getEx3() != NULL)
                 {
                     score = score + (int)(ComboScoreRequired * increasedScore * SCORE_THREE * doubleScore);
+                    CCLOG("ddd %d",score);
                 }
                 if(blockSet->getEx4() != NULL && blockSet->getEx4()->getID() != 7)
                 {
@@ -981,7 +982,7 @@ float TakasuPoppo::setCleanDelay(){
 void TakasuPoppo::plusAllComboCounter(){
     // count the combo to generate hyper block
     hbcComboCounter += 1;
-    if (hbcComboTimer <= 0) hbcComboTimer = HBC_COMBO_MAXTIME * increaseComboTimes;
+    if (hbcComboTimer <= 0) hbcComboTimer = HBC_COMBO_MAXTIME;
 
     // count the combo for the Fever Time
     feverCounter += 1;
@@ -994,7 +995,7 @@ void TakasuPoppo::plusAllComboCounter(){
     
     // count the really combo
     ComboCounter += 1;
-    if (ComboTimer != 3) ComboTimer = 3;
+    if (ComboTimer != (3 + increaseComboTimes)) ComboTimer = (3 + increaseComboTimes);
     
 }
 
@@ -1022,82 +1023,4 @@ void TakasuPoppo::deleteMainSprite()
 {
    // returnNormalSprite(mainSprite);
     mainSprite = NULL;
-}
-
-bool TakasuPoppo::checkHorMatch(CCPoint coor , int type)
-{
-    if(type == 8)
-        return false;
-    int x = coor.x;
-    int y = coor.y;
-    
-    CCPoint ePoint = ccp(x, y - 1);
-    CCPoint hPoint = ccp(x, y - 2);
-    CCPoint oPoint = ccp(x, y + 1);
-    CCPoint qPoint = ccp(x, y + 2);
-    TPObjectExtension *eExObj = TakasuPoppo::coorToExObj(ePoint);
-    TPObjectExtension *hExObj = TakasuPoppo::coorToExObj(hPoint);
-    TPObjectExtension *oExObj = TakasuPoppo::coorToExObj(oPoint);
-    TPObjectExtension *qExObj = TakasuPoppo::coorToExObj(qPoint);
-    
-    if (eExObj != NULL && eExObj->getID() == type &&
-        hExObj != NULL && hExObj->getID() == type) {
-        return true;
-    }
-    
-    if (oExObj != NULL && oExObj->getID() == type &&
-        qExObj != NULL && qExObj->getID() == type) {
-        return true;
-    }
-    
-    if (oExObj != NULL && oExObj->getID() == type &&
-        eExObj != NULL && eExObj->getID() == type) {
-        return true;
-    }
-    return false;
-}
-
-bool TakasuPoppo::checkVerMatch(CCPoint coor , int type)
-{
-    if(type == 8)
-        return false;
-    int x = coor.x;
-    int y = coor.y;
-    
-    CCPoint bPoint = ccp(x + 1, y);
-    CCPoint cPoint = ccp(x + 2, y);
-    CCPoint mPoint = ccp(x - 2, y);
-    CCPoint nPoint = ccp(x - 1, y);
-    
-    TPObjectExtension *bExObj = TakasuPoppo::coorToExObj(bPoint);
-    TPObjectExtension *cExObj = TakasuPoppo::coorToExObj(cPoint);
-    TPObjectExtension *mExObj = TakasuPoppo::coorToExObj(mPoint);
-    TPObjectExtension *nExObj = TakasuPoppo::coorToExObj(nPoint);
-
-    
-    if (bExObj != NULL && bExObj->getID() == type &&
-        cExObj != NULL && cExObj->getID() == type) {
-        return true;
-    }
-    
-    if (nExObj != NULL && nExObj->getID() == type &&
-        mExObj != NULL && mExObj->getID() == type) {
-        return true;
-    }
-    
-    if (nExObj != NULL && nExObj->getID() == type &&
-        bExObj != NULL && bExObj->getID() == type) {
-        return true;
-    }
-    return false;
-}
-
-bool TakasuPoppo::checkCreateHyperB(CCPoint coor , int type)
-{
-    if(checkVerMatch(coor, type) && checkHorMatch(coor, type))
-    {
-        CCLOG( "True Cmnr");
-        return true;
-    }
-    return false;
 }

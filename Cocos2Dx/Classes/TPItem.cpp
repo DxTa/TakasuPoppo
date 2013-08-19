@@ -60,12 +60,12 @@ bool TakasuPoppo::lastScore()
     return false;
 }
 void TakasuPoppo::addTime(){
-    gameTimer = gameTimer + 5;
+    gameTimer = gameTimer + ITEM_ADD_TIME;
 }
 
 void TakasuPoppo::increasedScores()
 {
-    increasedScore = 1.1;
+    increasedScore = ITEM_INCREASE_SCORE;
 }
 
 void TakasuPoppo::createMapWithHyperBlock()

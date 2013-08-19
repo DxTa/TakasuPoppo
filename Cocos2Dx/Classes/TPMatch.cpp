@@ -1046,3 +1046,157 @@ void TakasuPoppo::setFallDistance(TPBlockSet *blockSet){
 
 }
 
+/*
+ |======================================|
+ |           Check Matchable            |
+ |======================================|
+ |    |     -2  -1   0  +1  +2  +3      |
+ |----|---------------------------------|
+ | -3 |              x                  |
+ | -2 |              h                  |
+ | -1 |              e                  |
+ |  0 |   k  m   n  [a]  b   c   d      |
+ | +1 |              o                  |
+ | +2 |              q  
+ | +3 |              t
+ |======================================|
+ */
+
+bool TakasuPoppo::checkCreatedBlockSet(CCPoint coor, int type)
+{
+    if(type == 8)
+        return false;
+    int x = coor.x;
+    int y = coor.y;
+    
+    
+    CCPoint bPoint = ccp(x + 1, y);
+    CCPoint cPoint = ccp(x + 2, y);
+    CCPoint ePoint = ccp(x, y - 1);
+    CCPoint hPoint = ccp(x, y - 2);
+    CCPoint mPoint = ccp(x - 2, y);
+    CCPoint nPoint = ccp(x - 1, y);
+    CCPoint oPoint = ccp(x, y + 1);
+    CCPoint qPoint = ccp(x, y + 2);
+    CCPoint kPoint = ccp(x - 3, y);
+    CCPoint dPoint = ccp(x + 3, y);
+    CCPoint xPoint = ccp(x, y - 3);
+    CCPoint tPoint = ccp(x, y + 3);
+    
+    TPObjectExtension *bExObj = TakasuPoppo::coorToExObj(bPoint);
+    TPObjectExtension *cExObj = TakasuPoppo::coorToExObj(cPoint);
+    TPObjectExtension *eExObj = TakasuPoppo::coorToExObj(ePoint);
+    TPObjectExtension *hExObj = TakasuPoppo::coorToExObj(hPoint);
+    TPObjectExtension *mExObj = TakasuPoppo::coorToExObj(mPoint);
+    TPObjectExtension *nExObj = TakasuPoppo::coorToExObj(nPoint);
+    TPObjectExtension *oExObj = TakasuPoppo::coorToExObj(oPoint);
+    TPObjectExtension *qExObj = TakasuPoppo::coorToExObj(qPoint);
+    
+    TPObjectExtension *kExObj = TakasuPoppo::coorToExObj(kPoint);
+    TPObjectExtension *dExObj = TakasuPoppo::coorToExObj(dPoint);
+    TPObjectExtension *xExObj = TakasuPoppo::coorToExObj(xPoint);
+    TPObjectExtension *tExObj = TakasuPoppo::coorToExObj(tPoint);
+    
+    if (bExObj != NULL && bExObj->getID() == type &&
+        cExObj != NULL && cExObj->getID() == type &&
+        dExObj != NULL && dExObj->getID() == type) {
+        return true;
+    }
+    
+    if (nExObj != NULL && nExObj->getID() == type &&
+        mExObj != NULL && mExObj->getID() == type &&
+        kExObj != NULL && kExObj->getID() == type) {
+        return true;
+    }
+    
+    if (eExObj != NULL && eExObj->getID() == type &&
+        hExObj != NULL && hExObj->getID() == type &&
+        xExObj != NULL && xExObj->getID() == type) {
+        return true;
+    }
+    
+    if (oExObj != NULL && oExObj->getID() == type &&
+        qExObj != NULL && qExObj->getID() == type &&
+        tExObj != NULL && tExObj->getID() == type) {
+        return true;
+    }
+    return false;
+}
+
+bool TakasuPoppo::checkHorMatch(CCPoint coor , int type)
+{
+    if(type == 8)
+        return false;
+    int x = coor.x;
+    int y = coor.y;
+    
+    CCPoint ePoint = ccp(x, y - 1);
+    CCPoint hPoint = ccp(x, y - 2);
+    CCPoint oPoint = ccp(x, y + 1);
+    CCPoint qPoint = ccp(x, y + 2);
+    TPObjectExtension *eExObj = TakasuPoppo::coorToExObj(ePoint);
+    TPObjectExtension *hExObj = TakasuPoppo::coorToExObj(hPoint);
+    TPObjectExtension *oExObj = TakasuPoppo::coorToExObj(oPoint);
+    TPObjectExtension *qExObj = TakasuPoppo::coorToExObj(qPoint);
+    
+    if (eExObj != NULL && eExObj->getID() == type &&
+        hExObj != NULL && hExObj->getID() == type) {
+        return true;
+    }
+    
+    if (oExObj != NULL && oExObj->getID() == type &&
+        qExObj != NULL && qExObj->getID() == type) {
+        return true;
+    }
+    
+    if (oExObj != NULL && oExObj->getID() == type &&
+        eExObj != NULL && eExObj->getID() == type) {
+        return true;
+    }
+    return false;
+}
+
+bool TakasuPoppo::checkVerMatch(CCPoint coor , int type)
+{
+    if(type == 8)
+        return false;
+    int x = coor.x;
+    int y = coor.y;
+    
+    CCPoint bPoint = ccp(x + 1, y);
+    CCPoint cPoint = ccp(x + 2, y);
+    CCPoint mPoint = ccp(x - 2, y);
+    CCPoint nPoint = ccp(x - 1, y);
+    
+    TPObjectExtension *bExObj = TakasuPoppo::coorToExObj(bPoint);
+    TPObjectExtension *cExObj = TakasuPoppo::coorToExObj(cPoint);
+    TPObjectExtension *mExObj = TakasuPoppo::coorToExObj(mPoint);
+    TPObjectExtension *nExObj = TakasuPoppo::coorToExObj(nPoint);
+    
+    
+    if (bExObj != NULL && bExObj->getID() == type &&
+        cExObj != NULL && cExObj->getID() == type) {
+        return true;
+    }
+    
+    if (nExObj != NULL && nExObj->getID() == type &&
+        mExObj != NULL && mExObj->getID() == type) {
+        return true;
+    }
+    
+    if (nExObj != NULL && nExObj->getID() == type &&
+        bExObj != NULL && bExObj->getID() == type) {
+        return true;
+    }
+    return false;
+}
+
+bool TakasuPoppo::checkCreateHyperB(CCPoint coor , int type)
+{
+    if(checkVerMatch(coor, type) && checkHorMatch(coor, type))
+    {
+        CCLOG( "True Cmnr");
+        return true;
+    }
+    return false;
+}
