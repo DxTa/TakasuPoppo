@@ -25,18 +25,17 @@ CCScene *TPMainScreen::scene(bool isGameOver, int score) {
 
 bool TPMainScreen::init(bool isGameOver, int score) {
     if (!CCLayer::init()) return false;
-    
+    //===================== Game Over ======================
     if (isGameOver) {
         gameOverIsOn = isGameOver;
         gameScoreOfNow = score;
     }
-    
+    //===================== Audio ==========================
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
     if (!TPUser::shareTPUser()->ExistUser())
         CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(100);
     if ( TPUser::shareTPUser()->ExistUser())
         CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(TPUser::shareTPUser()->getBMG());
-    
     //===================== New UI =========================
     TPMainScreen::setUIRanking();
     //===================== New Rubies =====================
@@ -55,8 +54,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     TPMainScreen::setUINetwork();
     //===================== Gameover =======================
     TPMainScreen::setUIGameOver();
-    
-    
+    //===================== Updates ========================
     TPMainScreen::firstTimeSetup();
     TPMainScreen::welcomeMessage();
     this->scheduleUpdate();
@@ -1338,15 +1336,38 @@ CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int
     CCTableViewCell *cell = table->dequeueCell();
     cell = new CCTableViewCell();
     cell->autorelease();
+    if (index == 1) {
+        CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
+        numberCircle->setPosition(ccp(30, 30));
+        cell->addChild(numberCircle);
+        
+        avatar = CCSprite::create("poppo_avatar_container.png");
+        avatar->setTag(151);
+        avatar->setPosition(ccp(120, 30));
+        cell->addChild(avatar);
+    }
     
-    CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
-    numberCircle->setPosition(ccp(30, 30));
-    cell->addChild(numberCircle);
+    if (index == 2) {
+        CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
+        numberCircle->setPosition(ccp(30, 30));
+        cell->addChild(numberCircle);
+        
+        avatar = CCSprite::create("poppo_avatar_container.png");
+        avatar->setTag(151);
+        avatar->setPosition(ccp(120, 30));
+        cell->addChild(avatar);
+    }
     
-    avatar = CCSprite::create("poppo_avatar_container.png");
-    avatar->setTag(151);
-    avatar->setPosition(ccp(120, 30));
-    cell->addChild(avatar);
+    if (index == 3) {
+        CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
+        numberCircle->setPosition(ccp(30, 30));
+        cell->addChild(numberCircle);
+        
+        avatar = CCSprite::create("poppo_avatar_container.png");
+        avatar->setTag(151);
+        avatar->setPosition(ccp(120, 30));
+        cell->addChild(avatar);
+    }
     Gamer *gamer = (Gamer*)listGamer->objectAtIndex(index);
     CCString *scoreGamer = CCString::createWithFormat("%d",gamer->getScore());
     
