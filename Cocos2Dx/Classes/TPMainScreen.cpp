@@ -96,19 +96,30 @@ void TPMainScreen::setUIRanking() {
     
     char playerName[100];
     sprintf(playerName, "%s", TPUser::shareTPUser()->getUserName().c_str());
-    rankingPlayerName = CCLabelTTF::create(playerName, "Berlin Sans FB", 30,
+    rankingPlayerName = CCLabelTTF::create(playerName, "Berlin Sans FB", 40,
                                            CCSizeMake(200, 50), kCCTextAlignmentLeft);
-    rankingPlayerName->setPosition(ccp(rankingBestContainer->getContentSize(). width / 2,
-                                       rankingBestContainer->getContentSize().height / 5));
+    rankingPlayerName->setPosition(ccp(rankingBestContainer->getContentSize(). width / 2 + 10,
+                                       rankingBestContainer->getContentSize().height / 5 - 20));
     rankingBestContainer->addChild(rankingPlayerName, 103, 183);
     
     char charBestScore[100];
     sprintf(charBestScore,"%i",TPUser::shareTPUser()->getUserScore());
     rankingPlayerBestScore = CCLabelTTF::create(charBestScore, "Berlin Sans FB", 60,
                                                 CCSizeMake(200, 50), kCCTextAlignmentLeft);
-    rankingPlayerBestScore->setPosition(ccp(rankingContainer->getContentSize(). width / 2,
-                                            rankingContainer->getContentSize().height / 5 - 30));
+    rankingPlayerBestScore->setPosition(ccp(rankingContainer->getContentSize(). width / 2 + 10,
+                                            rankingContainer->getContentSize().height / 5 - 50));
     rankingBestContainer->addChild(rankingPlayerBestScore, 103, 184);
+    
+    CCSprite *userAvatarContainer = CCSprite::create("poppo_avatar_container.png");
+    userAvatarContainer->setPosition(ccp(rankingContainer->getContentSize(). width / 2 - 150,
+                            rankingContainer->getContentSize().height / 5 - 30));
+    rankingBestContainer->addChild(userAvatarContainer);
+    
+    CCSprite *userAvatar = CCSprite::create("Poppo2A.png");
+    userAvatar->setPosition(ccp(rankingContainer->getContentSize(). width / 2 - 150,
+                                rankingContainer->getContentSize().height / 5 - 30));
+    userAvatar->setScale(0.8);
+    rankingBestContainer->addChild(userAvatar);
     
     heartContainer = CCSprite::create("poppo_hearts_container.png");
     heartContainer->setPosition(ccp(rankingContainer->getContentSize().width / 2,
@@ -443,7 +454,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item2, 102, 157);
     
-    itemLabel2 = CCSprite::create("poppoItem2Lbl.png");
+    itemLabel2 = CCSprite::create("poppoItem2lbl.png");
     itemLabel2->setPosition(ccp(320,
                                 itemContainer->getContentSize().height / 2 + 95));
     itemContainer->addChild(itemLabel2);
@@ -463,7 +474,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item4, 102, 159);
     
-    itemLabel4 = CCSprite::create("poppoItem4Lbl.png");
+    itemLabel4 = CCSprite::create("poppoItem4lbl.png");
     itemLabel4->setPosition(ccp(140,
                                 itemContainer->getContentSize().height / 2 - 55 - 40));
     itemContainer->addChild(itemLabel4);
@@ -503,7 +514,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item8, 102, 163);
     
-    itemLabel8 = CCSprite::create("poppoItem8Lbl.png");
+    itemLabel8 = CCSprite::create("poppoItem8lbl.png");
     itemLabel8->setPosition(ccp(320,
                                 itemContainer->getContentSize().height / 2 - 215 - 30));
     itemContainer->addChild(itemLabel8);
@@ -1365,7 +1376,8 @@ CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int
     CCTableViewCell *cell = table->dequeueCell();
     cell = new CCTableViewCell();
     cell->autorelease();
-    if (index == 1) {
+    CCLog("Table index %i", index);
+    if (index == 0) {
         CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
         numberCircle->setPosition(ccp(30, 30));
         cell->addChild(numberCircle);
@@ -1373,30 +1385,46 @@ CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int
         avatar = CCSprite::create("poppo_avatar_container.png");
         avatar->setTag(151);
         avatar->setPosition(ccp(120, 30));
+        
+        CCSprite *avatar1st = CCSprite::create("Poppo7B.png");
+        avatar1st->setPosition(ccp(120, 30));
+        avatar1st->setScale(0.8);
         cell->addChild(avatar);
+        cell->addChild(avatar1st);
+    }
+    
+    if (index == 1) {
+        CCSprite *numberCircle = CCSprite::create("poppo_ranking_second.png");
+        numberCircle->setPosition(ccp(30, 30));
+        cell->addChild(numberCircle);
+        
+        avatar = CCSprite::create("poppo_avatar_container.png");
+        avatar->setTag(151);
+        avatar->setPosition(ccp(120, 30));
+        
+        CCSprite *avatar1st = CCSprite::create("Poppo6A.png");
+        avatar1st->setPosition(ccp(120, 30));
+        avatar1st->setScale(0.8);
+        cell->addChild(avatar);
+        cell->addChild(avatar1st);
     }
     
     if (index == 2) {
-        CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
+        CCSprite *numberCircle = CCSprite::create("poppo_ranking_third.png");
         numberCircle->setPosition(ccp(30, 30));
         cell->addChild(numberCircle);
         
         avatar = CCSprite::create("poppo_avatar_container.png");
         avatar->setTag(151);
         avatar->setPosition(ccp(120, 30));
+        
+        CCSprite *avatar1st = CCSprite::create("Poppo5A.png");
+        avatar1st->setPosition(ccp(120, 30));
+        avatar1st->setScale(0.8);
         cell->addChild(avatar);
+        cell->addChild(avatar1st);
     }
     
-    if (index == 3) {
-        CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
-        numberCircle->setPosition(ccp(30, 30));
-        cell->addChild(numberCircle);
-        
-        avatar = CCSprite::create("poppo_avatar_container.png");
-        avatar->setTag(151);
-        avatar->setPosition(ccp(120, 30));
-        cell->addChild(avatar);
-    }
     Gamer *gamer = (Gamer*)listGamer->objectAtIndex(index);
     CCString *scoreGamer = CCString::createWithFormat("%d",gamer->getScore());
     
