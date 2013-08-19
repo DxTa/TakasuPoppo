@@ -66,13 +66,13 @@ void TPUser::setUserHeart(int heart)
     CCUserDefault::sharedUserDefault()->flush();
 }
 
-long TPUser::getStartedTime(){
-    return CCUserDefault::sharedUserDefault()->getIntegerForKey("StartedTime");
+float TPUser::getStartedTime(){
+    return CCUserDefault::sharedUserDefault()->getFloatForKey("StartedTime");
 }
 
-void TPUser::setStartedTime(long time)
+void TPUser::setStartedTime(float startTime)
 {
-    CCUserDefault::sharedUserDefault()->setIntegerForKey("UserLastTime", time);
+    CCUserDefault::sharedUserDefault()->setFloatForKey("StartedTime", startTime);
     CCUserDefault::sharedUserDefault()->flush();
 }
 
@@ -83,6 +83,17 @@ int TPUser::getCrystal(){
 void TPUser::setCrystal(int crystal)
 {
     CCUserDefault::sharedUserDefault()->setIntegerForKey("UserCrystal", crystal);
+    CCUserDefault::sharedUserDefault()->flush();
+}
+
+float TPUser::getLastTime()
+{
+    return CCUserDefault::sharedUserDefault()->getFloatForKey("LastTime");
+}
+
+void TPUser::setLastTime(float lastTime)
+{
+    CCUserDefault::sharedUserDefault()->setFloatForKey("LastTime", lastTime);
     CCUserDefault::sharedUserDefault()->flush();
 }
 

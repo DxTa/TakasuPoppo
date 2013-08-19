@@ -57,6 +57,8 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     //===================== Updates ========================
     TPMainScreen::firstTimeSetup();
     TPMainScreen::welcomeMessage();
+    //===================== Update heart by Time ===========
+    this->schedule(schedule_selector(TPMainScreen::scheduleUpdateHeart), 1);
     this->scheduleUpdate();
     return true;
 }
@@ -441,7 +443,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item2, 102, 157);
     
-    itemLabel2 = CCSprite::create("poppoItem2lbl.png");
+    itemLabel2 = CCSprite::create("poppoItem2Lbl.png");
     itemLabel2->setPosition(ccp(320,
                                 itemContainer->getContentSize().height / 2 + 95));
     itemContainer->addChild(itemLabel2);
@@ -461,7 +463,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item4, 102, 159);
     
-    itemLabel4 = CCSprite::create("poppoItem4lbl.png");
+    itemLabel4 = CCSprite::create("poppoItem4Lbl.png");
     itemLabel4->setPosition(ccp(140,
                                 itemContainer->getContentSize().height / 2 - 55 - 40));
     itemContainer->addChild(itemLabel4);
@@ -501,7 +503,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item8, 102, 163);
     
-    itemLabel8 = CCSprite::create("poppoItem8lbl.png");
+    itemLabel8 = CCSprite::create("poppoItem8Lbl.png");
     itemLabel8->setPosition(ccp(320,
                                 itemContainer->getContentSize().height / 2 - 215 - 30));
     itemContainer->addChild(itemLabel8);
@@ -644,18 +646,6 @@ void TPMainScreen::setUIGameOver() {
                                     - 500));
         scoreContainer->addChild(scoreClose, 103, 179);
     }
-
-
-
-    
-    this->schedule(schedule_selector(TPMainScreen::scheduleUpdateHeart), 1);
-
-
-    TPMainScreen::firstTimeSetup();
-    TPMainScreen::welcomeMessage();
-    
-
-    return true;
 
 }
 
@@ -912,7 +902,8 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
 //                TPUser::shareTPUser()->setCrystal(rubyCount - 2);
 //                TPMainScreen::setCrystal(2);
 //            }
-            TPUser::shareTPUser()->setStartedTime(TPMainScreen::getTime());
+            
+            TPUser::shareTPUser()->setStartedTime(getTime());
             
             TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() -1);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
@@ -1264,14 +1255,23 @@ void TPMainScreen::setCrystal(int decreasingAmount) {
 
 void TPMainScreen:: scheduleUpdateHeart(float time)
 {
-    long currentTime = TPMainScreen::getTime();
-    long startedTime = TPUser::shareTPUser()->getStartedTime();
-    if ((currentTime - startedTime) >= 480000) {
-          if (TPUser::shareTPUser()->getUserHeart() < 5) {
-              TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() +1);
-
-          }
-
+    float lastTime = TPUser::shareTPUser()->getLastTime();
+    float startedTime = TPUser::shareTPUser()->getStartedTime();
+    float playTime = lastTime - startedTime;
+    
+    if (playTime > 0) {
+        TPUser::shareTPUser()->setStartedTime(0);
+        TPUser::shareTPUser()->setLastTime(0);
+        
+        int numberHeart = (int)(playTime/480000);
+        
+        TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() + numberHeart);
+        
+        if (TPUser::shareTPUser()->getUserHeart() > 5) {
+            TPUser::shareTPUser()->setUserHeart(5);
+        }
+    }
+}
 #pragma mark NetworkFunction
 
 void TPMainScreen::continousRequest() {
@@ -1289,6 +1289,7 @@ void TPMainScreen::continousRequest() {
         this->unschedule(schedule_selector(TPMainScreen::continousRequest));
 
     }
+   
 }
 
 //============== Recieve data from Server and put into listGamer Array ================
@@ -1444,10 +1445,11 @@ void TPMainScreen::convertName(char *str_name)
     }
 }
 
-long TPMainScreen::getTime(){
-    struct cc_timeval now;
-    CCTime::gettimeofdayCocos2d(&now, NULL);
-    return (now.tv_sec * 1000 + now.tv_sec / 1000);
+float TPMainScreen::getTime(){
+    timeval time;
+    gettimeofday(&time, NULL);
+    unsigned long millisecs = (time.tv_sec *1000) + (time.tv_usec/1000);
+    return (float)millisecs;
     
 }
 

@@ -699,6 +699,7 @@ void TakasuPoppo::timeOver() {
 
     if (lastScore()) {
         CCLOG("SCORE * %d",score);
+        TPUser::shareTPUser()->setLastTime(TakasuPoppo::getTime());
         
         if (TPUser::shareTPUser()->ExistUser()==false) {
             TPUser::shareTPUser()->setUserScore(score);
@@ -836,4 +837,11 @@ void TakasuPoppo::removeSpace(char *str) {
             str[i] = '_';
         }
     }
+}
+
+float TakasuPoppo::getTime(){
+    timeval time;
+    gettimeofday(&time, NULL);
+    unsigned long millisecs = (time.tv_sec *1000) + (time.tv_usec/1000);
+    return (float)millisecs;
 }

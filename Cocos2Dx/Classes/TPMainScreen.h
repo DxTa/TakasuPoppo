@@ -227,7 +227,7 @@ public:
     virtual void scrollViewDidScroll(CCScrollView* view);
     virtual void scrollViewDidZoom(CCScrollView* view);
     void convertName(char *str_name);
-    long getTime();
+    float getTime();
 
     virtual bool init(bool isGameOver, int score);
     static TPMainScreen* create(bool isGameOver, int score);
