@@ -58,7 +58,10 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     TPMainScreen::firstTimeSetup();
     TPMainScreen::welcomeMessage();
     //===================== Update heart by Time ===========
+    if(TPUser::shareTPUser()->getLastTime() > 0){
     this->schedule(schedule_selector(TPMainScreen::scheduleUpdateHeart), 1);
+    }
+    
     this->scheduleUpdate();
     return true;
 }
@@ -857,6 +860,8 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
             heartChargeCount = 5 - heartCount;
             sprintf(heartViewChar, "%i", heartChargeCount);
             heartChargedLabel->setString(heartViewChar);
+            
+            TPUser::shareTPUser()->setLastTime(getTime());
             return;
         }
         
@@ -913,7 +918,10 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
 //                TPMainScreen::setCrystal(2);
 //            }
             
-            TPUser::shareTPUser()->setStartedTime(getTime());
+            if (TPUser::shareTPUser()->ExistUser()==false)
+            {
+                TPUser::shareTPUser()->setLastTime(getTime());
+            }
             
             TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() -1);
             CCScene *gameScene = TakasuPoppo::scene(itemObject);
@@ -1266,23 +1274,22 @@ void TPMainScreen::setCrystal(int decreasingAmount) {
 void TPMainScreen:: scheduleUpdateHeart(float time)
 {
     float lastTime = TPUser::shareTPUser()->getLastTime();
-    float startedTime = TPUser::shareTPUser()->getStartedTime();
-    float playTime = lastTime - startedTime;
+    float currentTime = TPMainScreen::getTime();
+    float playTime = currentTime - lastTime;
     
     CCLog("Last time: %f", lastTime);
-    CCLog("Started time: %f", startedTime);
+    CCLog("Current time: %f", currentTime);
     CCLog("Play time: %f", playTime);
     
-    CCLOG("so luong heart ban da:%i",TPUser::shareTPUser()->getUserHeart());
+    CCLOG("so luong heart ban dau:%i",TPUser::shareTPUser()->getUserHeart());
     
-    if (playTime > 0) {
-        TPUser::shareTPUser()->setStartedTime(0);
-        TPUser::shareTPUser()->setLastTime(0);
-        
-        int numberHeart = (int)(playTime/60000);
+    if (playTime >= 480000) {
+                
+        int numberHeart = (int)(playTime/480000);
         CCLOG("so numberheart:%i",numberHeart);
         
         TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() + numberHeart);
+        TPUser::shareTPUser()->setLastTime(getTime());
         
         if (TPUser::shareTPUser()->getUserHeart() > 5) {
             TPUser::shareTPUser()->setUserHeart(5);

@@ -703,7 +703,6 @@ void TakasuPoppo::timeOver() {
         if(_spcialItemID == SPECIAL_ITEM_3_ID)
             modefiedLastBonus();
         CCLOG("SCORE * %d",score);
-        TPUser::shareTPUser()->setLastTime(TakasuPoppo::getTime());
         
         if (TPUser::shareTPUser()->ExistUser()==false) {
             TPUser::shareTPUser()->setUserScore(score);

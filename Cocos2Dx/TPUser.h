@@ -8,7 +8,7 @@
 #ifndef __TaKaSuPoppo__TPUser__
 #define __TaKaSuPoppo__TPUser__
 
-#define IP_SERVER "133.242.203.251"
+#define IP_SERVER "192.168.1.189"
 
 #include "cocos2d.h"
 
@@ -42,9 +42,7 @@ public:
     
     int getUserHeart();
     void setUserHeart(int heart);
-    
-    float getStartedTime();
-    void setStartedTime(float startTime);
+
     
     int getCrystal();
     void setCrystal(int crystal);
