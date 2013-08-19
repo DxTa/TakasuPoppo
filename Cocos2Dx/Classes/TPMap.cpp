@@ -66,7 +66,10 @@ void TakasuPoppo::createFixture() {
     }
     
     if(createThreeeHyper)
+    {
         createMapWithHyperBlock();
+        createThreeeHyper = false;
+    }
 }
 
 CCPoint TakasuPoppo::tileCoorForPosition(CCPoint position) {

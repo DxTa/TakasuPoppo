@@ -133,7 +133,7 @@ private:
     int doubleScore = 1;
     bool endLastScore = false;
     bool createThreeeHyper = false;
-    float increaseComboTimes = 1;
+    float increaseComboTimes = 0;
     int lastScores = 0;
     int scoresBeforeLastBonus = 0;
     //moveto
@@ -404,6 +404,7 @@ public:
     void setFalseControlable(CCNode *sender, void* data);
     void deleteMainSprite();
     
+    bool checkCreatedBlockSet(CCPoint coor, int type);
     bool swapruning = false;
     //remove sprite
     void removeSprite(CCNode* sender, void* data);

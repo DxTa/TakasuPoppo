@@ -31,12 +31,16 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
     _itemObject = new TPItemObject(itemObject->getIsFirstItemOn(), itemObject->getIsSecondItemOn(), itemObject->getIsThirdItemOn(), itemObject->getSpecialItemID());
 
     if(_itemObject->getIsFirstItemOn())
-        addTime();
-    if(_itemObject->getIsSecondItemOn()) {
-        increasedScores();
-    }
-    if(_itemObject->getIsThirdItemOn()){
+    {
         createThreeeHyper = true;
+    }
+    if(_itemObject->getIsSecondItemOn())
+    {
+        addTime();
+    }
+    if(_itemObject->getIsThirdItemOn())
+    {
+        increasedScores();
     }
     
     if (!CCLayer::init()) return false;
@@ -146,7 +150,7 @@ bool TakasuPoppo::init(TPItemObject* itemObject) {
             CCLOG("Time to create MB2: %d", timeToCreateMB3);
             
         case SPECIAL_ITEM_5_ID:
-            increaseComboTimes = 1.1;
+            increaseComboTimes = ITEM_INCREASE_COMBOTIME;
             break;
             
         default:
@@ -266,6 +270,7 @@ void TakasuPoppo::endGame() {
 void TakasuPoppo::update(float dt) {
     deltaTime = dt;
     
+    CCLOG("COMBO TIME : %f", ComboTimer);
     if (executingLogic == false && toDestroyArray->count() > 0 && !inTheMove) {
         executingLogic = true;
         this->scheduleOnce(schedule_selector(TakasuPoppo::logicExecution), 0);
@@ -478,6 +483,8 @@ void TakasuPoppo::update(float dt) {
                 countMB2 ++;
             }
             if (isCleanMB2 == true) {
+                CCLOG("count : %d",countMB2);
+                CCLOG("gameTimer : %f",gameTimer);
                 gameTimer += 2;
                 isCleanMB2 = false;
             }
@@ -506,10 +513,6 @@ void TakasuPoppo::update(float dt) {
                 }
 
             }
-            break;
-            
-        case SPECIAL_ITEM_3_ID:
-            modefiedLastBonus();
             break;
 
         default:
@@ -568,7 +571,6 @@ void TakasuPoppo::logicExecution() {
     if(ComboCounter >= COMBO_REQUIRED)
     {
         ComboScoreRequired = 1 + ((int)(ComboCounter/COMBO_REQUIRED)) / 10;
-//        CCLOG("SSSSSSSSS %d",ComboCounter);
     }
     this->unschedule(schedule_selector(TakasuPoppo::matchList));
     this->unschedule(schedule_selector(TakasuPoppo::refreshWhenNoCombo));
@@ -698,6 +700,8 @@ void TakasuPoppo::timeOver() {
     boolMoveTo->addObject(boolMoving);
 
     if (lastScore()) {
+        if(_spcialItemID == SPECIAL_ITEM_3_ID)
+            modefiedLastBonus();
         CCLOG("SCORE * %d",score);
         TPUser::shareTPUser()->setLastTime(TakasuPoppo::getTime());
         

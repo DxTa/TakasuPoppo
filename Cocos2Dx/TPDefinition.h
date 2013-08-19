@@ -33,7 +33,7 @@
 #define LOGIC_DELAY 0.7 // afterCleanspeed * 6 + generateSpeed *6 + scaleTime + swapTime*2
 #define MOVE_DELAY 0.08
 
-#define AFTER_CLEAN_FALL_TIME 0.06
+#define AFTER_CLEAN_FALL_TIME 0.05
 #define GENERATE_FALL_TIME 0.06
 #define POP_ANIMATION_DELAY 0.04
 
@@ -43,13 +43,13 @@
 #define GAUGE_PERIOD 2 // after this period, if no more combo is created, minus gauge combo by 1
 // score system
 #define SCORE_THREE  200
-#define SCORE_FOUR  200
-#define SCORE_FIVE 600
+#define SCORE_FOUR  500
+#define SCORE_FIVE 900
 #define ONE_BLOCK 100
 
 //Item System
 #define DOUBLE_SCORE_TIME 20
-#define MISSION_BLOCK2_MAX_AMOUNT 10
+#define MISSION_BLOCK2_MAX_AMOUNT 3
 
 #define SPECIAL_ITEM_1_ID 1 // MISSION BLOCK 1 - ITEM 4
 #define SPECIAL_ITEM_2_ID 2 // MISSION BLOCK 2 - ITEM 5
@@ -69,7 +69,10 @@
 #define MOVED_NORMAL_BLOCK_TYPE 10
 #define MOVED_HBA_BLOCK_TYPE 11
 #define MOVED_HBB_BLOCK_TYPE 12
-
+//ITEM value
+#define ITEM_ADD_TIME 5; //item 1
+#define ITEM_INCREASE_SCORE 1.1; //item 2
+#define ITEM_INCREASE_COMBOTIME 2;
 
 USING_NS_CC;
 

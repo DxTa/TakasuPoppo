@@ -657,7 +657,6 @@ void TPMainScreen::setUIGameOver() {
                                     - 500));
         scoreContainer->addChild(scoreClose, 103, 179);
     }
-
 }
 
 void TPMainScreen::welcomeMessage() {
