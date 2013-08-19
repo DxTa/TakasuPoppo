@@ -25,20 +25,45 @@ CCScene *TPMainScreen::scene(bool isGameOver, int score) {
 
 bool TPMainScreen::init(bool isGameOver, int score) {
     if (!CCLayer::init()) return false;
-    
+    //===================== Game Over ======================
     if (isGameOver) {
         gameOverIsOn = isGameOver;
         gameScoreOfNow = score;
     }
-    
-    
-    
+    //===================== Audio ==========================
     CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("PoppoMelody.mp3", true);
     if (!TPUser::shareTPUser()->ExistUser())
         CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(100);
     if ( TPUser::shareTPUser()->ExistUser())
         CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(TPUser::shareTPUser()->getBMG());
     //===================== New UI =========================
+    TPMainScreen::setUIRanking();
+    //===================== New Rubies =====================
+    TPMainScreen::setUICrystel();
+    //===================== New Menu =======================
+    TPMainScreen::setUIMenu();
+    //===================== New Tutorial ===================
+    TPMainScreen::setUITutorial();
+    //===================== New Charge =====================
+    TPMainScreen::setUICharge();
+    //===================== New Setting ====================
+    TPMainScreen::setUISetting();
+    //===================== NewItem ========================
+    TPMainScreen::setUIItem();
+    //===================== Request ========================
+    TPMainScreen::setUINetwork();
+    //===================== Gameover =======================
+    TPMainScreen::setUIGameOver();
+    //===================== Updates ========================
+    TPMainScreen::firstTimeSetup();
+    TPMainScreen::welcomeMessage();
+    this->scheduleUpdate();
+    return true;
+}
+
+#pragma mark UISetup
+
+void TPMainScreen::setUIRanking() {
     heartCount = TPUser::shareTPUser()->getUserHeart();
     itemShadeArray = new CCArray;
     
@@ -131,9 +156,10 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     heartChargedLabel->setPosition(ccp(heartContainer->getContentSize().width - 200,
                                        heartContainer->getContentSize().height - 50));
     heartContainer->addChild(heartChargedLabel, 105, 144);
-    
-    //===================== New Rubies =========================
-    
+
+}
+
+void TPMainScreen::setUICrystel() {
     rubyContainer = CCSprite::create("poppo_ruby_gauge.png");
     rubyContainer->setPosition(ccp(winSize.width / 4,
                                    winSize.height - 50));
@@ -152,10 +178,9 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     rubyCountLabel->setPosition(ccp(rubyContainer->getContentSize().width - 100,
                                     rubyContainer->getContentSize().height - 40));
     rubyContainer->addChild(rubyCountLabel, 104, 112);
-    
-    //===================== New Menu =========================
-    
-    
+}
+
+void TPMainScreen::setUIMenu() {
     settingBtn = CCSprite::create("poppo_setting.png");
     settingBtn->setPosition(ccp(winSize.width - 100,
                                 winSize.height - 50));
@@ -171,10 +196,9 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                               winSize.height / 2));
     darkenBg->setVisible(false);
     this->addChild(darkenBg, 105, 114);
-    
-    
-    //===================== New Tutorial =========================
-    
+}
+
+void TPMainScreen::setUITutorial() {
     tutWin = CCSprite::create("poppo_tut_win.png");
     tutWin->setPosition(ccp(winSize.width / 2, winSize.height / 2));
     tutWin->setVisible(false);
@@ -240,9 +264,9 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     
     tutorialOn = false;
     
-    
-    //===================== New Charge =========================
-    
+}
+
+void TPMainScreen::setUICharge() {
     chargeWin = CCSprite::create("poppo_charge_win.png");
     chargeWin->setPosition(ccp(winSize.width / 2,
                                winSize.height / 2));
@@ -340,10 +364,9 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     chargeBtnScr4->setVisible(false);
     
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, true);
-    this->scheduleUpdate();
-    
-    
-    //===================== New Setting =========================
+}
+
+void TPMainScreen::setUISetting() {
     settingContainer = CCSprite::create("poppo_tut_win.png");
     settingContainer->setPosition(ccp(winSize.width / 2, winSize.height / 2));
     this->addChild(settingContainer, 130, 144);
@@ -391,16 +414,16 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     
     tutorialBtn = CCSprite::create("HowToPlayButton.png");
     tutorialBtn->setPosition(ccp(settingContainer->getContentSize().width / 2 + 130,
-                              settingContainer->getContentSize().height - 490));
+                                 settingContainer->getContentSize().height - 490));
     
     settingContainer->addChild(tutorialBtn, 133, 149);
     settingContainer->setVisible(false);
-    
-    //===================== NewItem =========================
-    
+}
+
+void TPMainScreen::setUIItem(){
     itemContainer = CCSprite::create("poppo_empty_container.png");
     itemContainer->setPosition(ccp(rankingContainer->getContentSize().width / 2,
-                                    rankingContainer->getContentSize().height - 50));
+                                   rankingContainer->getContentSize().height - 50));
     this->addChild(itemContainer, 102, 155);
     
     item1 = CCSprite::create("poppoItem1.png");
@@ -493,14 +516,14 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                                 itemContainer->getContentSize().height / 2 - 215 - 30));
     itemContainer->addChild(itemLabel9);
     
-//    item10 = CCSprite::create("itemNotAvailable.png");
-//    item10->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
-//                            itemContainer->getContentSize().height / 2 - 110));
-//    itemContainer->addChild(item10, 102, 165);
+    //    item10 = CCSprite::create("itemNotAvailable.png");
+    //    item10->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+    //                            itemContainer->getContentSize().height / 2 - 110));
+    //    itemContainer->addChild(item10, 102, 165);
     
     itemLabel = CCSprite::create("poppoItemOne.png");
     itemLabel->setPosition(ccp(itemContainer->getContentSize().width / 2 + 30,
-                    itemContainer->getContentSize().height / 2 + 45));
+                               itemContainer->getContentSize().height / 2 + 45));
     itemContainer->addChild(itemLabel, 102);
     
     item1Shade = CCSprite::create("ItemShade.png");
@@ -508,7 +531,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
                                 itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item1Shade, 103, 166);
     item1Shade->setVisible(false);
-
+    
     item2Shade = CCSprite::create("ItemShade.png");
     item2Shade->setPosition(ccp(320,
                                 itemContainer->getContentSize().height / 2 + 160));
@@ -563,32 +586,26 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     item9Shade->setVisible(false);
     itemShadeArray->addObject(item9Shade);
     
-//    item10Shade = CCSprite::create("itemNotAvailable.png");
-//    item10Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
-//                            itemContainer->getContentSize().height / 2 - 110));
-//    itemContainer->addChild(item10Shade, 103, 175);
-//    item10Shade->setVisible(false);
-//    itemShadeArray->addObject(item10Shade);
+    //    item10Shade = CCSprite::create("itemNotAvailable.png");
+    //    item10Shade->setPosition(ccp(itemContainer->getContentSize().width / 2 - 25,
+    //                            itemContainer->getContentSize().height / 2 - 110));
+    //    itemContainer->addChild(item10Shade, 103, 175);
+    //    item10Shade->setVisible(false);
+    //    itemShadeArray->addObject(item10Shade);
     
     itemContainer->setVisible(false);
-    
-    //===================== Request =========================
-    CCHttpRequest *request = new CCHttpRequest();
-    string serverIP = TPUser::shareTPUser()->getServerIp();
-    request->setUrl((serverIP+":3000/users.json").c_str());
-    request->setRequestType(CCHttpRequest::kHttpGet);
-    request->setResponseCallback(this, httpresponse_selector(TPMainScreen::onHttpRequestCompleted));
-    CCHttpClient::getInstance()->send(request);
-    request->release();
-    
+
+}
+
+void TPMainScreen::setUINetwork() {
     networkContainer = CCSprite::create("poppo_empty_container.png");
     networkContainer->setPosition(ccp(winSize.width / 2,
                                       winSize.height / 2 + 50));
     this->addChild(networkContainer, 101, 150);
-    
-    //===================== Gameover ======================
-    
-    
+    this->schedule(schedule_selector(TPMainScreen::continousRequest), 1);
+}
+
+void TPMainScreen::setUIGameOver() {
     if (gameOverIsOn) {
         networkContainer->setVisible(false);
         rankingBestContainer->setVisible(false);
@@ -629,6 +646,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     }
 
 
+
     
     this->schedule(schedule_selector(TPMainScreen::scheduleUpdateHeart), 1);
 
@@ -638,6 +656,7 @@ bool TPMainScreen::init(bool isGameOver, int score) {
     
 
     return true;
+
 }
 
 void TPMainScreen::welcomeMessage() {
@@ -1000,16 +1019,7 @@ void TPMainScreen::ccTouchEnded(CCTouch *touch, CCEvent *event) {
     }
 }
 
-CCRect TPMainScreen::boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite) {
-    CCPoint toConvertPoint = parentSprite->convertToWorldSpace(childSprite->getPosition());
-    CCRect worldBox = CCRectMake(toConvertPoint.x - childSprite->getContentSize().width / 2,
-                                 toConvertPoint.y - childSprite->getContentSize().height / 2,
-                                 childSprite->getContentSize().width,
-                                 childSprite->getContentSize().height);
-    return worldBox;
-}
-
-#pragma mark New Designs
+#pragma mark UIFunction
 
 void TPMainScreen::setItem() {
     if (itemOn) {
@@ -1249,6 +1259,7 @@ void TPMainScreen::setCrystal(int decreasingAmount) {
     heartChargedLabel->setString(heartViewChar);
 }
 
+
 //============== Schedule update heart by Time ================
 
 void TPMainScreen:: scheduleUpdateHeart(float time)
@@ -1260,6 +1271,23 @@ void TPMainScreen:: scheduleUpdateHeart(float time)
               TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() +1);
 
           }
+
+#pragma mark NetworkFunction
+
+void TPMainScreen::continousRequest() {
+    timeOut -= 1;
+    if (connectSuccess == false) {
+        CCHttpRequest *request = new CCHttpRequest();
+        string serverIP = TPUser::shareTPUser()->getServerIp();
+        request->setUrl((serverIP+"/users.json").c_str());
+        request->setRequestType(CCHttpRequest::kHttpGet);
+        request->setResponseCallback(this, httpresponse_selector(TPMainScreen::onHttpRequestCompleted));
+        CCHttpClient::getInstance()->send(request);
+        request->release();
+    }
+    if (connectSuccess == true || timeOut <= 0) {
+        this->unschedule(schedule_selector(TPMainScreen::continousRequest));
+
     }
 }
 
@@ -1268,9 +1296,10 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
     CCHttpResponse *response = (CCHttpResponse*)data;
     if (!response) {
         return;
+        connectSuccess = false;
     }
     
-    if (!response->isSucceed()) {
+    if (!response->isSucceed() && timeOut < 0) {
         CCLabelTTF *notConnectLabel = CCLabelTTF::create("現在ランキングは閉じています", "Time New Roman", 30);
         notConnectLabel->setPosition(ccp(networkContainer->getContentSize().width / 2,
                                          networkContainer->getContentSize().height / 2));
@@ -1318,6 +1347,8 @@ void TPMainScreen::onHttpRequestCompleted(CCNode *sender, void *data) {
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
     networkContainer->addChild(tableView, 102, 151);
     tableView->reloadData();
+    if (listGamer->count() <= 0) connectSuccess = false;
+    if (listGamer->count() >= 1) connectSuccess = true;
     
 }
 
@@ -1333,15 +1364,38 @@ CCTableViewCell* TPMainScreen::tableCellAtIndex(CCTableView *table, unsigned int
     CCTableViewCell *cell = table->dequeueCell();
     cell = new CCTableViewCell();
     cell->autorelease();
+    if (index == 1) {
+        CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
+        numberCircle->setPosition(ccp(30, 30));
+        cell->addChild(numberCircle);
+        
+        avatar = CCSprite::create("poppo_avatar_container.png");
+        avatar->setTag(151);
+        avatar->setPosition(ccp(120, 30));
+        cell->addChild(avatar);
+    }
     
-    CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
-    numberCircle->setPosition(ccp(30, 30));
-    cell->addChild(numberCircle);
+    if (index == 2) {
+        CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
+        numberCircle->setPosition(ccp(30, 30));
+        cell->addChild(numberCircle);
+        
+        avatar = CCSprite::create("poppo_avatar_container.png");
+        avatar->setTag(151);
+        avatar->setPosition(ccp(120, 30));
+        cell->addChild(avatar);
+    }
     
-    avatar = CCSprite::create("poppo_avatar_container.png");
-    avatar->setTag(151);
-    avatar->setPosition(ccp(120, 30));
-    cell->addChild(avatar);
+    if (index == 3) {
+        CCSprite *numberCircle = CCSprite::create("poppo_ranking_first.png");
+        numberCircle->setPosition(ccp(30, 30));
+        cell->addChild(numberCircle);
+        
+        avatar = CCSprite::create("poppo_avatar_container.png");
+        avatar->setTag(151);
+        avatar->setPosition(ccp(120, 30));
+        cell->addChild(avatar);
+    }
     Gamer *gamer = (Gamer*)listGamer->objectAtIndex(index);
     CCString *scoreGamer = CCString::createWithFormat("%d",gamer->getScore());
     
@@ -1419,7 +1473,17 @@ TPMainScreen* TPMainScreen::create(bool isGameOver, int score){
     
 }
 
-#pragma mark Another
+#pragma mark Others
+
+CCRect TPMainScreen::boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite) {
+    CCPoint toConvertPoint = parentSprite->convertToWorldSpace(childSprite->getPosition());
+    CCRect worldBox = CCRectMake(toConvertPoint.x - childSprite->getContentSize().width / 2,
+                                 toConvertPoint.y - childSprite->getContentSize().height / 2,
+                                 childSprite->getContentSize().width,
+                                 childSprite->getContentSize().height);
+    return worldBox;
+}
+
 
 void TPMainScreen::menuCloseCallback(CCObject* pSender) {
     CCDirector::sharedDirector()->end();
