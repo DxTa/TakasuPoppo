@@ -186,15 +186,15 @@ void TakasuPoppo::startGame() {
     
     
     CCSprite *counter3 = CCSprite::create("Ready.png");
-    CCSprite *counter2 = CCSprite::create("Counter2.png");
+    //CCSprite *counter2 = CCSprite::create("Counter2.png");
     CCSprite *counter1 = CCSprite::create("Go.png");
     
     counter3->setPosition(ccp(winSize.width / 2, winSize.height / 2));
-    counter2->setPosition(ccp(winSize.width / 2, winSize.height / 2));
+    //counter2->setPosition(ccp(winSize.width / 2, winSize.height / 2));
     counter1->setPosition(ccp(winSize.width / 2, winSize.height / 2));
     
     counter3->setTag(403);
-    counter2->setTag(402);
+    //counter2->setTag(402);
     counter1->setTag(401);
     
     if (executionTime < 3) {

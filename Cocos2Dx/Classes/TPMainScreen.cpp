@@ -454,7 +454,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 + 160));
     itemContainer->addChild(item2, 102, 157);
     
-    itemLabel2 = CCSprite::create("poppoItem2lbl.png");
+    itemLabel2 = CCSprite::create("poppoItem2Lbl.png");
     itemLabel2->setPosition(ccp(320,
                                 itemContainer->getContentSize().height / 2 + 95));
     itemContainer->addChild(itemLabel2);
@@ -474,7 +474,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 + 10 - 30));
     itemContainer->addChild(item4, 102, 159);
     
-    itemLabel4 = CCSprite::create("poppoItem4lbl.png");
+    itemLabel4 = CCSprite::create("poppoItem4Lbl.png");
     itemLabel4->setPosition(ccp(140,
                                 itemContainer->getContentSize().height / 2 - 55 - 40));
     itemContainer->addChild(itemLabel4);
@@ -514,7 +514,7 @@ void TPMainScreen::setUIItem(){
                            itemContainer->getContentSize().height / 2 - 150 - 30));
     itemContainer->addChild(item8, 102, 163);
     
-    itemLabel8 = CCSprite::create("poppoItem8lbl.png");
+    itemLabel8 = CCSprite::create("poppoItem8Lbl.png");
     itemLabel8->setPosition(ccp(320,
                                 itemContainer->getContentSize().height / 2 - 215 - 30));
     itemContainer->addChild(itemLabel8);
@@ -1269,17 +1269,25 @@ void TPMainScreen:: scheduleUpdateHeart(float time)
     float startedTime = TPUser::shareTPUser()->getStartedTime();
     float playTime = lastTime - startedTime;
     
+    CCLog("Last time: %f", lastTime);
+    CCLog("Started time: %f", startedTime);
+    CCLog("Play time: %f", playTime);
+    
+    CCLOG("so luong heart ban da:%i",TPUser::shareTPUser()->getUserHeart());
+    
     if (playTime > 0) {
         TPUser::shareTPUser()->setStartedTime(0);
         TPUser::shareTPUser()->setLastTime(0);
         
-        int numberHeart = (int)(playTime/480000);
+        int numberHeart = (int)(playTime/60000);
+        CCLOG("so numberheart:%i",numberHeart);
         
         TPUser::shareTPUser()->setUserHeart(TPUser::shareTPUser()->getUserHeart() + numberHeart);
         
         if (TPUser::shareTPUser()->getUserHeart() > 5) {
             TPUser::shareTPUser()->setUserHeart(5);
         }
+        CCLOG("so luong heart sau khi cong:%i",TPUser::shareTPUser()->getUserHeart());
     }
 }
 #pragma mark NetworkFunction
