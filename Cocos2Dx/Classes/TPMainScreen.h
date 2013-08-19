@@ -178,9 +178,12 @@ private:
     bool item2On;
     bool item3On;
     int specialItemID;
-    
+
     bool gameOverIsOn;
     int gameScoreOfNow;
+    
+    bool connectSuccess;
+    float timeOut;
 public:
     ~TPMainScreen();
     virtual bool ccTouchBegan(CCTouch *touch, CCEvent *event);
@@ -193,6 +196,16 @@ public:
     void update(float dt);
     void menuCloseCallback(CCObject *pSender);
     
+    void setUIRanking();
+    void setUICrystel();
+    void setUIMenu();
+    void setUITutorial();
+    void setUICharge();
+    void setUISetting();
+    void setUIItem();
+    void setUINetwork();
+    void setUIGameOver();
+    
     void setTutorial();
     void setupHearts();
     void setCharge();
@@ -204,6 +217,7 @@ public:
     
     CCRect boundingBoxWorldSpace(CCSprite *parentSprite, CCSprite *childSprite);
     
+    void continousRequest();
     void onHttpRequestCompleted(CCNode *sender, void *data);
     
     virtual void tableCellTouched(CCTableView* table, CCTableViewCell* cell);
@@ -213,7 +227,7 @@ public:
     virtual void scrollViewDidScroll(CCScrollView* view);
     virtual void scrollViewDidZoom(CCScrollView* view);
     void convertName(char *str_name);
-    long getTime();
+    float getTime();
 
     virtual bool init(bool isGameOver, int score);
     static TPMainScreen* create(bool isGameOver, int score);

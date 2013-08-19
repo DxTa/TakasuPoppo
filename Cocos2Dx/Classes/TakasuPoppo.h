@@ -426,6 +426,9 @@ public:
     
     //removeSpace
     void removeSpace(char *str);
+    
+    // get current time
+    float getTime();
 };
 
 #endif

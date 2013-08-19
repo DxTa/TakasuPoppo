@@ -43,14 +43,17 @@ public:
     int getUserHeart();
     void setUserHeart(int heart);
     
-    long getStartedTime();
-    void setStartedTime(long time);
+    float getStartedTime();
+    void setStartedTime(float startTime);
     
     int getCrystal();
     void setCrystal(int crystal);
     
     bool ExistUser();
 //    void setExistUser(bool existUser);
+    
+    float getLastTime();
+    void setLastTime(float lastTime);
     
     float getBMG();
     void setBMG(float bmg);
