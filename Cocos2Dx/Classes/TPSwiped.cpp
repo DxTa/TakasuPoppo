@@ -388,7 +388,8 @@ TPObjectExtension* TakasuPoppo::checkSwipe(TPBlockSet *blockSet){
 }
 
 bool TakasuPoppo::isObjectMoving(TPObjectExtension *obj) {
-    if (obj != NULL && obj->getSprite() != NULL && obj->getID() != 7 && floatCompare(obj->getSprite()->getPositionX(), obj->getPosition().x, 0.00001) == true && floatCompare(obj->getSprite()->getPositionY(), obj->getPosition().y, 0.00001) == true)
+    CCSprite *exSprite = obj->getSprite();
+    if (exSprite != NULL && obj->getID() != 7 && (floatCompare(exSprite->getPositionX(), obj->getPosition().x, 0.00001) == true || floatCompare(exSprite->getPositionY(), obj->getPosition().y, 0.00001) == true))
         return false;
     else return true;
 }

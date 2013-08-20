@@ -253,7 +253,8 @@ void TakasuPoppo::cleanSprite(TPObjectExtension *exObj) {
                 CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::changeID), (void*)exObj),
                 CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::popAnimation), (void*)spritePosition),
 //                CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::removeSprite), (void*)exSprite),
-                                               CCRemoveSelf::create(true),
+//                                               CCRemoveSelf::create(true),
+                                               CCCallFuncND::create(this, callfuncND_selector(TakasuPoppo::removeSprite), (void*)exSprite),
                                                NULL));
         
 
@@ -266,6 +267,7 @@ void TakasuPoppo::removeSprite(CCNode* sender, void* data)
     {
         CCSprite *exSprite = (CCSprite*)data;
         this->removeChild(exSprite);
+        exSprite = NULL;
     }
 }
 
